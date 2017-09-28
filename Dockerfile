@@ -15,7 +15,7 @@ RUN dotnet build --configuration Release src/SimulationCSharpClient
 RUN dotnet pack --no-build --configuration Release src/SimulationCSharpClient
 
 # Publish
-RUN dotnet nuget push src/SimulationCSharpClient/bin/Release/SimulationCSharpClient.0.1.0.nupkg -s https://www.nuget.org/api/v2/package -k $key
+RUN dotnet nuget push src/SimulationCSharpClient/bin/Release/SimulationCSharpClient.0.1.1.nupkg -s https://www.nuget.org/api/v2/package -k $key
 
 
 
