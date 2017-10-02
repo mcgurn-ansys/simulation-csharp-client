@@ -26,11 +26,15 @@ npm install nswag -g
 ```
 
 ## Regenerating from swagger.json
-After installing nswag, run the following command from the project root:
+To generate the client, run nswag in the project root folder using either a local or remote simulation-api endpoint
+as input.
 
+If running simulation-api locally:
 ```
 nswag swagger2csclient /input:http://localhost:5000/swagger/v1/swagger.json /classname:SimulationClient /namespace:SimulationCSharpClient.Client /output:src/SimulationCSharpClient/Client/SimulationClientGenerated.cs
 ```
 
-The QA or Production endpoint can be used of not running the API locally.
-
+Either the QA or Production simulation-api can also be used as input. For example, if using the QA API:
+```
+nswag swagger2csclient /input:https://simulation-api-qa.3dsim.com/swagger/v1/swagger.json /classname:SimulationClient /namespace:SimulationCSharpClient.Client /output:src/SimulationCSharpClient/Client/SimulationClientGenerated.cs
+```
