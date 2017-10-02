@@ -3,6 +3,7 @@ FROM microsoft/aspnetcore-build:2.0.0
 ENV APPLICATION_NAME=simulation-csharp-client
 COPY . /tmp
 WORKDIR /tmp
+ARG version
 ARG key
 
 # Restore main projects
@@ -15,7 +16,7 @@ RUN dotnet build --configuration Release src/SimulationCSharpClient
 RUN dotnet pack --no-build --configuration Release src/SimulationCSharpClient
 
 # Publish
-RUN dotnet nuget push src/SimulationCSharpClient/bin/Release/SimulationCSharpClient.0.1.2.nupkg -s https://www.nuget.org/api/v2/package -k $key
+RUN dotnet nuget push src/SimulationCSharpClient/bin/Release/SimulationCSharpClient.$version.nupkg -s https://www.nuget.org/api/v2/package -k $key
 
 
 
