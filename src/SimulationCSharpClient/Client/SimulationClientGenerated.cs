@@ -16540,7 +16540,7 @@ namespace SimulationCSharpClient.Client
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.6.5.0 (Newtonsoft.Json v9.0.0.0)")]
     public partial class BuildFile : System.ComponentModel.INotifyPropertyChanged
     {
-        private int? _id;
+        private int _id;
         private int _organizationId;
         private string _name;
         private string _description;
@@ -16572,8 +16572,8 @@ namespace SimulationCSharpClient.Client
         private double? _originalZ;
         private string _supportModelFileLocation;
     
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Id
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
+        public int Id
         {
             get { return _id; }
             set 
