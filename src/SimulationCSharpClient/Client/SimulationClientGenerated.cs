@@ -2059,88 +2059,6 @@ namespace SimulationCSharpClient.Client
     
         /// <returns>Success</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<BuildFile> BuildFilesByIdProcessPutAsync(BuildFile buildFile, string id)
-        {
-            return BuildFilesByIdProcessPutAsync(buildFile, id, System.Threading.CancellationToken.None);
-        }
-    
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <returns>Success</returns>
-        /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<BuildFile> BuildFilesByIdProcessPutAsync(BuildFile buildFile, string id, System.Threading.CancellationToken cancellationToken)
-        {
-            if (id == null)
-                throw new System.ArgumentNullException("id");
-    
-            var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl).Append("/BuildFiles/{id}/process");
-            urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(System.Convert.ToString(id, System.Globalization.CultureInfo.InvariantCulture)));
-    
-            var client_ = new System.Net.Http.HttpClient();
-            try
-            {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
-                {
-                    var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(buildFile, _settings.Value));
-                    content_.Headers.ContentType.MediaType = "application/json";
-                    request_.Content = content_;
-                    request_.Method = new System.Net.Http.HttpMethod("PUT");
-                    request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-    
-                    PrepareRequest(client_, request_, urlBuilder_);
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-                    PrepareRequest(client_, request_, url_);
-    
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-                    try
-                    {
-                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
-                        foreach (var item_ in response_.Content.Headers)
-                            headers_[item_.Key] = item_.Value;
-    
-                        ProcessResponse(client_, response_);
-    
-                        var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
-                        {
-                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
-                            var result_ = default(BuildFile); 
-                            try
-                            {
-                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<BuildFile>(responseData_, _settings.Value);
-                                return result_; 
-                            } 
-                            catch (System.Exception exception) 
-                            {
-                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception);
-                            }
-                        }
-                        else
-                        if (status_ != "200" && status_ != "204")
-                        {
-                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
-                            throw new SwaggerException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", status_, responseData_, headers_, null);
-                        }
-            
-                        return default(BuildFile);
-                    }
-                    finally
-                    {
-                        if (response_ != null)
-                            response_.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-                if (client_ != null)
-                    client_.Dispose();
-            }
-        }
-    
-        /// <returns>Success</returns>
-        /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<BuildFile> BuildFilesByIdArchivePutAsync(int id)
         {
             return BuildFilesByIdArchivePutAsync(id, System.Threading.CancellationToken.None);
@@ -13870,6 +13788,7 @@ namespace SimulationCSharpClient.Client
         private double _anisotropicStrainCoefficientParallel;
         private double _anisotropicStrainCoefficientPerpendicular;
         private double _anisotropicStrainCoefficientZ;
+        private double _capTemperature;
         private string _lookupFileLocation;
     
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -14377,6 +14296,21 @@ namespace SimulationCSharpClient.Client
             }
         }
     
+        [Newtonsoft.Json.JsonProperty("capTemperature", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0.0, 10000.0)]
+        public double CapTemperature
+        {
+            get { return _capTemperature; }
+            set 
+            {
+                if (_capTemperature != value)
+                {
+                    _capTemperature = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
         [Newtonsoft.Json.JsonProperty("lookupFileLocation", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
         public string LookupFileLocation
@@ -14670,6 +14604,8 @@ namespace SimulationCSharpClient.Client
         private double _coolingToScanningTimeIncrementRatio;
         private double _totalCoolingTime;
         private double _heaterTemperature;
+        private double _layerDelay;
+        private double _scanLineDelay;
     
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int? Id
@@ -14857,6 +14793,36 @@ namespace SimulationCSharpClient.Client
                 if (_heaterTemperature != value)
                 {
                     _heaterTemperature = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("layerDelay", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0.0, 60.0)]
+        public double LayerDelay
+        {
+            get { return _layerDelay; }
+            set 
+            {
+                if (_layerDelay != value)
+                {
+                    _layerDelay = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("scanLineDelay", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0.0, 100.0)]
+        public double ScanLineDelay
+        {
+            get { return _scanLineDelay; }
+            set 
+            {
+                if (_scanLineDelay != value)
+                {
+                    _scanLineDelay = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -17452,6 +17418,7 @@ namespace SimulationCSharpClient.Client
         private System.Collections.ObjectModel.ObservableCollection<double> _slicingStripeWidthValues;
         private System.Collections.ObjectModel.ObservableCollection<double> _originXValues;
         private System.Collections.ObjectModel.ObservableCollection<double> _originYValues;
+        private System.Collections.ObjectModel.ObservableCollection<double> _solidusTemperatureValues;
         private int? _id;
         private int _organizationId;
         private bool _archived;
@@ -17648,6 +17615,20 @@ namespace SimulationCSharpClient.Client
                 if (_originYValues != value)
                 {
                     _originYValues = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("solidusTemperatureValues", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.ObjectModel.ObservableCollection<double> SolidusTemperatureValues
+        {
+            get { return _solidusTemperatureValues; }
+            set 
+            {
+                if (_solidusTemperatureValues != value)
+                {
+                    _solidusTemperatureValues = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -19652,6 +19633,7 @@ namespace SimulationCSharpClient.Client
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.6.5.0 (Newtonsoft.Json v9.0.0.0)")]
     public partial class SingleBeadSimulation : System.ComponentModel.INotifyPropertyChanged
     {
+        private string _beadType;
         private double _beadLength;
         private double _layerThickness;
         private System.Collections.ObjectModel.ObservableCollection<double> _laserWattageValues;
@@ -19664,6 +19646,7 @@ namespace SimulationCSharpClient.Client
         private System.Collections.ObjectModel.ObservableCollection<double> _laserAbsorptivityInSolidValues;
         private System.Collections.ObjectModel.ObservableCollection<double> _solidusTemperatureValues;
         private System.Collections.ObjectModel.ObservableCollection<double> _liquidusTemperatureValues;
+        private System.Collections.ObjectModel.ObservableCollection<double> _capTemperatureValues;
         private int? _id;
         private int _organizationId;
         private bool _archived;
@@ -19694,6 +19677,22 @@ namespace SimulationCSharpClient.Client
         private MachineConfiguration _machineConfiguration;
         private System.Collections.ObjectModel.ObservableCollection<SimulationOutput> _outputs;
         private System.Collections.ObjectModel.ObservableCollection<SimulationActivity> _simulationActivities;
+    
+        [Newtonsoft.Json.JsonProperty("beadType", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        [System.ComponentModel.DataAnnotations.StringLength(32)]
+        public string BeadType
+        {
+            get { return _beadType; }
+            set 
+            {
+                if (_beadType != value)
+                {
+                    _beadType = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
     
         [Newtonsoft.Json.JsonProperty("beadLength", Required = Newtonsoft.Json.Required.Always)]
         public double BeadLength
@@ -19858,6 +19857,20 @@ namespace SimulationCSharpClient.Client
                 if (_liquidusTemperatureValues != value)
                 {
                     _liquidusTemperatureValues = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("capTemperatureValues", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.ObjectModel.ObservableCollection<double> CapTemperatureValues
+        {
+            get { return _capTemperatureValues; }
+            set 
+            {
+                if (_capTemperatureValues != value)
+                {
+                    _capTemperatureValues = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -20321,6 +20334,7 @@ namespace SimulationCSharpClient.Client
         private double _slicingStripeWidth;
         private double _hatchSpacing;
         private double _laserWattage;
+        private double _heaterTemperature;
         private double _scanSpeed;
         private bool _outputStateMap;
         private bool _outputThermalVtk;
@@ -20492,6 +20506,21 @@ namespace SimulationCSharpClient.Client
                 if (_laserWattage != value)
                 {
                     _laserWattage = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("heaterTemperature", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0.0, 1000.0)]
+        public double HeaterTemperature
+        {
+            get { return _heaterTemperature; }
+            set 
+            {
+                if (_heaterTemperature != value)
+                {
+                    _heaterTemperature = value; 
                     RaisePropertyChanged();
                 }
             }
