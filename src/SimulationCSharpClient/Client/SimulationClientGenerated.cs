@@ -16537,6 +16537,7 @@ namespace SimulationCSharpClient.Client
         private double? _originalY;
         private double? _originalZ;
         private string _supportModelFileLocation;
+        private string _uploadFileLocation;
     
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
         public int Id
@@ -16986,6 +16987,21 @@ namespace SimulationCSharpClient.Client
                 if (_supportModelFileLocation != value)
                 {
                     _supportModelFileLocation = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("uploadFileLocation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.StringLength(256)]
+        public string UploadFileLocation
+        {
+            get { return _uploadFileLocation; }
+            set 
+            {
+                if (_uploadFileLocation != value)
+                {
+                    _uploadFileLocation = value; 
                     RaisePropertyChanged();
                 }
             }
