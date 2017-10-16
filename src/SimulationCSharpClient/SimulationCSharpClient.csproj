@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -8,28 +7,24 @@
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-      <CodeAnalysisRuleSet>../../customStylecop.ruleset</CodeAnalysisRuleSet>
-      <Version>0.3.1</Version>
-      <Authors />
-      <PackageProjectUrl>https://github.com/3DSIM/simulation-csharp-client</PackageProjectUrl>
-      <RepositoryUrl>https://github.com/3DSIM/simulation-csharp-client</RepositoryUrl>
-      <Description>C# Client for interacting with the 3DSIM simulation api</Description>
-      <PackageLicenseUrl>https://github.com/3DSIM/simulation-csharp-client/blob/master/LICENSE</PackageLicenseUrl>
+    <CodeAnalysisRuleSet>../../customStylecop.ruleset</CodeAnalysisRuleSet>
+    <Version>0.3.2</Version>
+    <Authors />
+    <PackageProjectUrl>https://github.com/3DSIM/simulation-csharp-client</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/3DSIM/simulation-csharp-client</RepositoryUrl>
+    <Description>C# Client for interacting with the 3DSIM simulation api</Description>
+    <PackageLicenseUrl>https://github.com/3DSIM/simulation-csharp-client/blob/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
-
   <ItemGroup>
     <AdditionalFiles Include="../../stylecop.json">
       <Link>stylecop.json</Link>
     </AdditionalFiles>
   </ItemGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile></DocumentationFile>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta001" />
   </ItemGroup>
-
 </Project>
