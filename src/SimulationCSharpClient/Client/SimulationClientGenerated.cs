@@ -1378,9 +1378,12 @@ namespace SimulationCSharpClient.Client
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
         private string _baseUrl = "";
         
-        public SimulationClient(string baseUrl)
+        private System.Net.Http.HttpClient _httpClient; 
+    
+        public SimulationClient(string baseUrl, System.Net.Http.HttpClient httpClient)
         {
             BaseUrl = baseUrl; 
+            _httpClient = httpClient; 
     		_settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(() => 
             {
                 var settings = new Newtonsoft.Json.JsonSerializerSettings();
@@ -1421,7 +1424,7 @@ namespace SimulationCSharpClient.Client
             if (limit != null) urlBuilder_.Append("limit=").Append(System.Uri.EscapeDataString(System.Convert.ToString(limit.Value, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -1476,8 +1479,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -1496,7 +1497,7 @@ namespace SimulationCSharpClient.Client
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl).Append("/AssumedStrainSimulations");
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -1554,8 +1555,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -1578,7 +1577,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/AssumedStrainSimulations/{simulationId}");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -1633,8 +1632,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -1657,7 +1654,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/AssumedStrainSimulations/{simulationId}");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -1715,8 +1712,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -1739,7 +1734,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/AssumedStrainSimulations/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(System.Convert.ToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -1797,8 +1792,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -1821,7 +1814,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/AssumedStrainSimulations/{simulationId}/start");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -1878,8 +1871,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -1902,7 +1893,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/AssumedStrainSimulations/{simulationId}/cancel");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -1959,8 +1950,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -1983,7 +1972,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/AssumedStrainSimulations/{simulationId}/started");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -2040,8 +2029,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -2064,7 +2051,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/AssumedStrainSimulations/{simulationId}/cancelled");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -2121,8 +2108,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -2145,7 +2130,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/AssumedStrainSimulations/{simulationId}/success");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -2202,8 +2187,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -2226,7 +2209,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/AssumedStrainSimulations/{simulationId}/error");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -2283,8 +2266,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -2310,7 +2291,7 @@ namespace SimulationCSharpClient.Client
             if (limit != null) urlBuilder_.Append("limit=").Append(System.Uri.EscapeDataString(System.Convert.ToString(limit.Value, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -2365,8 +2346,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -2393,7 +2372,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{logEntryId}", System.Uri.EscapeDataString(System.Convert.ToString(logEntryId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -2448,8 +2427,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -2472,7 +2449,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/AssumedStrainSimulations/{simulationId}/unarchive");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -2529,8 +2506,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -2553,7 +2528,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/AssumedStrainSimulations/{simulationId}/archive");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -2610,8 +2585,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -2637,7 +2610,7 @@ namespace SimulationCSharpClient.Client
             if (limit != null) urlBuilder_.Append("limit=").Append(System.Uri.EscapeDataString(System.Convert.ToString(limit.Value, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -2692,8 +2665,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -2716,7 +2687,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/AssumedStrainSimulations/{simulationId}/activities");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -2774,8 +2745,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -2802,7 +2771,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{activityId}", System.Uri.EscapeDataString(System.Convert.ToString(activityId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -2857,8 +2826,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -2881,7 +2848,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/AssumedStrainSimulations/{simulationId}/partgeometry");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -2936,8 +2903,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -2960,7 +2925,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/AssumedStrainSimulations/{simulationId}/supportgeometry");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -3015,8 +2980,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -3039,7 +3002,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/AssumedStrainSimulations/{id}/estimate");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(System.Convert.ToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -3094,8 +3057,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -3122,7 +3083,7 @@ namespace SimulationCSharpClient.Client
             if (limit != null) urlBuilder_.Append("limit=").Append(System.Uri.EscapeDataString(System.Convert.ToString(limit.Value, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -3177,8 +3138,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -3197,7 +3156,7 @@ namespace SimulationCSharpClient.Client
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl).Append("/BuildFiles");
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -3255,8 +3214,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -3279,7 +3236,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/BuildFiles/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(System.Convert.ToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -3334,8 +3291,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -3358,7 +3313,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/BuildFiles/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(System.Convert.ToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -3416,8 +3371,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -3440,7 +3393,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/BuildFiles/{id}/archive");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(System.Convert.ToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -3497,8 +3450,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -3517,7 +3468,7 @@ namespace SimulationCSharpClient.Client
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl).Append("/BuildFiles/buildfileuploadurl");
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -3572,8 +3523,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -3596,7 +3545,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/BuildFiles/{id}/geometry");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(System.Convert.ToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -3651,8 +3600,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -3675,7 +3622,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/BuildFiles/{id}/geometryurl");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(System.Convert.ToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -3730,8 +3677,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -3754,7 +3699,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/BuildFiles/{buildFileId}");
             urlBuilder_.Replace("{buildFileId}", System.Uri.EscapeDataString(System.Convert.ToString(buildFileId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -3812,8 +3757,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -3838,7 +3781,7 @@ namespace SimulationCSharpClient.Client
             if (limit != null) urlBuilder_.Append("limit=").Append(System.Uri.EscapeDataString(System.Convert.ToString(limit.Value, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -3893,8 +3836,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -3913,7 +3854,7 @@ namespace SimulationCSharpClient.Client
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl).Append("/Machines");
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -3971,8 +3912,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -3995,7 +3934,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/Machines/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(System.Convert.ToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -4050,8 +3989,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -4074,7 +4011,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/Machines/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(System.Convert.ToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -4132,8 +4069,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -4156,7 +4091,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/Machines/{machineId}/unarchive");
             urlBuilder_.Replace("{machineId}", System.Uri.EscapeDataString(System.Convert.ToString(machineId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -4213,8 +4148,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -4237,7 +4170,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/Machines/{machineId}/archive");
             urlBuilder_.Replace("{machineId}", System.Uri.EscapeDataString(System.Convert.ToString(machineId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -4294,8 +4227,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -4322,7 +4253,7 @@ namespace SimulationCSharpClient.Client
             if (limit != null) urlBuilder_.Append("limit=").Append(System.Uri.EscapeDataString(System.Convert.ToString(limit.Value, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -4377,8 +4308,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -4397,7 +4326,7 @@ namespace SimulationCSharpClient.Client
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl).Append("/Materials");
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -4455,8 +4384,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -4479,7 +4406,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/Materials/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(System.Convert.ToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -4534,8 +4461,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -4558,7 +4483,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/Materials/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(System.Convert.ToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -4616,8 +4541,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -4640,7 +4563,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/Materials/{materialId}/unarchive");
             urlBuilder_.Replace("{materialId}", System.Uri.EscapeDataString(System.Convert.ToString(materialId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -4697,8 +4620,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -4721,7 +4642,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/Materials/{materialId}/archive");
             urlBuilder_.Replace("{materialId}", System.Uri.EscapeDataString(System.Convert.ToString(materialId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -4778,8 +4699,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -4806,7 +4725,7 @@ namespace SimulationCSharpClient.Client
             if (limit != null) urlBuilder_.Append("limit=").Append(System.Uri.EscapeDataString(System.Convert.ToString(limit.Value, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -4861,8 +4780,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -4881,7 +4798,7 @@ namespace SimulationCSharpClient.Client
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl).Append("/Parts");
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -4939,8 +4856,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -4963,7 +4878,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/Parts/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(System.Convert.ToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -5018,8 +4933,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -5042,7 +4955,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/Parts/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(System.Convert.ToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -5100,8 +5013,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -5124,7 +5035,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/Parts/{id}/process");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(System.Convert.ToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -5182,8 +5093,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -5206,7 +5115,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/Parts/{id}/archive");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(System.Convert.ToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -5263,8 +5172,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -5287,7 +5194,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/Parts/{partId}");
             urlBuilder_.Replace("{partId}", System.Uri.EscapeDataString(System.Convert.ToString(partId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -5345,8 +5252,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -5365,7 +5270,7 @@ namespace SimulationCSharpClient.Client
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl).Append("/Parts/geometryuploadurl");
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -5420,8 +5325,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -5444,7 +5347,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/Parts/{id}/geometryurl");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(System.Convert.ToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -5499,8 +5402,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -5527,7 +5428,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Replace("{partId}", System.Uri.EscapeDataString(System.Convert.ToString(partId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{supportId}", System.Uri.EscapeDataString(System.Convert.ToString(supportId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -5582,8 +5483,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -5606,7 +5505,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/Parts/{partId}/supports");
             urlBuilder_.Replace("{partId}", System.Uri.EscapeDataString(System.Convert.ToString(partId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -5664,8 +5563,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -5692,7 +5589,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Replace("{partId}", System.Uri.EscapeDataString(System.Convert.ToString(partId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{supportId}", System.Uri.EscapeDataString(System.Convert.ToString(supportId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -5747,8 +5644,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -5771,7 +5666,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/Parts/{partId}/supports/geometryuploadurl");
             urlBuilder_.Replace("{partId}", System.Uri.EscapeDataString(System.Convert.ToString(partId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -5826,8 +5721,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -5854,7 +5747,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Replace("{supportId}", System.Uri.EscapeDataString(System.Convert.ToString(supportId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(System.Convert.ToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -5912,8 +5805,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -5940,7 +5831,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Replace("{partId}", System.Uri.EscapeDataString(System.Convert.ToString(partId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{supportId}", System.Uri.EscapeDataString(System.Convert.ToString(supportId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -5997,8 +5888,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -6021,7 +5910,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/Parts/{id}/geometry");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(System.Convert.ToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -6076,8 +5965,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -6102,7 +5989,7 @@ namespace SimulationCSharpClient.Client
             if (limit != null) urlBuilder_.Append("limit=").Append(System.Uri.EscapeDataString(System.Convert.ToString(limit.Value, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -6157,8 +6044,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -6177,7 +6062,7 @@ namespace SimulationCSharpClient.Client
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl).Append("/PorositySimulations");
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -6235,8 +6120,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -6259,7 +6142,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/PorositySimulations/{simulationId}");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -6314,8 +6197,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -6338,7 +6219,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/PorositySimulations/{simulationId}");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -6396,8 +6277,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -6420,7 +6299,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/PorositySimulations/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(System.Convert.ToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -6478,8 +6357,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -6502,7 +6379,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/PorositySimulations/{simulationId}/start");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -6559,8 +6436,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -6583,7 +6458,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/PorositySimulations/{simulationId}/cancel");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -6640,8 +6515,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -6664,7 +6537,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/PorositySimulations/{simulationId}/started");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -6721,8 +6594,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -6745,7 +6616,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/PorositySimulations/{simulationId}/cancelled");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -6802,8 +6673,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -6826,7 +6695,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/PorositySimulations/{simulationId}/success");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -6883,8 +6752,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -6907,7 +6774,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/PorositySimulations/{simulationId}/error");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -6964,8 +6831,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -6991,7 +6856,7 @@ namespace SimulationCSharpClient.Client
             if (limit != null) urlBuilder_.Append("limit=").Append(System.Uri.EscapeDataString(System.Convert.ToString(limit.Value, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -7046,8 +6911,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -7074,7 +6937,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{logEntryId}", System.Uri.EscapeDataString(System.Convert.ToString(logEntryId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -7129,8 +6992,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -7153,7 +7014,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/PorositySimulations/{simulationId}/unarchive");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -7210,8 +7071,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -7234,7 +7093,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/PorositySimulations/{simulationId}/archive");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -7291,8 +7150,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -7318,7 +7175,7 @@ namespace SimulationCSharpClient.Client
             if (limit != null) urlBuilder_.Append("limit=").Append(System.Uri.EscapeDataString(System.Convert.ToString(limit.Value, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -7373,8 +7230,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -7397,7 +7252,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/PorositySimulations/{simulationId}/activities");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -7455,8 +7310,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -7483,7 +7336,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{activityId}", System.Uri.EscapeDataString(System.Convert.ToString(activityId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -7538,8 +7391,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -7564,7 +7415,7 @@ namespace SimulationCSharpClient.Client
             if (limit != null) urlBuilder_.Append("limit=").Append(System.Uri.EscapeDataString(System.Convert.ToString(limit.Value, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -7619,8 +7470,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -7639,7 +7488,7 @@ namespace SimulationCSharpClient.Client
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl).Append("/ScanPatternSimulations");
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -7697,8 +7546,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -7721,7 +7568,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/ScanPatternSimulations/{simulationId}");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -7776,8 +7623,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -7800,7 +7645,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/ScanPatternSimulations/{simulationId}");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -7858,8 +7703,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -7882,7 +7725,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/ScanPatternSimulations/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(System.Convert.ToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -7940,8 +7783,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -7964,7 +7805,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/ScanPatternSimulations/{simulationId}/start");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -8021,8 +7862,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -8045,7 +7884,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/ScanPatternSimulations/{simulationId}/cancel");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -8102,8 +7941,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -8126,7 +7963,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/ScanPatternSimulations/{simulationId}/started");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -8183,8 +8020,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -8207,7 +8042,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/ScanPatternSimulations/{simulationId}/cancelled");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -8264,8 +8099,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -8288,7 +8121,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/ScanPatternSimulations/{simulationId}/success");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -8345,8 +8178,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -8369,7 +8200,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/ScanPatternSimulations/{simulationId}/error");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -8426,8 +8257,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -8453,7 +8282,7 @@ namespace SimulationCSharpClient.Client
             if (limit != null) urlBuilder_.Append("limit=").Append(System.Uri.EscapeDataString(System.Convert.ToString(limit.Value, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -8508,8 +8337,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -8536,7 +8363,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{logEntryId}", System.Uri.EscapeDataString(System.Convert.ToString(logEntryId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -8591,8 +8418,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -8615,7 +8440,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/ScanPatternSimulations/{simulationId}/unarchive");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -8672,8 +8497,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -8696,7 +8519,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/ScanPatternSimulations/{simulationId}/archive");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -8753,8 +8576,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -8780,7 +8601,7 @@ namespace SimulationCSharpClient.Client
             if (limit != null) urlBuilder_.Append("limit=").Append(System.Uri.EscapeDataString(System.Convert.ToString(limit.Value, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -8835,8 +8656,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -8859,7 +8678,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/ScanPatternSimulations/{simulationId}/activities");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -8917,8 +8736,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -8945,7 +8762,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{activityId}", System.Uri.EscapeDataString(System.Convert.ToString(activityId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -9000,8 +8817,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -9024,7 +8839,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/ScanPatternSimulations/{simulationId}/partgeometry");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -9079,8 +8894,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -9103,7 +8916,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/ScanPatternSimulations/{simulationId}/supportgeometry");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -9158,8 +8971,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -9185,7 +8996,7 @@ namespace SimulationCSharpClient.Client
             if (limit != null) urlBuilder_.Append("limit=").Append(System.Uri.EscapeDataString(System.Convert.ToString(limit.Value, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -9240,8 +9051,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -9264,7 +9073,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/Simulations/{simulationId}");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -9319,8 +9128,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -9343,7 +9150,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/Simulations/{simulationId}");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -9401,8 +9208,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -9425,7 +9230,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/Simulations/{simulationId}/parts");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -9480,8 +9285,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -9504,7 +9307,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/Simulations/{simulationId}/unarchive");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -9561,8 +9364,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -9585,7 +9386,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/Simulations/{simulationId}/archive");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -9642,8 +9443,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -9669,7 +9468,7 @@ namespace SimulationCSharpClient.Client
             if (limit != null) urlBuilder_.Append("limit=").Append(System.Uri.EscapeDataString(System.Convert.ToString(limit.Value, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -9724,8 +9523,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -9748,7 +9545,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/Simulations/{simulationId}/logs");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -9806,8 +9603,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -9833,7 +9628,7 @@ namespace SimulationCSharpClient.Client
             if (limit != null) urlBuilder_.Append("limit=").Append(System.Uri.EscapeDataString(System.Convert.ToString(limit.Value, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -9888,8 +9683,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -9912,7 +9705,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/Simulations/{simulationId}/outputs");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -9970,8 +9763,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -9998,7 +9789,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{outputId}", System.Uri.EscapeDataString(System.Convert.ToString(outputId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -10053,8 +9844,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -10080,7 +9869,7 @@ namespace SimulationCSharpClient.Client
             if (limit != null) urlBuilder_.Append("limit=").Append(System.Uri.EscapeDataString(System.Convert.ToString(limit.Value, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -10135,8 +9924,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -10159,7 +9946,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/Simulations/{simulationId}/activities");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -10217,8 +10004,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -10245,7 +10030,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{activityId}", System.Uri.EscapeDataString(System.Convert.ToString(activityId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -10303,8 +10088,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -10327,7 +10110,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/Simulations/{simulationId}/cancel");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -10384,8 +10167,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -10408,7 +10189,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/Simulations/{simulationId}/cancelled");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -10465,8 +10246,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -10489,7 +10268,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/Simulations/{simulationId}/status");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -10544,8 +10323,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -10570,7 +10347,7 @@ namespace SimulationCSharpClient.Client
             if (limit != null) urlBuilder_.Append("limit=").Append(System.Uri.EscapeDataString(System.Convert.ToString(limit.Value, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -10625,8 +10402,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -10645,7 +10420,7 @@ namespace SimulationCSharpClient.Client
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl).Append("/SingleBeadSimulations");
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -10703,8 +10478,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -10727,7 +10500,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/SingleBeadSimulations/{simulationId}");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -10782,8 +10555,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -10806,7 +10577,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/SingleBeadSimulations/{simulationId}");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -10864,8 +10635,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -10888,7 +10657,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/SingleBeadSimulations/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(System.Convert.ToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -10946,8 +10715,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -10970,7 +10737,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/SingleBeadSimulations/{simulationId}/start");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -11027,8 +10794,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -11051,7 +10816,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/SingleBeadSimulations/{simulationId}/cancel");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -11108,8 +10873,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -11132,7 +10895,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/SingleBeadSimulations/{simulationId}/started");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -11189,8 +10952,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -11213,7 +10974,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/SingleBeadSimulations/{simulationId}/cancelled");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -11270,8 +11031,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -11294,7 +11053,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/SingleBeadSimulations/{simulationId}/success");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -11351,8 +11110,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -11375,7 +11132,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/SingleBeadSimulations/{simulationId}/error");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -11432,8 +11189,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -11459,7 +11214,7 @@ namespace SimulationCSharpClient.Client
             if (limit != null) urlBuilder_.Append("limit=").Append(System.Uri.EscapeDataString(System.Convert.ToString(limit.Value, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -11514,8 +11269,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -11542,7 +11295,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{logEntryId}", System.Uri.EscapeDataString(System.Convert.ToString(logEntryId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -11597,8 +11350,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -11621,7 +11372,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/SingleBeadSimulations/{simulationId}/unarchive");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -11678,8 +11429,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -11702,7 +11451,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/SingleBeadSimulations/{simulationId}/archive");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -11759,8 +11508,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -11786,7 +11533,7 @@ namespace SimulationCSharpClient.Client
             if (limit != null) urlBuilder_.Append("limit=").Append(System.Uri.EscapeDataString(System.Convert.ToString(limit.Value, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -11841,8 +11588,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -11865,7 +11610,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/SingleBeadSimulations/{simulationId}/activities");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -11923,8 +11668,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -11951,7 +11694,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{activityId}", System.Uri.EscapeDataString(System.Convert.ToString(activityId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -12006,8 +11749,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -12032,7 +11773,7 @@ namespace SimulationCSharpClient.Client
             if (limit != null) urlBuilder_.Append("limit=").Append(System.Uri.EscapeDataString(System.Convert.ToString(limit.Value, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -12087,8 +11828,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -12107,7 +11846,7 @@ namespace SimulationCSharpClient.Client
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl).Append("/ThermalSimulations");
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -12165,8 +11904,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -12189,7 +11926,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/ThermalSimulations/{simulationId}");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -12244,8 +11981,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -12268,7 +12003,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/ThermalSimulations/{simulationId}");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -12326,8 +12061,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -12350,7 +12083,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/ThermalSimulations/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(System.Convert.ToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -12408,8 +12141,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -12432,7 +12163,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/ThermalSimulations/{simulationId}/start");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -12489,8 +12220,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -12513,7 +12242,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/ThermalSimulations/{simulationId}/cancel");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -12570,8 +12299,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -12594,7 +12321,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/ThermalSimulations/{simulationId}/started");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -12651,8 +12378,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -12675,7 +12400,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/ThermalSimulations/{simulationId}/cancelled");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -12732,8 +12457,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -12756,7 +12479,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/ThermalSimulations/{simulationId}/success");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -12813,8 +12536,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -12837,7 +12558,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/ThermalSimulations/{simulationId}/error");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -12894,8 +12615,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -12921,7 +12640,7 @@ namespace SimulationCSharpClient.Client
             if (limit != null) urlBuilder_.Append("limit=").Append(System.Uri.EscapeDataString(System.Convert.ToString(limit.Value, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -12976,8 +12695,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -13004,7 +12721,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{logEntryId}", System.Uri.EscapeDataString(System.Convert.ToString(logEntryId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -13059,8 +12776,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -13083,7 +12798,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/ThermalSimulations/{simulationId}/unarchive");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -13140,8 +12855,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -13164,7 +12877,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/ThermalSimulations/{simulationId}/archive");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -13221,8 +12934,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -13248,7 +12959,7 @@ namespace SimulationCSharpClient.Client
             if (limit != null) urlBuilder_.Append("limit=").Append(System.Uri.EscapeDataString(System.Convert.ToString(limit.Value, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -13303,8 +13014,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -13327,7 +13036,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/ThermalSimulations/{simulationId}/activities");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -13385,8 +13094,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -13413,7 +13120,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{activityId}", System.Uri.EscapeDataString(System.Convert.ToString(activityId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -13468,8 +13175,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -13492,7 +13197,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/ThermalSimulations/{simulationId}/partgeometry");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -13547,8 +13252,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
@@ -13571,7 +13274,7 @@ namespace SimulationCSharpClient.Client
             urlBuilder_.Append(BaseUrl).Append("/ThermalSimulations/{simulationId}/supportgeometry");
             urlBuilder_.Replace("{simulationId}", System.Uri.EscapeDataString(System.Convert.ToString(simulationId, System.Globalization.CultureInfo.InvariantCulture)));
     
-            var client_ = new System.Net.Http.HttpClient();
+            var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -13626,8 +13329,6 @@ namespace SimulationCSharpClient.Client
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
             }
         }
     
