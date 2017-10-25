@@ -1,6 +1,10 @@
 # SimulationCSharpClient
 The SimulationCSharpClient is a client for the 3DSIM simulation API. The model and client objects are auto generated using NSwag and the swagger 2.0 API Specification
 
+## Technical Specifications
+### Platforms Supported
+MacOS, Windows, and Linux
+
 ## Usage
 See simulation-api-specification repo for constructor values:
 https://github.com/3DSIM/simulation-api-specification
@@ -38,3 +42,16 @@ Either the QA or Production simulation-api can also be used as input. For exampl
 ```
 nswag swagger2csclient /input:https://simulation-api-qa.3dsim.com/swagger/v1/swagger.json /classname:SimulationClient /namespace:SimulationCSharpClient.Client /output:src/SimulationCSharpClient/Client/SimulationClientGenerated.cs /generateclientinterfaces:true /injecthttpclient:true
 ```
+
+## Contributing code
+Read this article and follow the steps they outline: http://scottchacon.com/2011/08/31/github-flow.html
+
+## Contributors
+* Tim Sublette
+* Ryan Walls
+* Chad Queen
+* Pete Krull
+* Alex Drinkwater
+
+## Original release
+September 2017
