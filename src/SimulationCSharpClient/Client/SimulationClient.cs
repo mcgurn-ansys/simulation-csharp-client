@@ -22,9 +22,17 @@ namespace SimulationCSharpClient.Client
         /// <param name="client">client key</param>
         /// <param name="secret">client secret</param>
         /// <param name="audience">client audience</param>
-        public SimulationClient(string baseUrl, string auth0TokenURL, string client, string secret, string audience)
+        /// <param name="httpClient">injected http client</param>
+        public SimulationClient(string baseUrl, string auth0TokenURL, string client, string secret, string audience, HttpClient httpClient = null)
         {
             this.BaseUrl = baseUrl;
+            this._httpClient = httpClient;
+
+            if (this._httpClient == null)
+            {
+                this._httpClient = new HttpClient();
+            }
+
             this._settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(() =>
             {
                 var settings = new Newtonsoft.Json.JsonSerializerSettings();
@@ -44,9 +52,17 @@ namespace SimulationCSharpClient.Client
         /// <param name="userName">username - usually an email address</param>
         /// <param name="password">password</param>
         /// <param name="connection">user database - values can be found here: https://github.com/3DSIM/simulation-api-specification</param>
-        public SimulationClient(string baseUrl, string auth0TokenURL, string client, string userName, string password, string connection)
+        /// <param name="httpClient">injected http client</param>
+        public SimulationClient(string baseUrl, string auth0TokenURL, string client, string userName, string password, string connection, HttpClient httpClient = null)
         {
             this.BaseUrl = baseUrl;
+            this._httpClient = httpClient;
+
+            if (this._httpClient == null)
+            {
+                this._httpClient = new HttpClient();
+            }
+
             this._settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(() =>
             {
                 var settings = new Newtonsoft.Json.JsonSerializerSettings();
