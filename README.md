@@ -29,6 +29,12 @@ nswag can be installed using npm
 npm install nswag -g
 ```
 
+Currently using nswag version to generate client:
+```
+NSwag version: 11.11.2.0
+NJsonSchema version: 9.9.14.0 (Newtonsoft.Json v9.0.0.0)
+```
+
 ## Regenerating from swagger.json
 To generate the client, run nswag in the project root folder using either a local or remote simulation-api endpoint
 as input.
