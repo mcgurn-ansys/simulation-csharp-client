@@ -8,7 +8,7 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <CodeAnalysisRuleSet>../../customStylecop.ruleset</CodeAnalysisRuleSet>
-    <Version>0.4.0</Version>
+    <Version>0.5.0</Version>
     <Authors />
     <PackageProjectUrl>https://github.com/3DSIM/simulation-csharp-client</PackageProjectUrl>
     <RepositoryUrl>https://github.com/3DSIM/simulation-csharp-client</RepositoryUrl>
