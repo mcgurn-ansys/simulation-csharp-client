@@ -11703,6 +11703,617 @@ namespace SimulationCSharpClient.Client
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.9.14.0 (Newtonsoft.Json v9.0.0.0)")]
+    public partial class PartBasedSimulationParameters : Simulation, System.ComponentModel.INotifyPropertyChanged
+    {
+        private string _supportFileLocation;
+        private string _partFileLocation;
+        private double _supportAngle;
+        private double _supportFactorOfSafety;
+        private double _minimumWallThickness;
+        private double _maximumWallThickness;
+        private double _minimumWallDistance;
+        private double _maximumWallDistance;
+        private double _minimumSupportHeight;
+        private double _voxelSize;
+        private double _startingLayerAngle;
+        private double _layerRotationAngle;
+        private bool _outputShrinkage;
+        private double _anisotropicStrainCoefficientsParallel;
+        private double _anisotropicStrainCoefficientsPerpendicular;
+        private double _anisotropicStrainCoefficientsZ;
+        private double _supportYieldStrength;
+        private double _supportYieldStrengthRatio;
+        private double _elasticModulus;
+        private double _poissonRatio;
+        private double _strainScalingFactor;
+        private bool _outputDisplacementAfterCutoff;
+        private bool _detectBladeCrash;
+        private double? _bladeCrashThreshold;
+        private PartBasedSimulationParametersStressMode _stressMode;
+        private System.Collections.ObjectModel.ObservableCollection<SimulationPart> _simulationParts;
+        private bool _performSupportOptimization;
+        private bool _generateSupportVoxels;
+        private bool _outputLayerVtk;
+        private bool? _performDistortionCompensation;
+        private double? _distortionScaleFactor;
+        private bool? _outputSupportsVtk;
+        private bool? _detectSupportFailure;
+        private double? _supportFailureThreshold;
+        private double? _partFailureThreshold;
+        private double? _strainWarningThreshold;
+        private int? _buildFileId;
+    
+        [Newtonsoft.Json.JsonProperty("supportFileLocation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string SupportFileLocation
+        {
+            get { return _supportFileLocation; }
+            set 
+            {
+                if (_supportFileLocation != value)
+                {
+                    _supportFileLocation = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("partFileLocation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string PartFileLocation
+        {
+            get { return _partFileLocation; }
+            set 
+            {
+                if (_partFileLocation != value)
+                {
+                    _partFileLocation = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Must be between 1 to 89 degrees</summary>
+        [Newtonsoft.Json.JsonProperty("supportAngle", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(1, 89)]
+        public double SupportAngle
+        {
+            get { return _supportAngle; }
+            set 
+            {
+                if (_supportAngle != value)
+                {
+                    _supportAngle = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Multiplier for support calculations, Must be between 0.1 to 10</summary>
+        [Newtonsoft.Json.JsonProperty("supportFactorOfSafety", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 10)]
+        public double SupportFactorOfSafety
+        {
+            get { return _supportFactorOfSafety; }
+            set 
+            {
+                if (_supportFactorOfSafety != value)
+                {
+                    _supportFactorOfSafety = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Must be between 0.00005 to 0.0003 meters, Must be less than maximumWallThickness</summary>
+        [Newtonsoft.Json.JsonProperty("minimumWallThickness", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 0)]
+        public double MinimumWallThickness
+        {
+            get { return _minimumWallThickness; }
+            set 
+            {
+                if (_minimumWallThickness != value)
+                {
+                    _minimumWallThickness = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Must be between 0.00015 to 0.002 meters, Must be greater than minimumWallThickness</summary>
+        [Newtonsoft.Json.JsonProperty("maximumWallThickness", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 0)]
+        public double MaximumWallThickness
+        {
+            get { return _maximumWallThickness; }
+            set 
+            {
+                if (_maximumWallThickness != value)
+                {
+                    _maximumWallThickness = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Must be between 0 to 0.0003 meters, Must be less than maximumWallDistance</summary>
+        [Newtonsoft.Json.JsonProperty("minimumWallDistance", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 0)]
+        public double MinimumWallDistance
+        {
+            get { return _minimumWallDistance; }
+            set 
+            {
+                if (_minimumWallDistance != value)
+                {
+                    _minimumWallDistance = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Must be between 0 to 0.005 meters, Must be greater than minimumWallDistance</summary>
+        [Newtonsoft.Json.JsonProperty("maximumWallDistance", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 0)]
+        public double MaximumWallDistance
+        {
+            get { return _maximumWallDistance; }
+            set 
+            {
+                if (_maximumWallDistance != value)
+                {
+                    _maximumWallDistance = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Distance to move the part off the base plate for supports, Must be between 0 to 0.005 meters</summary>
+        [Newtonsoft.Json.JsonProperty("minimumSupportHeight", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 0)]
+        public double MinimumSupportHeight
+        {
+            get { return _minimumSupportHeight; }
+            set 
+            {
+                if (_minimumSupportHeight != value)
+                {
+                    _minimumSupportHeight = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Must be between 0.00002 to 0.002 meters</summary>
+        [Newtonsoft.Json.JsonProperty("voxelSize", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 0)]
+        public double VoxelSize
+        {
+            get { return _voxelSize; }
+            set 
+            {
+                if (_voxelSize != value)
+                {
+                    _voxelSize = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Must be between 0 to 180 degrees</summary>
+        [Newtonsoft.Json.JsonProperty("startingLayerAngle", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 180)]
+        public double StartingLayerAngle
+        {
+            get { return _startingLayerAngle; }
+            set 
+            {
+                if (_startingLayerAngle != value)
+                {
+                    _startingLayerAngle = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Must be between 0 to 180 degrees</summary>
+        [Newtonsoft.Json.JsonProperty("layerRotationAngle", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 180)]
+        public double LayerRotationAngle
+        {
+            get { return _layerRotationAngle; }
+            set 
+            {
+                if (_layerRotationAngle != value)
+                {
+                    _layerRotationAngle = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("outputShrinkage", Required = Newtonsoft.Json.Required.Always)]
+        public bool OutputShrinkage
+        {
+            get { return _outputShrinkage; }
+            set 
+            {
+                if (_outputShrinkage != value)
+                {
+                    _outputShrinkage = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("anisotropicStrainCoefficientsParallel", Required = Newtonsoft.Json.Required.Always)]
+        public double AnisotropicStrainCoefficientsParallel
+        {
+            get { return _anisotropicStrainCoefficientsParallel; }
+            set 
+            {
+                if (_anisotropicStrainCoefficientsParallel != value)
+                {
+                    _anisotropicStrainCoefficientsParallel = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("anisotropicStrainCoefficientsPerpendicular", Required = Newtonsoft.Json.Required.Always)]
+        public double AnisotropicStrainCoefficientsPerpendicular
+        {
+            get { return _anisotropicStrainCoefficientsPerpendicular; }
+            set 
+            {
+                if (_anisotropicStrainCoefficientsPerpendicular != value)
+                {
+                    _anisotropicStrainCoefficientsPerpendicular = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("anisotropicStrainCoefficientsZ", Required = Newtonsoft.Json.Required.Always)]
+        public double AnisotropicStrainCoefficientsZ
+        {
+            get { return _anisotropicStrainCoefficientsZ; }
+            set 
+            {
+                if (_anisotropicStrainCoefficientsZ != value)
+                {
+                    _anisotropicStrainCoefficientsZ = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("supportYieldStrength", Required = Newtonsoft.Json.Required.Always)]
+        public double SupportYieldStrength
+        {
+            get { return _supportYieldStrength; }
+            set 
+            {
+                if (_supportYieldStrength != value)
+                {
+                    _supportYieldStrength = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("supportYieldStrengthRatio", Required = Newtonsoft.Json.Required.Always)]
+        public double SupportYieldStrengthRatio
+        {
+            get { return _supportYieldStrengthRatio; }
+            set 
+            {
+                if (_supportYieldStrengthRatio != value)
+                {
+                    _supportYieldStrengthRatio = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("elasticModulus", Required = Newtonsoft.Json.Required.Always)]
+        public double ElasticModulus
+        {
+            get { return _elasticModulus; }
+            set 
+            {
+                if (_elasticModulus != value)
+                {
+                    _elasticModulus = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("poissonRatio", Required = Newtonsoft.Json.Required.Always)]
+        public double PoissonRatio
+        {
+            get { return _poissonRatio; }
+            set 
+            {
+                if (_poissonRatio != value)
+                {
+                    _poissonRatio = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("strainScalingFactor", Required = Newtonsoft.Json.Required.Always)]
+        public double StrainScalingFactor
+        {
+            get { return _strainScalingFactor; }
+            set 
+            {
+                if (_strainScalingFactor != value)
+                {
+                    _strainScalingFactor = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("outputDisplacementAfterCutoff", Required = Newtonsoft.Json.Required.Always)]
+        public bool OutputDisplacementAfterCutoff
+        {
+            get { return _outputDisplacementAfterCutoff; }
+            set 
+            {
+                if (_outputDisplacementAfterCutoff != value)
+                {
+                    _outputDisplacementAfterCutoff = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("detectBladeCrash", Required = Newtonsoft.Json.Required.Always)]
+        public bool DetectBladeCrash
+        {
+            get { return _detectBladeCrash; }
+            set 
+            {
+                if (_detectBladeCrash != value)
+                {
+                    _detectBladeCrash = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>should be a number between 0.5 and 1.5</summary>
+        [Newtonsoft.Json.JsonProperty("bladeCrashThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? BladeCrashThreshold
+        {
+            get { return _bladeCrashThreshold; }
+            set 
+            {
+                if (_bladeCrashThreshold != value)
+                {
+                    _bladeCrashThreshold = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("stressMode", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public PartBasedSimulationParametersStressMode StressMode
+        {
+            get { return _stressMode; }
+            set 
+            {
+                if (_stressMode != value)
+                {
+                    _stressMode = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>List of parts to simulate (current limit is one part, imposed by server)</summary>
+        [Newtonsoft.Json.JsonProperty("simulationParts", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.ObjectModel.ObservableCollection<SimulationPart> SimulationParts
+        {
+            get { return _simulationParts; }
+            set 
+            {
+                if (_simulationParts != value)
+                {
+                    _simulationParts = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("performSupportOptimization", Required = Newtonsoft.Json.Required.Always)]
+        public bool PerformSupportOptimization
+        {
+            get { return _performSupportOptimization; }
+            set 
+            {
+                if (_performSupportOptimization != value)
+                {
+                    _performSupportOptimization = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("generateSupportVoxels", Required = Newtonsoft.Json.Required.Always)]
+        public bool GenerateSupportVoxels
+        {
+            get { return _generateSupportVoxels; }
+            set 
+            {
+                if (_generateSupportVoxels != value)
+                {
+                    _generateSupportVoxels = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, mechanics solver output will include a zip file with the stress / distortion state at the end of each voxel layer</summary>
+        [Newtonsoft.Json.JsonProperty("outputLayerVtk", Required = Newtonsoft.Json.Required.Always)]
+        public bool OutputLayerVtk
+        {
+            get { return _outputLayerVtk; }
+            set 
+            {
+                if (_outputLayerVtk != value)
+                {
+                    _outputLayerVtk = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, a predistorted STL file will be created using the distortion simulated by the mechanics solver</summary>
+        [Newtonsoft.Json.JsonProperty("performDistortionCompensation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? PerformDistortionCompensation
+        {
+            get { return _performDistortionCompensation; }
+            set 
+            {
+                if (_performDistortionCompensation != value)
+                {
+                    _performDistortionCompensation = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>a value that is used to scale the simulated distortion value</summary>
+        [Newtonsoft.Json.JsonProperty("distortionScaleFactor", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? DistortionScaleFactor
+        {
+            get { return _distortionScaleFactor; }
+            set 
+            {
+                if (_distortionScaleFactor != value)
+                {
+                    _distortionScaleFactor = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, a VTK file of the support structure will be created</summary>
+        [Newtonsoft.Json.JsonProperty("outputSupportsVtk", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? OutputSupportsVtk
+        {
+            get { return _outputSupportsVtk; }
+            set 
+            {
+                if (_outputSupportsVtk != value)
+                {
+                    _outputSupportsVtk = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("detectSupportFailure", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? DetectSupportFailure
+        {
+            get { return _detectSupportFailure; }
+            set 
+            {
+                if (_detectSupportFailure != value)
+                {
+                    _detectSupportFailure = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>should be a number between 0.01 and 1.0</summary>
+        [Newtonsoft.Json.JsonProperty("supportFailureThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? SupportFailureThreshold
+        {
+            get { return _supportFailureThreshold; }
+            set 
+            {
+                if (_supportFailureThreshold != value)
+                {
+                    _supportFailureThreshold = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>should be a number between 0.01 and 1.0</summary>
+        [Newtonsoft.Json.JsonProperty("partFailureThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? PartFailureThreshold
+        {
+            get { return _partFailureThreshold; }
+            set 
+            {
+                if (_partFailureThreshold != value)
+                {
+                    _partFailureThreshold = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>should be a number between 0.01 and 1.0</summary>
+        [Newtonsoft.Json.JsonProperty("strainWarningThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? StrainWarningThreshold
+        {
+            get { return _strainWarningThreshold; }
+            set 
+            {
+                if (_strainWarningThreshold != value)
+                {
+                    _strainWarningThreshold = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Id of build file being simulated, mutually exclusive with simulationParts</summary>
+        [Newtonsoft.Json.JsonProperty("buildFileId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int? BuildFileId
+        {
+            get { return _buildFileId; }
+            set 
+            {
+                if (_buildFileId != value)
+                {
+                    _buildFileId = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+    
+        public string ToJson() 
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+        }
+        
+        public static PartBasedSimulationParameters FromJson(string data)
+        {
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<PartBasedSimulationParameters>(data);
+        }
+    
+        protected virtual void RaisePropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+        {
+            var handler = PropertyChanged;
+            if (handler != null) 
+                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.9.14.0 (Newtonsoft.Json v9.0.0.0)")]
     public partial class SingleBeadSimulation : Simulation, System.ComponentModel.INotifyPropertyChanged
     {
         private SingleBeadSimulationParametersBeadType _beadType;
@@ -11968,59 +12579,7 @@ namespace SimulationCSharpClient.Client
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.9.14.0 (Newtonsoft.Json v9.0.0.0)")]
     public partial class AssumedStrainSimulationParameters : System.ComponentModel.INotifyPropertyChanged
     {
-        private bool _performSupportOptimization;
         private double? _layerThickness;
-        private double _hatchSpacing;
-        private double _laserWattage;
-        private double _scanSpeed;
-        private double _supportAngle;
-        private double _supportFactorOfSafety;
-        private double _minimumWallThickness;
-        private double _maximumWallThickness;
-        private double _minimumWallDistance;
-        private double _maximumWallDistance;
-        private double _minimumSupportHeight;
-        private double _slicingStripeWidth;
-        private double _voxelSize;
-        private double _startingLayerAngle;
-        private double _layerRotationAngle;
-        private bool _supportOptimization;
-        private bool _outputShrinkage;
-        private double _anisotropicStrainCoefficientsParallel;
-        private double _anisotropicStrainCoefficientsPerpendicular;
-        private double _anisotropicStrainCoefficientsZ;
-        private double _supportYieldStrength;
-        private double _supportYieldStrengthRatio;
-        private double _elasticModulus;
-        private double _poissonRatio;
-        private double _strainScalingFactor;
-        private AssumedStrainSimulationParametersStressMode _stressMode;
-        private bool _outputDisplacementAfterCutoff;
-        private bool _detectBladeCrash;
-        private double? _bladeCrashThreshold;
-        private bool _outputLayerVtk;
-        private bool? _performDistortionCompensation;
-        private double? _distortionScaleFactor;
-        private bool? _outputSupportsVtk;
-        private bool? _detectSupportFailure;
-        private double? _supportFailureThreshold;
-        private double? _partFailureThreshold;
-        private double? _strainWarningThreshold;
-        private System.Collections.ObjectModel.ObservableCollection<SimulationPart> _simulationParts;
-    
-        [Newtonsoft.Json.JsonProperty("performSupportOptimization", Required = Newtonsoft.Json.Required.Always)]
-        public bool PerformSupportOptimization
-        {
-            get { return _performSupportOptimization; }
-            set 
-            {
-                if (_performSupportOptimization != value)
-                {
-                    _performSupportOptimization = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
     
         /// <summary>Must be between 0.00001 to 0.0001 meters</summary>
         [Newtonsoft.Json.JsonProperty("layerThickness", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -12033,563 +12592,6 @@ namespace SimulationCSharpClient.Client
                 if (_layerThickness != value)
                 {
                     _layerThickness = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0.00001 to 0.001 meters</summary>
-        [Newtonsoft.Json.JsonProperty("hatchSpacing", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double HatchSpacing
-        {
-            get { return _hatchSpacing; }
-            set 
-            {
-                if (_hatchSpacing != value)
-                {
-                    _hatchSpacing = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 10 to 1000 watts</summary>
-        [Newtonsoft.Json.JsonProperty("laserWattage", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(10, 1000)]
-        public double LaserWattage
-        {
-            get { return _laserWattage; }
-            set 
-            {
-                if (_laserWattage != value)
-                {
-                    _laserWattage = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0.01 to 10 meters/second</summary>
-        [Newtonsoft.Json.JsonProperty("scanSpeed", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 10)]
-        public double ScanSpeed
-        {
-            get { return _scanSpeed; }
-            set 
-            {
-                if (_scanSpeed != value)
-                {
-                    _scanSpeed = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 1 to 89 degrees</summary>
-        [Newtonsoft.Json.JsonProperty("supportAngle", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(1, 89)]
-        public double SupportAngle
-        {
-            get { return _supportAngle; }
-            set 
-            {
-                if (_supportAngle != value)
-                {
-                    _supportAngle = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Multiplier for support calculations, Must be between 0.1 to 10</summary>
-        [Newtonsoft.Json.JsonProperty("supportFactorOfSafety", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 10)]
-        public double SupportFactorOfSafety
-        {
-            get { return _supportFactorOfSafety; }
-            set 
-            {
-                if (_supportFactorOfSafety != value)
-                {
-                    _supportFactorOfSafety = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0.00005 to 0.0003 meters, Must be less than maximumWallThickness</summary>
-        [Newtonsoft.Json.JsonProperty("minimumWallThickness", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MinimumWallThickness
-        {
-            get { return _minimumWallThickness; }
-            set 
-            {
-                if (_minimumWallThickness != value)
-                {
-                    _minimumWallThickness = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0.00015 to 0.002 meters, Must be greater than minimumWallThickness</summary>
-        [Newtonsoft.Json.JsonProperty("maximumWallThickness", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MaximumWallThickness
-        {
-            get { return _maximumWallThickness; }
-            set 
-            {
-                if (_maximumWallThickness != value)
-                {
-                    _maximumWallThickness = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0 to 0.0003 meters, Must be less than maximumWallDistance</summary>
-        [Newtonsoft.Json.JsonProperty("minimumWallDistance", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MinimumWallDistance
-        {
-            get { return _minimumWallDistance; }
-            set 
-            {
-                if (_minimumWallDistance != value)
-                {
-                    _minimumWallDistance = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0 to 0.003 meters, Must be greater than minimumWallDistance</summary>
-        [Newtonsoft.Json.JsonProperty("maximumWallDistance", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MaximumWallDistance
-        {
-            get { return _maximumWallDistance; }
-            set 
-            {
-                if (_maximumWallDistance != value)
-                {
-                    _maximumWallDistance = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Distance to move the part off the base plate for supports, Must be between 0 to 0.005 meters</summary>
-        [Newtonsoft.Json.JsonProperty("minimumSupportHeight", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MinimumSupportHeight
-        {
-            get { return _minimumSupportHeight; }
-            set 
-            {
-                if (_minimumSupportHeight != value)
-                {
-                    _minimumSupportHeight = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0.001 to 0.1 meters</summary>
-        [Newtonsoft.Json.JsonProperty("slicingStripeWidth", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double SlicingStripeWidth
-        {
-            get { return _slicingStripeWidth; }
-            set 
-            {
-                if (_slicingStripeWidth != value)
-                {
-                    _slicingStripeWidth = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0.00002 to 0.002 meters</summary>
-        [Newtonsoft.Json.JsonProperty("voxelSize", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double VoxelSize
-        {
-            get { return _voxelSize; }
-            set 
-            {
-                if (_voxelSize != value)
-                {
-                    _voxelSize = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0 to 180 degrees</summary>
-        [Newtonsoft.Json.JsonProperty("startingLayerAngle", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 180)]
-        public double StartingLayerAngle
-        {
-            get { return _startingLayerAngle; }
-            set 
-            {
-                if (_startingLayerAngle != value)
-                {
-                    _startingLayerAngle = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0 to 180 degrees</summary>
-        [Newtonsoft.Json.JsonProperty("layerRotationAngle", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 180)]
-        public double LayerRotationAngle
-        {
-            get { return _layerRotationAngle; }
-            set 
-            {
-                if (_layerRotationAngle != value)
-                {
-                    _layerRotationAngle = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("supportOptimization", Required = Newtonsoft.Json.Required.Always)]
-        public bool SupportOptimization
-        {
-            get { return _supportOptimization; }
-            set 
-            {
-                if (_supportOptimization != value)
-                {
-                    _supportOptimization = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("outputShrinkage", Required = Newtonsoft.Json.Required.Always)]
-        public bool OutputShrinkage
-        {
-            get { return _outputShrinkage; }
-            set 
-            {
-                if (_outputShrinkage != value)
-                {
-                    _outputShrinkage = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("anisotropicStrainCoefficientsParallel", Required = Newtonsoft.Json.Required.Always)]
-        public double AnisotropicStrainCoefficientsParallel
-        {
-            get { return _anisotropicStrainCoefficientsParallel; }
-            set 
-            {
-                if (_anisotropicStrainCoefficientsParallel != value)
-                {
-                    _anisotropicStrainCoefficientsParallel = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("anisotropicStrainCoefficientsPerpendicular", Required = Newtonsoft.Json.Required.Always)]
-        public double AnisotropicStrainCoefficientsPerpendicular
-        {
-            get { return _anisotropicStrainCoefficientsPerpendicular; }
-            set 
-            {
-                if (_anisotropicStrainCoefficientsPerpendicular != value)
-                {
-                    _anisotropicStrainCoefficientsPerpendicular = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("anisotropicStrainCoefficientsZ", Required = Newtonsoft.Json.Required.Always)]
-        public double AnisotropicStrainCoefficientsZ
-        {
-            get { return _anisotropicStrainCoefficientsZ; }
-            set 
-            {
-                if (_anisotropicStrainCoefficientsZ != value)
-                {
-                    _anisotropicStrainCoefficientsZ = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("supportYieldStrength", Required = Newtonsoft.Json.Required.Always)]
-        public double SupportYieldStrength
-        {
-            get { return _supportYieldStrength; }
-            set 
-            {
-                if (_supportYieldStrength != value)
-                {
-                    _supportYieldStrength = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("supportYieldStrengthRatio", Required = Newtonsoft.Json.Required.Always)]
-        public double SupportYieldStrengthRatio
-        {
-            get { return _supportYieldStrengthRatio; }
-            set 
-            {
-                if (_supportYieldStrengthRatio != value)
-                {
-                    _supportYieldStrengthRatio = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("elasticModulus", Required = Newtonsoft.Json.Required.Always)]
-        public double ElasticModulus
-        {
-            get { return _elasticModulus; }
-            set 
-            {
-                if (_elasticModulus != value)
-                {
-                    _elasticModulus = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("poissonRatio", Required = Newtonsoft.Json.Required.Always)]
-        public double PoissonRatio
-        {
-            get { return _poissonRatio; }
-            set 
-            {
-                if (_poissonRatio != value)
-                {
-                    _poissonRatio = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("strainScalingFactor", Required = Newtonsoft.Json.Required.Always)]
-        public double StrainScalingFactor
-        {
-            get { return _strainScalingFactor; }
-            set 
-            {
-                if (_strainScalingFactor != value)
-                {
-                    _strainScalingFactor = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("stressMode", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public AssumedStrainSimulationParametersStressMode StressMode
-        {
-            get { return _stressMode; }
-            set 
-            {
-                if (_stressMode != value)
-                {
-                    _stressMode = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("outputDisplacementAfterCutoff", Required = Newtonsoft.Json.Required.Always)]
-        public bool OutputDisplacementAfterCutoff
-        {
-            get { return _outputDisplacementAfterCutoff; }
-            set 
-            {
-                if (_outputDisplacementAfterCutoff != value)
-                {
-                    _outputDisplacementAfterCutoff = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("detectBladeCrash", Required = Newtonsoft.Json.Required.Always)]
-        public bool DetectBladeCrash
-        {
-            get { return _detectBladeCrash; }
-            set 
-            {
-                if (_detectBladeCrash != value)
-                {
-                    _detectBladeCrash = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>should be a number between 0.5 and 1.5</summary>
-        [Newtonsoft.Json.JsonProperty("bladeCrashThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? BladeCrashThreshold
-        {
-            get { return _bladeCrashThreshold; }
-            set 
-            {
-                if (_bladeCrashThreshold != value)
-                {
-                    _bladeCrashThreshold = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>if true, mechanics solver output will include a zip file with the stress / distortion state at the end of each voxel layer</summary>
-        [Newtonsoft.Json.JsonProperty("outputLayerVtk", Required = Newtonsoft.Json.Required.Always)]
-        public bool OutputLayerVtk
-        {
-            get { return _outputLayerVtk; }
-            set 
-            {
-                if (_outputLayerVtk != value)
-                {
-                    _outputLayerVtk = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>if true, a predistorted STL file will be created using the distortion simulated by the mechanics solver</summary>
-        [Newtonsoft.Json.JsonProperty("performDistortionCompensation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? PerformDistortionCompensation
-        {
-            get { return _performDistortionCompensation; }
-            set 
-            {
-                if (_performDistortionCompensation != value)
-                {
-                    _performDistortionCompensation = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>a value that is used to scale the simulated distortion value</summary>
-        [Newtonsoft.Json.JsonProperty("distortionScaleFactor", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? DistortionScaleFactor
-        {
-            get { return _distortionScaleFactor; }
-            set 
-            {
-                if (_distortionScaleFactor != value)
-                {
-                    _distortionScaleFactor = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>if true, a VTK file of the support structure will be created</summary>
-        [Newtonsoft.Json.JsonProperty("outputSupportsVtk", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? OutputSupportsVtk
-        {
-            get { return _outputSupportsVtk; }
-            set 
-            {
-                if (_outputSupportsVtk != value)
-                {
-                    _outputSupportsVtk = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("detectSupportFailure", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? DetectSupportFailure
-        {
-            get { return _detectSupportFailure; }
-            set 
-            {
-                if (_detectSupportFailure != value)
-                {
-                    _detectSupportFailure = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>should be a number between 0.01 and 1.0</summary>
-        [Newtonsoft.Json.JsonProperty("supportFailureThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? SupportFailureThreshold
-        {
-            get { return _supportFailureThreshold; }
-            set 
-            {
-                if (_supportFailureThreshold != value)
-                {
-                    _supportFailureThreshold = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>should be a number between 0.01 and 1.0</summary>
-        [Newtonsoft.Json.JsonProperty("partFailureThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? PartFailureThreshold
-        {
-            get { return _partFailureThreshold; }
-            set 
-            {
-                if (_partFailureThreshold != value)
-                {
-                    _partFailureThreshold = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>should be a number between 0.01 and 1.0</summary>
-        [Newtonsoft.Json.JsonProperty("strainWarningThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? StrainWarningThreshold
-        {
-            get { return _strainWarningThreshold; }
-            set 
-            {
-                if (_strainWarningThreshold != value)
-                {
-                    _strainWarningThreshold = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>List of parts to simulate (current limit is one part, imposed by server)</summary>
-        [Newtonsoft.Json.JsonProperty("simulationParts", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.ObjectModel.ObservableCollection<SimulationPart> SimulationParts
-        {
-            get { return _simulationParts; }
-            set 
-            {
-                if (_simulationParts != value)
-                {
-                    _simulationParts = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -12616,61 +12618,9 @@ namespace SimulationCSharpClient.Client
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.9.14.0 (Newtonsoft.Json v9.0.0.0)")]
-    public partial class AssumedStrainSimulation : Simulation, System.ComponentModel.INotifyPropertyChanged
+    public partial class AssumedStrainSimulation : PartBasedSimulationParameters, System.ComponentModel.INotifyPropertyChanged
     {
-        private bool _performSupportOptimization;
         private double? _layerThickness;
-        private double _hatchSpacing;
-        private double _laserWattage;
-        private double _scanSpeed;
-        private double _supportAngle;
-        private double _supportFactorOfSafety;
-        private double _minimumWallThickness;
-        private double _maximumWallThickness;
-        private double _minimumWallDistance;
-        private double _maximumWallDistance;
-        private double _minimumSupportHeight;
-        private double _slicingStripeWidth;
-        private double _voxelSize;
-        private double _startingLayerAngle;
-        private double _layerRotationAngle;
-        private bool _supportOptimization;
-        private bool _outputShrinkage;
-        private double _anisotropicStrainCoefficientsParallel;
-        private double _anisotropicStrainCoefficientsPerpendicular;
-        private double _anisotropicStrainCoefficientsZ;
-        private double _supportYieldStrength;
-        private double _supportYieldStrengthRatio;
-        private double _elasticModulus;
-        private double _poissonRatio;
-        private double _strainScalingFactor;
-        private AssumedStrainSimulationParametersStressMode _stressMode;
-        private bool _outputDisplacementAfterCutoff;
-        private bool _detectBladeCrash;
-        private double? _bladeCrashThreshold;
-        private bool _outputLayerVtk;
-        private bool? _performDistortionCompensation;
-        private double? _distortionScaleFactor;
-        private bool? _outputSupportsVtk;
-        private bool? _detectSupportFailure;
-        private double? _supportFailureThreshold;
-        private double? _partFailureThreshold;
-        private double? _strainWarningThreshold;
-        private System.Collections.ObjectModel.ObservableCollection<SimulationPart> _simulationParts;
-    
-        [Newtonsoft.Json.JsonProperty("performSupportOptimization", Required = Newtonsoft.Json.Required.Always)]
-        public bool PerformSupportOptimization
-        {
-            get { return _performSupportOptimization; }
-            set 
-            {
-                if (_performSupportOptimization != value)
-                {
-                    _performSupportOptimization = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
     
         /// <summary>Must be between 0.00001 to 0.0001 meters</summary>
         [Newtonsoft.Json.JsonProperty("layerThickness", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -12683,563 +12633,6 @@ namespace SimulationCSharpClient.Client
                 if (_layerThickness != value)
                 {
                     _layerThickness = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0.00001 to 0.001 meters</summary>
-        [Newtonsoft.Json.JsonProperty("hatchSpacing", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double HatchSpacing
-        {
-            get { return _hatchSpacing; }
-            set 
-            {
-                if (_hatchSpacing != value)
-                {
-                    _hatchSpacing = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 10 to 1000 watts</summary>
-        [Newtonsoft.Json.JsonProperty("laserWattage", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(10, 1000)]
-        public double LaserWattage
-        {
-            get { return _laserWattage; }
-            set 
-            {
-                if (_laserWattage != value)
-                {
-                    _laserWattage = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0.01 to 10 meters/second</summary>
-        [Newtonsoft.Json.JsonProperty("scanSpeed", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 10)]
-        public double ScanSpeed
-        {
-            get { return _scanSpeed; }
-            set 
-            {
-                if (_scanSpeed != value)
-                {
-                    _scanSpeed = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 1 to 89 degrees</summary>
-        [Newtonsoft.Json.JsonProperty("supportAngle", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(1, 89)]
-        public double SupportAngle
-        {
-            get { return _supportAngle; }
-            set 
-            {
-                if (_supportAngle != value)
-                {
-                    _supportAngle = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Multiplier for support calculations, Must be between 0.1 to 10</summary>
-        [Newtonsoft.Json.JsonProperty("supportFactorOfSafety", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 10)]
-        public double SupportFactorOfSafety
-        {
-            get { return _supportFactorOfSafety; }
-            set 
-            {
-                if (_supportFactorOfSafety != value)
-                {
-                    _supportFactorOfSafety = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0.00005 to 0.0003 meters, Must be less than maximumWallThickness</summary>
-        [Newtonsoft.Json.JsonProperty("minimumWallThickness", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MinimumWallThickness
-        {
-            get { return _minimumWallThickness; }
-            set 
-            {
-                if (_minimumWallThickness != value)
-                {
-                    _minimumWallThickness = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0.00015 to 0.002 meters, Must be greater than minimumWallThickness</summary>
-        [Newtonsoft.Json.JsonProperty("maximumWallThickness", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MaximumWallThickness
-        {
-            get { return _maximumWallThickness; }
-            set 
-            {
-                if (_maximumWallThickness != value)
-                {
-                    _maximumWallThickness = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0 to 0.0003 meters, Must be less than maximumWallDistance</summary>
-        [Newtonsoft.Json.JsonProperty("minimumWallDistance", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MinimumWallDistance
-        {
-            get { return _minimumWallDistance; }
-            set 
-            {
-                if (_minimumWallDistance != value)
-                {
-                    _minimumWallDistance = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0 to 0.003 meters, Must be greater than minimumWallDistance</summary>
-        [Newtonsoft.Json.JsonProperty("maximumWallDistance", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MaximumWallDistance
-        {
-            get { return _maximumWallDistance; }
-            set 
-            {
-                if (_maximumWallDistance != value)
-                {
-                    _maximumWallDistance = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Distance to move the part off the base plate for supports, Must be between 0 to 0.005 meters</summary>
-        [Newtonsoft.Json.JsonProperty("minimumSupportHeight", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MinimumSupportHeight
-        {
-            get { return _minimumSupportHeight; }
-            set 
-            {
-                if (_minimumSupportHeight != value)
-                {
-                    _minimumSupportHeight = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0.001 to 0.1 meters</summary>
-        [Newtonsoft.Json.JsonProperty("slicingStripeWidth", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double SlicingStripeWidth
-        {
-            get { return _slicingStripeWidth; }
-            set 
-            {
-                if (_slicingStripeWidth != value)
-                {
-                    _slicingStripeWidth = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0.00002 to 0.002 meters</summary>
-        [Newtonsoft.Json.JsonProperty("voxelSize", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double VoxelSize
-        {
-            get { return _voxelSize; }
-            set 
-            {
-                if (_voxelSize != value)
-                {
-                    _voxelSize = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0 to 180 degrees</summary>
-        [Newtonsoft.Json.JsonProperty("startingLayerAngle", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 180)]
-        public double StartingLayerAngle
-        {
-            get { return _startingLayerAngle; }
-            set 
-            {
-                if (_startingLayerAngle != value)
-                {
-                    _startingLayerAngle = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0 to 180 degrees</summary>
-        [Newtonsoft.Json.JsonProperty("layerRotationAngle", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 180)]
-        public double LayerRotationAngle
-        {
-            get { return _layerRotationAngle; }
-            set 
-            {
-                if (_layerRotationAngle != value)
-                {
-                    _layerRotationAngle = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("supportOptimization", Required = Newtonsoft.Json.Required.Always)]
-        public bool SupportOptimization
-        {
-            get { return _supportOptimization; }
-            set 
-            {
-                if (_supportOptimization != value)
-                {
-                    _supportOptimization = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("outputShrinkage", Required = Newtonsoft.Json.Required.Always)]
-        public bool OutputShrinkage
-        {
-            get { return _outputShrinkage; }
-            set 
-            {
-                if (_outputShrinkage != value)
-                {
-                    _outputShrinkage = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("anisotropicStrainCoefficientsParallel", Required = Newtonsoft.Json.Required.Always)]
-        public double AnisotropicStrainCoefficientsParallel
-        {
-            get { return _anisotropicStrainCoefficientsParallel; }
-            set 
-            {
-                if (_anisotropicStrainCoefficientsParallel != value)
-                {
-                    _anisotropicStrainCoefficientsParallel = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("anisotropicStrainCoefficientsPerpendicular", Required = Newtonsoft.Json.Required.Always)]
-        public double AnisotropicStrainCoefficientsPerpendicular
-        {
-            get { return _anisotropicStrainCoefficientsPerpendicular; }
-            set 
-            {
-                if (_anisotropicStrainCoefficientsPerpendicular != value)
-                {
-                    _anisotropicStrainCoefficientsPerpendicular = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("anisotropicStrainCoefficientsZ", Required = Newtonsoft.Json.Required.Always)]
-        public double AnisotropicStrainCoefficientsZ
-        {
-            get { return _anisotropicStrainCoefficientsZ; }
-            set 
-            {
-                if (_anisotropicStrainCoefficientsZ != value)
-                {
-                    _anisotropicStrainCoefficientsZ = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("supportYieldStrength", Required = Newtonsoft.Json.Required.Always)]
-        public double SupportYieldStrength
-        {
-            get { return _supportYieldStrength; }
-            set 
-            {
-                if (_supportYieldStrength != value)
-                {
-                    _supportYieldStrength = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("supportYieldStrengthRatio", Required = Newtonsoft.Json.Required.Always)]
-        public double SupportYieldStrengthRatio
-        {
-            get { return _supportYieldStrengthRatio; }
-            set 
-            {
-                if (_supportYieldStrengthRatio != value)
-                {
-                    _supportYieldStrengthRatio = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("elasticModulus", Required = Newtonsoft.Json.Required.Always)]
-        public double ElasticModulus
-        {
-            get { return _elasticModulus; }
-            set 
-            {
-                if (_elasticModulus != value)
-                {
-                    _elasticModulus = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("poissonRatio", Required = Newtonsoft.Json.Required.Always)]
-        public double PoissonRatio
-        {
-            get { return _poissonRatio; }
-            set 
-            {
-                if (_poissonRatio != value)
-                {
-                    _poissonRatio = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("strainScalingFactor", Required = Newtonsoft.Json.Required.Always)]
-        public double StrainScalingFactor
-        {
-            get { return _strainScalingFactor; }
-            set 
-            {
-                if (_strainScalingFactor != value)
-                {
-                    _strainScalingFactor = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("stressMode", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public AssumedStrainSimulationParametersStressMode StressMode
-        {
-            get { return _stressMode; }
-            set 
-            {
-                if (_stressMode != value)
-                {
-                    _stressMode = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("outputDisplacementAfterCutoff", Required = Newtonsoft.Json.Required.Always)]
-        public bool OutputDisplacementAfterCutoff
-        {
-            get { return _outputDisplacementAfterCutoff; }
-            set 
-            {
-                if (_outputDisplacementAfterCutoff != value)
-                {
-                    _outputDisplacementAfterCutoff = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("detectBladeCrash", Required = Newtonsoft.Json.Required.Always)]
-        public bool DetectBladeCrash
-        {
-            get { return _detectBladeCrash; }
-            set 
-            {
-                if (_detectBladeCrash != value)
-                {
-                    _detectBladeCrash = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>should be a number between 0.5 and 1.5</summary>
-        [Newtonsoft.Json.JsonProperty("bladeCrashThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? BladeCrashThreshold
-        {
-            get { return _bladeCrashThreshold; }
-            set 
-            {
-                if (_bladeCrashThreshold != value)
-                {
-                    _bladeCrashThreshold = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>if true, mechanics solver output will include a zip file with the stress / distortion state at the end of each voxel layer</summary>
-        [Newtonsoft.Json.JsonProperty("outputLayerVtk", Required = Newtonsoft.Json.Required.Always)]
-        public bool OutputLayerVtk
-        {
-            get { return _outputLayerVtk; }
-            set 
-            {
-                if (_outputLayerVtk != value)
-                {
-                    _outputLayerVtk = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>if true, a predistorted STL file will be created using the distortion simulated by the mechanics solver</summary>
-        [Newtonsoft.Json.JsonProperty("performDistortionCompensation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? PerformDistortionCompensation
-        {
-            get { return _performDistortionCompensation; }
-            set 
-            {
-                if (_performDistortionCompensation != value)
-                {
-                    _performDistortionCompensation = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>a value that is used to scale the simulated distortion value</summary>
-        [Newtonsoft.Json.JsonProperty("distortionScaleFactor", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? DistortionScaleFactor
-        {
-            get { return _distortionScaleFactor; }
-            set 
-            {
-                if (_distortionScaleFactor != value)
-                {
-                    _distortionScaleFactor = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>if true, a VTK file of the support structure will be created</summary>
-        [Newtonsoft.Json.JsonProperty("outputSupportsVtk", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? OutputSupportsVtk
-        {
-            get { return _outputSupportsVtk; }
-            set 
-            {
-                if (_outputSupportsVtk != value)
-                {
-                    _outputSupportsVtk = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("detectSupportFailure", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? DetectSupportFailure
-        {
-            get { return _detectSupportFailure; }
-            set 
-            {
-                if (_detectSupportFailure != value)
-                {
-                    _detectSupportFailure = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>should be a number between 0.01 and 1.0</summary>
-        [Newtonsoft.Json.JsonProperty("supportFailureThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? SupportFailureThreshold
-        {
-            get { return _supportFailureThreshold; }
-            set 
-            {
-                if (_supportFailureThreshold != value)
-                {
-                    _supportFailureThreshold = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>should be a number between 0.01 and 1.0</summary>
-        [Newtonsoft.Json.JsonProperty("partFailureThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? PartFailureThreshold
-        {
-            get { return _partFailureThreshold; }
-            set 
-            {
-                if (_partFailureThreshold != value)
-                {
-                    _partFailureThreshold = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>should be a number between 0.01 and 1.0</summary>
-        [Newtonsoft.Json.JsonProperty("strainWarningThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? StrainWarningThreshold
-        {
-            get { return _strainWarningThreshold; }
-            set 
-            {
-                if (_strainWarningThreshold != value)
-                {
-                    _strainWarningThreshold = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>List of parts to simulate (current limit is one part, imposed by server)</summary>
-        [Newtonsoft.Json.JsonProperty("simulationParts", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.ObjectModel.ObservableCollection<SimulationPart> SimulationParts
-        {
-            get { return _simulationParts; }
-            set 
-            {
-                if (_simulationParts != value)
-                {
-                    _simulationParts = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -13268,69 +12661,27 @@ namespace SimulationCSharpClient.Client
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.9.14.0 (Newtonsoft.Json v9.0.0.0)")]
     public partial class ThermalSimulationParameters : System.ComponentModel.INotifyPropertyChanged
     {
-        private bool _performSupportOptimization;
         private double _layerThickness;
         private double _hatchSpacing;
         private double _laserWattage;
         private double _scanSpeed;
-        private double _supportAngle;
-        private double _supportFactorOfSafety;
-        private double _minimumWallThickness;
-        private double _maximumWallThickness;
-        private double _minimumWallDistance;
-        private double _maximumWallDistance;
-        private double _minimumSupportHeight;
         private double _slicingStripeWidth;
-        private double _voxelSize;
         private double _startingLayerAngle;
         private double _layerRotationAngle;
-        private bool _supportOptimization;
         private bool _outputStateMap;
         private bool _outputShrinkage;
-        private double _supportYieldStrength;
-        private double _supportYieldStrengthRatio;
-        private double _elasticModulus;
-        private double _poissonRatio;
-        private double _strainScalingFactor;
-        private bool _outputDisplacementAfterCutoff;
-        private ThermalSimulationParametersStressMode _stressMode;
-        private bool _outputThermalVtk;
+        private bool? _outputThermalVtk;
         private string _outputThermalVtkLayers;
-        private bool _detectBladeCrash;
-        private double? _bladeCrashThreshold;
         private bool _outputPointThermalHistory;
         private bool _outputVirtualSensorData;
         private double? _staticVirtualSensorRadius;
         private double? _dynamicVirtualSensorRadius;
         private bool _includeStressAnalysis;
-        private bool _outputLayerVtk;
         private double _anisotropicStrainCoefficientsParallel;
         private double _anisotropicStrainCoefficientsPerpendicular;
         private double _anisotropicStrainCoefficientsZ;
-        private bool? _performDistortionCompensation;
-        private double? _distortionScaleFactor;
-        private bool? _outputSupportsVtk;
-        private bool? _detectSupportFailure;
-        private double? _supportFailureThreshold;
-        private double? _partFailureThreshold;
-        private double? _strainWarningThreshold;
-        private System.Collections.ObjectModel.ObservableCollection<SimulationPart> _simulationParts;
         private System.Collections.ObjectModel.ObservableCollection<SelectedPoint> _selectedPoints;
         private double _heaterTemperature;
-    
-        [Newtonsoft.Json.JsonProperty("performSupportOptimization", Required = Newtonsoft.Json.Required.Always)]
-        public bool PerformSupportOptimization
-        {
-            get { return _performSupportOptimization; }
-            set 
-            {
-                if (_performSupportOptimization != value)
-                {
-                    _performSupportOptimization = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
     
         /// <summary>Must be between 0.00001 to 0.0001 meters</summary>
         [Newtonsoft.Json.JsonProperty("layerThickness", Required = Newtonsoft.Json.Required.Always)]
@@ -13396,118 +12747,6 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        /// <summary>Must be between 1 to 89 degrees</summary>
-        [Newtonsoft.Json.JsonProperty("supportAngle", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(1, 89)]
-        public double SupportAngle
-        {
-            get { return _supportAngle; }
-            set 
-            {
-                if (_supportAngle != value)
-                {
-                    _supportAngle = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Multiplier for support calculations, Must be between 0.1 to 10</summary>
-        [Newtonsoft.Json.JsonProperty("supportFactorOfSafety", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 10)]
-        public double SupportFactorOfSafety
-        {
-            get { return _supportFactorOfSafety; }
-            set 
-            {
-                if (_supportFactorOfSafety != value)
-                {
-                    _supportFactorOfSafety = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0.00005 to 0.0003 meters, Must be less than maximumWallThickness</summary>
-        [Newtonsoft.Json.JsonProperty("minimumWallThickness", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MinimumWallThickness
-        {
-            get { return _minimumWallThickness; }
-            set 
-            {
-                if (_minimumWallThickness != value)
-                {
-                    _minimumWallThickness = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0.00015 to 0.002 meters, Must be greater than minimumWallThickness</summary>
-        [Newtonsoft.Json.JsonProperty("maximumWallThickness", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MaximumWallThickness
-        {
-            get { return _maximumWallThickness; }
-            set 
-            {
-                if (_maximumWallThickness != value)
-                {
-                    _maximumWallThickness = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0 to 0.0003 meters, Must be less than maximumWallDistance</summary>
-        [Newtonsoft.Json.JsonProperty("minimumWallDistance", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MinimumWallDistance
-        {
-            get { return _minimumWallDistance; }
-            set 
-            {
-                if (_minimumWallDistance != value)
-                {
-                    _minimumWallDistance = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0 to 0.005 meters, Must be greater than minimumWallDistance</summary>
-        [Newtonsoft.Json.JsonProperty("maximumWallDistance", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MaximumWallDistance
-        {
-            get { return _maximumWallDistance; }
-            set 
-            {
-                if (_maximumWallDistance != value)
-                {
-                    _maximumWallDistance = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Distance to move the part off the base plate for supports, Must be between 0 to 0.005 meters</summary>
-        [Newtonsoft.Json.JsonProperty("minimumSupportHeight", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MinimumSupportHeight
-        {
-            get { return _minimumSupportHeight; }
-            set 
-            {
-                if (_minimumSupportHeight != value)
-                {
-                    _minimumSupportHeight = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
         /// <summary>Must be between 0.001 to 0.1 meters</summary>
         [Newtonsoft.Json.JsonProperty("slicingStripeWidth", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Range(0, 0)]
@@ -13519,22 +12758,6 @@ namespace SimulationCSharpClient.Client
                 if (_slicingStripeWidth != value)
                 {
                     _slicingStripeWidth = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0.00002 to 0.002 meters</summary>
-        [Newtonsoft.Json.JsonProperty("voxelSize", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double VoxelSize
-        {
-            get { return _voxelSize; }
-            set 
-            {
-                if (_voxelSize != value)
-                {
-                    _voxelSize = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -13572,20 +12795,6 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        [Newtonsoft.Json.JsonProperty("supportOptimization", Required = Newtonsoft.Json.Required.Always)]
-        public bool SupportOptimization
-        {
-            get { return _supportOptimization; }
-            set 
-            {
-                if (_supportOptimization != value)
-                {
-                    _supportOptimization = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
         [Newtonsoft.Json.JsonProperty("outputStateMap", Required = Newtonsoft.Json.Required.Always)]
         public bool OutputStateMap
         {
@@ -13614,108 +12823,8 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        [Newtonsoft.Json.JsonProperty("supportYieldStrength", Required = Newtonsoft.Json.Required.Always)]
-        public double SupportYieldStrength
-        {
-            get { return _supportYieldStrength; }
-            set 
-            {
-                if (_supportYieldStrength != value)
-                {
-                    _supportYieldStrength = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("supportYieldStrengthRatio", Required = Newtonsoft.Json.Required.Always)]
-        public double SupportYieldStrengthRatio
-        {
-            get { return _supportYieldStrengthRatio; }
-            set 
-            {
-                if (_supportYieldStrengthRatio != value)
-                {
-                    _supportYieldStrengthRatio = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("elasticModulus", Required = Newtonsoft.Json.Required.Always)]
-        public double ElasticModulus
-        {
-            get { return _elasticModulus; }
-            set 
-            {
-                if (_elasticModulus != value)
-                {
-                    _elasticModulus = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("poissonRatio", Required = Newtonsoft.Json.Required.Always)]
-        public double PoissonRatio
-        {
-            get { return _poissonRatio; }
-            set 
-            {
-                if (_poissonRatio != value)
-                {
-                    _poissonRatio = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("strainScalingFactor", Required = Newtonsoft.Json.Required.Always)]
-        public double StrainScalingFactor
-        {
-            get { return _strainScalingFactor; }
-            set 
-            {
-                if (_strainScalingFactor != value)
-                {
-                    _strainScalingFactor = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("outputDisplacementAfterCutoff", Required = Newtonsoft.Json.Required.Always)]
-        public bool OutputDisplacementAfterCutoff
-        {
-            get { return _outputDisplacementAfterCutoff; }
-            set 
-            {
-                if (_outputDisplacementAfterCutoff != value)
-                {
-                    _outputDisplacementAfterCutoff = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("stressMode", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public ThermalSimulationParametersStressMode StressMode
-        {
-            get { return _stressMode; }
-            set 
-            {
-                if (_stressMode != value)
-                {
-                    _stressMode = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("outputThermalVtk", Required = Newtonsoft.Json.Required.Always)]
-        public bool OutputThermalVtk
+        [Newtonsoft.Json.JsonProperty("outputThermalVtk", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? OutputThermalVtk
         {
             get { return _outputThermalVtk; }
             set 
@@ -13737,35 +12846,6 @@ namespace SimulationCSharpClient.Client
                 if (_outputThermalVtkLayers != value)
                 {
                     _outputThermalVtkLayers = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("detectBladeCrash", Required = Newtonsoft.Json.Required.Always)]
-        public bool DetectBladeCrash
-        {
-            get { return _detectBladeCrash; }
-            set 
-            {
-                if (_detectBladeCrash != value)
-                {
-                    _detectBladeCrash = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>should be a number between 0.5 and 1.5</summary>
-        [Newtonsoft.Json.JsonProperty("bladeCrashThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? BladeCrashThreshold
-        {
-            get { return _bladeCrashThreshold; }
-            set 
-            {
-                if (_bladeCrashThreshold != value)
-                {
-                    _bladeCrashThreshold = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -13846,21 +12926,6 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        /// <summary>if true, mechanics solver output will include a zip file with the stress / distortion state at the end of each voxel layer</summary>
-        [Newtonsoft.Json.JsonProperty("outputLayerVtk", Required = Newtonsoft.Json.Required.Always)]
-        public bool OutputLayerVtk
-        {
-            get { return _outputLayerVtk; }
-            set 
-            {
-                if (_outputLayerVtk != value)
-                {
-                    _outputLayerVtk = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
         [Newtonsoft.Json.JsonProperty("anisotropicStrainCoefficientsParallel", Required = Newtonsoft.Json.Required.Always)]
         public double AnisotropicStrainCoefficientsParallel
         {
@@ -13898,125 +12963,6 @@ namespace SimulationCSharpClient.Client
                 if (_anisotropicStrainCoefficientsZ != value)
                 {
                     _anisotropicStrainCoefficientsZ = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>if true, a predistorted STL file will be created using the distortion simulated by the mechanics solver</summary>
-        [Newtonsoft.Json.JsonProperty("performDistortionCompensation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? PerformDistortionCompensation
-        {
-            get { return _performDistortionCompensation; }
-            set 
-            {
-                if (_performDistortionCompensation != value)
-                {
-                    _performDistortionCompensation = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>a value that is used to scale the simulated distortion value</summary>
-        [Newtonsoft.Json.JsonProperty("distortionScaleFactor", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? DistortionScaleFactor
-        {
-            get { return _distortionScaleFactor; }
-            set 
-            {
-                if (_distortionScaleFactor != value)
-                {
-                    _distortionScaleFactor = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>if true, a VTK file of the support structure will be created</summary>
-        [Newtonsoft.Json.JsonProperty("outputSupportsVtk", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? OutputSupportsVtk
-        {
-            get { return _outputSupportsVtk; }
-            set 
-            {
-                if (_outputSupportsVtk != value)
-                {
-                    _outputSupportsVtk = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("detectSupportFailure", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? DetectSupportFailure
-        {
-            get { return _detectSupportFailure; }
-            set 
-            {
-                if (_detectSupportFailure != value)
-                {
-                    _detectSupportFailure = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>should be a number between 0.01 and 1.0</summary>
-        [Newtonsoft.Json.JsonProperty("supportFailureThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? SupportFailureThreshold
-        {
-            get { return _supportFailureThreshold; }
-            set 
-            {
-                if (_supportFailureThreshold != value)
-                {
-                    _supportFailureThreshold = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>should be a number between 0.01 and 1.0</summary>
-        [Newtonsoft.Json.JsonProperty("partFailureThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? PartFailureThreshold
-        {
-            get { return _partFailureThreshold; }
-            set 
-            {
-                if (_partFailureThreshold != value)
-                {
-                    _partFailureThreshold = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>should be a number between 0.01 and 1.0</summary>
-        [Newtonsoft.Json.JsonProperty("strainWarningThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? StrainWarningThreshold
-        {
-            get { return _strainWarningThreshold; }
-            set 
-            {
-                if (_strainWarningThreshold != value)
-                {
-                    _strainWarningThreshold = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>List of parts to simulate (current limit is one part, imposed by server)</summary>
-        [Newtonsoft.Json.JsonProperty("simulationParts", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.ObjectModel.ObservableCollection<SimulationPart> SimulationParts
-        {
-            get { return _simulationParts; }
-            set 
-            {
-                if (_simulationParts != value)
-                {
-                    _simulationParts = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -14074,71 +13020,29 @@ namespace SimulationCSharpClient.Client
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.9.14.0 (Newtonsoft.Json v9.0.0.0)")]
-    public partial class ThermalSimulation : Simulation, System.ComponentModel.INotifyPropertyChanged
+    public partial class ThermalSimulation : PartBasedSimulationParameters, System.ComponentModel.INotifyPropertyChanged
     {
-        private bool _performSupportOptimization;
         private double _layerThickness;
         private double _hatchSpacing;
         private double _laserWattage;
         private double _scanSpeed;
-        private double _supportAngle;
-        private double _supportFactorOfSafety;
-        private double _minimumWallThickness;
-        private double _maximumWallThickness;
-        private double _minimumWallDistance;
-        private double _maximumWallDistance;
-        private double _minimumSupportHeight;
         private double _slicingStripeWidth;
-        private double _voxelSize;
         private double _startingLayerAngle;
         private double _layerRotationAngle;
-        private bool _supportOptimization;
         private bool _outputStateMap;
         private bool _outputShrinkage;
-        private double _supportYieldStrength;
-        private double _supportYieldStrengthRatio;
-        private double _elasticModulus;
-        private double _poissonRatio;
-        private double _strainScalingFactor;
-        private bool _outputDisplacementAfterCutoff;
-        private ThermalSimulationParametersStressMode _stressMode;
-        private bool _outputThermalVtk;
+        private bool? _outputThermalVtk;
         private string _outputThermalVtkLayers;
-        private bool _detectBladeCrash;
-        private double? _bladeCrashThreshold;
         private bool _outputPointThermalHistory;
         private bool _outputVirtualSensorData;
         private double? _staticVirtualSensorRadius;
         private double? _dynamicVirtualSensorRadius;
         private bool _includeStressAnalysis;
-        private bool _outputLayerVtk;
         private double _anisotropicStrainCoefficientsParallel;
         private double _anisotropicStrainCoefficientsPerpendicular;
         private double _anisotropicStrainCoefficientsZ;
-        private bool? _performDistortionCompensation;
-        private double? _distortionScaleFactor;
-        private bool? _outputSupportsVtk;
-        private bool? _detectSupportFailure;
-        private double? _supportFailureThreshold;
-        private double? _partFailureThreshold;
-        private double? _strainWarningThreshold;
-        private System.Collections.ObjectModel.ObservableCollection<SimulationPart> _simulationParts;
         private System.Collections.ObjectModel.ObservableCollection<SelectedPoint> _selectedPoints;
         private double _heaterTemperature;
-    
-        [Newtonsoft.Json.JsonProperty("performSupportOptimization", Required = Newtonsoft.Json.Required.Always)]
-        public bool PerformSupportOptimization
-        {
-            get { return _performSupportOptimization; }
-            set 
-            {
-                if (_performSupportOptimization != value)
-                {
-                    _performSupportOptimization = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
     
         /// <summary>Must be between 0.00001 to 0.0001 meters</summary>
         [Newtonsoft.Json.JsonProperty("layerThickness", Required = Newtonsoft.Json.Required.Always)]
@@ -14204,118 +13108,6 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        /// <summary>Must be between 1 to 89 degrees</summary>
-        [Newtonsoft.Json.JsonProperty("supportAngle", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(1, 89)]
-        public double SupportAngle
-        {
-            get { return _supportAngle; }
-            set 
-            {
-                if (_supportAngle != value)
-                {
-                    _supportAngle = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Multiplier for support calculations, Must be between 0.1 to 10</summary>
-        [Newtonsoft.Json.JsonProperty("supportFactorOfSafety", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 10)]
-        public double SupportFactorOfSafety
-        {
-            get { return _supportFactorOfSafety; }
-            set 
-            {
-                if (_supportFactorOfSafety != value)
-                {
-                    _supportFactorOfSafety = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0.00005 to 0.0003 meters, Must be less than maximumWallThickness</summary>
-        [Newtonsoft.Json.JsonProperty("minimumWallThickness", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MinimumWallThickness
-        {
-            get { return _minimumWallThickness; }
-            set 
-            {
-                if (_minimumWallThickness != value)
-                {
-                    _minimumWallThickness = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0.00015 to 0.002 meters, Must be greater than minimumWallThickness</summary>
-        [Newtonsoft.Json.JsonProperty("maximumWallThickness", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MaximumWallThickness
-        {
-            get { return _maximumWallThickness; }
-            set 
-            {
-                if (_maximumWallThickness != value)
-                {
-                    _maximumWallThickness = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0 to 0.0003 meters, Must be less than maximumWallDistance</summary>
-        [Newtonsoft.Json.JsonProperty("minimumWallDistance", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MinimumWallDistance
-        {
-            get { return _minimumWallDistance; }
-            set 
-            {
-                if (_minimumWallDistance != value)
-                {
-                    _minimumWallDistance = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0 to 0.005 meters, Must be greater than minimumWallDistance</summary>
-        [Newtonsoft.Json.JsonProperty("maximumWallDistance", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MaximumWallDistance
-        {
-            get { return _maximumWallDistance; }
-            set 
-            {
-                if (_maximumWallDistance != value)
-                {
-                    _maximumWallDistance = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Distance to move the part off the base plate for supports, Must be between 0 to 0.005 meters</summary>
-        [Newtonsoft.Json.JsonProperty("minimumSupportHeight", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MinimumSupportHeight
-        {
-            get { return _minimumSupportHeight; }
-            set 
-            {
-                if (_minimumSupportHeight != value)
-                {
-                    _minimumSupportHeight = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
         /// <summary>Must be between 0.001 to 0.1 meters</summary>
         [Newtonsoft.Json.JsonProperty("slicingStripeWidth", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Range(0, 0)]
@@ -14327,22 +13119,6 @@ namespace SimulationCSharpClient.Client
                 if (_slicingStripeWidth != value)
                 {
                     _slicingStripeWidth = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0.00002 to 0.002 meters</summary>
-        [Newtonsoft.Json.JsonProperty("voxelSize", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double VoxelSize
-        {
-            get { return _voxelSize; }
-            set 
-            {
-                if (_voxelSize != value)
-                {
-                    _voxelSize = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -14380,20 +13156,6 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        [Newtonsoft.Json.JsonProperty("supportOptimization", Required = Newtonsoft.Json.Required.Always)]
-        public bool SupportOptimization
-        {
-            get { return _supportOptimization; }
-            set 
-            {
-                if (_supportOptimization != value)
-                {
-                    _supportOptimization = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
         [Newtonsoft.Json.JsonProperty("outputStateMap", Required = Newtonsoft.Json.Required.Always)]
         public bool OutputStateMap
         {
@@ -14422,108 +13184,8 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        [Newtonsoft.Json.JsonProperty("supportYieldStrength", Required = Newtonsoft.Json.Required.Always)]
-        public double SupportYieldStrength
-        {
-            get { return _supportYieldStrength; }
-            set 
-            {
-                if (_supportYieldStrength != value)
-                {
-                    _supportYieldStrength = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("supportYieldStrengthRatio", Required = Newtonsoft.Json.Required.Always)]
-        public double SupportYieldStrengthRatio
-        {
-            get { return _supportYieldStrengthRatio; }
-            set 
-            {
-                if (_supportYieldStrengthRatio != value)
-                {
-                    _supportYieldStrengthRatio = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("elasticModulus", Required = Newtonsoft.Json.Required.Always)]
-        public double ElasticModulus
-        {
-            get { return _elasticModulus; }
-            set 
-            {
-                if (_elasticModulus != value)
-                {
-                    _elasticModulus = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("poissonRatio", Required = Newtonsoft.Json.Required.Always)]
-        public double PoissonRatio
-        {
-            get { return _poissonRatio; }
-            set 
-            {
-                if (_poissonRatio != value)
-                {
-                    _poissonRatio = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("strainScalingFactor", Required = Newtonsoft.Json.Required.Always)]
-        public double StrainScalingFactor
-        {
-            get { return _strainScalingFactor; }
-            set 
-            {
-                if (_strainScalingFactor != value)
-                {
-                    _strainScalingFactor = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("outputDisplacementAfterCutoff", Required = Newtonsoft.Json.Required.Always)]
-        public bool OutputDisplacementAfterCutoff
-        {
-            get { return _outputDisplacementAfterCutoff; }
-            set 
-            {
-                if (_outputDisplacementAfterCutoff != value)
-                {
-                    _outputDisplacementAfterCutoff = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("stressMode", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public ThermalSimulationParametersStressMode StressMode
-        {
-            get { return _stressMode; }
-            set 
-            {
-                if (_stressMode != value)
-                {
-                    _stressMode = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("outputThermalVtk", Required = Newtonsoft.Json.Required.Always)]
-        public bool OutputThermalVtk
+        [Newtonsoft.Json.JsonProperty("outputThermalVtk", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? OutputThermalVtk
         {
             get { return _outputThermalVtk; }
             set 
@@ -14545,35 +13207,6 @@ namespace SimulationCSharpClient.Client
                 if (_outputThermalVtkLayers != value)
                 {
                     _outputThermalVtkLayers = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("detectBladeCrash", Required = Newtonsoft.Json.Required.Always)]
-        public bool DetectBladeCrash
-        {
-            get { return _detectBladeCrash; }
-            set 
-            {
-                if (_detectBladeCrash != value)
-                {
-                    _detectBladeCrash = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>should be a number between 0.5 and 1.5</summary>
-        [Newtonsoft.Json.JsonProperty("bladeCrashThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? BladeCrashThreshold
-        {
-            get { return _bladeCrashThreshold; }
-            set 
-            {
-                if (_bladeCrashThreshold != value)
-                {
-                    _bladeCrashThreshold = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -14654,21 +13287,6 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        /// <summary>if true, mechanics solver output will include a zip file with the stress / distortion state at the end of each voxel layer</summary>
-        [Newtonsoft.Json.JsonProperty("outputLayerVtk", Required = Newtonsoft.Json.Required.Always)]
-        public bool OutputLayerVtk
-        {
-            get { return _outputLayerVtk; }
-            set 
-            {
-                if (_outputLayerVtk != value)
-                {
-                    _outputLayerVtk = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
         [Newtonsoft.Json.JsonProperty("anisotropicStrainCoefficientsParallel", Required = Newtonsoft.Json.Required.Always)]
         public double AnisotropicStrainCoefficientsParallel
         {
@@ -14706,125 +13324,6 @@ namespace SimulationCSharpClient.Client
                 if (_anisotropicStrainCoefficientsZ != value)
                 {
                     _anisotropicStrainCoefficientsZ = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>if true, a predistorted STL file will be created using the distortion simulated by the mechanics solver</summary>
-        [Newtonsoft.Json.JsonProperty("performDistortionCompensation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? PerformDistortionCompensation
-        {
-            get { return _performDistortionCompensation; }
-            set 
-            {
-                if (_performDistortionCompensation != value)
-                {
-                    _performDistortionCompensation = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>a value that is used to scale the simulated distortion value</summary>
-        [Newtonsoft.Json.JsonProperty("distortionScaleFactor", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? DistortionScaleFactor
-        {
-            get { return _distortionScaleFactor; }
-            set 
-            {
-                if (_distortionScaleFactor != value)
-                {
-                    _distortionScaleFactor = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>if true, a VTK file of the support structure will be created</summary>
-        [Newtonsoft.Json.JsonProperty("outputSupportsVtk", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? OutputSupportsVtk
-        {
-            get { return _outputSupportsVtk; }
-            set 
-            {
-                if (_outputSupportsVtk != value)
-                {
-                    _outputSupportsVtk = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("detectSupportFailure", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? DetectSupportFailure
-        {
-            get { return _detectSupportFailure; }
-            set 
-            {
-                if (_detectSupportFailure != value)
-                {
-                    _detectSupportFailure = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>should be a number between 0.01 and 1.0</summary>
-        [Newtonsoft.Json.JsonProperty("supportFailureThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? SupportFailureThreshold
-        {
-            get { return _supportFailureThreshold; }
-            set 
-            {
-                if (_supportFailureThreshold != value)
-                {
-                    _supportFailureThreshold = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>should be a number between 0.01 and 1.0</summary>
-        [Newtonsoft.Json.JsonProperty("partFailureThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? PartFailureThreshold
-        {
-            get { return _partFailureThreshold; }
-            set 
-            {
-                if (_partFailureThreshold != value)
-                {
-                    _partFailureThreshold = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>should be a number between 0.01 and 1.0</summary>
-        [Newtonsoft.Json.JsonProperty("strainWarningThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? StrainWarningThreshold
-        {
-            get { return _strainWarningThreshold; }
-            set 
-            {
-                if (_strainWarningThreshold != value)
-                {
-                    _strainWarningThreshold = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>List of parts to simulate (current limit is one part, imposed by server)</summary>
-        [Newtonsoft.Json.JsonProperty("simulationParts", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.ObjectModel.ObservableCollection<SimulationPart> SimulationParts
-        {
-            get { return _simulationParts; }
-            set 
-            {
-                if (_simulationParts != value)
-                {
-                    _simulationParts = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -14885,40 +13384,12 @@ namespace SimulationCSharpClient.Client
     public partial class ScanPatternSimulationParameters : System.ComponentModel.INotifyPropertyChanged
     {
         private double _layerThickness;
-        private double _supportAngle;
-        private double _supportFactorOfSafety;
-        private double _minimumWallThickness;
-        private double _maximumWallThickness;
-        private double _minimumWallDistance;
-        private double _maximumWallDistance;
-        private double _minimumSupportHeight;
-        private double _voxelSize;
         private double _startingLayerAngle;
         private double _layerRotationAngle;
         private bool _outputShrinkage;
         private double _anisotropicStrainCoefficientsParallel;
         private double _anisotropicStrainCoefficientsPerpendicular;
         private double _anisotropicStrainCoefficientsZ;
-        private double _supportYieldStrength;
-        private double _supportYieldStrengthRatio;
-        private double _elasticModulus;
-        private double _poissonRatio;
-        private double _strainScalingFactor;
-        private bool _outputDisplacementAfterCutoff;
-        private bool _detectBladeCrash;
-        private double? _bladeCrashThreshold;
-        private ScanPatternSimulationParametersStressMode _stressMode;
-        private System.Collections.ObjectModel.ObservableCollection<SimulationPart> _simulationParts;
-        private bool _performSupportOptimization;
-        private bool _generateSupportVoxels;
-        private bool _outputLayerVtk;
-        private bool? _performDistortionCompensation;
-        private double? _distortionScaleFactor;
-        private bool? _outputSupportsVtk;
-        private bool? _detectSupportFailure;
-        private double? _supportFailureThreshold;
-        private double? _partFailureThreshold;
-        private double? _strainWarningThreshold;
     
         /// <summary>Must be between 0.00001 to 0.0001 meters</summary>
         [Newtonsoft.Json.JsonProperty("layerThickness", Required = Newtonsoft.Json.Required.Always)]
@@ -14931,134 +13402,6 @@ namespace SimulationCSharpClient.Client
                 if (_layerThickness != value)
                 {
                     _layerThickness = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 1 to 89 degrees</summary>
-        [Newtonsoft.Json.JsonProperty("supportAngle", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(1, 89)]
-        public double SupportAngle
-        {
-            get { return _supportAngle; }
-            set 
-            {
-                if (_supportAngle != value)
-                {
-                    _supportAngle = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Multiplier for support calculations, Must be between 0.1 to 10</summary>
-        [Newtonsoft.Json.JsonProperty("supportFactorOfSafety", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 10)]
-        public double SupportFactorOfSafety
-        {
-            get { return _supportFactorOfSafety; }
-            set 
-            {
-                if (_supportFactorOfSafety != value)
-                {
-                    _supportFactorOfSafety = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0.00005 to 0.0003 meters, Must be less than maximumWallThickness</summary>
-        [Newtonsoft.Json.JsonProperty("minimumWallThickness", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MinimumWallThickness
-        {
-            get { return _minimumWallThickness; }
-            set 
-            {
-                if (_minimumWallThickness != value)
-                {
-                    _minimumWallThickness = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0.00015 to 0.002 meters, Must be greater than minimumWallThickness</summary>
-        [Newtonsoft.Json.JsonProperty("maximumWallThickness", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MaximumWallThickness
-        {
-            get { return _maximumWallThickness; }
-            set 
-            {
-                if (_maximumWallThickness != value)
-                {
-                    _maximumWallThickness = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0 to 0.0003 meters, Must be less than maximumWallDistance</summary>
-        [Newtonsoft.Json.JsonProperty("minimumWallDistance", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MinimumWallDistance
-        {
-            get { return _minimumWallDistance; }
-            set 
-            {
-                if (_minimumWallDistance != value)
-                {
-                    _minimumWallDistance = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0 to 0.005 meters, Must be greater than minimumWallDistance</summary>
-        [Newtonsoft.Json.JsonProperty("maximumWallDistance", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MaximumWallDistance
-        {
-            get { return _maximumWallDistance; }
-            set 
-            {
-                if (_maximumWallDistance != value)
-                {
-                    _maximumWallDistance = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Distance to move the part off the base plate for supports, Must be between 0 to 0.005 meters</summary>
-        [Newtonsoft.Json.JsonProperty("minimumSupportHeight", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MinimumSupportHeight
-        {
-            get { return _minimumSupportHeight; }
-            set 
-            {
-                if (_minimumSupportHeight != value)
-                {
-                    _minimumSupportHeight = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0.00002 to 0.002 meters</summary>
-        [Newtonsoft.Json.JsonProperty("voxelSize", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double VoxelSize
-        {
-            get { return _voxelSize; }
-            set 
-            {
-                if (_voxelSize != value)
-                {
-                    _voxelSize = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -15147,297 +13490,6 @@ namespace SimulationCSharpClient.Client
                 if (_anisotropicStrainCoefficientsZ != value)
                 {
                     _anisotropicStrainCoefficientsZ = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("supportYieldStrength", Required = Newtonsoft.Json.Required.Always)]
-        public double SupportYieldStrength
-        {
-            get { return _supportYieldStrength; }
-            set 
-            {
-                if (_supportYieldStrength != value)
-                {
-                    _supportYieldStrength = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("supportYieldStrengthRatio", Required = Newtonsoft.Json.Required.Always)]
-        public double SupportYieldStrengthRatio
-        {
-            get { return _supportYieldStrengthRatio; }
-            set 
-            {
-                if (_supportYieldStrengthRatio != value)
-                {
-                    _supportYieldStrengthRatio = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("elasticModulus", Required = Newtonsoft.Json.Required.Always)]
-        public double ElasticModulus
-        {
-            get { return _elasticModulus; }
-            set 
-            {
-                if (_elasticModulus != value)
-                {
-                    _elasticModulus = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("poissonRatio", Required = Newtonsoft.Json.Required.Always)]
-        public double PoissonRatio
-        {
-            get { return _poissonRatio; }
-            set 
-            {
-                if (_poissonRatio != value)
-                {
-                    _poissonRatio = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("strainScalingFactor", Required = Newtonsoft.Json.Required.Always)]
-        public double StrainScalingFactor
-        {
-            get { return _strainScalingFactor; }
-            set 
-            {
-                if (_strainScalingFactor != value)
-                {
-                    _strainScalingFactor = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("outputDisplacementAfterCutoff", Required = Newtonsoft.Json.Required.Always)]
-        public bool OutputDisplacementAfterCutoff
-        {
-            get { return _outputDisplacementAfterCutoff; }
-            set 
-            {
-                if (_outputDisplacementAfterCutoff != value)
-                {
-                    _outputDisplacementAfterCutoff = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("detectBladeCrash", Required = Newtonsoft.Json.Required.Always)]
-        public bool DetectBladeCrash
-        {
-            get { return _detectBladeCrash; }
-            set 
-            {
-                if (_detectBladeCrash != value)
-                {
-                    _detectBladeCrash = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>should be a number between 0.5 and 1.5</summary>
-        [Newtonsoft.Json.JsonProperty("bladeCrashThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? BladeCrashThreshold
-        {
-            get { return _bladeCrashThreshold; }
-            set 
-            {
-                if (_bladeCrashThreshold != value)
-                {
-                    _bladeCrashThreshold = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("stressMode", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public ScanPatternSimulationParametersStressMode StressMode
-        {
-            get { return _stressMode; }
-            set 
-            {
-                if (_stressMode != value)
-                {
-                    _stressMode = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>List of parts to simulate (current limit is one part, imposed by server)</summary>
-        [Newtonsoft.Json.JsonProperty("simulationParts", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.ObjectModel.ObservableCollection<SimulationPart> SimulationParts
-        {
-            get { return _simulationParts; }
-            set 
-            {
-                if (_simulationParts != value)
-                {
-                    _simulationParts = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("performSupportOptimization", Required = Newtonsoft.Json.Required.Always)]
-        public bool PerformSupportOptimization
-        {
-            get { return _performSupportOptimization; }
-            set 
-            {
-                if (_performSupportOptimization != value)
-                {
-                    _performSupportOptimization = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("generateSupportVoxels", Required = Newtonsoft.Json.Required.Always)]
-        public bool GenerateSupportVoxels
-        {
-            get { return _generateSupportVoxels; }
-            set 
-            {
-                if (_generateSupportVoxels != value)
-                {
-                    _generateSupportVoxels = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>if true, mechanics solver output will include a zip file with the stress / distortion state at the end of each voxel layer</summary>
-        [Newtonsoft.Json.JsonProperty("outputLayerVtk", Required = Newtonsoft.Json.Required.Always)]
-        public bool OutputLayerVtk
-        {
-            get { return _outputLayerVtk; }
-            set 
-            {
-                if (_outputLayerVtk != value)
-                {
-                    _outputLayerVtk = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>if true, a predistorted STL file will be created using the distortion simulated by the mechanics solver</summary>
-        [Newtonsoft.Json.JsonProperty("performDistortionCompensation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? PerformDistortionCompensation
-        {
-            get { return _performDistortionCompensation; }
-            set 
-            {
-                if (_performDistortionCompensation != value)
-                {
-                    _performDistortionCompensation = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>a value that is used to scale the simulated distortion value</summary>
-        [Newtonsoft.Json.JsonProperty("distortionScaleFactor", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? DistortionScaleFactor
-        {
-            get { return _distortionScaleFactor; }
-            set 
-            {
-                if (_distortionScaleFactor != value)
-                {
-                    _distortionScaleFactor = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>if true, a VTK file of the support structure will be created</summary>
-        [Newtonsoft.Json.JsonProperty("outputSupportsVtk", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? OutputSupportsVtk
-        {
-            get { return _outputSupportsVtk; }
-            set 
-            {
-                if (_outputSupportsVtk != value)
-                {
-                    _outputSupportsVtk = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("detectSupportFailure", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? DetectSupportFailure
-        {
-            get { return _detectSupportFailure; }
-            set 
-            {
-                if (_detectSupportFailure != value)
-                {
-                    _detectSupportFailure = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>should be a number between 0.01 and 1.0</summary>
-        [Newtonsoft.Json.JsonProperty("supportFailureThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? SupportFailureThreshold
-        {
-            get { return _supportFailureThreshold; }
-            set 
-            {
-                if (_supportFailureThreshold != value)
-                {
-                    _supportFailureThreshold = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>should be a number between 0.01 and 1.0</summary>
-        [Newtonsoft.Json.JsonProperty("partFailureThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? PartFailureThreshold
-        {
-            get { return _partFailureThreshold; }
-            set 
-            {
-                if (_partFailureThreshold != value)
-                {
-                    _partFailureThreshold = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>should be a number between 0.01 and 1.0</summary>
-        [Newtonsoft.Json.JsonProperty("strainWarningThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? StrainWarningThreshold
-        {
-            get { return _strainWarningThreshold; }
-            set 
-            {
-                if (_strainWarningThreshold != value)
-                {
-                    _strainWarningThreshold = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -15464,43 +13516,15 @@ namespace SimulationCSharpClient.Client
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.9.14.0 (Newtonsoft.Json v9.0.0.0)")]
-    public partial class ScanPatternSimulation : Simulation, System.ComponentModel.INotifyPropertyChanged
+    public partial class ScanPatternSimulation : PartBasedSimulationParameters, System.ComponentModel.INotifyPropertyChanged
     {
         private double _layerThickness;
-        private double _supportAngle;
-        private double _supportFactorOfSafety;
-        private double _minimumWallThickness;
-        private double _maximumWallThickness;
-        private double _minimumWallDistance;
-        private double _maximumWallDistance;
-        private double _minimumSupportHeight;
-        private double _voxelSize;
         private double _startingLayerAngle;
         private double _layerRotationAngle;
         private bool _outputShrinkage;
         private double _anisotropicStrainCoefficientsParallel;
         private double _anisotropicStrainCoefficientsPerpendicular;
         private double _anisotropicStrainCoefficientsZ;
-        private double _supportYieldStrength;
-        private double _supportYieldStrengthRatio;
-        private double _elasticModulus;
-        private double _poissonRatio;
-        private double _strainScalingFactor;
-        private bool _outputDisplacementAfterCutoff;
-        private bool _detectBladeCrash;
-        private double? _bladeCrashThreshold;
-        private ScanPatternSimulationParametersStressMode _stressMode;
-        private System.Collections.ObjectModel.ObservableCollection<SimulationPart> _simulationParts;
-        private bool _performSupportOptimization;
-        private bool _generateSupportVoxels;
-        private bool _outputLayerVtk;
-        private bool? _performDistortionCompensation;
-        private double? _distortionScaleFactor;
-        private bool? _outputSupportsVtk;
-        private bool? _detectSupportFailure;
-        private double? _supportFailureThreshold;
-        private double? _partFailureThreshold;
-        private double? _strainWarningThreshold;
     
         /// <summary>Must be between 0.00001 to 0.0001 meters</summary>
         [Newtonsoft.Json.JsonProperty("layerThickness", Required = Newtonsoft.Json.Required.Always)]
@@ -15513,134 +13537,6 @@ namespace SimulationCSharpClient.Client
                 if (_layerThickness != value)
                 {
                     _layerThickness = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 1 to 89 degrees</summary>
-        [Newtonsoft.Json.JsonProperty("supportAngle", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(1, 89)]
-        public double SupportAngle
-        {
-            get { return _supportAngle; }
-            set 
-            {
-                if (_supportAngle != value)
-                {
-                    _supportAngle = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Multiplier for support calculations, Must be between 0.1 to 10</summary>
-        [Newtonsoft.Json.JsonProperty("supportFactorOfSafety", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 10)]
-        public double SupportFactorOfSafety
-        {
-            get { return _supportFactorOfSafety; }
-            set 
-            {
-                if (_supportFactorOfSafety != value)
-                {
-                    _supportFactorOfSafety = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0.00005 to 0.0003 meters, Must be less than maximumWallThickness</summary>
-        [Newtonsoft.Json.JsonProperty("minimumWallThickness", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MinimumWallThickness
-        {
-            get { return _minimumWallThickness; }
-            set 
-            {
-                if (_minimumWallThickness != value)
-                {
-                    _minimumWallThickness = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0.00015 to 0.002 meters, Must be greater than minimumWallThickness</summary>
-        [Newtonsoft.Json.JsonProperty("maximumWallThickness", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MaximumWallThickness
-        {
-            get { return _maximumWallThickness; }
-            set 
-            {
-                if (_maximumWallThickness != value)
-                {
-                    _maximumWallThickness = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0 to 0.0003 meters, Must be less than maximumWallDistance</summary>
-        [Newtonsoft.Json.JsonProperty("minimumWallDistance", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MinimumWallDistance
-        {
-            get { return _minimumWallDistance; }
-            set 
-            {
-                if (_minimumWallDistance != value)
-                {
-                    _minimumWallDistance = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0 to 0.005 meters, Must be greater than minimumWallDistance</summary>
-        [Newtonsoft.Json.JsonProperty("maximumWallDistance", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MaximumWallDistance
-        {
-            get { return _maximumWallDistance; }
-            set 
-            {
-                if (_maximumWallDistance != value)
-                {
-                    _maximumWallDistance = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Distance to move the part off the base plate for supports, Must be between 0 to 0.005 meters</summary>
-        [Newtonsoft.Json.JsonProperty("minimumSupportHeight", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MinimumSupportHeight
-        {
-            get { return _minimumSupportHeight; }
-            set 
-            {
-                if (_minimumSupportHeight != value)
-                {
-                    _minimumSupportHeight = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0.00002 to 0.002 meters</summary>
-        [Newtonsoft.Json.JsonProperty("voxelSize", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double VoxelSize
-        {
-            get { return _voxelSize; }
-            set 
-            {
-                if (_voxelSize != value)
-                {
-                    _voxelSize = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -15729,297 +13625,6 @@ namespace SimulationCSharpClient.Client
                 if (_anisotropicStrainCoefficientsZ != value)
                 {
                     _anisotropicStrainCoefficientsZ = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("supportYieldStrength", Required = Newtonsoft.Json.Required.Always)]
-        public double SupportYieldStrength
-        {
-            get { return _supportYieldStrength; }
-            set 
-            {
-                if (_supportYieldStrength != value)
-                {
-                    _supportYieldStrength = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("supportYieldStrengthRatio", Required = Newtonsoft.Json.Required.Always)]
-        public double SupportYieldStrengthRatio
-        {
-            get { return _supportYieldStrengthRatio; }
-            set 
-            {
-                if (_supportYieldStrengthRatio != value)
-                {
-                    _supportYieldStrengthRatio = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("elasticModulus", Required = Newtonsoft.Json.Required.Always)]
-        public double ElasticModulus
-        {
-            get { return _elasticModulus; }
-            set 
-            {
-                if (_elasticModulus != value)
-                {
-                    _elasticModulus = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("poissonRatio", Required = Newtonsoft.Json.Required.Always)]
-        public double PoissonRatio
-        {
-            get { return _poissonRatio; }
-            set 
-            {
-                if (_poissonRatio != value)
-                {
-                    _poissonRatio = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("strainScalingFactor", Required = Newtonsoft.Json.Required.Always)]
-        public double StrainScalingFactor
-        {
-            get { return _strainScalingFactor; }
-            set 
-            {
-                if (_strainScalingFactor != value)
-                {
-                    _strainScalingFactor = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("outputDisplacementAfterCutoff", Required = Newtonsoft.Json.Required.Always)]
-        public bool OutputDisplacementAfterCutoff
-        {
-            get { return _outputDisplacementAfterCutoff; }
-            set 
-            {
-                if (_outputDisplacementAfterCutoff != value)
-                {
-                    _outputDisplacementAfterCutoff = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("detectBladeCrash", Required = Newtonsoft.Json.Required.Always)]
-        public bool DetectBladeCrash
-        {
-            get { return _detectBladeCrash; }
-            set 
-            {
-                if (_detectBladeCrash != value)
-                {
-                    _detectBladeCrash = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>should be a number between 0.5 and 1.5</summary>
-        [Newtonsoft.Json.JsonProperty("bladeCrashThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? BladeCrashThreshold
-        {
-            get { return _bladeCrashThreshold; }
-            set 
-            {
-                if (_bladeCrashThreshold != value)
-                {
-                    _bladeCrashThreshold = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("stressMode", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public ScanPatternSimulationParametersStressMode StressMode
-        {
-            get { return _stressMode; }
-            set 
-            {
-                if (_stressMode != value)
-                {
-                    _stressMode = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>List of parts to simulate (current limit is one part, imposed by server)</summary>
-        [Newtonsoft.Json.JsonProperty("simulationParts", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.ObjectModel.ObservableCollection<SimulationPart> SimulationParts
-        {
-            get { return _simulationParts; }
-            set 
-            {
-                if (_simulationParts != value)
-                {
-                    _simulationParts = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("performSupportOptimization", Required = Newtonsoft.Json.Required.Always)]
-        public bool PerformSupportOptimization
-        {
-            get { return _performSupportOptimization; }
-            set 
-            {
-                if (_performSupportOptimization != value)
-                {
-                    _performSupportOptimization = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("generateSupportVoxels", Required = Newtonsoft.Json.Required.Always)]
-        public bool GenerateSupportVoxels
-        {
-            get { return _generateSupportVoxels; }
-            set 
-            {
-                if (_generateSupportVoxels != value)
-                {
-                    _generateSupportVoxels = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>if true, mechanics solver output will include a zip file with the stress / distortion state at the end of each voxel layer</summary>
-        [Newtonsoft.Json.JsonProperty("outputLayerVtk", Required = Newtonsoft.Json.Required.Always)]
-        public bool OutputLayerVtk
-        {
-            get { return _outputLayerVtk; }
-            set 
-            {
-                if (_outputLayerVtk != value)
-                {
-                    _outputLayerVtk = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>if true, a predistorted STL file will be created using the distortion simulated by the mechanics solver</summary>
-        [Newtonsoft.Json.JsonProperty("performDistortionCompensation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? PerformDistortionCompensation
-        {
-            get { return _performDistortionCompensation; }
-            set 
-            {
-                if (_performDistortionCompensation != value)
-                {
-                    _performDistortionCompensation = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>a value that is used to scale the simulated distortion value</summary>
-        [Newtonsoft.Json.JsonProperty("distortionScaleFactor", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? DistortionScaleFactor
-        {
-            get { return _distortionScaleFactor; }
-            set 
-            {
-                if (_distortionScaleFactor != value)
-                {
-                    _distortionScaleFactor = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>if true, a VTK file of the support structure will be created</summary>
-        [Newtonsoft.Json.JsonProperty("outputSupportsVtk", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? OutputSupportsVtk
-        {
-            get { return _outputSupportsVtk; }
-            set 
-            {
-                if (_outputSupportsVtk != value)
-                {
-                    _outputSupportsVtk = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("detectSupportFailure", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? DetectSupportFailure
-        {
-            get { return _detectSupportFailure; }
-            set 
-            {
-                if (_detectSupportFailure != value)
-                {
-                    _detectSupportFailure = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>should be a number between 0.01 and 1.0</summary>
-        [Newtonsoft.Json.JsonProperty("supportFailureThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? SupportFailureThreshold
-        {
-            get { return _supportFailureThreshold; }
-            set 
-            {
-                if (_supportFailureThreshold != value)
-                {
-                    _supportFailureThreshold = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>should be a number between 0.01 and 1.0</summary>
-        [Newtonsoft.Json.JsonProperty("partFailureThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? PartFailureThreshold
-        {
-            get { return _partFailureThreshold; }
-            set 
-            {
-                if (_partFailureThreshold != value)
-                {
-                    _partFailureThreshold = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>should be a number between 0.01 and 1.0</summary>
-        [Newtonsoft.Json.JsonProperty("strainWarningThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? StrainWarningThreshold
-        {
-            get { return _strainWarningThreshold; }
-            set 
-            {
-                if (_strainWarningThreshold != value)
-                {
-                    _strainWarningThreshold = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -19647,29 +17252,7 @@ namespace SimulationCSharpClient.Client
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.9.14.0 (Newtonsoft.Json v9.0.0.0)")]
-    public enum AssumedStrainSimulationParametersStressMode
-    {
-        [System.Runtime.Serialization.EnumMember(Value = "linearElastic")]
-        LinearElastic = 0,
-    
-        [System.Runtime.Serialization.EnumMember(Value = "j2Plasticity")]
-        J2Plasticity = 1,
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.9.14.0 (Newtonsoft.Json v9.0.0.0)")]
-    public enum ThermalSimulationParametersStressMode
-    {
-        [System.Runtime.Serialization.EnumMember(Value = "LinearElastic")]
-        LinearElastic = 0,
-    
-        [System.Runtime.Serialization.EnumMember(Value = "J2Plasticity")]
-        J2Plasticity = 1,
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.9.14.0 (Newtonsoft.Json v9.0.0.0)")]
-    public enum ScanPatternSimulationParametersStressMode
+    public enum PartBasedSimulationParametersStressMode
     {
         [System.Runtime.Serialization.EnumMember(Value = "LinearElastic")]
         LinearElastic = 0,
