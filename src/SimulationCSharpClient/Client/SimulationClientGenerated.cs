@@ -11705,35 +11705,30 @@ namespace SimulationCSharpClient.Client
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.9.14.0 (Newtonsoft.Json v9.0.0.0)")]
     public partial class PartBasedSimulationParameters : Simulation, System.ComponentModel.INotifyPropertyChanged
     {
+        private System.Collections.ObjectModel.ObservableCollection<SimulationPart> _simulationParts;
         private string _supportFileLocation;
         private string _partFileLocation;
-        private double _supportAngle;
-        private double _supportFactorOfSafety;
-        private double _minimumWallThickness;
-        private double _maximumWallThickness;
-        private double _minimumWallDistance;
-        private double _maximumWallDistance;
-        private double _minimumSupportHeight;
-        private double _voxelSize;
-        private double _startingLayerAngle;
-        private double _layerRotationAngle;
-        private bool _outputShrinkage;
-        private double _anisotropicStrainCoefficientsParallel;
-        private double _anisotropicStrainCoefficientsPerpendicular;
-        private double _anisotropicStrainCoefficientsZ;
         private double _supportYieldStrength;
         private double _supportYieldStrengthRatio;
         private double _elasticModulus;
         private double _poissonRatio;
         private double _strainScalingFactor;
+        private int? _buildFileId;
+        private bool _performSupportOptimization;
+        private double _voxelSize;
+        private double _minimumWallThickness;
+        private double _maximumWallThickness;
+        private double _minimumWallDistance;
+        private double _maximumWallDistance;
+        private double _minimumSupportHeight;
+        private bool _generateSupportVoxels;
         private bool _outputDisplacementAfterCutoff;
+        private PartBasedSimulationParametersStressMode _stressMode;
+        private double _supportAngle;
+        private double _supportFactorOfSafety;
+        private bool _outputLayerVtk;
         private bool _detectBladeCrash;
         private double? _bladeCrashThreshold;
-        private PartBasedSimulationParametersStressMode _stressMode;
-        private System.Collections.ObjectModel.ObservableCollection<SimulationPart> _simulationParts;
-        private bool _performSupportOptimization;
-        private bool _generateSupportVoxels;
-        private bool _outputLayerVtk;
         private bool? _performDistortionCompensation;
         private double? _distortionScaleFactor;
         private bool? _outputSupportsVtk;
@@ -11741,7 +11736,21 @@ namespace SimulationCSharpClient.Client
         private double? _supportFailureThreshold;
         private double? _partFailureThreshold;
         private double? _strainWarningThreshold;
-        private int? _buildFileId;
+    
+        /// <summary>List of parts to simulate (current limit is one part, imposed by server)</summary>
+        [Newtonsoft.Json.JsonProperty("simulationParts", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.ObjectModel.ObservableCollection<SimulationPart> SimulationParts
+        {
+            get { return _simulationParts; }
+            set 
+            {
+                if (_simulationParts != value)
+                {
+                    _simulationParts = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
     
         [Newtonsoft.Json.JsonProperty("supportFileLocation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string SupportFileLocation
@@ -11771,33 +11780,116 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        /// <summary>Must be between 1 to 89 degrees</summary>
-        [Newtonsoft.Json.JsonProperty("supportAngle", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(1, 89)]
-        public double SupportAngle
+        [Newtonsoft.Json.JsonProperty("supportYieldStrength", Required = Newtonsoft.Json.Required.Always)]
+        public double SupportYieldStrength
         {
-            get { return _supportAngle; }
+            get { return _supportYieldStrength; }
             set 
             {
-                if (_supportAngle != value)
+                if (_supportYieldStrength != value)
                 {
-                    _supportAngle = value; 
+                    _supportYieldStrength = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
-        /// <summary>Multiplier for support calculations, Must be between 0.1 to 10</summary>
-        [Newtonsoft.Json.JsonProperty("supportFactorOfSafety", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 10)]
-        public double SupportFactorOfSafety
+        [Newtonsoft.Json.JsonProperty("supportYieldStrengthRatio", Required = Newtonsoft.Json.Required.Always)]
+        public double SupportYieldStrengthRatio
         {
-            get { return _supportFactorOfSafety; }
+            get { return _supportYieldStrengthRatio; }
             set 
             {
-                if (_supportFactorOfSafety != value)
+                if (_supportYieldStrengthRatio != value)
                 {
-                    _supportFactorOfSafety = value; 
+                    _supportYieldStrengthRatio = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("elasticModulus", Required = Newtonsoft.Json.Required.Always)]
+        public double ElasticModulus
+        {
+            get { return _elasticModulus; }
+            set 
+            {
+                if (_elasticModulus != value)
+                {
+                    _elasticModulus = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("poissonRatio", Required = Newtonsoft.Json.Required.Always)]
+        public double PoissonRatio
+        {
+            get { return _poissonRatio; }
+            set 
+            {
+                if (_poissonRatio != value)
+                {
+                    _poissonRatio = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("strainScalingFactor", Required = Newtonsoft.Json.Required.Always)]
+        public double StrainScalingFactor
+        {
+            get { return _strainScalingFactor; }
+            set 
+            {
+                if (_strainScalingFactor != value)
+                {
+                    _strainScalingFactor = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Id of build file being simulated, mutually exclusive with simulationParts</summary>
+        [Newtonsoft.Json.JsonProperty("buildFileId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int? BuildFileId
+        {
+            get { return _buildFileId; }
+            set 
+            {
+                if (_buildFileId != value)
+                {
+                    _buildFileId = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("performSupportOptimization", Required = Newtonsoft.Json.Required.Always)]
+        public bool PerformSupportOptimization
+        {
+            get { return _performSupportOptimization; }
+            set 
+            {
+                if (_performSupportOptimization != value)
+                {
+                    _performSupportOptimization = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Must be between 0.00002 to 0.002 meters</summary>
+        [Newtonsoft.Json.JsonProperty("voxelSize", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 0)]
+        public double VoxelSize
+        {
+            get { return _voxelSize; }
+            set 
+            {
+                if (_voxelSize != value)
+                {
+                    _voxelSize = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -11883,175 +11975,15 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        /// <summary>Must be between 0.00002 to 0.002 meters</summary>
-        [Newtonsoft.Json.JsonProperty("voxelSize", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double VoxelSize
+        [Newtonsoft.Json.JsonProperty("generateSupportVoxels", Required = Newtonsoft.Json.Required.Always)]
+        public bool GenerateSupportVoxels
         {
-            get { return _voxelSize; }
+            get { return _generateSupportVoxels; }
             set 
             {
-                if (_voxelSize != value)
+                if (_generateSupportVoxels != value)
                 {
-                    _voxelSize = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0 to 180 degrees</summary>
-        [Newtonsoft.Json.JsonProperty("startingLayerAngle", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 180)]
-        public double StartingLayerAngle
-        {
-            get { return _startingLayerAngle; }
-            set 
-            {
-                if (_startingLayerAngle != value)
-                {
-                    _startingLayerAngle = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0 to 180 degrees</summary>
-        [Newtonsoft.Json.JsonProperty("layerRotationAngle", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 180)]
-        public double LayerRotationAngle
-        {
-            get { return _layerRotationAngle; }
-            set 
-            {
-                if (_layerRotationAngle != value)
-                {
-                    _layerRotationAngle = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("outputShrinkage", Required = Newtonsoft.Json.Required.Always)]
-        public bool OutputShrinkage
-        {
-            get { return _outputShrinkage; }
-            set 
-            {
-                if (_outputShrinkage != value)
-                {
-                    _outputShrinkage = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("anisotropicStrainCoefficientsParallel", Required = Newtonsoft.Json.Required.Always)]
-        public double AnisotropicStrainCoefficientsParallel
-        {
-            get { return _anisotropicStrainCoefficientsParallel; }
-            set 
-            {
-                if (_anisotropicStrainCoefficientsParallel != value)
-                {
-                    _anisotropicStrainCoefficientsParallel = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("anisotropicStrainCoefficientsPerpendicular", Required = Newtonsoft.Json.Required.Always)]
-        public double AnisotropicStrainCoefficientsPerpendicular
-        {
-            get { return _anisotropicStrainCoefficientsPerpendicular; }
-            set 
-            {
-                if (_anisotropicStrainCoefficientsPerpendicular != value)
-                {
-                    _anisotropicStrainCoefficientsPerpendicular = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("anisotropicStrainCoefficientsZ", Required = Newtonsoft.Json.Required.Always)]
-        public double AnisotropicStrainCoefficientsZ
-        {
-            get { return _anisotropicStrainCoefficientsZ; }
-            set 
-            {
-                if (_anisotropicStrainCoefficientsZ != value)
-                {
-                    _anisotropicStrainCoefficientsZ = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("supportYieldStrength", Required = Newtonsoft.Json.Required.Always)]
-        public double SupportYieldStrength
-        {
-            get { return _supportYieldStrength; }
-            set 
-            {
-                if (_supportYieldStrength != value)
-                {
-                    _supportYieldStrength = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("supportYieldStrengthRatio", Required = Newtonsoft.Json.Required.Always)]
-        public double SupportYieldStrengthRatio
-        {
-            get { return _supportYieldStrengthRatio; }
-            set 
-            {
-                if (_supportYieldStrengthRatio != value)
-                {
-                    _supportYieldStrengthRatio = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("elasticModulus", Required = Newtonsoft.Json.Required.Always)]
-        public double ElasticModulus
-        {
-            get { return _elasticModulus; }
-            set 
-            {
-                if (_elasticModulus != value)
-                {
-                    _elasticModulus = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("poissonRatio", Required = Newtonsoft.Json.Required.Always)]
-        public double PoissonRatio
-        {
-            get { return _poissonRatio; }
-            set 
-            {
-                if (_poissonRatio != value)
-                {
-                    _poissonRatio = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("strainScalingFactor", Required = Newtonsoft.Json.Required.Always)]
-        public double StrainScalingFactor
-        {
-            get { return _strainScalingFactor; }
-            set 
-            {
-                if (_strainScalingFactor != value)
-                {
-                    _strainScalingFactor = value; 
+                    _generateSupportVoxels = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -12066,6 +11998,69 @@ namespace SimulationCSharpClient.Client
                 if (_outputDisplacementAfterCutoff != value)
                 {
                     _outputDisplacementAfterCutoff = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("stressMode", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public PartBasedSimulationParametersStressMode StressMode
+        {
+            get { return _stressMode; }
+            set 
+            {
+                if (_stressMode != value)
+                {
+                    _stressMode = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Must be between 1 to 89 degrees</summary>
+        [Newtonsoft.Json.JsonProperty("supportAngle", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(1, 89)]
+        public double SupportAngle
+        {
+            get { return _supportAngle; }
+            set 
+            {
+                if (_supportAngle != value)
+                {
+                    _supportAngle = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Multiplier for support calculations, Must be between 0.1 to 10</summary>
+        [Newtonsoft.Json.JsonProperty("supportFactorOfSafety", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 10)]
+        public double SupportFactorOfSafety
+        {
+            get { return _supportFactorOfSafety; }
+            set 
+            {
+                if (_supportFactorOfSafety != value)
+                {
+                    _supportFactorOfSafety = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, mechanics solver output will include a zip file with the stress / distortion state at the end of each voxel layer</summary>
+        [Newtonsoft.Json.JsonProperty("outputLayerVtk", Required = Newtonsoft.Json.Required.Always)]
+        public bool OutputLayerVtk
+        {
+            get { return _outputLayerVtk; }
+            set 
+            {
+                if (_outputLayerVtk != value)
+                {
+                    _outputLayerVtk = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -12095,80 +12090,6 @@ namespace SimulationCSharpClient.Client
                 if (_bladeCrashThreshold != value)
                 {
                     _bladeCrashThreshold = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("stressMode", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public PartBasedSimulationParametersStressMode StressMode
-        {
-            get { return _stressMode; }
-            set 
-            {
-                if (_stressMode != value)
-                {
-                    _stressMode = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>List of parts to simulate (current limit is one part, imposed by server)</summary>
-        [Newtonsoft.Json.JsonProperty("simulationParts", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.ObjectModel.ObservableCollection<SimulationPart> SimulationParts
-        {
-            get { return _simulationParts; }
-            set 
-            {
-                if (_simulationParts != value)
-                {
-                    _simulationParts = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("performSupportOptimization", Required = Newtonsoft.Json.Required.Always)]
-        public bool PerformSupportOptimization
-        {
-            get { return _performSupportOptimization; }
-            set 
-            {
-                if (_performSupportOptimization != value)
-                {
-                    _performSupportOptimization = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("generateSupportVoxels", Required = Newtonsoft.Json.Required.Always)]
-        public bool GenerateSupportVoxels
-        {
-            get { return _generateSupportVoxels; }
-            set 
-            {
-                if (_generateSupportVoxels != value)
-                {
-                    _generateSupportVoxels = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>if true, mechanics solver output will include a zip file with the stress / distortion state at the end of each voxel layer</summary>
-        [Newtonsoft.Json.JsonProperty("outputLayerVtk", Required = Newtonsoft.Json.Required.Always)]
-        public bool OutputLayerVtk
-        {
-            get { return _outputLayerVtk; }
-            set 
-            {
-                if (_outputLayerVtk != value)
-                {
-                    _outputLayerVtk = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -12273,21 +12194,6 @@ namespace SimulationCSharpClient.Client
                 if (_strainWarningThreshold != value)
                 {
                     _strainWarningThreshold = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Id of build file being simulated, mutually exclusive with simulationParts</summary>
-        [Newtonsoft.Json.JsonProperty("buildFileId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? BuildFileId
-        {
-            get { return _buildFileId; }
-            set 
-            {
-                if (_buildFileId != value)
-                {
-                    _buildFileId = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -12682,6 +12588,15 @@ namespace SimulationCSharpClient.Client
         private double _anisotropicStrainCoefficientsZ;
         private System.Collections.ObjectModel.ObservableCollection<SelectedPoint> _selectedPoints;
         private double _heaterTemperature;
+        private bool _outputInstantDynamicSensor;
+        private double? _instantDynamicSensorRadius;
+        private System.Collections.ObjectModel.ObservableCollection<int> _instantDynamicSensorLayers;
+        private bool _outputPyroVirtualSensor;
+        private double? _pyroVirtualSensorRadius;
+        private bool? _pyroVirtualSensorOutputAllLayers;
+        private bool _outputInstantStaticSensor;
+        private double? _instantStaticSensorRadius;
+        private bool _outputPointProbe;
     
         /// <summary>Must be between 0.00001 to 0.0001 meters</summary>
         [Newtonsoft.Json.JsonProperty("layerThickness", Required = Newtonsoft.Json.Required.Always)]
@@ -12994,6 +12909,144 @@ namespace SimulationCSharpClient.Client
                 if (_heaterTemperature != value)
                 {
                     _heaterTemperature = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, dyanmic sensor data will be collected for each layer specified in the instantDynamicSensorLayers property</summary>
+        [Newtonsoft.Json.JsonProperty("outputInstantDynamicSensor", Required = Newtonsoft.Json.Required.Always)]
+        public bool OutputInstantDynamicSensor
+        {
+            get { return _outputInstantDynamicSensor; }
+            set 
+            {
+                if (_outputInstantDynamicSensor != value)
+                {
+                    _outputInstantDynamicSensor = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>radius for instant dynamic sensor data collection in mm</summary>
+        [Newtonsoft.Json.JsonProperty("instantDynamicSensorRadius", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(0.05D, 1.5D)]
+        public double? InstantDynamicSensorRadius
+        {
+            get { return _instantDynamicSensorRadius; }
+            set 
+            {
+                if (_instantDynamicSensorRadius != value)
+                {
+                    _instantDynamicSensorRadius = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Array of integer layer numbers where instant dynamic sensor data will be collected</summary>
+        [Newtonsoft.Json.JsonProperty("instantDynamicSensorLayers", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.ObjectModel.ObservableCollection<int> InstantDynamicSensorLayers
+        {
+            get { return _instantDynamicSensorLayers; }
+            set 
+            {
+                if (_instantDynamicSensorLayers != value)
+                {
+                    _instantDynamicSensorLayers = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, pyrometer sensor data will be collected for each selectedPoint property</summary>
+        [Newtonsoft.Json.JsonProperty("outputPyroVirtualSensor", Required = Newtonsoft.Json.Required.Always)]
+        public bool OutputPyroVirtualSensor
+        {
+            get { return _outputPyroVirtualSensor; }
+            set 
+            {
+                if (_outputPyroVirtualSensor != value)
+                {
+                    _outputPyroVirtualSensor = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>radius for pyro sensor data collection in mm</summary>
+        [Newtonsoft.Json.JsonProperty("pyroVirtualSensorRadius", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(0.05D, 1.5D)]
+        public double? PyroVirtualSensorRadius
+        {
+            get { return _pyroVirtualSensorRadius; }
+            set 
+            {
+                if (_pyroVirtualSensorRadius != value)
+                {
+                    _pyroVirtualSensorRadius = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, pyrometer sensor data will be collected for every layer</summary>
+        [Newtonsoft.Json.JsonProperty("pyroVirtualSensorOutputAllLayers", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? PyroVirtualSensorOutputAllLayers
+        {
+            get { return _pyroVirtualSensorOutputAllLayers; }
+            set 
+            {
+                if (_pyroVirtualSensorOutputAllLayers != value)
+                {
+                    _pyroVirtualSensorOutputAllLayers = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, instant static sensor data will be collected for each selectedPoint property</summary>
+        [Newtonsoft.Json.JsonProperty("outputInstantStaticSensor", Required = Newtonsoft.Json.Required.Always)]
+        public bool OutputInstantStaticSensor
+        {
+            get { return _outputInstantStaticSensor; }
+            set 
+            {
+                if (_outputInstantStaticSensor != value)
+                {
+                    _outputInstantStaticSensor = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>radius for instant static sensor data collection in mm</summary>
+        [Newtonsoft.Json.JsonProperty("instantStaticSensorRadius", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(0.05D, 1.5D)]
+        public double? InstantStaticSensorRadius
+        {
+            get { return _instantStaticSensorRadius; }
+            set 
+            {
+                if (_instantStaticSensorRadius != value)
+                {
+                    _instantStaticSensorRadius = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, probe sensor data will be collected for each selectedPoint property</summary>
+        [Newtonsoft.Json.JsonProperty("outputPointProbe", Required = Newtonsoft.Json.Required.Always)]
+        public bool OutputPointProbe
+        {
+            get { return _outputPointProbe; }
+            set 
+            {
+                if (_outputPointProbe != value)
+                {
+                    _outputPointProbe = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -13043,6 +13096,15 @@ namespace SimulationCSharpClient.Client
         private double _anisotropicStrainCoefficientsZ;
         private System.Collections.ObjectModel.ObservableCollection<SelectedPoint> _selectedPoints;
         private double _heaterTemperature;
+        private bool _outputInstantDynamicSensor;
+        private double? _instantDynamicSensorRadius;
+        private System.Collections.ObjectModel.ObservableCollection<int> _instantDynamicSensorLayers;
+        private bool _outputPyroVirtualSensor;
+        private double? _pyroVirtualSensorRadius;
+        private bool? _pyroVirtualSensorOutputAllLayers;
+        private bool _outputInstantStaticSensor;
+        private double? _instantStaticSensorRadius;
+        private bool _outputPointProbe;
     
         /// <summary>Must be between 0.00001 to 0.0001 meters</summary>
         [Newtonsoft.Json.JsonProperty("layerThickness", Required = Newtonsoft.Json.Required.Always)]
@@ -13355,6 +13417,144 @@ namespace SimulationCSharpClient.Client
                 if (_heaterTemperature != value)
                 {
                     _heaterTemperature = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, dyanmic sensor data will be collected for each layer specified in the instantDynamicSensorLayers property</summary>
+        [Newtonsoft.Json.JsonProperty("outputInstantDynamicSensor", Required = Newtonsoft.Json.Required.Always)]
+        public bool OutputInstantDynamicSensor
+        {
+            get { return _outputInstantDynamicSensor; }
+            set 
+            {
+                if (_outputInstantDynamicSensor != value)
+                {
+                    _outputInstantDynamicSensor = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>radius for instant dynamic sensor data collection in mm</summary>
+        [Newtonsoft.Json.JsonProperty("instantDynamicSensorRadius", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(0.05D, 1.5D)]
+        public double? InstantDynamicSensorRadius
+        {
+            get { return _instantDynamicSensorRadius; }
+            set 
+            {
+                if (_instantDynamicSensorRadius != value)
+                {
+                    _instantDynamicSensorRadius = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Array of integer layer numbers where instant dynamic sensor data will be collected</summary>
+        [Newtonsoft.Json.JsonProperty("instantDynamicSensorLayers", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.ObjectModel.ObservableCollection<int> InstantDynamicSensorLayers
+        {
+            get { return _instantDynamicSensorLayers; }
+            set 
+            {
+                if (_instantDynamicSensorLayers != value)
+                {
+                    _instantDynamicSensorLayers = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, pyrometer sensor data will be collected for each selectedPoint property</summary>
+        [Newtonsoft.Json.JsonProperty("outputPyroVirtualSensor", Required = Newtonsoft.Json.Required.Always)]
+        public bool OutputPyroVirtualSensor
+        {
+            get { return _outputPyroVirtualSensor; }
+            set 
+            {
+                if (_outputPyroVirtualSensor != value)
+                {
+                    _outputPyroVirtualSensor = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>radius for pyro sensor data collection in mm</summary>
+        [Newtonsoft.Json.JsonProperty("pyroVirtualSensorRadius", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(0.05D, 1.5D)]
+        public double? PyroVirtualSensorRadius
+        {
+            get { return _pyroVirtualSensorRadius; }
+            set 
+            {
+                if (_pyroVirtualSensorRadius != value)
+                {
+                    _pyroVirtualSensorRadius = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, pyrometer sensor data will be collected for every layer</summary>
+        [Newtonsoft.Json.JsonProperty("pyroVirtualSensorOutputAllLayers", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? PyroVirtualSensorOutputAllLayers
+        {
+            get { return _pyroVirtualSensorOutputAllLayers; }
+            set 
+            {
+                if (_pyroVirtualSensorOutputAllLayers != value)
+                {
+                    _pyroVirtualSensorOutputAllLayers = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, instant static sensor data will be collected for each selectedPoint property</summary>
+        [Newtonsoft.Json.JsonProperty("outputInstantStaticSensor", Required = Newtonsoft.Json.Required.Always)]
+        public bool OutputInstantStaticSensor
+        {
+            get { return _outputInstantStaticSensor; }
+            set 
+            {
+                if (_outputInstantStaticSensor != value)
+                {
+                    _outputInstantStaticSensor = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>radius for instant static sensor data collection in mm</summary>
+        [Newtonsoft.Json.JsonProperty("instantStaticSensorRadius", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(0.05D, 1.5D)]
+        public double? InstantStaticSensorRadius
+        {
+            get { return _instantStaticSensorRadius; }
+            set 
+            {
+                if (_instantStaticSensorRadius != value)
+                {
+                    _instantStaticSensorRadius = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, probe sensor data will be collected for each selectedPoint property</summary>
+        [Newtonsoft.Json.JsonProperty("outputPointProbe", Required = Newtonsoft.Json.Required.Always)]
+        public bool OutputPointProbe
+        {
+            get { return _outputPointProbe; }
+            set 
+            {
+                if (_outputPointProbe != value)
+                {
+                    _outputPointProbe = value; 
                     RaisePropertyChanged();
                 }
             }
