@@ -14812,7 +14812,6 @@ namespace SimulationCSharpClient.Client
     {
         private int? _id;
         private int _materialId;
-        private string _version;
         private System.DateTime _created;
         private string _createdBy;
         private double _meanFreePathOfLaserInPowder;
@@ -14875,23 +14874,6 @@ namespace SimulationCSharpClient.Client
                 if (_materialId != value)
                 {
                     _materialId = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>version label for the material configuration</summary>
-        [Newtonsoft.Json.JsonProperty("version", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        [System.ComponentModel.DataAnnotations.StringLength(16)]
-        public string Version
-        {
-            get { return _version; }
-            set 
-            {
-                if (_version != value)
-                {
-                    _version = value; 
                     RaisePropertyChanged();
                 }
             }
