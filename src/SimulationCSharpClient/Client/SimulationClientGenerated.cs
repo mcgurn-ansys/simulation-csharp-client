@@ -14528,7 +14528,6 @@ namespace SimulationCSharpClient.Client
         private string _description;
         private bool _archived;
         private string _key;
-        private string _version;
         private int _configurationId;
         private MaterialConfiguration _configuration;
         private System.Collections.ObjectModel.ObservableCollection<MaterialConfiguration> _configurationHistory;
@@ -14643,23 +14642,6 @@ namespace SimulationCSharpClient.Client
                 if (_key != value)
                 {
                     _key = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>version label</summary>
-        [Newtonsoft.Json.JsonProperty("version", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        [System.ComponentModel.DataAnnotations.StringLength(16)]
-        public string Version
-        {
-            get { return _version; }
-            set 
-            {
-                if (_version != value)
-                {
-                    _version = value; 
                     RaisePropertyChanged();
                 }
             }
