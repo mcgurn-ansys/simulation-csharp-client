@@ -287,14 +287,14 @@ namespace SimulationCSharpClient.Client
         /// <param name="simulationPatch">This endpoint uses JSON Patch, RFC 6092.</param>
         /// <returns>Successfully patched simulation</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task PatchSimulationAsync(int id, System.Collections.Generic.IEnumerable<PatchDocument> simulationPatch);
+        System.Threading.Tasks.Task<Simulation> PatchSimulationAsync(int id, System.Collections.Generic.IEnumerable<PatchDocument> simulationPatch);
     
         /// <param name="id">simulation identifier</param>
         /// <param name="simulationPatch">This endpoint uses JSON Patch, RFC 6092.</param>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Successfully patched simulation</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task PatchSimulationAsync(int id, System.Collections.Generic.IEnumerable<PatchDocument> simulationPatch, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<Simulation> PatchSimulationAsync(int id, System.Collections.Generic.IEnumerable<PatchDocument> simulationPatch, System.Threading.CancellationToken cancellationToken);
     
         /// <param name="id">ID of part</param>
         /// <returns>Successfully requested cancellation</returns>
@@ -3617,7 +3617,7 @@ namespace SimulationCSharpClient.Client
         /// <param name="simulationPatch">This endpoint uses JSON Patch, RFC 6092.</param>
         /// <returns>Successfully patched simulation</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task PatchSimulationAsync(int id, System.Collections.Generic.IEnumerable<PatchDocument> simulationPatch)
+        public System.Threading.Tasks.Task<Simulation> PatchSimulationAsync(int id, System.Collections.Generic.IEnumerable<PatchDocument> simulationPatch)
         {
             return PatchSimulationAsync(id, simulationPatch, System.Threading.CancellationToken.None);
         }
@@ -3627,7 +3627,7 @@ namespace SimulationCSharpClient.Client
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Successfully patched simulation</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task PatchSimulationAsync(int id, System.Collections.Generic.IEnumerable<PatchDocument> simulationPatch, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<Simulation> PatchSimulationAsync(int id, System.Collections.Generic.IEnumerable<PatchDocument> simulationPatch, System.Threading.CancellationToken cancellationToken)
         {
             if (id == null)
                 throw new System.ArgumentNullException("id");
@@ -3645,6 +3645,7 @@ namespace SimulationCSharpClient.Client
                     content_.Headers.ContentType.MediaType = "application/json";
                     request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("PATCH");
+                    request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
@@ -3663,7 +3664,17 @@ namespace SimulationCSharpClient.Client
                         var status_ = ((int)response_.StatusCode).ToString();
                         if (status_ == "200") 
                         {
-                            return;
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Simulation); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Simulation>(responseData_, _settings.Value);
+                                return result_; 
+                            } 
+                            catch (System.Exception exception) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception);
+                            }
                         }
                         else
                         if (status_ == "401") 
@@ -3726,6 +3737,8 @@ namespace SimulationCSharpClient.Client
     
                             throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
                         }
+            
+                        return default(Simulation);
                     }
                     finally
                     {
