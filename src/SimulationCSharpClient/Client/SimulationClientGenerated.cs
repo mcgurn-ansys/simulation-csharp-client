@@ -16244,15 +16244,15 @@ namespace SimulationCSharpClient.Client
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
     public partial class SelectedPoint : System.ComponentModel.INotifyPropertyChanged
     {
-        private double? _id;
-        private double _simulationId;
+        private int? _id;
+        private int _simulationId;
         private string _label;
         private double _x;
         private double _y;
         private double _z;
     
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? Id
+        public int? Id
         {
             get { return _id; }
             set 
@@ -16266,7 +16266,7 @@ namespace SimulationCSharpClient.Client
         }
     
         [Newtonsoft.Json.JsonProperty("simulationId", Required = Newtonsoft.Json.Required.Always)]
-        public double SimulationId
+        public int SimulationId
         {
             get { return _simulationId; }
             set 
