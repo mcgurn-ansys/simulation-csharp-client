@@ -31,13 +31,17 @@ npm install nswag -g
 
 Currently using nswag version to generate client:
 ```
-NSwag version: 11.11.2.0
-NJsonSchema version: 9.9.14.0 (Newtonsoft.Json v9.0.0.0)
+NSwag version: v11.12.7.0
+NJsonSchema version: v9.10.6.0 (Newtonsoft.Json v9.0.0.0)
 ```
 
 ## Regenerating from swagger.json
-To generate the client, run nswag in the project root folder using either a local or remote simulation-api endpoint
-as input.
+To generate the client, run nswag in the project root folder using either a local or remote simulation-api endpoint as input.
+
+If converting from local file, copy json version of spec, `swagger.json` in this case, into root folder then run:
+```
+nswag swagger2csclient /input:swagger.json /classname:SimulationClient /namespace:SimulationCSharpClient.Client /output:src/SimulationCSharpClient/Client/SimulationClientGenerated.cs /generateclientinterfaces:true /injecthttpclient:true
+```
 
 If running simulation-api locally:
 ```
