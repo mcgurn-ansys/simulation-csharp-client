@@ -14662,12 +14662,12 @@ namespace SimulationCSharpClient.Client
         private int _materialId;
         private System.DateTime _created;
         private string _createdBy;
-        private double _extictionCoefOfPowderLaserSpeedCoef;
-        private double _extictionCoefOfPowderLaserPowerCoef;
-        private double _extictionCoefOfPowderOffset;
-        private double _extictionCoefOfSolidLaserSpeedCoef;
-        private double _extictionCoefOfSolidLaserPowerCoef;
-        private double _extictionCoefOfSolidOffset;
+        private double _extinctionCoefOfPowderLaserSpeedCoef;
+        private double _extinctionCoefOfPowderLaserPowerCoef;
+        private double _extinctionCoefOfPowderOffset;
+        private double _extinctionCoefOfSolidLaserSpeedCoef;
+        private double _extinctionCoefOfSolidLaserPowerCoef;
+        private double _extinctionCoefOfSolidOffset;
         private double _powderToSolidThermalConductivityRatio;
         private double _powderToSolidSpecificHeatRatio;
         private double _powderToSolidDensityRatio;
@@ -14765,85 +14765,85 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        [Newtonsoft.Json.JsonProperty("extictionCoefOfPowderLaserSpeedCoef", Required = Newtonsoft.Json.Required.Always)]
-        public double ExtictionCoefOfPowderLaserSpeedCoef
+        [Newtonsoft.Json.JsonProperty("extinctionCoefOfPowderLaserSpeedCoef", Required = Newtonsoft.Json.Required.Always)]
+        public double ExtinctionCoefOfPowderLaserSpeedCoef
         {
-            get { return _extictionCoefOfPowderLaserSpeedCoef; }
+            get { return _extinctionCoefOfPowderLaserSpeedCoef; }
             set 
             {
-                if (_extictionCoefOfPowderLaserSpeedCoef != value)
+                if (_extinctionCoefOfPowderLaserSpeedCoef != value)
                 {
-                    _extictionCoefOfPowderLaserSpeedCoef = value; 
+                    _extinctionCoefOfPowderLaserSpeedCoef = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
-        [Newtonsoft.Json.JsonProperty("extictionCoefOfPowderLaserPowerCoef", Required = Newtonsoft.Json.Required.Always)]
-        public double ExtictionCoefOfPowderLaserPowerCoef
+        [Newtonsoft.Json.JsonProperty("extinctionCoefOfPowderLaserPowerCoef", Required = Newtonsoft.Json.Required.Always)]
+        public double ExtinctionCoefOfPowderLaserPowerCoef
         {
-            get { return _extictionCoefOfPowderLaserPowerCoef; }
+            get { return _extinctionCoefOfPowderLaserPowerCoef; }
             set 
             {
-                if (_extictionCoefOfPowderLaserPowerCoef != value)
+                if (_extinctionCoefOfPowderLaserPowerCoef != value)
                 {
-                    _extictionCoefOfPowderLaserPowerCoef = value; 
+                    _extinctionCoefOfPowderLaserPowerCoef = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
-        [Newtonsoft.Json.JsonProperty("extictionCoefOfPowderOffset", Required = Newtonsoft.Json.Required.Always)]
-        public double ExtictionCoefOfPowderOffset
+        [Newtonsoft.Json.JsonProperty("extinctionCoefOfPowderOffset", Required = Newtonsoft.Json.Required.Always)]
+        public double ExtinctionCoefOfPowderOffset
         {
-            get { return _extictionCoefOfPowderOffset; }
+            get { return _extinctionCoefOfPowderOffset; }
             set 
             {
-                if (_extictionCoefOfPowderOffset != value)
+                if (_extinctionCoefOfPowderOffset != value)
                 {
-                    _extictionCoefOfPowderOffset = value; 
+                    _extinctionCoefOfPowderOffset = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
-        [Newtonsoft.Json.JsonProperty("extictionCoefOfSolidLaserSpeedCoef", Required = Newtonsoft.Json.Required.Always)]
-        public double ExtictionCoefOfSolidLaserSpeedCoef
+        [Newtonsoft.Json.JsonProperty("extinctionCoefOfSolidLaserSpeedCoef", Required = Newtonsoft.Json.Required.Always)]
+        public double ExtinctionCoefOfSolidLaserSpeedCoef
         {
-            get { return _extictionCoefOfSolidLaserSpeedCoef; }
+            get { return _extinctionCoefOfSolidLaserSpeedCoef; }
             set 
             {
-                if (_extictionCoefOfSolidLaserSpeedCoef != value)
+                if (_extinctionCoefOfSolidLaserSpeedCoef != value)
                 {
-                    _extictionCoefOfSolidLaserSpeedCoef = value; 
+                    _extinctionCoefOfSolidLaserSpeedCoef = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
-        [Newtonsoft.Json.JsonProperty("extictionCoefOfSolidLaserPowerCoef", Required = Newtonsoft.Json.Required.Always)]
-        public double ExtictionCoefOfSolidLaserPowerCoef
+        [Newtonsoft.Json.JsonProperty("extinctionCoefOfSolidLaserPowerCoef", Required = Newtonsoft.Json.Required.Always)]
+        public double ExtinctionCoefOfSolidLaserPowerCoef
         {
-            get { return _extictionCoefOfSolidLaserPowerCoef; }
+            get { return _extinctionCoefOfSolidLaserPowerCoef; }
             set 
             {
-                if (_extictionCoefOfSolidLaserPowerCoef != value)
+                if (_extinctionCoefOfSolidLaserPowerCoef != value)
                 {
-                    _extictionCoefOfSolidLaserPowerCoef = value; 
+                    _extinctionCoefOfSolidLaserPowerCoef = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
-        [Newtonsoft.Json.JsonProperty("extictionCoefOfSolidOffset", Required = Newtonsoft.Json.Required.Always)]
-        public double ExtictionCoefOfSolidOffset
+        [Newtonsoft.Json.JsonProperty("extinctionCoefOfSolidOffset", Required = Newtonsoft.Json.Required.Always)]
+        public double ExtinctionCoefOfSolidOffset
         {
-            get { return _extictionCoefOfSolidOffset; }
+            get { return _extinctionCoefOfSolidOffset; }
             set 
             {
-                if (_extictionCoefOfSolidOffset != value)
+                if (_extinctionCoefOfSolidOffset != value)
                 {
-                    _extictionCoefOfSolidOffset = value; 
+                    _extinctionCoefOfSolidOffset = value; 
                     RaisePropertyChanged();
                 }
             }
