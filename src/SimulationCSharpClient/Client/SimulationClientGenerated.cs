@@ -14662,8 +14662,12 @@ namespace SimulationCSharpClient.Client
         private int _materialId;
         private System.DateTime _created;
         private string _createdBy;
-        private double _meanFreePathOfLaserInPowder;
-        private double _meanFreePathOfLaserInBulk;
+        private double _extictionCoefOfPowderLaserSpeedCoef;
+        private double _extictionCoefOfPowderLaserPowerCoef;
+        private double _extictionCoefOfPowderOffset;
+        private double _extictionCoefOfSolidLaserSpeedCoef;
+        private double _extictionCoefOfSolidLaserPowerCoef;
+        private double _extictionCoefOfSolidOffset;
         private double _powderToSolidThermalConductivityRatio;
         private double _powderToSolidSpecificHeatRatio;
         private double _powderToSolidDensityRatio;
@@ -14678,12 +14682,8 @@ namespace SimulationCSharpClient.Client
         private double _vaporizationTemperature;
         private double _vaporizationStartTemperature;
         private double _solidStateTransitionTemperature;
-        private double _energyAbsorbingRateByPowderLaserSpeedCoef;
-        private double _energyAbsorbingRateByPowderLaserPowerCoef;
-        private double _energyAbsorbingRateByPowderOffset;
-        private double _energyAbsorbingRateBySolidLaserSpeedCoef;
-        private double _energyAbsorbingRateBySolidLaserPowerCoef;
-        private double _energyAbsorbingRateBySolidOffset;
+        private double _energyAbsorbingRateByPowder;
+        private double _energyAbsorbingRateBySolid;
         private double _thermalExpansionCoefficient;
         private double _elasticModulus;
         private double _elasticModulusOfBase;
@@ -14765,29 +14765,85 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        [Newtonsoft.Json.JsonProperty("meanFreePathOfLaserInPowder", Required = Newtonsoft.Json.Required.Always)]
-        public double MeanFreePathOfLaserInPowder
+        [Newtonsoft.Json.JsonProperty("extictionCoefOfPowderLaserSpeedCoef", Required = Newtonsoft.Json.Required.Always)]
+        public double ExtictionCoefOfPowderLaserSpeedCoef
         {
-            get { return _meanFreePathOfLaserInPowder; }
+            get { return _extictionCoefOfPowderLaserSpeedCoef; }
             set 
             {
-                if (_meanFreePathOfLaserInPowder != value)
+                if (_extictionCoefOfPowderLaserSpeedCoef != value)
                 {
-                    _meanFreePathOfLaserInPowder = value; 
+                    _extictionCoefOfPowderLaserSpeedCoef = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
-        [Newtonsoft.Json.JsonProperty("meanFreePathOfLaserInBulk", Required = Newtonsoft.Json.Required.Always)]
-        public double MeanFreePathOfLaserInBulk
+        [Newtonsoft.Json.JsonProperty("extictionCoefOfPowderLaserPowerCoef", Required = Newtonsoft.Json.Required.Always)]
+        public double ExtictionCoefOfPowderLaserPowerCoef
         {
-            get { return _meanFreePathOfLaserInBulk; }
+            get { return _extictionCoefOfPowderLaserPowerCoef; }
             set 
             {
-                if (_meanFreePathOfLaserInBulk != value)
+                if (_extictionCoefOfPowderLaserPowerCoef != value)
                 {
-                    _meanFreePathOfLaserInBulk = value; 
+                    _extictionCoefOfPowderLaserPowerCoef = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("extictionCoefOfPowderOffset", Required = Newtonsoft.Json.Required.Always)]
+        public double ExtictionCoefOfPowderOffset
+        {
+            get { return _extictionCoefOfPowderOffset; }
+            set 
+            {
+                if (_extictionCoefOfPowderOffset != value)
+                {
+                    _extictionCoefOfPowderOffset = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("extictionCoefOfSolidLaserSpeedCoef", Required = Newtonsoft.Json.Required.Always)]
+        public double ExtictionCoefOfSolidLaserSpeedCoef
+        {
+            get { return _extictionCoefOfSolidLaserSpeedCoef; }
+            set 
+            {
+                if (_extictionCoefOfSolidLaserSpeedCoef != value)
+                {
+                    _extictionCoefOfSolidLaserSpeedCoef = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("extictionCoefOfSolidLaserPowerCoef", Required = Newtonsoft.Json.Required.Always)]
+        public double ExtictionCoefOfSolidLaserPowerCoef
+        {
+            get { return _extictionCoefOfSolidLaserPowerCoef; }
+            set 
+            {
+                if (_extictionCoefOfSolidLaserPowerCoef != value)
+                {
+                    _extictionCoefOfSolidLaserPowerCoef = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("extictionCoefOfSolidOffset", Required = Newtonsoft.Json.Required.Always)]
+        public double ExtictionCoefOfSolidOffset
+        {
+            get { return _extictionCoefOfSolidOffset; }
+            set 
+            {
+                if (_extictionCoefOfSolidOffset != value)
+                {
+                    _extictionCoefOfSolidOffset = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -14989,85 +15045,29 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        [Newtonsoft.Json.JsonProperty("energyAbsorbingRateByPowderLaserSpeedCoef", Required = Newtonsoft.Json.Required.Always)]
-        public double EnergyAbsorbingRateByPowderLaserSpeedCoef
+        [Newtonsoft.Json.JsonProperty("energyAbsorbingRateByPowder", Required = Newtonsoft.Json.Required.Always)]
+        public double EnergyAbsorbingRateByPowder
         {
-            get { return _energyAbsorbingRateByPowderLaserSpeedCoef; }
+            get { return _energyAbsorbingRateByPowder; }
             set 
             {
-                if (_energyAbsorbingRateByPowderLaserSpeedCoef != value)
+                if (_energyAbsorbingRateByPowder != value)
                 {
-                    _energyAbsorbingRateByPowderLaserSpeedCoef = value; 
+                    _energyAbsorbingRateByPowder = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
-        [Newtonsoft.Json.JsonProperty("energyAbsorbingRateByPowderLaserPowerCoef", Required = Newtonsoft.Json.Required.Always)]
-        public double EnergyAbsorbingRateByPowderLaserPowerCoef
+        [Newtonsoft.Json.JsonProperty("energyAbsorbingRateBySolid", Required = Newtonsoft.Json.Required.Always)]
+        public double EnergyAbsorbingRateBySolid
         {
-            get { return _energyAbsorbingRateByPowderLaserPowerCoef; }
+            get { return _energyAbsorbingRateBySolid; }
             set 
             {
-                if (_energyAbsorbingRateByPowderLaserPowerCoef != value)
+                if (_energyAbsorbingRateBySolid != value)
                 {
-                    _energyAbsorbingRateByPowderLaserPowerCoef = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("energyAbsorbingRateByPowderOffset", Required = Newtonsoft.Json.Required.Always)]
-        public double EnergyAbsorbingRateByPowderOffset
-        {
-            get { return _energyAbsorbingRateByPowderOffset; }
-            set 
-            {
-                if (_energyAbsorbingRateByPowderOffset != value)
-                {
-                    _energyAbsorbingRateByPowderOffset = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("energyAbsorbingRateBySolidLaserSpeedCoef", Required = Newtonsoft.Json.Required.Always)]
-        public double EnergyAbsorbingRateBySolidLaserSpeedCoef
-        {
-            get { return _energyAbsorbingRateBySolidLaserSpeedCoef; }
-            set 
-            {
-                if (_energyAbsorbingRateBySolidLaserSpeedCoef != value)
-                {
-                    _energyAbsorbingRateBySolidLaserSpeedCoef = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("energyAbsorbingRateBySolidLaserPowerCoef", Required = Newtonsoft.Json.Required.Always)]
-        public double EnergyAbsorbingRateBySolidLaserPowerCoef
-        {
-            get { return _energyAbsorbingRateBySolidLaserPowerCoef; }
-            set 
-            {
-                if (_energyAbsorbingRateBySolidLaserPowerCoef != value)
-                {
-                    _energyAbsorbingRateBySolidLaserPowerCoef = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("energyAbsorbingRateBySolidOffset", Required = Newtonsoft.Json.Required.Always)]
-        public double EnergyAbsorbingRateBySolidOffset
-        {
-            get { return _energyAbsorbingRateBySolidOffset; }
-            set 
-            {
-                if (_energyAbsorbingRateBySolidOffset != value)
-                {
-                    _energyAbsorbingRateBySolidOffset = value; 
+                    _energyAbsorbingRateBySolid = value; 
                     RaisePropertyChanged();
                 }
             }
