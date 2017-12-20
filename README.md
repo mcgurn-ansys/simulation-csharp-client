@@ -1,5 +1,5 @@
 # SimulationCSharpClient
-The SimulationCSharpClient is a client for the 3DSIM simulation API. The model and client objects are auto generated using NSwag and the swagger 2.0 API Specification
+The SimulationCSharpClient is a client for the 3DSIM simulation API. The model and client objects are auto generated using NSwag and the swagger 2.0 API Specification from https://github.com/3DSIM/simulation-api-specification
 
 ## Technical Specifications
 ### Platforms Supported
@@ -36,7 +36,7 @@ NJsonSchema version: v9.10.6.0 (Newtonsoft.Json v9.0.0.0)
 ```
 
 ## Regenerating from swagger.json
-To generate the client, run nswag in the project root folder using either a local or remote simulation-api endpoint as input.
+To generate the client, run nswag in the project root folder using either the swagger specification converted to json or a running simulation-api endpoint as input.
 
 If converting from local file, copy json version of spec, `swagger.json` in this case, into root folder then run:
 ```
