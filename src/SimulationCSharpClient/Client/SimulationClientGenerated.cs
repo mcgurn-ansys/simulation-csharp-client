@@ -11452,13 +11452,10 @@ namespace SimulationCSharpClient.Client
         private System.Collections.ObjectModel.ObservableCollection<double> _scanSpeedValues = new System.Collections.ObjectModel.ObservableCollection<double>();
         private System.Collections.ObjectModel.ObservableCollection<double> _powderThermalConductivityValues = new System.Collections.ObjectModel.ObservableCollection<double>();
         private System.Collections.ObjectModel.ObservableCollection<double> _powderPackingDensityValues = new System.Collections.ObjectModel.ObservableCollection<double>();
-        private System.Collections.ObjectModel.ObservableCollection<double> _meanFreePathInPowderValues = new System.Collections.ObjectModel.ObservableCollection<double>();
-        private System.Collections.ObjectModel.ObservableCollection<double> _meanFreePathInSolidValues = new System.Collections.ObjectModel.ObservableCollection<double>();
         private System.Collections.ObjectModel.ObservableCollection<double> _laserAbsorptivityInPowderValues = new System.Collections.ObjectModel.ObservableCollection<double>();
         private System.Collections.ObjectModel.ObservableCollection<double> _laserAbsorptivityInSolidValues = new System.Collections.ObjectModel.ObservableCollection<double>();
         private System.Collections.ObjectModel.ObservableCollection<double> _solidusTemperatureValues = new System.Collections.ObjectModel.ObservableCollection<double>();
         private System.Collections.ObjectModel.ObservableCollection<double> _liquidusTemperatureValues = new System.Collections.ObjectModel.ObservableCollection<double>();
-        private System.Collections.ObjectModel.ObservableCollection<double> _capTemperatureValues = new System.Collections.ObjectModel.ObservableCollection<double>();
     
         /// <summary>Type of single bead simulation - either bead on plate or bead on powder.</summary>
         [Newtonsoft.Json.JsonProperty("beadType", Required = Newtonsoft.Json.Required.Always)]
@@ -11573,38 +11570,6 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        /// <summary>Array of Mean Free Path of Laser in Powder Values to simulate across, Each value must be between 0 and 1.25e5</summary>
-        [Newtonsoft.Json.JsonProperty("meanFreePathInPowderValues", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.ObjectModel.ObservableCollection<double> MeanFreePathInPowderValues
-        {
-            get { return _meanFreePathInPowderValues; }
-            set 
-            {
-                if (_meanFreePathInPowderValues != value)
-                {
-                    _meanFreePathInPowderValues = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Array of Mean Free Path of Laser in Solid Values to simulate across, Each value must be between 0 and 1.25e5</summary>
-        [Newtonsoft.Json.JsonProperty("meanFreePathInSolidValues", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.ObjectModel.ObservableCollection<double> MeanFreePathInSolidValues
-        {
-            get { return _meanFreePathInSolidValues; }
-            set 
-            {
-                if (_meanFreePathInSolidValues != value)
-                {
-                    _meanFreePathInSolidValues = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
         /// <summary>Array of Powder Laser Absorptivity Values to simulate across, Each value must be between 0% and 100%, expressed as a decimal</summary>
         [Newtonsoft.Json.JsonProperty("laserAbsorptivityInPowderValues", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
@@ -11664,22 +11629,6 @@ namespace SimulationCSharpClient.Client
                 if (_liquidusTemperatureValues != value)
                 {
                     _liquidusTemperatureValues = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Array of cap temperature Values to simulate across, Each value must be between 0 and 10000 kelvin</summary>
-        [Newtonsoft.Json.JsonProperty("capTemperatureValues", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.ObjectModel.ObservableCollection<double> CapTemperatureValues
-        {
-            get { return _capTemperatureValues; }
-            set 
-            {
-                if (_capTemperatureValues != value)
-                {
-                    _capTemperatureValues = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -12232,13 +12181,10 @@ namespace SimulationCSharpClient.Client
         private System.Collections.ObjectModel.ObservableCollection<double> _scanSpeedValues = new System.Collections.ObjectModel.ObservableCollection<double>();
         private System.Collections.ObjectModel.ObservableCollection<double> _powderThermalConductivityValues = new System.Collections.ObjectModel.ObservableCollection<double>();
         private System.Collections.ObjectModel.ObservableCollection<double> _powderPackingDensityValues = new System.Collections.ObjectModel.ObservableCollection<double>();
-        private System.Collections.ObjectModel.ObservableCollection<double> _meanFreePathInPowderValues = new System.Collections.ObjectModel.ObservableCollection<double>();
-        private System.Collections.ObjectModel.ObservableCollection<double> _meanFreePathInSolidValues = new System.Collections.ObjectModel.ObservableCollection<double>();
         private System.Collections.ObjectModel.ObservableCollection<double> _laserAbsorptivityInPowderValues = new System.Collections.ObjectModel.ObservableCollection<double>();
         private System.Collections.ObjectModel.ObservableCollection<double> _laserAbsorptivityInSolidValues = new System.Collections.ObjectModel.ObservableCollection<double>();
         private System.Collections.ObjectModel.ObservableCollection<double> _solidusTemperatureValues = new System.Collections.ObjectModel.ObservableCollection<double>();
         private System.Collections.ObjectModel.ObservableCollection<double> _liquidusTemperatureValues = new System.Collections.ObjectModel.ObservableCollection<double>();
-        private System.Collections.ObjectModel.ObservableCollection<double> _capTemperatureValues = new System.Collections.ObjectModel.ObservableCollection<double>();
     
         /// <summary>Type of single bead simulation - either bead on plate or bead on powder.</summary>
         [Newtonsoft.Json.JsonProperty("beadType", Required = Newtonsoft.Json.Required.Always)]
@@ -12353,38 +12299,6 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        /// <summary>Array of Mean Free Path of Laser in Powder Values to simulate across, Each value must be between 0 and 1.25e5</summary>
-        [Newtonsoft.Json.JsonProperty("meanFreePathInPowderValues", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.ObjectModel.ObservableCollection<double> MeanFreePathInPowderValues
-        {
-            get { return _meanFreePathInPowderValues; }
-            set 
-            {
-                if (_meanFreePathInPowderValues != value)
-                {
-                    _meanFreePathInPowderValues = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Array of Mean Free Path of Laser in Solid Values to simulate across, Each value must be between 0 and 1.25e5</summary>
-        [Newtonsoft.Json.JsonProperty("meanFreePathInSolidValues", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.ObjectModel.ObservableCollection<double> MeanFreePathInSolidValues
-        {
-            get { return _meanFreePathInSolidValues; }
-            set 
-            {
-                if (_meanFreePathInSolidValues != value)
-                {
-                    _meanFreePathInSolidValues = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
         /// <summary>Array of Powder Laser Absorptivity Values to simulate across, Each value must be between 0% and 100%, expressed as a decimal</summary>
         [Newtonsoft.Json.JsonProperty("laserAbsorptivityInPowderValues", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
@@ -12444,22 +12358,6 @@ namespace SimulationCSharpClient.Client
                 if (_liquidusTemperatureValues != value)
                 {
                     _liquidusTemperatureValues = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Array of cap temperature Values to simulate across, Each value must be between 0 and 10000 kelvin</summary>
-        [Newtonsoft.Json.JsonProperty("capTemperatureValues", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.ObjectModel.ObservableCollection<double> CapTemperatureValues
-        {
-            get { return _capTemperatureValues; }
-            set 
-            {
-                if (_capTemperatureValues != value)
-                {
-                    _capTemperatureValues = value; 
                     RaisePropertyChanged();
                 }
             }
