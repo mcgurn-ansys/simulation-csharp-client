@@ -15255,6 +15255,7 @@ namespace SimulationCSharpClient.Client
         private string _originalFileName;
         private string _description;
         private System.Collections.ObjectModel.ObservableCollection<string> _tags;
+        private string _fileBucket;
         private string _fileLocation;
         private PartAvailability? _availability;
         private bool? _archived;
@@ -15372,7 +15373,22 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        /// <summary>Remote path (s3 key) of part. (read only).</summary>
+        /// <summary>S3 bucket containing part</summary>
+        [Newtonsoft.Json.JsonProperty("fileBucket", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string FileBucket
+        {
+            get { return _fileBucket; }
+            set 
+            {
+                if (_fileBucket != value)
+                {
+                    _fileBucket = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>File name of part relative to fileBucket</summary>
         [Newtonsoft.Json.JsonProperty("fileLocation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string FileLocation
         {
