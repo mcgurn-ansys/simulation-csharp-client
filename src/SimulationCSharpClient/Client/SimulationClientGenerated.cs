@@ -269,19 +269,21 @@ namespace SimulationCSharpClient.Client
         /// <param name="offset">starting paging count; ex. offset of 60 will skip the first 60 items in the list</param>
         /// <param name="limit">number of materials to return within the query</param>
         /// <param name="sort">key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc</param>
+        /// <param name="archived">True to get only archived simulations, False to get only unarchived simulations, leave the parameter off to get all simulation types</param>
         /// <returns>Successfully found the list of items</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Simulation>> GetSimulationsAsync(int organizationId, System.Collections.Generic.IEnumerable<Anonymous> status, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort);
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Simulation>> GetSimulationsAsync(int organizationId, System.Collections.Generic.IEnumerable<Anonymous> status, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived);
     
         /// <param name="organizationId">the organization id to get items for.  Must be provided as API callers only have access to items belonging to their organization.</param>
         /// <param name="status">simulation status for items retrieved.  If an array of items is sent, they are treated as "OR" operations. e.g. status=InProgress,Requested would yield a list of simulations that are in either state.</param>
         /// <param name="offset">starting paging count; ex. offset of 60 will skip the first 60 items in the list</param>
         /// <param name="limit">number of materials to return within the query</param>
         /// <param name="sort">key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc</param>
+        /// <param name="archived">True to get only archived simulations, False to get only unarchived simulations, leave the parameter off to get all simulation types</param>
         /// <returns>Successfully found the list of items</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Simulation>> GetSimulationsAsync(int organizationId, System.Collections.Generic.IEnumerable<Anonymous> status, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Simulation>> GetSimulationsAsync(int organizationId, System.Collections.Generic.IEnumerable<Anonymous> status, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, System.Threading.CancellationToken cancellationToken);
     
         /// <param name="id">simulation identifier</param>
         /// <returns>Successfully retrieved simulation</returns>
@@ -3448,11 +3450,12 @@ namespace SimulationCSharpClient.Client
         /// <param name="offset">starting paging count; ex. offset of 60 will skip the first 60 items in the list</param>
         /// <param name="limit">number of materials to return within the query</param>
         /// <param name="sort">key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc</param>
+        /// <param name="archived">True to get only archived simulations, False to get only unarchived simulations, leave the parameter off to get all simulation types</param>
         /// <returns>Successfully found the list of items</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Simulation>> GetSimulationsAsync(int organizationId, System.Collections.Generic.IEnumerable<Anonymous> status, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort)
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Simulation>> GetSimulationsAsync(int organizationId, System.Collections.Generic.IEnumerable<Anonymous> status, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived)
         {
-            return GetSimulationsAsync(organizationId, status, offset, limit, sort, System.Threading.CancellationToken.None);
+            return GetSimulationsAsync(organizationId, status, offset, limit, sort, archived, System.Threading.CancellationToken.None);
         }
     
         /// <param name="organizationId">the organization id to get items for.  Must be provided as API callers only have access to items belonging to their organization.</param>
@@ -3460,10 +3463,11 @@ namespace SimulationCSharpClient.Client
         /// <param name="offset">starting paging count; ex. offset of 60 will skip the first 60 items in the list</param>
         /// <param name="limit">number of materials to return within the query</param>
         /// <param name="sort">key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc</param>
+        /// <param name="archived">True to get only archived simulations, False to get only unarchived simulations, leave the parameter off to get all simulation types</param>
         /// <returns>Successfully found the list of items</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        public async System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Simulation>> GetSimulationsAsync(int organizationId, System.Collections.Generic.IEnumerable<Anonymous> status, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Simulation>> GetSimulationsAsync(int organizationId, System.Collections.Generic.IEnumerable<Anonymous> status, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, System.Threading.CancellationToken cancellationToken)
         {
             if (organizationId == null)
                 throw new System.ArgumentNullException("organizationId");
@@ -3475,6 +3479,7 @@ namespace SimulationCSharpClient.Client
             if (offset != null) urlBuilder_.Append("offset=").Append(System.Uri.EscapeDataString(System.Convert.ToString(offset, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             if (limit != null) urlBuilder_.Append("limit=").Append(System.Uri.EscapeDataString(System.Convert.ToString(limit, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             if (sort != null) foreach (var item_ in sort) { urlBuilder_.Append("sort=").Append(System.Uri.EscapeDataString(System.Convert.ToString(item_, System.Globalization.CultureInfo.InvariantCulture))).Append("&"); }
+            if (archived != null) urlBuilder_.Append("archived=").Append(System.Uri.EscapeDataString(System.Convert.ToString(archived, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
     
             var client_ = _httpClient;
@@ -16248,6 +16253,10 @@ namespace SimulationCSharpClient.Client
         private double _capTemperatureLaserSpeedCoef;
         private double _capTemperatureLaserPowerCoef;
         private double _capTemperatureOffset;
+        private double _laserSpeedLowerBound;
+        private double _laserSpeedUpperBound;
+        private double _laserPowerLowerBound;
+        private double _laserPowerUpperBound;
     
         /// <summary>material configuration identifier</summary>
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -16867,6 +16876,62 @@ namespace SimulationCSharpClient.Client
                 if (_capTemperatureOffset != value)
                 {
                     _capTemperatureOffset = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("laserSpeedLowerBound", Required = Newtonsoft.Json.Required.Always)]
+        public double LaserSpeedLowerBound
+        {
+            get { return _laserSpeedLowerBound; }
+            set 
+            {
+                if (_laserSpeedLowerBound != value)
+                {
+                    _laserSpeedLowerBound = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("laserSpeedUpperBound", Required = Newtonsoft.Json.Required.Always)]
+        public double LaserSpeedUpperBound
+        {
+            get { return _laserSpeedUpperBound; }
+            set 
+            {
+                if (_laserSpeedUpperBound != value)
+                {
+                    _laserSpeedUpperBound = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("laserPowerLowerBound", Required = Newtonsoft.Json.Required.Always)]
+        public double LaserPowerLowerBound
+        {
+            get { return _laserPowerLowerBound; }
+            set 
+            {
+                if (_laserPowerLowerBound != value)
+                {
+                    _laserPowerLowerBound = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("laserPowerUpperBound", Required = Newtonsoft.Json.Required.Always)]
+        public double LaserPowerUpperBound
+        {
+            get { return _laserPowerUpperBound; }
+            set 
+            {
+                if (_laserPowerUpperBound != value)
+                {
+                    _laserPowerUpperBound = value; 
                     RaisePropertyChanged();
                 }
             }
