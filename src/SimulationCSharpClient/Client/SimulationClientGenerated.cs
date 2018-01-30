@@ -449,6 +449,21 @@ namespace SimulationCSharpClient.Client
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         System.Threading.Tasks.Task<SimulationActivity> PutSimulationActivityAsync(int id, int activityId, SimulationActivity simulationActivity, System.Threading.CancellationToken cancellationToken);
     
+        /// <param name="id">simulation identifier</param>
+        /// <param name="activityId">activity identifier</param>
+        /// <param name="activityPatch">This endpoint uses JSON Patch, RFC 6092.</param>
+        /// <returns>Successfully patched activity</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<SimulationActivity> PatchActivityAsync(int id, int activityId, System.Collections.Generic.IEnumerable<PatchDocument> activityPatch);
+    
+        /// <param name="id">simulation identifier</param>
+        /// <param name="activityId">activity identifier</param>
+        /// <param name="activityPatch">This endpoint uses JSON Patch, RFC 6092.</param>
+        /// <returns>Successfully patched activity</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        System.Threading.Tasks.Task<SimulationActivity> PatchActivityAsync(int id, int activityId, System.Collections.Generic.IEnumerable<PatchDocument> activityPatch, System.Threading.CancellationToken cancellationToken);
+    
         /// <param name="organizationId">the organization id to get items for.  Must be provided as API callers only have access to items belonging to their organization.</param>
         /// <param name="status">simulation status for items retrieved.  If an array of items is sent, they are treated as "OR" operations. e.g. status=InProgress,Requested would yield a list of simulations that are in either state.</param>
         /// <param name="offset">starting paging count; ex. offset of 60 will skip the first 60 items in the list</param>
@@ -5065,6 +5080,149 @@ namespace SimulationCSharpClient.Client
                                 throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
                             }
                             throw new SwaggerException<Error>("Forbidden", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
+                        }
+            
+                        return default(SimulationActivity);
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+    
+        /// <param name="id">simulation identifier</param>
+        /// <param name="activityId">activity identifier</param>
+        /// <param name="activityPatch">This endpoint uses JSON Patch, RFC 6092.</param>
+        /// <returns>Successfully patched activity</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task<SimulationActivity> PatchActivityAsync(int id, int activityId, System.Collections.Generic.IEnumerable<PatchDocument> activityPatch)
+        {
+            return PatchActivityAsync(id, activityId, activityPatch, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="id">simulation identifier</param>
+        /// <param name="activityId">activity identifier</param>
+        /// <param name="activityPatch">This endpoint uses JSON Patch, RFC 6092.</param>
+        /// <returns>Successfully patched activity</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task<SimulationActivity> PatchActivityAsync(int id, int activityId, System.Collections.Generic.IEnumerable<PatchDocument> activityPatch, System.Threading.CancellationToken cancellationToken)
+        {
+            if (id == null)
+                throw new System.ArgumentNullException("id");
+    
+            if (activityId == null)
+                throw new System.ArgumentNullException("activityId");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/simulations/{id}/activities/{activityId}");
+            urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(System.Convert.ToString(id, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{activityId}", System.Uri.EscapeDataString(System.Convert.ToString(activityId, System.Globalization.CultureInfo.InvariantCulture)));
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(activityPatch, _settings.Value));
+                    content_.Headers.ContentType.MediaType = "application/json";
+                    request_.Content = content_;
+                    request_.Method = new System.Net.Http.HttpMethod("PATCH");
+                    request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        foreach (var item_ in response_.Content.Headers)
+                            headers_[item_.Key] = item_.Value;
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(SimulationActivity); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<SimulationActivity>(responseData_, _settings.Value);
+                                return result_; 
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                        }
+                        else
+                        if (status_ == "401") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Not authorized", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "403") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Forbidden", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "404") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Simulation activity not found (id invalid)", status_, responseData_, headers_, result_, null);
                         }
                         else
                         {
@@ -10031,6 +10189,7 @@ namespace SimulationCSharpClient.Client
         private string _workerVersion;
         private System.DateTime? _startedAt;
         private System.DateTime? _completedAt;
+        private int? _percentComplete;
         private SimulationActivityStatus? _status;
     
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -10135,6 +10294,21 @@ namespace SimulationCSharpClient.Client
                 if (_completedAt != value)
                 {
                     _completedAt = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>number 0 - 100 representing percentage of activity already completed</summary>
+        [Newtonsoft.Json.JsonProperty("percentComplete", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int? PercentComplete
+        {
+            get { return _percentComplete; }
+            set 
+            {
+                if (_percentComplete != value)
+                {
+                    _percentComplete = value; 
                     RaisePropertyChanged();
                 }
             }
