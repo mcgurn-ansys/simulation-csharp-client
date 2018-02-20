@@ -35,6 +35,11 @@ NSwag version: v11.12.7.0
 NJsonSchema version: v9.10.6.0 (Newtonsoft.Json v9.0.0.0)
 ```
 
+## Creating swagger.json from swagger.yaml
+Goto swagger.io and open the online editor. Paste the swagger.yaml from the https://github.com/3DSIM/simulation-api-specification project. In the file menu, select "Convert and Save as Json"
+
+Reference this created json file in the next section
+
 ## Regenerating from swagger.json
 To generate the client, run nswag in the project root folder using either the swagger specification converted to json or a running simulation-api endpoint as input.
 
