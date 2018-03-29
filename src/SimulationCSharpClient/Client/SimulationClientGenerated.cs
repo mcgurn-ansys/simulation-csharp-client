@@ -231,6 +231,17 @@ namespace SimulationCSharpClient.Client
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         System.Threading.Tasks.Task<Part> PatchPartAsync(int id, System.Collections.Generic.IEnumerable<PatchDocument> partPatch, System.Threading.CancellationToken cancellationToken);
     
+        /// <param name="id">ID of a part</param>
+        /// <returns>Successfully deleted a part</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task DeletePartAsync(int id);
+    
+        /// <param name="id">ID of a part</param>
+        /// <returns>Successfully deleted a part</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        System.Threading.Tasks.Task DeletePartAsync(int id, System.Threading.CancellationToken cancellationToken);
+    
         /// <param name="id">ID of part</param>
         /// <returns>Successfully archived a part</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
@@ -270,9 +281,11 @@ namespace SimulationCSharpClient.Client
         /// <param name="limit">number of materials to return within the query</param>
         /// <param name="sort">key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc</param>
         /// <param name="archived">True to get only archived simulations, False to get only unarchived simulations, leave the parameter off to get all simulation types</param>
+        /// <param name="partId">returns simulations using the specified part id</param>
+        /// <param name="buildFileId">returns simulations using the specified build file id</param>
         /// <returns>Successfully found the list of items</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Simulation>> GetSimulationsAsync(int organizationId, System.Collections.Generic.IEnumerable<Anonymous> status, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived);
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Simulation>> GetSimulationsAsync(int organizationId, System.Collections.Generic.IEnumerable<Anonymous> status, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, int? partId, int? buildFileId);
     
         /// <param name="organizationId">the organization id to get items for.  Must be provided as API callers only have access to items belonging to their organization.</param>
         /// <param name="status">simulation status for items retrieved.  If an array of items is sent, they are treated as "OR" operations. e.g. status=InProgress,Requested would yield a list of simulations that are in either state.</param>
@@ -280,10 +293,12 @@ namespace SimulationCSharpClient.Client
         /// <param name="limit">number of materials to return within the query</param>
         /// <param name="sort">key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc</param>
         /// <param name="archived">True to get only archived simulations, False to get only unarchived simulations, leave the parameter off to get all simulation types</param>
+        /// <param name="partId">returns simulations using the specified part id</param>
+        /// <param name="buildFileId">returns simulations using the specified build file id</param>
         /// <returns>Successfully found the list of items</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Simulation>> GetSimulationsAsync(int organizationId, System.Collections.Generic.IEnumerable<Anonymous> status, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Simulation>> GetSimulationsAsync(int organizationId, System.Collections.Generic.IEnumerable<Anonymous> status, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, int? partId, int? buildFileId, System.Threading.CancellationToken cancellationToken);
     
         /// <param name="id">simulation identifier</param>
         /// <returns>Successfully retrieved simulation</returns>
@@ -518,6 +533,17 @@ namespace SimulationCSharpClient.Client
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         System.Threading.Tasks.Task<PorositySimulation> PutPorositySimulationAsync(int id, PorositySimulation porositySimulation, System.Threading.CancellationToken cancellationToken);
     
+        /// <param name="id">ID of simulation</param>
+        /// <returns>Successfully deleted a simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task DeletePorositySimulationAsync(int id);
+    
+        /// <param name="id">ID of simulation</param>
+        /// <returns>Successfully deleted a simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        System.Threading.Tasks.Task DeletePorositySimulationAsync(int id, System.Threading.CancellationToken cancellationToken);
+    
         /// <param name="id">simulation identifier</param>
         /// <returns>Simulation was successfully cancelled.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
@@ -593,6 +619,17 @@ namespace SimulationCSharpClient.Client
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         System.Threading.Tasks.Task<SingleBeadSimulation> PutSingleBeadSimulationAsync(int id, SingleBeadSimulation singleBeadSimulation, System.Threading.CancellationToken cancellationToken);
+    
+        /// <param name="id">ID of simulation</param>
+        /// <returns>Successfully deleted a simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task DeleteSingleBeadSimulationAsync(int id);
+    
+        /// <param name="id">ID of simulation</param>
+        /// <returns>Successfully deleted a simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        System.Threading.Tasks.Task DeleteSingleBeadSimulationAsync(int id, System.Threading.CancellationToken cancellationToken);
     
         /// <param name="id">simulation identifier</param>
         /// <returns>Simulation was successfully cancelled.</returns>
@@ -670,6 +707,17 @@ namespace SimulationCSharpClient.Client
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         System.Threading.Tasks.Task<ThermalSimulation> PutThermalSimulationAsync(int id, ThermalSimulation thermalSimulation, System.Threading.CancellationToken cancellationToken);
     
+        /// <param name="id">ID of simulation</param>
+        /// <returns>Successfully deleted a simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task DeleteThermalSimulationAsync(int id);
+    
+        /// <param name="id">ID of simulation</param>
+        /// <returns>Successfully deleted a simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        System.Threading.Tasks.Task DeleteThermalSimulationAsync(int id, System.Threading.CancellationToken cancellationToken);
+    
         /// <param name="id">simulation identifier</param>
         /// <returns>Simulation was successfully cancelled.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
@@ -746,6 +794,17 @@ namespace SimulationCSharpClient.Client
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         System.Threading.Tasks.Task<ScanPatternSimulation> PutScanPatternSimulationAsync(int id, ScanPatternSimulation scanPatternSimulation, System.Threading.CancellationToken cancellationToken);
     
+        /// <param name="id">ID of simulation</param>
+        /// <returns>Successfully deleted a simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task DeleteScanPatternSimulationAsync(int id);
+    
+        /// <param name="id">ID of simulation</param>
+        /// <returns>Successfully deleted a simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        System.Threading.Tasks.Task DeleteScanPatternSimulationAsync(int id, System.Threading.CancellationToken cancellationToken);
+    
         /// <param name="id">simulation identifier</param>
         /// <returns>Simulation was successfully cancelled.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
@@ -821,6 +880,17 @@ namespace SimulationCSharpClient.Client
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         System.Threading.Tasks.Task<AssumedStrainSimulation> PutAssumedStrainSimulationAsync(int id, AssumedStrainSimulation assumedStrainSimulation, System.Threading.CancellationToken cancellationToken);
+    
+        /// <param name="id">ID of simulation</param>
+        /// <returns>Successfully deleted a simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task DeleteAssumedStrainSimulationAsync(int id);
+    
+        /// <param name="id">ID of simulation</param>
+        /// <returns>Successfully deleted a simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        System.Threading.Tasks.Task DeleteAssumedStrainSimulationAsync(int id, System.Threading.CancellationToken cancellationToken);
     
         /// <param name="id">simulation identifier</param>
         /// <returns>Simulation was successfully cancelled.</returns>
@@ -933,16 +1003,16 @@ namespace SimulationCSharpClient.Client
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         System.Threading.Tasks.Task<BuildFile> PatchBuildFileAsync(int id, System.Collections.Generic.IEnumerable<PatchDocument> buildFilePatch, System.Threading.CancellationToken cancellationToken);
     
-        /// <param name="id">ID of build file to archive</param>
-        /// <returns>Build file that was archived</returns>
+        /// <param name="id">ID of build file</param>
+        /// <returns>Successfully deleted the build file</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<BuildFile> ArchiveBuildFileAsync(int id);
+        System.Threading.Tasks.Task DeleteBuildFileAsync(int id);
     
-        /// <param name="id">ID of build file to archive</param>
-        /// <returns>Build file that was archived</returns>
+        /// <param name="id">ID of build file</param>
+        /// <returns>Successfully deleted the build file</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        System.Threading.Tasks.Task<BuildFile> ArchiveBuildFileAsync(int id, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task DeleteBuildFileAsync(int id, System.Threading.CancellationToken cancellationToken);
     
         /// <param name="id">ID of build file to retrieve geometry of</param>
         /// <returns>Part geometry as an array of triangles</returns>
@@ -3086,6 +3156,116 @@ namespace SimulationCSharpClient.Client
             }
         }
     
+        /// <param name="id">ID of a part</param>
+        /// <returns>Successfully deleted a part</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task DeletePartAsync(int id)
+        {
+            return DeletePartAsync(id, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="id">ID of a part</param>
+        /// <returns>Successfully deleted a part</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task DeletePartAsync(int id, System.Threading.CancellationToken cancellationToken)
+        {
+            if (id == null)
+                throw new System.ArgumentNullException("id");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/parts/{id}");
+            urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("DELETE");
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        foreach (var item_ in response_.Content.Headers)
+                            headers_[item_.Key] = item_.Value;
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200") 
+                        {
+                            return;
+                        }
+                        else
+                        if (status_ == "401") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Not authorized", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "403") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Forbidden", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "404") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            throw new SwaggerException("Not Found", status_, responseData_, headers_, null);
+                        }
+                        else
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+    
         /// <param name="id">ID of part</param>
         /// <returns>Successfully archived a part</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
@@ -3462,11 +3642,13 @@ namespace SimulationCSharpClient.Client
         /// <param name="limit">number of materials to return within the query</param>
         /// <param name="sort">key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc</param>
         /// <param name="archived">True to get only archived simulations, False to get only unarchived simulations, leave the parameter off to get all simulation types</param>
+        /// <param name="partId">returns simulations using the specified part id</param>
+        /// <param name="buildFileId">returns simulations using the specified build file id</param>
         /// <returns>Successfully found the list of items</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Simulation>> GetSimulationsAsync(int organizationId, System.Collections.Generic.IEnumerable<Anonymous> status, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived)
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Simulation>> GetSimulationsAsync(int organizationId, System.Collections.Generic.IEnumerable<Anonymous> status, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, int? partId, int? buildFileId)
         {
-            return GetSimulationsAsync(organizationId, status, offset, limit, sort, archived, System.Threading.CancellationToken.None);
+            return GetSimulationsAsync(organizationId, status, offset, limit, sort, archived, partId, buildFileId, System.Threading.CancellationToken.None);
         }
     
         /// <param name="organizationId">the organization id to get items for.  Must be provided as API callers only have access to items belonging to their organization.</param>
@@ -3475,10 +3657,12 @@ namespace SimulationCSharpClient.Client
         /// <param name="limit">number of materials to return within the query</param>
         /// <param name="sort">key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc</param>
         /// <param name="archived">True to get only archived simulations, False to get only unarchived simulations, leave the parameter off to get all simulation types</param>
+        /// <param name="partId">returns simulations using the specified part id</param>
+        /// <param name="buildFileId">returns simulations using the specified build file id</param>
         /// <returns>Successfully found the list of items</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        public async System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Simulation>> GetSimulationsAsync(int organizationId, System.Collections.Generic.IEnumerable<Anonymous> status, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Simulation>> GetSimulationsAsync(int organizationId, System.Collections.Generic.IEnumerable<Anonymous> status, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, int? partId, int? buildFileId, System.Threading.CancellationToken cancellationToken)
         {
             if (organizationId == null)
                 throw new System.ArgumentNullException("organizationId");
@@ -3491,6 +3675,8 @@ namespace SimulationCSharpClient.Client
             if (limit != null) urlBuilder_.Append("limit=").Append(System.Uri.EscapeDataString(ConvertToString(limit, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             if (sort != null) foreach (var item_ in sort) { urlBuilder_.Append("sort=").Append(System.Uri.EscapeDataString(ConvertToString(item_, System.Globalization.CultureInfo.InvariantCulture))).Append("&"); }
             if (archived != null) urlBuilder_.Append("archived=").Append(System.Uri.EscapeDataString(ConvertToString(archived, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            if (partId != null) urlBuilder_.Append("partId=").Append(System.Uri.EscapeDataString(ConvertToString(partId, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            if (buildFileId != null) urlBuilder_.Append("buildFileId=").Append(System.Uri.EscapeDataString(ConvertToString(buildFileId, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
     
             var client_ = _httpClient;
@@ -5747,6 +5933,116 @@ namespace SimulationCSharpClient.Client
             }
         }
     
+        /// <param name="id">ID of simulation</param>
+        /// <returns>Successfully deleted a simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task DeletePorositySimulationAsync(int id)
+        {
+            return DeletePorositySimulationAsync(id, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="id">ID of simulation</param>
+        /// <returns>Successfully deleted a simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task DeletePorositySimulationAsync(int id, System.Threading.CancellationToken cancellationToken)
+        {
+            if (id == null)
+                throw new System.ArgumentNullException("id");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/porositysimulations/{id}");
+            urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("DELETE");
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        foreach (var item_ in response_.Content.Headers)
+                            headers_[item_.Key] = item_.Value;
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200") 
+                        {
+                            return;
+                        }
+                        else
+                        if (status_ == "401") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Not authorized", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "403") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Forbidden", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "404") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            throw new SwaggerException("Not Found", status_, responseData_, headers_, null);
+                        }
+                        else
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+    
         /// <param name="id">simulation identifier</param>
         /// <returns>Simulation was successfully cancelled.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
@@ -6474,6 +6770,116 @@ namespace SimulationCSharpClient.Client
                         }
             
                         return default(SingleBeadSimulation);
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+    
+        /// <param name="id">ID of simulation</param>
+        /// <returns>Successfully deleted a simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task DeleteSingleBeadSimulationAsync(int id)
+        {
+            return DeleteSingleBeadSimulationAsync(id, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="id">ID of simulation</param>
+        /// <returns>Successfully deleted a simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task DeleteSingleBeadSimulationAsync(int id, System.Threading.CancellationToken cancellationToken)
+        {
+            if (id == null)
+                throw new System.ArgumentNullException("id");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/singlebeadsimulations/{id}");
+            urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("DELETE");
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        foreach (var item_ in response_.Content.Headers)
+                            headers_[item_.Key] = item_.Value;
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200") 
+                        {
+                            return;
+                        }
+                        else
+                        if (status_ == "401") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Not authorized", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "403") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Forbidden", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "404") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            throw new SwaggerException("Not Found", status_, responseData_, headers_, null);
+                        }
+                        else
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
+                        }
                     }
                     finally
                     {
@@ -7227,6 +7633,116 @@ namespace SimulationCSharpClient.Client
             }
         }
     
+        /// <param name="id">ID of simulation</param>
+        /// <returns>Successfully deleted a simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task DeleteThermalSimulationAsync(int id)
+        {
+            return DeleteThermalSimulationAsync(id, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="id">ID of simulation</param>
+        /// <returns>Successfully deleted a simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task DeleteThermalSimulationAsync(int id, System.Threading.CancellationToken cancellationToken)
+        {
+            if (id == null)
+                throw new System.ArgumentNullException("id");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/thermalsimulations/{id}");
+            urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("DELETE");
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        foreach (var item_ in response_.Content.Headers)
+                            headers_[item_.Key] = item_.Value;
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200") 
+                        {
+                            return;
+                        }
+                        else
+                        if (status_ == "401") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Not authorized", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "403") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Forbidden", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "404") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            throw new SwaggerException("Not Found", status_, responseData_, headers_, null);
+                        }
+                        else
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+    
         /// <param name="id">simulation identifier</param>
         /// <returns>Simulation was successfully cancelled.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
@@ -7967,6 +8483,116 @@ namespace SimulationCSharpClient.Client
             }
         }
     
+        /// <param name="id">ID of simulation</param>
+        /// <returns>Successfully deleted a simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task DeleteScanPatternSimulationAsync(int id)
+        {
+            return DeleteScanPatternSimulationAsync(id, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="id">ID of simulation</param>
+        /// <returns>Successfully deleted a simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task DeleteScanPatternSimulationAsync(int id, System.Threading.CancellationToken cancellationToken)
+        {
+            if (id == null)
+                throw new System.ArgumentNullException("id");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/scanpatternsimulations/{id}");
+            urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("DELETE");
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        foreach (var item_ in response_.Content.Headers)
+                            headers_[item_.Key] = item_.Value;
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200") 
+                        {
+                            return;
+                        }
+                        else
+                        if (status_ == "401") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Not authorized", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "403") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Forbidden", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "404") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            throw new SwaggerException("Not Found", status_, responseData_, headers_, null);
+                        }
+                        else
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+    
         /// <param name="id">simulation identifier</param>
         /// <returns>Simulation was successfully cancelled.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
@@ -8694,6 +9320,116 @@ namespace SimulationCSharpClient.Client
                         }
             
                         return default(AssumedStrainSimulation);
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+    
+        /// <param name="id">ID of simulation</param>
+        /// <returns>Successfully deleted a simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task DeleteAssumedStrainSimulationAsync(int id)
+        {
+            return DeleteAssumedStrainSimulationAsync(id, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="id">ID of simulation</param>
+        /// <returns>Successfully deleted a simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task DeleteAssumedStrainSimulationAsync(int id, System.Threading.CancellationToken cancellationToken)
+        {
+            if (id == null)
+                throw new System.ArgumentNullException("id");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/assumedstrainsimulations/{id}");
+            urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("DELETE");
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        foreach (var item_ in response_.Content.Headers)
+                            headers_[item_.Key] = item_.Value;
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200") 
+                        {
+                            return;
+                        }
+                        else
+                        if (status_ == "401") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Not authorized", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "403") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Forbidden", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "404") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            throw new SwaggerException("Not Found", status_, responseData_, headers_, null);
+                        }
+                        else
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
+                        }
                     }
                     finally
                     {
@@ -9788,25 +10524,25 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        /// <param name="id">ID of build file to archive</param>
-        /// <returns>Build file that was archived</returns>
+        /// <param name="id">ID of build file</param>
+        /// <returns>Successfully deleted the build file</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<BuildFile> ArchiveBuildFileAsync(int id)
+        public System.Threading.Tasks.Task DeleteBuildFileAsync(int id)
         {
-            return ArchiveBuildFileAsync(id, System.Threading.CancellationToken.None);
+            return DeleteBuildFileAsync(id, System.Threading.CancellationToken.None);
         }
     
-        /// <param name="id">ID of build file to archive</param>
-        /// <returns>Build file that was archived</returns>
+        /// <param name="id">ID of build file</param>
+        /// <returns>Successfully deleted the build file</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        public async System.Threading.Tasks.Task<BuildFile> ArchiveBuildFileAsync(int id, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task DeleteBuildFileAsync(int id, System.Threading.CancellationToken cancellationToken)
         {
             if (id == null)
                 throw new System.ArgumentNullException("id");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/buildfiles/{id}/archive");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/buildfiles/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
             var client_ = _httpClient;
@@ -9814,9 +10550,7 @@ namespace SimulationCSharpClient.Client
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
-                    request_.Method = new System.Net.Http.HttpMethod("PUT");
-                    request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                    request_.Method = new System.Net.Http.HttpMethod("DELETE");
     
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
@@ -9835,17 +10569,7 @@ namespace SimulationCSharpClient.Client
                         var status_ = ((int)response_.StatusCode).ToString();
                         if (status_ == "200") 
                         {
-                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
-                            var result_ = default(BuildFile); 
-                            try
-                            {
-                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<BuildFile>(responseData_, _settings.Value);
-                                return result_; 
-                            } 
-                            catch (System.Exception exception_) 
-                            {
-                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
-                            }
+                            return;
                         }
                         else
                         if (status_ == "401") 
@@ -9881,7 +10605,7 @@ namespace SimulationCSharpClient.Client
                         if (status_ == "404") 
                         {
                             var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
-                            throw new SwaggerException("build file not found", status_, responseData_, headers_, null);
+                            throw new SwaggerException("Not Found", status_, responseData_, headers_, null);
                         }
                         else
                         {
@@ -9897,8 +10621,6 @@ namespace SimulationCSharpClient.Client
                             }
                             throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
                         }
-            
-                        return default(BuildFile);
                     }
                     finally
                     {
@@ -11957,6 +12679,8 @@ namespace SimulationCSharpClient.Client
         private double? _supportFailureThreshold;
         private double? _partFailureThreshold;
         private double? _strainWarningThreshold;
+        private bool? _performDistortionCompensationAfterCutoff;
+        private double? _distortionAfterCutoffScaleFactor;
     
         /// <summary>List of parts to simulate (current limit is one part, imposed by server)</summary>
         [Newtonsoft.Json.JsonProperty("simulationParts", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -12415,6 +13139,36 @@ namespace SimulationCSharpClient.Client
                 if (_strainWarningThreshold != value)
                 {
                     _strainWarningThreshold = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, a predistorted STL file will be created using the distortion after cutoff simulated by the mechanics solver</summary>
+        [Newtonsoft.Json.JsonProperty("performDistortionCompensationAfterCutoff", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? PerformDistortionCompensationAfterCutoff
+        {
+            get { return _performDistortionCompensationAfterCutoff; }
+            set 
+            {
+                if (_performDistortionCompensationAfterCutoff != value)
+                {
+                    _performDistortionCompensationAfterCutoff = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>a value that is used to scale the after cutoff simulated distortion values</summary>
+        [Newtonsoft.Json.JsonProperty("distortionAfterCutoffScaleFactor", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? DistortionAfterCutoffScaleFactor
+        {
+            get { return _distortionAfterCutoffScaleFactor; }
+            set 
+            {
+                if (_distortionAfterCutoffScaleFactor != value)
+                {
+                    _distortionAfterCutoffScaleFactor = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -12727,6 +13481,8 @@ namespace SimulationCSharpClient.Client
         private double? _supportFailureThreshold;
         private double? _partFailureThreshold;
         private double? _strainWarningThreshold;
+        private bool? _performDistortionCompensationAfterCutoff;
+        private double? _distortionAfterCutoffScaleFactor;
         private double? _layerThickness;
     
         /// <summary>List of parts to simulate (current limit is one part, imposed by server)</summary>
@@ -13186,6 +13942,36 @@ namespace SimulationCSharpClient.Client
                 if (_strainWarningThreshold != value)
                 {
                     _strainWarningThreshold = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, a predistorted STL file will be created using the distortion after cutoff simulated by the mechanics solver</summary>
+        [Newtonsoft.Json.JsonProperty("performDistortionCompensationAfterCutoff", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? PerformDistortionCompensationAfterCutoff
+        {
+            get { return _performDistortionCompensationAfterCutoff; }
+            set 
+            {
+                if (_performDistortionCompensationAfterCutoff != value)
+                {
+                    _performDistortionCompensationAfterCutoff = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>a value that is used to scale the after cutoff simulated distortion values</summary>
+        [Newtonsoft.Json.JsonProperty("distortionAfterCutoffScaleFactor", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? DistortionAfterCutoffScaleFactor
+        {
+            get { return _distortionAfterCutoffScaleFactor; }
+            set 
+            {
+                if (_distortionAfterCutoffScaleFactor != value)
+                {
+                    _distortionAfterCutoffScaleFactor = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -13769,6 +14555,8 @@ namespace SimulationCSharpClient.Client
         private double? _supportFailureThreshold;
         private double? _partFailureThreshold;
         private double? _strainWarningThreshold;
+        private bool? _performDistortionCompensationAfterCutoff;
+        private double? _distortionAfterCutoffScaleFactor;
         private double _layerThickness;
         private double _hatchSpacing;
         private double _laserWattage;
@@ -14257,6 +15045,36 @@ namespace SimulationCSharpClient.Client
                 if (_strainWarningThreshold != value)
                 {
                     _strainWarningThreshold = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, a predistorted STL file will be created using the distortion after cutoff simulated by the mechanics solver</summary>
+        [Newtonsoft.Json.JsonProperty("performDistortionCompensationAfterCutoff", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? PerformDistortionCompensationAfterCutoff
+        {
+            get { return _performDistortionCompensationAfterCutoff; }
+            set 
+            {
+                if (_performDistortionCompensationAfterCutoff != value)
+                {
+                    _performDistortionCompensationAfterCutoff = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>a value that is used to scale the after cutoff simulated distortion values</summary>
+        [Newtonsoft.Json.JsonProperty("distortionAfterCutoffScaleFactor", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? DistortionAfterCutoffScaleFactor
+        {
+            get { return _distortionAfterCutoffScaleFactor; }
+            set 
+            {
+                if (_distortionAfterCutoffScaleFactor != value)
+                {
+                    _distortionAfterCutoffScaleFactor = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -14905,6 +15723,8 @@ namespace SimulationCSharpClient.Client
         private double? _supportFailureThreshold;
         private double? _partFailureThreshold;
         private double? _strainWarningThreshold;
+        private bool? _performDistortionCompensationAfterCutoff;
+        private double? _distortionAfterCutoffScaleFactor;
         private double _layerThickness;
         private double _startingLayerAngle;
         private double _layerRotationAngle;
@@ -15370,6 +16190,36 @@ namespace SimulationCSharpClient.Client
                 if (_strainWarningThreshold != value)
                 {
                     _strainWarningThreshold = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, a predistorted STL file will be created using the distortion after cutoff simulated by the mechanics solver</summary>
+        [Newtonsoft.Json.JsonProperty("performDistortionCompensationAfterCutoff", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? PerformDistortionCompensationAfterCutoff
+        {
+            get { return _performDistortionCompensationAfterCutoff; }
+            set 
+            {
+                if (_performDistortionCompensationAfterCutoff != value)
+                {
+                    _performDistortionCompensationAfterCutoff = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>a value that is used to scale the after cutoff simulated distortion values</summary>
+        [Newtonsoft.Json.JsonProperty("distortionAfterCutoffScaleFactor", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? DistortionAfterCutoffScaleFactor
+        {
+            get { return _distortionAfterCutoffScaleFactor; }
+            set 
+            {
+                if (_distortionAfterCutoffScaleFactor != value)
+                {
+                    _distortionAfterCutoffScaleFactor = value; 
                     RaisePropertyChanged();
                 }
             }
