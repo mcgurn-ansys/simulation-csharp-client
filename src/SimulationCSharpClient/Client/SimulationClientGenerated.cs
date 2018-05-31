@@ -187,17 +187,6 @@ namespace SimulationCSharpClient.Client
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         System.Threading.Tasks.Task<Part> AddPartsAsync(PartPost part, System.Threading.CancellationToken cancellationToken);
     
-        /// <param name="part">Part to update.</param>
-        /// <returns>Successfully updated a part</returns>
-        /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Part> UpdatePartAsync(Part part);
-    
-        /// <param name="part">Part to update.</param>
-        /// <returns>Successfully updated a part</returns>
-        /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        System.Threading.Tasks.Task<Part> UpdatePartAsync(Part part, System.Threading.CancellationToken cancellationToken);
-    
         /// <returns>Successfully returns a part geometry url for a new part upload</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<PartUploadRequest> GetNewPartGeometryUploadUrlAsync();
@@ -242,6 +231,19 @@ namespace SimulationCSharpClient.Client
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         System.Threading.Tasks.Task DeletePartAsync(int id, System.Threading.CancellationToken cancellationToken);
     
+        /// <param name="id">ID of a part</param>
+        /// <param name="part">Part to update.</param>
+        /// <returns>Successfully updated a part</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<Part> UpdatePartAsync(int id, Part part);
+    
+        /// <param name="id">ID of a part</param>
+        /// <param name="part">Part to update.</param>
+        /// <returns>Successfully updated a part</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        System.Threading.Tasks.Task<Part> UpdatePartAsync(int id, Part part, System.Threading.CancellationToken cancellationToken);
+    
         /// <param name="id">ID of part</param>
         /// <returns>Successfully archived a part</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
@@ -275,19 +277,111 @@ namespace SimulationCSharpClient.Client
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Triangle>> GetPartGeometryAsync(int id, System.Threading.CancellationToken cancellationToken);
     
-        /// <param name="organizationId">the organization id to get items for.  Must be provided as API callers only have access to items belonging to their organization.</param>
-        /// <param name="status">simulation status for items retrieved.  If an array of items is sent, they are treated as "OR" operations. e.g. status=InProgress,Requested would yield a list of simulations that are in either state.</param>
-        /// <param name="offset">starting paging count; ex. offset of 60 will skip the first 60 items in the list</param>
-        /// <param name="limit">number of materials to return within the query</param>
-        /// <param name="sort">key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc</param>
-        /// <param name="archived">True to get only archived simulations, False to get only unarchived simulations, leave the parameter off to get all simulation types</param>
-        /// <param name="partId">returns simulations using the specified part id</param>
-        /// <param name="buildFileId">returns simulations using the specified build file id</param>
-        /// <param name="isParent">returns either parent (true) or child (false) simulations</param>
-        /// <param name="requiresLicense">returns simulations that require licence</param>
-        /// <returns>Successfully found the list of items</returns>
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportId">ID of support to get</param>
+        /// <returns>Successfully found a support</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Simulation>> GetSimulationsAsync(int organizationId, System.Collections.Generic.IEnumerable<Anonymous> status, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, int? partId, int? buildFileId, bool? isParent, bool? requiresLicense);
+        System.Threading.Tasks.Task<PartSupport> GetPartSupportAsync(int partId, int supportId);
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportId">ID of support to get</param>
+        /// <returns>Successfully found a support</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        System.Threading.Tasks.Task<PartSupport> GetPartSupportAsync(int partId, int supportId, System.Threading.CancellationToken cancellationToken);
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportId">ID of support to get</param>
+        /// <param name="partSupportPatch">This endpoint uses JSON Patch, RFC 6092.</param>
+        /// <returns>Patched part support</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<PartSupport> PatchPartSupportAsync(int partId, int supportId, System.Collections.Generic.IEnumerable<PatchDocument> partSupportPatch);
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportId">ID of support to get</param>
+        /// <param name="partSupportPatch">This endpoint uses JSON Patch, RFC 6092.</param>
+        /// <returns>Patched part support</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        System.Threading.Tasks.Task<PartSupport> PatchPartSupportAsync(int partId, int supportId, System.Collections.Generic.IEnumerable<PatchDocument> partSupportPatch, System.Threading.CancellationToken cancellationToken);
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportId">ID of support to get</param>
+        /// <returns>Successfully deleted a part support</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task DeletePartSupportAsync(int partId, int supportId);
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportId">ID of support to get</param>
+        /// <returns>Successfully deleted a part support</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        System.Threading.Tasks.Task DeletePartSupportAsync(int partId, int supportId, System.Threading.CancellationToken cancellationToken);
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportId">ID of support to get</param>
+        /// <param name="partSupport">PartSupport to update.</param>
+        /// <returns>Successfully updated a part support</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<PartSupport> UpdatePartSupportAsync(int partId, int supportId, PartSupport partSupport);
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportId">ID of support to get</param>
+        /// <param name="partSupport">PartSupport to update.</param>
+        /// <returns>Successfully updated a part support</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        System.Threading.Tasks.Task<PartSupport> UpdatePartSupportAsync(int partId, int supportId, PartSupport partSupport, System.Threading.CancellationToken cancellationToken);
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="partPost">Support to add. First, call parts/:partId/supports/geometryurl to get a PartUploadRequest object. PUT the STL file AmazonS3 with the signed URL. Use the s3Key property as the value of fileLocation. A POST with this object will execute the part processing service.</param>
+        /// <returns>Successfully added a part support</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<PartSupport> PostPartSupportAsync(int partId, PartSupportPost partPost);
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="partPost">Support to add. First, call parts/:partId/supports/geometryurl to get a PartUploadRequest object. PUT the STL file AmazonS3 with the signed URL. Use the s3Key property as the value of fileLocation. A POST with this object will execute the part processing service.</param>
+        /// <returns>Successfully added a part support</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        System.Threading.Tasks.Task<PartSupport> PostPartSupportAsync(int partId, PartSupportPost partPost, System.Threading.CancellationToken cancellationToken);
+    
+        /// <param name="partId">ID of part</param>
+        /// <returns>Successfully returns a part support geometry url for a new support upload</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<PartUploadRequest> SupportGeometryUploadUrlAsync(int partId);
+    
+        /// <param name="partId">ID of part</param>
+        /// <returns>Successfully returns a part support geometry url for a new support upload</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        System.Threading.Tasks.Task<PartUploadRequest> SupportGeometryUploadUrlAsync(int partId, System.Threading.CancellationToken cancellationToken);
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportId">ID of support</param>
+        /// <returns>Successfully returns a support geometry url</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<PartGeometryUrl> PartSupportGeometryUrlAsync(int partId, int supportId);
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportId">ID of support</param>
+        /// <returns>Successfully returns a support geometry url</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        System.Threading.Tasks.Task<PartGeometryUrl> PartSupportGeometryUrlAsync(int partId, int supportId, System.Threading.CancellationToken cancellationToken);
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportId">ID of support</param>
+        /// <returns>Successfully returns support geometry triangles</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Triangle>> PartSupportGeometryAsync(int partId, int supportId);
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportId">ID of support</param>
+        /// <returns>Successfully returns support geometry triangles</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Triangle>> PartSupportGeometryAsync(int partId, int supportId, System.Threading.CancellationToken cancellationToken);
     
         /// <param name="organizationId">the organization id to get items for.  Must be provided as API callers only have access to items belonging to their organization.</param>
         /// <param name="status">simulation status for items retrieved.  If an array of items is sent, they are treated as "OR" operations. e.g. status=InProgress,Requested would yield a list of simulations that are in either state.</param>
@@ -296,13 +390,29 @@ namespace SimulationCSharpClient.Client
         /// <param name="sort">key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc</param>
         /// <param name="archived">True to get only archived simulations, False to get only unarchived simulations, leave the parameter off to get all simulation types</param>
         /// <param name="partId">returns simulations using the specified part id</param>
+        /// <param name="supportId">returns simulations using the specified part support id</param>
+        /// <param name="buildFileId">returns simulations using the specified build file id</param>
+        /// <param name="isParent">returns either parent (true) or child (false) simulations</param>
+        /// <param name="requiresLicense">returns simulations that require licence</param>
+        /// <returns>Successfully found the list of items</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Simulation>> GetSimulationsAsync(int organizationId, System.Collections.Generic.IEnumerable<Anonymous> status, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, int? partId, int? supportId, int? buildFileId, bool? isParent, bool? requiresLicense);
+    
+        /// <param name="organizationId">the organization id to get items for.  Must be provided as API callers only have access to items belonging to their organization.</param>
+        /// <param name="status">simulation status for items retrieved.  If an array of items is sent, they are treated as "OR" operations. e.g. status=InProgress,Requested would yield a list of simulations that are in either state.</param>
+        /// <param name="offset">starting paging count; ex. offset of 60 will skip the first 60 items in the list</param>
+        /// <param name="limit">number of materials to return within the query</param>
+        /// <param name="sort">key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc</param>
+        /// <param name="archived">True to get only archived simulations, False to get only unarchived simulations, leave the parameter off to get all simulation types</param>
+        /// <param name="partId">returns simulations using the specified part id</param>
+        /// <param name="supportId">returns simulations using the specified part support id</param>
         /// <param name="buildFileId">returns simulations using the specified build file id</param>
         /// <param name="isParent">returns either parent (true) or child (false) simulations</param>
         /// <param name="requiresLicense">returns simulations that require licence</param>
         /// <returns>Successfully found the list of items</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Simulation>> GetSimulationsAsync(int organizationId, System.Collections.Generic.IEnumerable<Anonymous> status, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, int? partId, int? buildFileId, bool? isParent, bool? requiresLicense, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Simulation>> GetSimulationsAsync(int organizationId, System.Collections.Generic.IEnumerable<Anonymous> status, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, int? partId, int? supportId, int? buildFileId, bool? isParent, bool? requiresLicense, System.Threading.CancellationToken cancellationToken);
     
         /// <param name="id">simulation identifier</param>
         /// <returns>Successfully retrieved simulation</returns>
@@ -2835,107 +2945,6 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        /// <param name="part">Part to update.</param>
-        /// <returns>Successfully updated a part</returns>
-        /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<Part> UpdatePartAsync(Part part)
-        {
-            return UpdatePartAsync(part, System.Threading.CancellationToken.None);
-        }
-    
-        /// <param name="part">Part to update.</param>
-        /// <returns>Successfully updated a part</returns>
-        /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        public async System.Threading.Tasks.Task<Part> UpdatePartAsync(Part part, System.Threading.CancellationToken cancellationToken)
-        {
-            var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/parts");
-    
-            var client_ = _httpClient;
-            try
-            {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
-                {
-                    var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(part, _settings.Value));
-                    content_.Headers.ContentType.MediaType = "application/json";
-                    request_.Content = content_;
-                    request_.Method = new System.Net.Http.HttpMethod("PUT");
-                    request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-    
-                    PrepareRequest(client_, request_, urlBuilder_);
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-                    PrepareRequest(client_, request_, url_);
-    
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-                    try
-                    {
-                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
-                        foreach (var item_ in response_.Content.Headers)
-                            headers_[item_.Key] = item_.Value;
-    
-                        ProcessResponse(client_, response_);
-    
-                        var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
-                        {
-                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
-                            var result_ = default(Part); 
-                            try
-                            {
-                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Part>(responseData_, _settings.Value);
-                                return result_; 
-                            } 
-                            catch (System.Exception exception_) 
-                            {
-                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
-                            }
-                        }
-                        else
-                        if (status_ == "403") 
-                        {
-                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
-                            var result_ = default(Error); 
-                            try
-                            {
-                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
-                            } 
-                            catch (System.Exception exception_) 
-                            {
-                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
-                            }
-                            throw new SwaggerException<Error>("Forbidden", status_, responseData_, headers_, result_, null);
-                        }
-                        else
-                        {
-                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
-                            var result_ = default(Error); 
-                            try
-                            {
-                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
-                            } 
-                            catch (System.Exception exception_) 
-                            {
-                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
-                            }
-                            throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
-                        }
-            
-                        return default(Part);
-                    }
-                    finally
-                    {
-                        if (response_ != null)
-                            response_.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-            }
-        }
-    
         /// <returns>Successfully returns a part geometry url for a new part upload</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<PartUploadRequest> GetNewPartGeometryUploadUrlAsync()
@@ -3387,6 +3396,113 @@ namespace SimulationCSharpClient.Client
             }
         }
     
+        /// <param name="id">ID of a part</param>
+        /// <param name="part">Part to update.</param>
+        /// <returns>Successfully updated a part</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task<Part> UpdatePartAsync(int id, Part part)
+        {
+            return UpdatePartAsync(id, part, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="id">ID of a part</param>
+        /// <param name="part">Part to update.</param>
+        /// <returns>Successfully updated a part</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task<Part> UpdatePartAsync(int id, Part part, System.Threading.CancellationToken cancellationToken)
+        {
+            if (id == null)
+                throw new System.ArgumentNullException("id");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/parts/{id}");
+            urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(System.Convert.ToString(id, System.Globalization.CultureInfo.InvariantCulture)));
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(part, _settings.Value));
+                    content_.Headers.ContentType.MediaType = "application/json";
+                    request_.Content = content_;
+                    request_.Method = new System.Net.Http.HttpMethod("PUT");
+                    request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        foreach (var item_ in response_.Content.Headers)
+                            headers_[item_.Key] = item_.Value;
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Part); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Part>(responseData_, _settings.Value);
+                                return result_; 
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                        }
+                        else
+                        if (status_ == "403") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Forbidden", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
+                        }
+            
+                        return default(Part);
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+    
         /// <param name="id">ID of part</param>
         /// <returns>Successfully archived a part</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
@@ -3758,21 +3874,957 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        /// <param name="organizationId">the organization id to get items for.  Must be provided as API callers only have access to items belonging to their organization.</param>
-        /// <param name="status">simulation status for items retrieved.  If an array of items is sent, they are treated as "OR" operations. e.g. status=InProgress,Requested would yield a list of simulations that are in either state.</param>
-        /// <param name="offset">starting paging count; ex. offset of 60 will skip the first 60 items in the list</param>
-        /// <param name="limit">number of materials to return within the query</param>
-        /// <param name="sort">key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc</param>
-        /// <param name="archived">True to get only archived simulations, False to get only unarchived simulations, leave the parameter off to get all simulation types</param>
-        /// <param name="partId">returns simulations using the specified part id</param>
-        /// <param name="buildFileId">returns simulations using the specified build file id</param>
-        /// <param name="isParent">returns either parent (true) or child (false) simulations</param>
-        /// <param name="requiresLicense">returns simulations that require licence</param>
-        /// <returns>Successfully found the list of items</returns>
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportId">ID of support to get</param>
+        /// <returns>Successfully found a support</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Simulation>> GetSimulationsAsync(int organizationId, System.Collections.Generic.IEnumerable<Anonymous> status, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, int? partId, int? buildFileId, bool? isParent, bool? requiresLicense)
+        public System.Threading.Tasks.Task<PartSupport> GetPartSupportAsync(int partId, int supportId)
         {
-            return GetSimulationsAsync(organizationId, status, offset, limit, sort, archived, partId, buildFileId, isParent, requiresLicense, System.Threading.CancellationToken.None);
+            return GetPartSupportAsync(partId, supportId, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportId">ID of support to get</param>
+        /// <returns>Successfully found a support</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task<PartSupport> GetPartSupportAsync(int partId, int supportId, System.Threading.CancellationToken cancellationToken)
+        {
+            if (partId == null)
+                throw new System.ArgumentNullException("partId");
+    
+            if (supportId == null)
+                throw new System.ArgumentNullException("supportId");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/parts/{partId}/supports/{supportId}");
+            urlBuilder_.Replace("{partId}", System.Uri.EscapeDataString(System.Convert.ToString(partId, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{supportId}", System.Uri.EscapeDataString(System.Convert.ToString(supportId, System.Globalization.CultureInfo.InvariantCulture)));
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        foreach (var item_ in response_.Content.Headers)
+                            headers_[item_.Key] = item_.Value;
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(PartSupport); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<PartSupport>(responseData_, _settings.Value);
+                                return result_; 
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                        }
+                        else
+                        if (status_ == "403") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Forbidden", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "404") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            throw new SwaggerException("Not found", status_, responseData_, headers_, null);
+                        }
+                        else
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
+                        }
+            
+                        return default(PartSupport);
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportId">ID of support to get</param>
+        /// <param name="partSupportPatch">This endpoint uses JSON Patch, RFC 6092.</param>
+        /// <returns>Patched part support</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task<PartSupport> PatchPartSupportAsync(int partId, int supportId, System.Collections.Generic.IEnumerable<PatchDocument> partSupportPatch)
+        {
+            return PatchPartSupportAsync(partId, supportId, partSupportPatch, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportId">ID of support to get</param>
+        /// <param name="partSupportPatch">This endpoint uses JSON Patch, RFC 6092.</param>
+        /// <returns>Patched part support</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task<PartSupport> PatchPartSupportAsync(int partId, int supportId, System.Collections.Generic.IEnumerable<PatchDocument> partSupportPatch, System.Threading.CancellationToken cancellationToken)
+        {
+            if (partId == null)
+                throw new System.ArgumentNullException("partId");
+    
+            if (supportId == null)
+                throw new System.ArgumentNullException("supportId");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/parts/{partId}/supports/{supportId}");
+            urlBuilder_.Replace("{partId}", System.Uri.EscapeDataString(System.Convert.ToString(partId, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{supportId}", System.Uri.EscapeDataString(System.Convert.ToString(supportId, System.Globalization.CultureInfo.InvariantCulture)));
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(partSupportPatch, _settings.Value));
+                    content_.Headers.ContentType.MediaType = "application/json";
+                    request_.Content = content_;
+                    request_.Method = new System.Net.Http.HttpMethod("PATCH");
+                    request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        foreach (var item_ in response_.Content.Headers)
+                            headers_[item_.Key] = item_.Value;
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(PartSupport); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<PartSupport>(responseData_, _settings.Value);
+                                return result_; 
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                        }
+                        else
+                        if (status_ == "401") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Not authorized", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "403") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Forbidden", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "404") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Part not found (id invalid)", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
+                        }
+            
+                        return default(PartSupport);
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportId">ID of support to get</param>
+        /// <returns>Successfully deleted a part support</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task DeletePartSupportAsync(int partId, int supportId)
+        {
+            return DeletePartSupportAsync(partId, supportId, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportId">ID of support to get</param>
+        /// <returns>Successfully deleted a part support</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task DeletePartSupportAsync(int partId, int supportId, System.Threading.CancellationToken cancellationToken)
+        {
+            if (partId == null)
+                throw new System.ArgumentNullException("partId");
+    
+            if (supportId == null)
+                throw new System.ArgumentNullException("supportId");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/parts/{partId}/supports/{supportId}");
+            urlBuilder_.Replace("{partId}", System.Uri.EscapeDataString(System.Convert.ToString(partId, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{supportId}", System.Uri.EscapeDataString(System.Convert.ToString(supportId, System.Globalization.CultureInfo.InvariantCulture)));
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("DELETE");
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        foreach (var item_ in response_.Content.Headers)
+                            headers_[item_.Key] = item_.Value;
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200") 
+                        {
+                            return;
+                        }
+                        else
+                        if (status_ == "401") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Not authorized", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "403") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Forbidden", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "404") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            throw new SwaggerException("Not Found", status_, responseData_, headers_, null);
+                        }
+                        else
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportId">ID of support to get</param>
+        /// <param name="partSupport">PartSupport to update.</param>
+        /// <returns>Successfully updated a part support</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task<PartSupport> UpdatePartSupportAsync(int partId, int supportId, PartSupport partSupport)
+        {
+            return UpdatePartSupportAsync(partId, supportId, partSupport, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportId">ID of support to get</param>
+        /// <param name="partSupport">PartSupport to update.</param>
+        /// <returns>Successfully updated a part support</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task<PartSupport> UpdatePartSupportAsync(int partId, int supportId, PartSupport partSupport, System.Threading.CancellationToken cancellationToken)
+        {
+            if (partId == null)
+                throw new System.ArgumentNullException("partId");
+    
+            if (supportId == null)
+                throw new System.ArgumentNullException("supportId");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/parts/{partId}/supports/{supportId}");
+            urlBuilder_.Replace("{partId}", System.Uri.EscapeDataString(System.Convert.ToString(partId, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{supportId}", System.Uri.EscapeDataString(System.Convert.ToString(supportId, System.Globalization.CultureInfo.InvariantCulture)));
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(partSupport, _settings.Value));
+                    content_.Headers.ContentType.MediaType = "application/json";
+                    request_.Content = content_;
+                    request_.Method = new System.Net.Http.HttpMethod("PUT");
+                    request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        foreach (var item_ in response_.Content.Headers)
+                            headers_[item_.Key] = item_.Value;
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(PartSupport); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<PartSupport>(responseData_, _settings.Value);
+                                return result_; 
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                        }
+                        else
+                        if (status_ == "403") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Forbidden", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
+                        }
+            
+                        return default(PartSupport);
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="partPost">Support to add. First, call parts/:partId/supports/geometryurl to get a PartUploadRequest object. PUT the STL file AmazonS3 with the signed URL. Use the s3Key property as the value of fileLocation. A POST with this object will execute the part processing service.</param>
+        /// <returns>Successfully added a part support</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task<PartSupport> PostPartSupportAsync(int partId, PartSupportPost partPost)
+        {
+            return PostPartSupportAsync(partId, partPost, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="partPost">Support to add. First, call parts/:partId/supports/geometryurl to get a PartUploadRequest object. PUT the STL file AmazonS3 with the signed URL. Use the s3Key property as the value of fileLocation. A POST with this object will execute the part processing service.</param>
+        /// <returns>Successfully added a part support</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task<PartSupport> PostPartSupportAsync(int partId, PartSupportPost partPost, System.Threading.CancellationToken cancellationToken)
+        {
+            if (partId == null)
+                throw new System.ArgumentNullException("partId");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/parts/{partId}/supports");
+            urlBuilder_.Replace("{partId}", System.Uri.EscapeDataString(System.Convert.ToString(partId, System.Globalization.CultureInfo.InvariantCulture)));
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(partPost, _settings.Value));
+                    content_.Headers.ContentType.MediaType = "application/json";
+                    request_.Content = content_;
+                    request_.Method = new System.Net.Http.HttpMethod("POST");
+                    request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        foreach (var item_ in response_.Content.Headers)
+                            headers_[item_.Key] = item_.Value;
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(PartSupport); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<PartSupport>(responseData_, _settings.Value);
+                                return result_; 
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                        }
+                        else
+                        if (status_ == "403") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Forbidden", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
+                        }
+            
+                        return default(PartSupport);
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+    
+        /// <param name="partId">ID of part</param>
+        /// <returns>Successfully returns a part support geometry url for a new support upload</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task<PartUploadRequest> SupportGeometryUploadUrlAsync(int partId)
+        {
+            return SupportGeometryUploadUrlAsync(partId, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="partId">ID of part</param>
+        /// <returns>Successfully returns a part support geometry url for a new support upload</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task<PartUploadRequest> SupportGeometryUploadUrlAsync(int partId, System.Threading.CancellationToken cancellationToken)
+        {
+            if (partId == null)
+                throw new System.ArgumentNullException("partId");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/parts/{partId}/supports/geometryuploadurl");
+            urlBuilder_.Replace("{partId}", System.Uri.EscapeDataString(System.Convert.ToString(partId, System.Globalization.CultureInfo.InvariantCulture)));
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        foreach (var item_ in response_.Content.Headers)
+                            headers_[item_.Key] = item_.Value;
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(PartUploadRequest); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<PartUploadRequest>(responseData_, _settings.Value);
+                                return result_; 
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                        }
+                        else
+                        if (status_ == "403") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Not authorized", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
+                        }
+            
+                        return default(PartUploadRequest);
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportId">ID of support</param>
+        /// <returns>Successfully returns a support geometry url</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task<PartGeometryUrl> PartSupportGeometryUrlAsync(int partId, int supportId)
+        {
+            return PartSupportGeometryUrlAsync(partId, supportId, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportId">ID of support</param>
+        /// <returns>Successfully returns a support geometry url</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task<PartGeometryUrl> PartSupportGeometryUrlAsync(int partId, int supportId, System.Threading.CancellationToken cancellationToken)
+        {
+            if (partId == null)
+                throw new System.ArgumentNullException("partId");
+    
+            if (supportId == null)
+                throw new System.ArgumentNullException("supportId");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/parts/{partId}/supports/{supportId}/geometryurl");
+            urlBuilder_.Replace("{partId}", System.Uri.EscapeDataString(System.Convert.ToString(partId, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{supportId}", System.Uri.EscapeDataString(System.Convert.ToString(supportId, System.Globalization.CultureInfo.InvariantCulture)));
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        foreach (var item_ in response_.Content.Headers)
+                            headers_[item_.Key] = item_.Value;
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(PartGeometryUrl); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<PartGeometryUrl>(responseData_, _settings.Value);
+                                return result_; 
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                        }
+                        else
+                        if (status_ == "401") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Not authorized", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "403") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Forbidden", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "404") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            throw new SwaggerException("Not Found", status_, responseData_, headers_, null);
+                        }
+                        else
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
+                        }
+            
+                        return default(PartGeometryUrl);
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportId">ID of support</param>
+        /// <returns>Successfully returns support geometry triangles</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Triangle>> PartSupportGeometryAsync(int partId, int supportId)
+        {
+            return PartSupportGeometryAsync(partId, supportId, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportId">ID of support</param>
+        /// <returns>Successfully returns support geometry triangles</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Triangle>> PartSupportGeometryAsync(int partId, int supportId, System.Threading.CancellationToken cancellationToken)
+        {
+            if (partId == null)
+                throw new System.ArgumentNullException("partId");
+    
+            if (supportId == null)
+                throw new System.ArgumentNullException("supportId");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/parts/{partId}/supports/{supportId}/geometry");
+            urlBuilder_.Replace("{partId}", System.Uri.EscapeDataString(System.Convert.ToString(partId, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{supportId}", System.Uri.EscapeDataString(System.Convert.ToString(supportId, System.Globalization.CultureInfo.InvariantCulture)));
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        foreach (var item_ in response_.Content.Headers)
+                            headers_[item_.Key] = item_.Value;
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(System.Collections.ObjectModel.ObservableCollection<Triangle>); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.ObjectModel.ObservableCollection<Triangle>>(responseData_, _settings.Value);
+                                return result_; 
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                        }
+                        else
+                        if (status_ == "401") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Not authorized", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "403") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Forbidden", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "404") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            throw new SwaggerException("Not Found", status_, responseData_, headers_, null);
+                        }
+                        else
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
+                        }
+            
+                        return default(System.Collections.ObjectModel.ObservableCollection<Triangle>);
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
         }
     
         /// <param name="organizationId">the organization id to get items for.  Must be provided as API callers only have access to items belonging to their organization.</param>
@@ -3782,13 +4834,32 @@ namespace SimulationCSharpClient.Client
         /// <param name="sort">key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc</param>
         /// <param name="archived">True to get only archived simulations, False to get only unarchived simulations, leave the parameter off to get all simulation types</param>
         /// <param name="partId">returns simulations using the specified part id</param>
+        /// <param name="supportId">returns simulations using the specified part support id</param>
+        /// <param name="buildFileId">returns simulations using the specified build file id</param>
+        /// <param name="isParent">returns either parent (true) or child (false) simulations</param>
+        /// <param name="requiresLicense">returns simulations that require licence</param>
+        /// <returns>Successfully found the list of items</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Simulation>> GetSimulationsAsync(int organizationId, System.Collections.Generic.IEnumerable<Anonymous> status, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, int? partId, int? supportId, int? buildFileId, bool? isParent, bool? requiresLicense)
+        {
+            return GetSimulationsAsync(organizationId, status, offset, limit, sort, archived, partId, supportId, buildFileId, isParent, requiresLicense, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="organizationId">the organization id to get items for.  Must be provided as API callers only have access to items belonging to their organization.</param>
+        /// <param name="status">simulation status for items retrieved.  If an array of items is sent, they are treated as "OR" operations. e.g. status=InProgress,Requested would yield a list of simulations that are in either state.</param>
+        /// <param name="offset">starting paging count; ex. offset of 60 will skip the first 60 items in the list</param>
+        /// <param name="limit">number of materials to return within the query</param>
+        /// <param name="sort">key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc</param>
+        /// <param name="archived">True to get only archived simulations, False to get only unarchived simulations, leave the parameter off to get all simulation types</param>
+        /// <param name="partId">returns simulations using the specified part id</param>
+        /// <param name="supportId">returns simulations using the specified part support id</param>
         /// <param name="buildFileId">returns simulations using the specified build file id</param>
         /// <param name="isParent">returns either parent (true) or child (false) simulations</param>
         /// <param name="requiresLicense">returns simulations that require licence</param>
         /// <returns>Successfully found the list of items</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        public async System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Simulation>> GetSimulationsAsync(int organizationId, System.Collections.Generic.IEnumerable<Anonymous> status, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, int? partId, int? buildFileId, bool? isParent, bool? requiresLicense, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Simulation>> GetSimulationsAsync(int organizationId, System.Collections.Generic.IEnumerable<Anonymous> status, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, int? partId, int? supportId, int? buildFileId, bool? isParent, bool? requiresLicense, System.Threading.CancellationToken cancellationToken)
         {
             if (organizationId == null)
                 throw new System.ArgumentNullException("organizationId");
@@ -3802,6 +4873,7 @@ namespace SimulationCSharpClient.Client
             if (sort != null) foreach (var item_ in sort) { urlBuilder_.Append("sort=").Append(System.Uri.EscapeDataString(System.Convert.ToString(item_, System.Globalization.CultureInfo.InvariantCulture))).Append("&"); }
             if (archived != null) urlBuilder_.Append("archived=").Append(System.Uri.EscapeDataString(System.Convert.ToString(archived, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             if (partId != null) urlBuilder_.Append("partId=").Append(System.Uri.EscapeDataString(System.Convert.ToString(partId, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            if (supportId != null) urlBuilder_.Append("supportId=").Append(System.Uri.EscapeDataString(System.Convert.ToString(supportId, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             if (buildFileId != null) urlBuilder_.Append("buildFileId=").Append(System.Uri.EscapeDataString(System.Convert.ToString(buildFileId, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             if (isParent != null) urlBuilder_.Append("isParent=").Append(System.Uri.EscapeDataString(System.Convert.ToString(isParent, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             if (requiresLicense != null) urlBuilder_.Append("requiresLicense=").Append(System.Uri.EscapeDataString(System.Convert.ToString(requiresLicense, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
@@ -12092,6 +13164,8 @@ namespace SimulationCSharpClient.Client
         private double _xMin;
         private double _yMin;
         private double _zMin;
+        private int? _partSupportId;
+        private PartSupport _support;
     
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int? Id
@@ -12194,6 +13268,35 @@ namespace SimulationCSharpClient.Client
                 if (_zMin != value)
                 {
                     _zMin = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Id of the support to use for the simulation. Can be null</summary>
+        [Newtonsoft.Json.JsonProperty("partSupportId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int? PartSupportId
+        {
+            get { return _partSupportId; }
+            set 
+            {
+                if (_partSupportId != value)
+                {
+                    _partSupportId = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("support", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public PartSupport Support
+        {
+            get { return _support; }
+            set 
+            {
+                if (_support != value)
+                {
+                    _support = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -13589,6 +14692,7 @@ namespace SimulationCSharpClient.Client
         private double? _strainWarningThreshold;
         private bool? _performDistortionCompensationAfterCutoff;
         private double? _distortionAfterCutoffScaleFactor;
+        private PartBasedSimulationParametersSupportType _supportType;
     
         /// <summary>List of parts to simulate (current limit is one part, imposed by server)</summary>
         [Newtonsoft.Json.JsonProperty("simulationParts", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -14077,6 +15181,23 @@ namespace SimulationCSharpClient.Client
                 if (_distortionAfterCutoffScaleFactor != value)
                 {
                     _distortionAfterCutoffScaleFactor = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>type of support used for simulation.</summary>
+        [Newtonsoft.Json.JsonProperty("supportType", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public PartBasedSimulationParametersSupportType SupportType
+        {
+            get { return _supportType; }
+            set 
+            {
+                if (_supportType != value)
+                {
+                    _supportType = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -14391,6 +15512,7 @@ namespace SimulationCSharpClient.Client
         private double? _strainWarningThreshold;
         private bool? _performDistortionCompensationAfterCutoff;
         private double? _distortionAfterCutoffScaleFactor;
+        private PartBasedSimulationParametersSupportType _supportType;
         private double? _layerThickness;
     
         /// <summary>List of parts to simulate (current limit is one part, imposed by server)</summary>
@@ -14880,6 +16002,23 @@ namespace SimulationCSharpClient.Client
                 if (_distortionAfterCutoffScaleFactor != value)
                 {
                     _distortionAfterCutoffScaleFactor = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>type of support used for simulation.</summary>
+        [Newtonsoft.Json.JsonProperty("supportType", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public PartBasedSimulationParametersSupportType SupportType
+        {
+            get { return _supportType; }
+            set 
+            {
+                if (_supportType != value)
+                {
+                    _supportType = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -15481,6 +16620,7 @@ namespace SimulationCSharpClient.Client
         private double? _strainWarningThreshold;
         private bool? _performDistortionCompensationAfterCutoff;
         private double? _distortionAfterCutoffScaleFactor;
+        private PartBasedSimulationParametersSupportType _supportType;
         private double _layerThickness;
         private double _hatchSpacing;
         private double _laserWattage;
@@ -16000,6 +17140,23 @@ namespace SimulationCSharpClient.Client
                 if (_distortionAfterCutoffScaleFactor != value)
                 {
                     _distortionAfterCutoffScaleFactor = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>type of support used for simulation.</summary>
+        [Newtonsoft.Json.JsonProperty("supportType", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public PartBasedSimulationParametersSupportType SupportType
+        {
+            get { return _supportType; }
+            set 
+            {
+                if (_supportType != value)
+                {
+                    _supportType = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -16665,6 +17822,7 @@ namespace SimulationCSharpClient.Client
         private double? _strainWarningThreshold;
         private bool? _performDistortionCompensationAfterCutoff;
         private double? _distortionAfterCutoffScaleFactor;
+        private PartBasedSimulationParametersSupportType _supportType;
         private double _layerThickness;
         private double _startingLayerAngle;
         private double _layerRotationAngle;
@@ -17165,6 +18323,23 @@ namespace SimulationCSharpClient.Client
             }
         }
     
+        /// <summary>type of support used for simulation.</summary>
+        [Newtonsoft.Json.JsonProperty("supportType", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public PartBasedSimulationParametersSupportType SupportType
+        {
+            get { return _supportType; }
+            set 
+            {
+                if (_supportType != value)
+                {
+                    _supportType = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
         /// <summary>Must be between 0.00001 to 0.0001 meters</summary>
         [Newtonsoft.Json.JsonProperty("layerThickness", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Range(0, 0)]
@@ -17327,6 +18502,7 @@ namespace SimulationCSharpClient.Client
         private int? _estimatedWork;
         private double? _estimateVoxelSize;
         private string _errorReason;
+        private System.Collections.ObjectModel.ObservableCollection<PartSupport> _partSupports;
     
         /// <summary>Id of the part</summary>
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
@@ -17842,6 +19018,21 @@ namespace SimulationCSharpClient.Client
                 if (_errorReason != value)
                 {
                     _errorReason = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>List of supports that have been uploaded for this part</summary>
+        [Newtonsoft.Json.JsonProperty("partSupports", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.ObjectModel.ObservableCollection<PartSupport> PartSupports
+        {
+            get { return _partSupports; }
+            set 
+            {
+                if (_partSupports != value)
+                {
+                    _partSupports = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -19987,6 +21178,9 @@ namespace SimulationCSharpClient.Client
         private double _x;
         private double _y;
         private double _z;
+        private double? _zMin;
+        private double? _zMax;
+        private SelectedPointSensorType _sensorType;
     
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int? Id
@@ -20068,6 +21262,51 @@ namespace SimulationCSharpClient.Client
                 if (_z != value)
                 {
                     _z = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("zMin", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? ZMin
+        {
+            get { return _zMin; }
+            set 
+            {
+                if (_zMin != value)
+                {
+                    _zMin = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("zMax", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? ZMax
+        {
+            get { return _zMax; }
+            set 
+            {
+                if (_zMax != value)
+                {
+                    _zMax = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>type of point, usually relates to sensor that will be using this point</summary>
+        [Newtonsoft.Json.JsonProperty("sensorType", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public SelectedPointSensorType SensorType
+        {
+            get { return _sensorType; }
+            set 
+            {
+                if (_sensorType != value)
+                {
+                    _sensorType = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -20817,6 +22056,648 @@ namespace SimulationCSharpClient.Client
         }
     }
     
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
+    public partial class PartSupportPost : System.ComponentModel.INotifyPropertyChanged
+    {
+        private int _partId;
+        private string _name;
+        private string _description;
+        private string _originalFileName;
+        private string _fileLocation;
+    
+        /// <summary>Id of the part that owns this support record</summary>
+        [Newtonsoft.Json.JsonProperty("partId", Required = Newtonsoft.Json.Required.Always)]
+        public int PartId
+        {
+            get { return _partId; }
+            set 
+            {
+                if (_partId != value)
+                {
+                    _partId = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Name of the support, max 50 characters</summary>
+        [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public string Name
+        {
+            get { return _name; }
+            set 
+            {
+                if (_name != value)
+                {
+                    _name = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Free form description of the support, max 2048 characters</summary>
+        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Description
+        {
+            get { return _description; }
+            set 
+            {
+                if (_description != value)
+                {
+                    _description = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Original support file name, max 248 characters</summary>
+        [Newtonsoft.Json.JsonProperty("originalFileName", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public string OriginalFileName
+        {
+            get { return _originalFileName; }
+            set 
+            {
+                if (_originalFileName != value)
+                {
+                    _originalFileName = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Remote s3 key of a newly uploaded stl file.  Use parts/:partId/supports/geometryurl endpoint to upload the support before calling POST.  Max length 256 characters.</summary>
+        [Newtonsoft.Json.JsonProperty("fileLocation", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public string FileLocation
+        {
+            get { return _fileLocation; }
+            set 
+            {
+                if (_fileLocation != value)
+                {
+                    _fileLocation = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        public string ToJson() 
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+        }
+        
+        public static PartSupportPost FromJson(string data)
+        {
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<PartSupportPost>(data);
+        }
+    
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected virtual void RaisePropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+        {
+            var handler = PropertyChanged;
+            if (handler != null) 
+                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
+    public partial class PartSupport : System.ComponentModel.INotifyPropertyChanged
+    {
+        private int _id;
+        private int _partId;
+        private Part _part;
+        private string _name;
+        private string _originalFileName;
+        private string _description;
+        private string _fileLocation;
+        private bool _archived;
+        private PartSupportAvailability _availability;
+        private PartSupportSupportType _supportType;
+        private double? _xMin;
+        private double? _yMin;
+        private double? _zMin;
+        private double? _sizeX;
+        private double? _sizeY;
+        private double? _sizeZ;
+        private int? _triangleCount;
+        private double? _volume;
+        private System.DateTime? _created;
+        private string _createdBy;
+        private System.DateTime? _lastModified;
+        private string _lastModifiedBy;
+        private int? _elements;
+        private int? _nodes;
+        private double? _collapseCost;
+        private double? _surfaceArea;
+        private int? _estimatedMemory;
+        private int? _maxMemory;
+        private int? _estimatedWork;
+        private double? _estimateVoxelSize;
+        private double? _minimumSupportHeight;
+        private string _errorReason;
+    
+        /// <summary>Id of the part</summary>
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
+        public int Id
+        {
+            get { return _id; }
+            set 
+            {
+                if (_id != value)
+                {
+                    _id = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Id of the part that owns this support record</summary>
+        [Newtonsoft.Json.JsonProperty("partId", Required = Newtonsoft.Json.Required.Always)]
+        public int PartId
+        {
+            get { return _partId; }
+            set 
+            {
+                if (_partId != value)
+                {
+                    _partId = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("part", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public Part Part
+        {
+            get { return _part; }
+            set 
+            {
+                if (_part != value)
+                {
+                    _part = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public string Name
+        {
+            get { return _name; }
+            set 
+            {
+                if (_name != value)
+                {
+                    _name = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>The original file name from the user</summary>
+        [Newtonsoft.Json.JsonProperty("originalFileName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string OriginalFileName
+        {
+            get { return _originalFileName; }
+            set 
+            {
+                if (_originalFileName != value)
+                {
+                    _originalFileName = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Description
+        {
+            get { return _description; }
+            set 
+            {
+                if (_description != value)
+                {
+                    _description = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>File name of part relative to fileBucket</summary>
+        [Newtonsoft.Json.JsonProperty("fileLocation", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public string FileLocation
+        {
+            get { return _fileLocation; }
+            set 
+            {
+                if (_fileLocation != value)
+                {
+                    _fileLocation = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Designates whether this entity has been archived.</summary>
+        [Newtonsoft.Json.JsonProperty("archived", Required = Newtonsoft.Json.Required.Always)]
+        public bool Archived
+        {
+            get { return _archived; }
+            set 
+            {
+                if (_archived != value)
+                {
+                    _archived = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Describes the availabity of the part. Uploaded - the part has been uploaded.  Processing - the part is being processed.  Available - the part was processed successfully and can be used in simulations.  Error - an error occurred, contact support@3dsim.com.</summary>
+        [Newtonsoft.Json.JsonProperty("availability", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public PartSupportAvailability Availability
+        {
+            get { return _availability; }
+            set 
+            {
+                if (_availability != value)
+                {
+                    _availability = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>type of geometry. Volumeless - thinwall, closed - watertight</summary>
+        [Newtonsoft.Json.JsonProperty("supportType", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public PartSupportSupportType SupportType
+        {
+            get { return _supportType; }
+            set 
+            {
+                if (_supportType != value)
+                {
+                    _supportType = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>x location (in meters) where the lower left corner of the bounding box of the part will be placed on the bed, calculated when the part is processed, use 0 for initial post</summary>
+        [Newtonsoft.Json.JsonProperty("xMin", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? XMin
+        {
+            get { return _xMin; }
+            set 
+            {
+                if (_xMin != value)
+                {
+                    _xMin = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>y location (in meters) where the lower left corner of the bounding box of the part will be placed on the bed, calculated when the part is processed, use 0 for initial post</summary>
+        [Newtonsoft.Json.JsonProperty("yMin", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? YMin
+        {
+            get { return _yMin; }
+            set 
+            {
+                if (_yMin != value)
+                {
+                    _yMin = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>z location (in meters) where the lower left corner of the bounding box of the part will be placed on the bed, calculated when the part is processed, use 0 for initial post</summary>
+        [Newtonsoft.Json.JsonProperty("zMin", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? ZMin
+        {
+            get { return _zMin; }
+            set 
+            {
+                if (_zMin != value)
+                {
+                    _zMin = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Width of the Part bounding box (in meters), calculated when the part is processed, use 0 for initial post</summary>
+        [Newtonsoft.Json.JsonProperty("sizeX", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? SizeX
+        {
+            get { return _sizeX; }
+            set 
+            {
+                if (_sizeX != value)
+                {
+                    _sizeX = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Length of the Part bounding box (in meters), calculated when the part is processed, use 0 for initial post</summary>
+        [Newtonsoft.Json.JsonProperty("sizeY", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? SizeY
+        {
+            get { return _sizeY; }
+            set 
+            {
+                if (_sizeY != value)
+                {
+                    _sizeY = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Height of the Part bounding box (in meters), calculated when the part is processed, use 0 for initial post</summary>
+        [Newtonsoft.Json.JsonProperty("sizeZ", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? SizeZ
+        {
+            get { return _sizeZ; }
+            set 
+            {
+                if (_sizeZ != value)
+                {
+                    _sizeZ = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Number of triangles in the original STL file, calculated when the part is processed, use 0 for initial post</summary>
+        [Newtonsoft.Json.JsonProperty("triangleCount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int? TriangleCount
+        {
+            get { return _triangleCount; }
+            set 
+            {
+                if (_triangleCount != value)
+                {
+                    _triangleCount = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Approximate volume of the Part (in meters^3), calculated when the part is processed, use 0 for initial post</summary>
+        [Newtonsoft.Json.JsonProperty("volume", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? Volume
+        {
+            get { return _volume; }
+            set 
+            {
+                if (_volume != value)
+                {
+                    _volume = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>created time stamp, set server-side, read only</summary>
+        [Newtonsoft.Json.JsonProperty("created", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.DateTime? Created
+        {
+            get { return _created; }
+            set 
+            {
+                if (_created != value)
+                {
+                    _created = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>assigned user, set server-side, read only</summary>
+        [Newtonsoft.Json.JsonProperty("createdBy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string CreatedBy
+        {
+            get { return _createdBy; }
+            set 
+            {
+                if (_createdBy != value)
+                {
+                    _createdBy = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>last modified time stamp, set server-side, read only</summary>
+        [Newtonsoft.Json.JsonProperty("lastModified", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.DateTime? LastModified
+        {
+            get { return _lastModified; }
+            set 
+            {
+                if (_lastModified != value)
+                {
+                    _lastModified = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>assigned user, set server-side, read only</summary>
+        [Newtonsoft.Json.JsonProperty("lastModifiedBy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string LastModifiedBy
+        {
+            get { return _lastModifiedBy; }
+            set 
+            {
+                if (_lastModifiedBy != value)
+                {
+                    _lastModifiedBy = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("elements", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int? Elements
+        {
+            get { return _elements; }
+            set 
+            {
+                if (_elements != value)
+                {
+                    _elements = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("nodes", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int? Nodes
+        {
+            get { return _nodes; }
+            set 
+            {
+                if (_nodes != value)
+                {
+                    _nodes = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("collapseCost", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? CollapseCost
+        {
+            get { return _collapseCost; }
+            set 
+            {
+                if (_collapseCost != value)
+                {
+                    _collapseCost = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("surfaceArea", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? SurfaceArea
+        {
+            get { return _surfaceArea; }
+            set 
+            {
+                if (_surfaceArea != value)
+                {
+                    _surfaceArea = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Estimated memory usage for mechanics solver using estimateVoxelSize</summary>
+        [Newtonsoft.Json.JsonProperty("estimatedMemory", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int? EstimatedMemory
+        {
+            get { return _estimatedMemory; }
+            set 
+            {
+                if (_estimatedMemory != value)
+                {
+                    _estimatedMemory = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Estimated max memory usage for mechanics solver using estimateVoxelSize</summary>
+        [Newtonsoft.Json.JsonProperty("maxMemory", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int? MaxMemory
+        {
+            get { return _maxMemory; }
+            set 
+            {
+                if (_maxMemory != value)
+                {
+                    _maxMemory = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Estimated work using estimateVoxelSize</summary>
+        [Newtonsoft.Json.JsonProperty("estimatedWork", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int? EstimatedWork
+        {
+            get { return _estimatedWork; }
+            set 
+            {
+                if (_estimatedWork != value)
+                {
+                    _estimatedWork = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Voxel size used for estimatedMemory, maxMemory, estimatedWork</summary>
+        [Newtonsoft.Json.JsonProperty("estimateVoxelSize", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? EstimateVoxelSize
+        {
+            get { return _estimateVoxelSize; }
+            set 
+            {
+                if (_estimateVoxelSize != value)
+                {
+                    _estimateVoxelSize = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>height (mm) that this support will raise the part</summary>
+        [Newtonsoft.Json.JsonProperty("minimumSupportHeight", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? MinimumSupportHeight
+        {
+            get { return _minimumSupportHeight; }
+            set 
+            {
+                if (_minimumSupportHeight != value)
+                {
+                    _minimumSupportHeight = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>If an error ocurrs uploading a part, a string will be populated in this field.</summary>
+        [Newtonsoft.Json.JsonProperty("errorReason", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string ErrorReason
+        {
+            get { return _errorReason; }
+            set 
+            {
+                if (_errorReason != value)
+                {
+                    _errorReason = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        public string ToJson() 
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+        }
+        
+        public static PartSupport FromJson(string data)
+        {
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<PartSupport>(data);
+        }
+    
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected virtual void RaisePropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+        {
+            var handler = PropertyChanged;
+            if (handler != null) 
+                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+        }
+    }
+    
     /// <summary>If specified, will filter to only include parts with the given availability.  Uploaded - the part has been uploaded.  Processing - the part is being processed.  Available - the part was processed successfully and can be used in simulations.  Error - an error occurred, contact support@3dsim.com.</summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
     public enum Availability
@@ -21225,6 +23106,17 @@ namespace SimulationCSharpClient.Client
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
+    public enum PartBasedSimulationParametersSupportType
+    {
+        [System.Runtime.Serialization.EnumMember(Value = "Generated")]
+        Generated = 0,
+    
+        [System.Runtime.Serialization.EnumMember(Value = "UserDefined")]
+        UserDefined = 1,
+    
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
     public enum PartAvailability
     {
         [System.Runtime.Serialization.EnumMember(Value = "Uploaded")]
@@ -21349,6 +23241,14 @@ namespace SimulationCSharpClient.Client
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
+    public enum SelectedPointSensorType
+    {
+        [System.Runtime.Serialization.EnumMember(Value = "PrintRite")]
+        PrintRite = 0,
+    
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
     public enum BuildFileAvailability
     {
         [System.Runtime.Serialization.EnumMember(Value = "Uploaded")]
@@ -21379,6 +23279,34 @@ namespace SimulationCSharpClient.Client
     
         [System.Runtime.Serialization.EnumMember(Value = "ThreeDSystems")]
         ThreeDSystems = 3,
+    
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
+    public enum PartSupportAvailability
+    {
+        [System.Runtime.Serialization.EnumMember(Value = "Uploaded")]
+        Uploaded = 0,
+    
+        [System.Runtime.Serialization.EnumMember(Value = "Processing")]
+        Processing = 1,
+    
+        [System.Runtime.Serialization.EnumMember(Value = "Available")]
+        Available = 2,
+    
+        [System.Runtime.Serialization.EnumMember(Value = "Error")]
+        Error = 3,
+    
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
+    public enum PartSupportSupportType
+    {
+        [System.Runtime.Serialization.EnumMember(Value = "ThinWall")]
+        ThinWall = 0,
+    
+        [System.Runtime.Serialization.EnumMember(Value = "Watertight")]
+        Watertight = 1,
     
     }
 
