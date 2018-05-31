@@ -16085,8 +16085,8 @@ namespace SimulationCSharpClient.Client
         private bool _outputInstantDynamicSensor;
         private double? _instantDynamicSensorRadius;
         private System.Collections.ObjectModel.ObservableCollection<int> _instantDynamicSensorLayers;
-        private bool _outputPyroVirtualSensor;
-        private double? _pyroVirtualSensorRadius;
+        private bool _outputPrintRitePCSSensor;
+        private double? _printRitePCSSensorRadius;
         private bool? _pyroVirtualSensorOutputAllLayers;
         private bool _outputInstantStaticSensor;
         private double? _instantStaticSensorRadius;
@@ -16427,32 +16427,32 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        /// <summary>if true, pyrometer sensor data will be collected for each selectedPoint property</summary>
-        [Newtonsoft.Json.JsonProperty("outputPyroVirtualSensor", Required = Newtonsoft.Json.Required.Always)]
-        public bool OutputPyroVirtualSensor
+        /// <summary>if true, PrintRite sensor data will be collected for each selectedPoint property</summary>
+        [Newtonsoft.Json.JsonProperty("outputPrintRitePCSSensor", Required = Newtonsoft.Json.Required.Always)]
+        public bool OutputPrintRitePCSSensor
         {
-            get { return _outputPyroVirtualSensor; }
+            get { return _outputPrintRitePCSSensor; }
             set 
             {
-                if (_outputPyroVirtualSensor != value)
+                if (_outputPrintRitePCSSensor != value)
                 {
-                    _outputPyroVirtualSensor = value; 
+                    _outputPrintRitePCSSensor = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
-        /// <summary>radius for pyro sensor data collection in mm</summary>
-        [Newtonsoft.Json.JsonProperty("pyroVirtualSensorRadius", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        /// <summary>radius for PrintRite sensor data collection in mm</summary>
+        [Newtonsoft.Json.JsonProperty("printRitePCSSensorRadius", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [System.ComponentModel.DataAnnotations.Range(0.05D, 1.5D)]
-        public double? PyroVirtualSensorRadius
+        public double? PrintRitePCSSensorRadius
         {
-            get { return _pyroVirtualSensorRadius; }
+            get { return _printRitePCSSensorRadius; }
             set 
             {
-                if (_pyroVirtualSensorRadius != value)
+                if (_printRitePCSSensorRadius != value)
                 {
-                    _pyroVirtualSensorRadius = value; 
+                    _printRitePCSSensorRadius = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -16643,8 +16643,8 @@ namespace SimulationCSharpClient.Client
         private bool _outputInstantDynamicSensor;
         private double? _instantDynamicSensorRadius;
         private System.Collections.ObjectModel.ObservableCollection<int> _instantDynamicSensorLayers;
-        private bool _outputPyroVirtualSensor;
-        private double? _pyroVirtualSensorRadius;
+        private bool _outputPrintRitePCSSensor;
+        private double? _printRitePCSSensorRadius;
         private bool? _pyroVirtualSensorOutputAllLayers;
         private bool _outputInstantStaticSensor;
         private double? _instantStaticSensorRadius;
@@ -17494,32 +17494,32 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        /// <summary>if true, pyrometer sensor data will be collected for each selectedPoint property</summary>
-        [Newtonsoft.Json.JsonProperty("outputPyroVirtualSensor", Required = Newtonsoft.Json.Required.Always)]
-        public bool OutputPyroVirtualSensor
+        /// <summary>if true, PrintRite sensor data will be collected for each selectedPoint property</summary>
+        [Newtonsoft.Json.JsonProperty("outputPrintRitePCSSensor", Required = Newtonsoft.Json.Required.Always)]
+        public bool OutputPrintRitePCSSensor
         {
-            get { return _outputPyroVirtualSensor; }
+            get { return _outputPrintRitePCSSensor; }
             set 
             {
-                if (_outputPyroVirtualSensor != value)
+                if (_outputPrintRitePCSSensor != value)
                 {
-                    _outputPyroVirtualSensor = value; 
+                    _outputPrintRitePCSSensor = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
-        /// <summary>radius for pyro sensor data collection in mm</summary>
-        [Newtonsoft.Json.JsonProperty("pyroVirtualSensorRadius", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        /// <summary>radius for PrintRite sensor data collection in mm</summary>
+        [Newtonsoft.Json.JsonProperty("printRitePCSSensorRadius", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [System.ComponentModel.DataAnnotations.Range(0.05D, 1.5D)]
-        public double? PyroVirtualSensorRadius
+        public double? PrintRitePCSSensorRadius
         {
-            get { return _pyroVirtualSensorRadius; }
+            get { return _printRitePCSSensorRadius; }
             set 
             {
-                if (_pyroVirtualSensorRadius != value)
+                if (_printRitePCSSensorRadius != value)
                 {
-                    _pyroVirtualSensorRadius = value; 
+                    _printRitePCSSensorRadius = value; 
                     RaisePropertyChanged();
                 }
             }
