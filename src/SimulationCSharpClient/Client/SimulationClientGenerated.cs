@@ -16085,8 +16085,8 @@ namespace SimulationCSharpClient.Client
         private bool _outputInstantDynamicSensor;
         private double? _instantDynamicSensorRadius;
         private System.Collections.ObjectModel.ObservableCollection<int> _instantDynamicSensorLayers;
-        private bool _outputPrintRitePCSSensor;
-        private double? _printRitePCSSensorRadius;
+        private bool _outputPrintRitePcsSensor;
+        private double? _printRitePcsSensorRadius;
         private bool? _pyroVirtualSensorOutputAllLayers;
         private bool _outputInstantStaticSensor;
         private double? _instantStaticSensorRadius;
@@ -16428,31 +16428,31 @@ namespace SimulationCSharpClient.Client
         }
     
         /// <summary>if true, PrintRite sensor data will be collected for each selectedPoint property</summary>
-        [Newtonsoft.Json.JsonProperty("outputPrintRitePCSSensor", Required = Newtonsoft.Json.Required.Always)]
-        public bool OutputPrintRitePCSSensor
+        [Newtonsoft.Json.JsonProperty("outputPrintRitePcsSensor", Required = Newtonsoft.Json.Required.Always)]
+        public bool OutputPrintRitePcsSensor
         {
-            get { return _outputPrintRitePCSSensor; }
+            get { return _outputPrintRitePcsSensor; }
             set 
             {
-                if (_outputPrintRitePCSSensor != value)
+                if (_outputPrintRitePcsSensor != value)
                 {
-                    _outputPrintRitePCSSensor = value; 
+                    _outputPrintRitePcsSensor = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
         /// <summary>radius for PrintRite sensor data collection in mm</summary>
-        [Newtonsoft.Json.JsonProperty("printRitePCSSensorRadius", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonProperty("printRitePcsSensorRadius", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [System.ComponentModel.DataAnnotations.Range(0.05D, 1.5D)]
-        public double? PrintRitePCSSensorRadius
+        public double? PrintRitePcsSensorRadius
         {
-            get { return _printRitePCSSensorRadius; }
+            get { return _printRitePcsSensorRadius; }
             set 
             {
-                if (_printRitePCSSensorRadius != value)
+                if (_printRitePcsSensorRadius != value)
                 {
-                    _printRitePCSSensorRadius = value; 
+                    _printRitePcsSensorRadius = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -16643,8 +16643,8 @@ namespace SimulationCSharpClient.Client
         private bool _outputInstantDynamicSensor;
         private double? _instantDynamicSensorRadius;
         private System.Collections.ObjectModel.ObservableCollection<int> _instantDynamicSensorLayers;
-        private bool _outputPrintRitePCSSensor;
-        private double? _printRitePCSSensorRadius;
+        private bool _outputPrintRitePcsSensor;
+        private double? _printRitePcsSensorRadius;
         private bool? _pyroVirtualSensorOutputAllLayers;
         private bool _outputInstantStaticSensor;
         private double? _instantStaticSensorRadius;
@@ -17495,31 +17495,31 @@ namespace SimulationCSharpClient.Client
         }
     
         /// <summary>if true, PrintRite sensor data will be collected for each selectedPoint property</summary>
-        [Newtonsoft.Json.JsonProperty("outputPrintRitePCSSensor", Required = Newtonsoft.Json.Required.Always)]
-        public bool OutputPrintRitePCSSensor
+        [Newtonsoft.Json.JsonProperty("outputPrintRitePcsSensor", Required = Newtonsoft.Json.Required.Always)]
+        public bool OutputPrintRitePcsSensor
         {
-            get { return _outputPrintRitePCSSensor; }
+            get { return _outputPrintRitePcsSensor; }
             set 
             {
-                if (_outputPrintRitePCSSensor != value)
+                if (_outputPrintRitePcsSensor != value)
                 {
-                    _outputPrintRitePCSSensor = value; 
+                    _outputPrintRitePcsSensor = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
         /// <summary>radius for PrintRite sensor data collection in mm</summary>
-        [Newtonsoft.Json.JsonProperty("printRitePCSSensorRadius", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonProperty("printRitePcsSensorRadius", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [System.ComponentModel.DataAnnotations.Range(0.05D, 1.5D)]
-        public double? PrintRitePCSSensorRadius
+        public double? PrintRitePcsSensorRadius
         {
-            get { return _printRitePCSSensorRadius; }
+            get { return _printRitePcsSensorRadius; }
             set 
             {
-                if (_printRitePCSSensorRadius != value)
+                if (_printRitePcsSensorRadius != value)
                 {
-                    _printRitePCSSensorRadius = value; 
+                    _printRitePcsSensorRadius = value; 
                     RaisePropertyChanged();
                 }
             }
