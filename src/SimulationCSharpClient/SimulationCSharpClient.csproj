@@ -1,5 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
+        <Version>2.10.0</Version>
         <TargetFramework>netcoreapp2.0</TargetFramework>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <AssemblyName>SimulationCSharpClient</AssemblyName>
@@ -8,7 +9,6 @@
         <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
         <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
         <CodeAnalysisRuleSet>../../customStylecop.ruleset</CodeAnalysisRuleSet>
-        <Version>2.9.1</Version>
         <Authors />
         <PackageProjectUrl>https://github.com/3DSIM/simulation-csharp-client</PackageProjectUrl>
         <RepositoryUrl>https://github.com/3DSIM/simulation-csharp-client</RepositoryUrl>
