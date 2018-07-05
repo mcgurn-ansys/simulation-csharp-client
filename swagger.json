@@ -7524,7 +7524,8 @@
         "laserSpeedLowerBound",
         "laserSpeedUpperBound",
         "laserPowerLowerBound",
-        "laserPowerUpperBound"
+        "laserPowerUpperBound",
+        "hardeningFactor"
       ],
       "properties": {
         "id": {
@@ -7719,6 +7720,10 @@
           "format": "double"
         },
         "laserPowerUpperBound": {
+          "type": "number",
+          "format": "double"
+        },
+        "hardeningFactor": {
           "type": "number",
           "format": "double"
         }

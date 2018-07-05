@@ -19772,6 +19772,7 @@ namespace SimulationCSharpClient.Client
         private double _laserSpeedUpperBound;
         private double _laserPowerLowerBound;
         private double _laserPowerUpperBound;
+        private double _hardeningFactor;
     
         /// <summary>material configuration identifier</summary>
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -20447,6 +20448,20 @@ namespace SimulationCSharpClient.Client
                 if (_laserPowerUpperBound != value)
                 {
                     _laserPowerUpperBound = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("hardeningFactor", Required = Newtonsoft.Json.Required.Always)]
+        public double HardeningFactor
+        {
+            get { return _hardeningFactor; }
+            set 
+            {
+                if (_hardeningFactor != value)
+                {
+                    _hardeningFactor = value; 
                     RaisePropertyChanged();
                 }
             }
