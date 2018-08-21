@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Dockerfile = Dockerfile
 		README.md = README.md
 		version.properties = version.properties
+		swagger.json = swagger.json
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimulationCSharpClient", "src\SimulationCSharpClient\SimulationCSharpClient.csproj", "{8F2D60B4-9624-4193-99A3-3B8AA2E7A257}"

@@ -6076,6 +6076,526 @@
           }
         ]
       }
+    },
+    "/microstructuresimulations": {
+      "get": {
+        "description": "Gets a list of all microstructure simulations for the active user",
+        "operationId": "getMicrostructureSimulations",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "query",
+            "description": "the organization id to get items for.  Must be provided as API callers only have access to items belonging to their organization.",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "simulation status for items retrieved.  If an array of items is sent, they are treated as \"OR\" operations. e.g. status=InProgress,Requested would yield a list of simulations that are in either state.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "Draft",
+                "Requested",
+                "InProgress",
+                "Cancelled",
+                "Error",
+                "Success"
+              ]
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "starting paging count; ex. offset of 60 will skip the first 60 items in the list",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "number of items to return within the query",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc",
+            "required": false,
+            "type": "array",
+            "collectionFormat": "csv",
+            "items": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully found the list of items",
+            "headers": {
+              "X-Pagination": {
+                "type": "string",
+                "description": "Contains paging information in json format - totalCount, totalPages"
+              }
+            },
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MicrostructureSimulation"
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "simulationSecurity": [
+              "read:simulations"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "description": "Posts a new microstructure simulation",
+        "operationId": "postMicrostructureSimulation",
+        "parameters": [
+          {
+            "name": "MicrostructureSimulation",
+            "in": "body",
+            "description": "MicrostructureSimulation fields required to add the simulation",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MicrostructureSimulation"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully added a simulation",
+            "schema": {
+              "$ref": "#/definitions/MicrostructureSimulation"
+            }
+          },
+          "401": {
+            "description": "Not authorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "simulationSecurity": [
+              "write:simulations"
+            ]
+          }
+        ]
+      }
+    },
+    "/microstructuresimulations/{id}": {
+      "get": {
+        "description": "Get a microstructure simulation",
+        "operationId": "getMicrostructureSimulation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "simulation identifier",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved simulation",
+            "schema": {
+              "$ref": "#/definitions/MicrostructureSimulation"
+            }
+          },
+          "401": {
+            "description": "Not authorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Simulation not found (id invalid)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "simulationSecurity": [
+              "read:simulations"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "description": "Puts an updated microstructure simulation (Only accepts updates to title, description, and tags once simulation is started)",
+        "operationId": "putMicrostructureSimulation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "simulation identifier",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "MicrostructureSimulation",
+            "in": "body",
+            "description": "MicrostructureSimulation fields required to update a simulation",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MicrostructureSimulation"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully updated a simulation",
+            "schema": {
+              "$ref": "#/definitions/MicrostructureSimulation"
+            }
+          },
+          "401": {
+            "description": "Not authorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "simulationSecurity": [
+              "write:simulations"
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "description": "This will delete a microstructure simulation and all its associated data including output, logs, and any results from completed simulations",
+        "operationId": "deleteMicrostructureSimulation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of simulation",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully deleted a simulation"
+          },
+          "401": {
+            "description": "Not authorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "simulationSecurity": [
+              "write:simulations"
+            ]
+          }
+        ]
+      }
+    },
+    "/microstructuresimulations/{id}/children": {
+      "get": {
+        "description": "Gets a list of all child simulations for a parent simulation",
+        "operationId": "getMicrostructureSimulationChildren",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "simulation identifier",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "starting paging count; ex. offset of 60 will skip the first 60 items in the list",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "number of items to return within the query",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "simulation status for items retrieved.  If an array of items is sent, they are treated as \"OR\" operations. e.g. status=InProgress,Requested would yield a list of simulations that are in either state.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "Draft",
+                "Requested",
+                "InProgress",
+                "Cancelled",
+                "Error",
+                "Success"
+              ]
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc",
+            "required": false,
+            "type": "array",
+            "collectionFormat": "csv",
+            "items": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully found the list of items",
+            "headers": {
+              "X-Pagination": {
+                "type": "string",
+                "description": "Contains paging information in json format - totalCount, totalPages"
+              }
+            },
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MicrostructureSimulation"
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "simulationSecurity": [
+              "read:simulations"
+            ]
+          }
+        ]
+      }
+    },
+    "/microstructuresimulations/{id}/cancel": {
+      "put": {
+        "description": "Cancels a microstructure simulation",
+        "operationId": "cancelMicrostructureSimulation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "simulation identifier",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Simulation was successfully cancelled."
+          },
+          "401": {
+            "description": "Not authorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Simulation not found (id invalid)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "simulationSecurity": [
+              "write:simulations"
+            ]
+          }
+        ]
+      }
+    },
+    "/microstructuresimulations/{id}/start": {
+      "put": {
+        "description": "Starts a microstructure simulation.  If the simulation has been started before, start requests have no effect.",
+        "operationId": "startMicrostructureSimulation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "simulation identifier",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Simulation was successfully started."
+          },
+          "401": {
+            "description": "Not authorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Simulation not found (id invalid)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "simulationSecurity": [
+              "write:simulations"
+            ]
+          }
+        ]
+      }
     }
   },
   "securityDefinitions": {
@@ -6316,7 +6836,8 @@
         "ThermalSimulation",
         "PorositySimulation",
         "AssumedStrainSimulation",
-        "ScanPatternSimulation"
+        "ScanPatternSimulation",
+        "MicrostructureSimulation"
       ]
     },
     "Simulation": {
@@ -6728,16 +7249,13 @@
       "required": [
         "supportAngle",
         "supportFactorOfSafety",
-        "minimumWallThickness",
-        "maximumWallThickness",
-        "minimumWallDistance",
-        "maximumWallDistance",
         "minimumSupportHeight",
         "voxelSize",
         "supportYieldStrength",
         "supportYieldStrengthRatio",
         "elasticModulus",
         "poissonRatio",
+        "hardeningFactor",
         "strainScalingFactor",
         "outputDisplacementAfterCutoff",
         "performSupportOptimization",
@@ -6773,6 +7291,11 @@
         "poissonRatio": {
           "type": "number"
         },
+        "hardeningFactor": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 0.5
+        },
         "strainScalingFactor": {
           "type": "number"
         },
@@ -6790,29 +7313,35 @@
           "minimum": 0.00002,
           "maximum": 0.002
         },
-        "minimumWallThickness": {
+        "minimumThickWallThickness": {
           "description": "Must be between 0.00005 to 0.0003 meters, Must be less than maximumWallThickness",
           "type": "number",
-          "minimum": 0.00005,
-          "maximum": 0.0003
+          "minimum": 0.00002,
+          "maximum": 0.01
         },
-        "maximumWallThickness": {
+        "maximumThickWallThickness": {
           "description": "Must be between 0.00015 to 0.002 meters, Must be greater than minimumWallThickness",
           "type": "number",
-          "minimum": 0.00015,
-          "maximum": 0.002
+          "minimum": 0.00002,
+          "maximum": 0.01
         },
-        "minimumWallDistance": {
-          "description": "Must be between 0 to 0.0003 meters, Must be less than maximumWallDistance",
+        "thickWallDistance": {
+          "description": "The distance between thickwall supports",
           "type": "number",
-          "minimum": 0,
-          "maximum": 0.0003
+          "minimum": 0.00002,
+          "maximum": 0.01
         },
-        "maximumWallDistance": {
-          "description": "Must be between 0 to 0.005 meters, Must be greater than minimumWallDistance",
+        "thinWallThickness": {
           "type": "number",
-          "minimum": 0,
-          "maximum": 0.005
+          "description": "The width of the thinwall supports",
+          "minimum": 0.00002,
+          "maximum": 0.0005
+        },
+        "maximumThinWallDistance": {
+          "description": "The maximum distance between thinwalls",
+          "type": "number",
+          "minimum": 0.00002,
+          "maximum": 0.01
         },
         "minimumSupportHeight": {
           "description": "Distance to move the part off the base plate for supports, Must be between 0 to 0.005 meters",
@@ -8526,6 +9055,143 @@
         "errorReason": {
           "type": "string",
           "description": "If an error ocurrs uploading a part, a string will be populated in this field."
+        }
+      }
+    },
+    "MicrostructureSimulationParameters": {
+      "required": [
+        "layerThickness",
+        "hatchSpacing",
+        "laserWattage",
+        "scanSpeed",
+        "slicingStripeWidth",
+        "startingLayerAngle",
+        "layerRotationAngle",
+        "microstructurePoints"
+      ],
+      "properties": {
+        "layerThickness": {
+          "description": "Must be between 0.00001 to 0.0001 meters",
+          "type": "number",
+          "minimum": 0.00001,
+          "maximum": 0.0001
+        },
+        "hatchSpacing": {
+          "description": "Must be between 0.00001 to 0.001 meters",
+          "type": "number",
+          "minimum": 0.00001,
+          "maximum": 0.001
+        },
+        "laserWattage": {
+          "description": "Must be between 10 to 1000 watts",
+          "type": "number",
+          "minimum": 10,
+          "maximum": 1000
+        },
+        "scanSpeed": {
+          "description": "Must be between 0.01 to 10 meters/second",
+          "type": "number",
+          "minimum": 0.01,
+          "maximum": 10
+        },
+        "slicingStripeWidth": {
+          "description": "Must be between 0.001 to 0.1 meters",
+          "type": "number",
+          "minimum": 0.001,
+          "maximum": 0.1
+        },
+        "startingLayerAngle": {
+          "description": "Must be between 0 to 180 degrees",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 180
+        },
+        "layerRotationAngle": {
+          "description": "Must be between 0 to 180 degrees",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 180
+        },
+        "microstructurePoints": {
+          "description": "List of points within the part where the microstructure will be evaluated",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MicrostructurePoint"
+          }
+        },
+        "sensorMinimumTemperature": {
+          "description": "Minimum temperature above which microstructure changes will be evaluated",
+          "type": "number",
+          "format": "double"
+        },
+        "heaterTemperature": {
+          "description": "Heater temperature in degrees kelvin, aka baseplate temperature",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1000,
+          "format": "double"
+        },
+        "randomSeed": {
+          "description": "Seed value used for random number generation. If not provided it will be auto-generated.",
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "MicrostructureSimulation": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Simulation"
+        },
+        {
+          "$ref": "#/definitions/PartBasedSimulationParameters"
+        },
+        {
+          "$ref": "#/definitions/MicrostructureSimulationParameters"
+        }
+      ]
+    },
+    "MicrostructurePoint": {
+      "description": "describes a location at which the microstructure will be evaluated",
+      "required": [
+        "label",
+        "simulationId",
+        "x",
+        "y",
+        "z",
+        "radius"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "simulationId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "ID of simulation this point belongs to"
+        },
+        "label": {
+          "type": "string",
+          "description": "User provided name of this point"
+        },
+        "x": {
+          "type": "number",
+          "description": "X coordinate of this point"
+        },
+        "y": {
+          "type": "number",
+          "description": "Y coordinate of this point"
+        },
+        "z": {
+          "type": "number",
+          "description": "Z coordinate of this point"
+        },
+        "radius": {
+          "type": "number",
+          "description": "Radius of hemispherical volume of interest in mm centered at each X,Y,Z",
+          "minimum": 0.05,
+          "maximum": 1.5
         }
       }
     }

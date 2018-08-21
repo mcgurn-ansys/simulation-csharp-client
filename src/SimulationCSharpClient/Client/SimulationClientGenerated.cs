@@ -1288,6 +1288,112 @@ namespace SimulationCSharpClient.Client
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         System.Threading.Tasks.Task<string> GetBuildFileGeometryUrlAsync(int id, System.Threading.CancellationToken cancellationToken);
     
+        /// <param name="organizationId">the organization id to get items for.  Must be provided as API callers only have access to items belonging to their organization.</param>
+        /// <param name="status">simulation status for items retrieved.  If an array of items is sent, they are treated as "OR" operations. e.g. status=InProgress,Requested would yield a list of simulations that are in either state.</param>
+        /// <param name="offset">starting paging count; ex. offset of 60 will skip the first 60 items in the list</param>
+        /// <param name="limit">number of items to return within the query</param>
+        /// <param name="sort">key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc</param>
+        /// <returns>Successfully found the list of items</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<MicrostructureSimulation>> GetMicrostructureSimulationsAsync(int organizationId, System.Collections.Generic.IEnumerable<Anonymous14> status, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort);
+    
+        /// <param name="organizationId">the organization id to get items for.  Must be provided as API callers only have access to items belonging to their organization.</param>
+        /// <param name="status">simulation status for items retrieved.  If an array of items is sent, they are treated as "OR" operations. e.g. status=InProgress,Requested would yield a list of simulations that are in either state.</param>
+        /// <param name="offset">starting paging count; ex. offset of 60 will skip the first 60 items in the list</param>
+        /// <param name="limit">number of items to return within the query</param>
+        /// <param name="sort">key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc</param>
+        /// <returns>Successfully found the list of items</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<MicrostructureSimulation>> GetMicrostructureSimulationsAsync(int organizationId, System.Collections.Generic.IEnumerable<Anonymous14> status, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, System.Threading.CancellationToken cancellationToken);
+    
+        /// <param name="microstructureSimulation">MicrostructureSimulation fields required to add the simulation</param>
+        /// <returns>Successfully added a simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<MicrostructureSimulation> PostMicrostructureSimulationAsync(MicrostructureSimulation microstructureSimulation);
+    
+        /// <param name="microstructureSimulation">MicrostructureSimulation fields required to add the simulation</param>
+        /// <returns>Successfully added a simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        System.Threading.Tasks.Task<MicrostructureSimulation> PostMicrostructureSimulationAsync(MicrostructureSimulation microstructureSimulation, System.Threading.CancellationToken cancellationToken);
+    
+        /// <param name="id">simulation identifier</param>
+        /// <returns>Successfully retrieved simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<MicrostructureSimulation> GetMicrostructureSimulationAsync(int id);
+    
+        /// <param name="id">simulation identifier</param>
+        /// <returns>Successfully retrieved simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        System.Threading.Tasks.Task<MicrostructureSimulation> GetMicrostructureSimulationAsync(int id, System.Threading.CancellationToken cancellationToken);
+    
+        /// <param name="id">simulation identifier</param>
+        /// <param name="microstructureSimulation">MicrostructureSimulation fields required to update a simulation</param>
+        /// <returns>Successfully updated a simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<MicrostructureSimulation> PutMicrostructureSimulationAsync(int id, MicrostructureSimulation microstructureSimulation);
+    
+        /// <param name="id">simulation identifier</param>
+        /// <param name="microstructureSimulation">MicrostructureSimulation fields required to update a simulation</param>
+        /// <returns>Successfully updated a simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        System.Threading.Tasks.Task<MicrostructureSimulation> PutMicrostructureSimulationAsync(int id, MicrostructureSimulation microstructureSimulation, System.Threading.CancellationToken cancellationToken);
+    
+        /// <param name="id">ID of simulation</param>
+        /// <returns>Successfully deleted a simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task DeleteMicrostructureSimulationAsync(int id);
+    
+        /// <param name="id">ID of simulation</param>
+        /// <returns>Successfully deleted a simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        System.Threading.Tasks.Task DeleteMicrostructureSimulationAsync(int id, System.Threading.CancellationToken cancellationToken);
+    
+        /// <param name="id">simulation identifier</param>
+        /// <param name="offset">starting paging count; ex. offset of 60 will skip the first 60 items in the list</param>
+        /// <param name="limit">number of items to return within the query</param>
+        /// <param name="status">simulation status for items retrieved.  If an array of items is sent, they are treated as "OR" operations. e.g. status=InProgress,Requested would yield a list of simulations that are in either state.</param>
+        /// <param name="sort">key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc</param>
+        /// <returns>Successfully found the list of items</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<MicrostructureSimulation>> GetMicrostructureSimulationChildrenAsync(int id, int? offset, int? limit, System.Collections.Generic.IEnumerable<Anonymous15> status, System.Collections.Generic.IEnumerable<string> sort);
+    
+        /// <param name="id">simulation identifier</param>
+        /// <param name="offset">starting paging count; ex. offset of 60 will skip the first 60 items in the list</param>
+        /// <param name="limit">number of items to return within the query</param>
+        /// <param name="status">simulation status for items retrieved.  If an array of items is sent, they are treated as "OR" operations. e.g. status=InProgress,Requested would yield a list of simulations that are in either state.</param>
+        /// <param name="sort">key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc</param>
+        /// <returns>Successfully found the list of items</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<MicrostructureSimulation>> GetMicrostructureSimulationChildrenAsync(int id, int? offset, int? limit, System.Collections.Generic.IEnumerable<Anonymous15> status, System.Collections.Generic.IEnumerable<string> sort, System.Threading.CancellationToken cancellationToken);
+    
+        /// <param name="id">simulation identifier</param>
+        /// <returns>Simulation was successfully cancelled.</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task CancelMicrostructureSimulationAsync(int id);
+    
+        /// <param name="id">simulation identifier</param>
+        /// <returns>Simulation was successfully cancelled.</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        System.Threading.Tasks.Task CancelMicrostructureSimulationAsync(int id, System.Threading.CancellationToken cancellationToken);
+    
+        /// <param name="id">simulation identifier</param>
+        /// <returns>Simulation was successfully started.</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task StartMicrostructureSimulationAsync(int id);
+    
+        /// <param name="id">simulation identifier</param>
+        /// <returns>Simulation was successfully started.</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        System.Threading.Tasks.Task StartMicrostructureSimulationAsync(int id, System.Threading.CancellationToken cancellationToken);
+    
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "11.12.7.0 (NJsonSchema v9.10.6.0 (Newtonsoft.Json v9.0.0.0))")]
@@ -13141,6 +13247,988 @@ namespace SimulationCSharpClient.Client
             }
         }
     
+        /// <param name="organizationId">the organization id to get items for.  Must be provided as API callers only have access to items belonging to their organization.</param>
+        /// <param name="status">simulation status for items retrieved.  If an array of items is sent, they are treated as "OR" operations. e.g. status=InProgress,Requested would yield a list of simulations that are in either state.</param>
+        /// <param name="offset">starting paging count; ex. offset of 60 will skip the first 60 items in the list</param>
+        /// <param name="limit">number of items to return within the query</param>
+        /// <param name="sort">key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc</param>
+        /// <returns>Successfully found the list of items</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<MicrostructureSimulation>> GetMicrostructureSimulationsAsync(int organizationId, System.Collections.Generic.IEnumerable<Anonymous14> status, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort)
+        {
+            return GetMicrostructureSimulationsAsync(organizationId, status, offset, limit, sort, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="organizationId">the organization id to get items for.  Must be provided as API callers only have access to items belonging to their organization.</param>
+        /// <param name="status">simulation status for items retrieved.  If an array of items is sent, they are treated as "OR" operations. e.g. status=InProgress,Requested would yield a list of simulations that are in either state.</param>
+        /// <param name="offset">starting paging count; ex. offset of 60 will skip the first 60 items in the list</param>
+        /// <param name="limit">number of items to return within the query</param>
+        /// <param name="sort">key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc</param>
+        /// <returns>Successfully found the list of items</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<MicrostructureSimulation>> GetMicrostructureSimulationsAsync(int organizationId, System.Collections.Generic.IEnumerable<Anonymous14> status, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, System.Threading.CancellationToken cancellationToken)
+        {
+            if (organizationId == null)
+                throw new System.ArgumentNullException("organizationId");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/microstructuresimulations?");
+            urlBuilder_.Append("organizationId=").Append(System.Uri.EscapeDataString(System.Convert.ToString(organizationId, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            if (status != null) foreach (var item_ in status) { urlBuilder_.Append("status=").Append(System.Uri.EscapeDataString(System.Convert.ToString(item_, System.Globalization.CultureInfo.InvariantCulture))).Append("&"); }
+            if (offset != null) urlBuilder_.Append("offset=").Append(System.Uri.EscapeDataString(System.Convert.ToString(offset, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            if (limit != null) urlBuilder_.Append("limit=").Append(System.Uri.EscapeDataString(System.Convert.ToString(limit, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            if (sort != null) foreach (var item_ in sort) { urlBuilder_.Append("sort=").Append(System.Uri.EscapeDataString(System.Convert.ToString(item_, System.Globalization.CultureInfo.InvariantCulture))).Append("&"); }
+            urlBuilder_.Length--;
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        foreach (var item_ in response_.Content.Headers)
+                            headers_[item_.Key] = item_.Value;
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(System.Collections.ObjectModel.ObservableCollection<MicrostructureSimulation>); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.ObjectModel.ObservableCollection<MicrostructureSimulation>>(responseData_, _settings.Value);
+                                return result_; 
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                        }
+                        else
+                        if (status_ == "401") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Not authorized", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "403") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Forbidden", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
+                        }
+            
+                        return default(System.Collections.ObjectModel.ObservableCollection<MicrostructureSimulation>);
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+    
+        /// <param name="microstructureSimulation">MicrostructureSimulation fields required to add the simulation</param>
+        /// <returns>Successfully added a simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task<MicrostructureSimulation> PostMicrostructureSimulationAsync(MicrostructureSimulation microstructureSimulation)
+        {
+            return PostMicrostructureSimulationAsync(microstructureSimulation, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="microstructureSimulation">MicrostructureSimulation fields required to add the simulation</param>
+        /// <returns>Successfully added a simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task<MicrostructureSimulation> PostMicrostructureSimulationAsync(MicrostructureSimulation microstructureSimulation, System.Threading.CancellationToken cancellationToken)
+        {
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/microstructuresimulations");
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(microstructureSimulation, _settings.Value));
+                    content_.Headers.ContentType.MediaType = "application/json";
+                    request_.Content = content_;
+                    request_.Method = new System.Net.Http.HttpMethod("POST");
+                    request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        foreach (var item_ in response_.Content.Headers)
+                            headers_[item_.Key] = item_.Value;
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(MicrostructureSimulation); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<MicrostructureSimulation>(responseData_, _settings.Value);
+                                return result_; 
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                        }
+                        else
+                        if (status_ == "401") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Not authorized", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "403") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Forbidden", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
+                        }
+            
+                        return default(MicrostructureSimulation);
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+    
+        /// <param name="id">simulation identifier</param>
+        /// <returns>Successfully retrieved simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task<MicrostructureSimulation> GetMicrostructureSimulationAsync(int id)
+        {
+            return GetMicrostructureSimulationAsync(id, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="id">simulation identifier</param>
+        /// <returns>Successfully retrieved simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task<MicrostructureSimulation> GetMicrostructureSimulationAsync(int id, System.Threading.CancellationToken cancellationToken)
+        {
+            if (id == null)
+                throw new System.ArgumentNullException("id");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/microstructuresimulations/{id}");
+            urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(System.Convert.ToString(id, System.Globalization.CultureInfo.InvariantCulture)));
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        foreach (var item_ in response_.Content.Headers)
+                            headers_[item_.Key] = item_.Value;
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(MicrostructureSimulation); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<MicrostructureSimulation>(responseData_, _settings.Value);
+                                return result_; 
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                        }
+                        else
+                        if (status_ == "401") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Not authorized", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "403") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Forbidden", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "404") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Simulation not found (id invalid)", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
+                        }
+            
+                        return default(MicrostructureSimulation);
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+    
+        /// <param name="id">simulation identifier</param>
+        /// <param name="microstructureSimulation">MicrostructureSimulation fields required to update a simulation</param>
+        /// <returns>Successfully updated a simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task<MicrostructureSimulation> PutMicrostructureSimulationAsync(int id, MicrostructureSimulation microstructureSimulation)
+        {
+            return PutMicrostructureSimulationAsync(id, microstructureSimulation, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="id">simulation identifier</param>
+        /// <param name="microstructureSimulation">MicrostructureSimulation fields required to update a simulation</param>
+        /// <returns>Successfully updated a simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task<MicrostructureSimulation> PutMicrostructureSimulationAsync(int id, MicrostructureSimulation microstructureSimulation, System.Threading.CancellationToken cancellationToken)
+        {
+            if (id == null)
+                throw new System.ArgumentNullException("id");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/microstructuresimulations/{id}");
+            urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(System.Convert.ToString(id, System.Globalization.CultureInfo.InvariantCulture)));
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(microstructureSimulation, _settings.Value));
+                    content_.Headers.ContentType.MediaType = "application/json";
+                    request_.Content = content_;
+                    request_.Method = new System.Net.Http.HttpMethod("PUT");
+                    request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        foreach (var item_ in response_.Content.Headers)
+                            headers_[item_.Key] = item_.Value;
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(MicrostructureSimulation); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<MicrostructureSimulation>(responseData_, _settings.Value);
+                                return result_; 
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                        }
+                        else
+                        if (status_ == "401") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Not authorized", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "403") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Forbidden", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
+                        }
+            
+                        return default(MicrostructureSimulation);
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+    
+        /// <param name="id">ID of simulation</param>
+        /// <returns>Successfully deleted a simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task DeleteMicrostructureSimulationAsync(int id)
+        {
+            return DeleteMicrostructureSimulationAsync(id, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="id">ID of simulation</param>
+        /// <returns>Successfully deleted a simulation</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task DeleteMicrostructureSimulationAsync(int id, System.Threading.CancellationToken cancellationToken)
+        {
+            if (id == null)
+                throw new System.ArgumentNullException("id");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/microstructuresimulations/{id}");
+            urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(System.Convert.ToString(id, System.Globalization.CultureInfo.InvariantCulture)));
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("DELETE");
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        foreach (var item_ in response_.Content.Headers)
+                            headers_[item_.Key] = item_.Value;
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200") 
+                        {
+                            return;
+                        }
+                        else
+                        if (status_ == "401") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Not authorized", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "403") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Forbidden", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "404") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            throw new SwaggerException("Not Found", status_, responseData_, headers_, null);
+                        }
+                        else
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+    
+        /// <param name="id">simulation identifier</param>
+        /// <param name="offset">starting paging count; ex. offset of 60 will skip the first 60 items in the list</param>
+        /// <param name="limit">number of items to return within the query</param>
+        /// <param name="status">simulation status for items retrieved.  If an array of items is sent, they are treated as "OR" operations. e.g. status=InProgress,Requested would yield a list of simulations that are in either state.</param>
+        /// <param name="sort">key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc</param>
+        /// <returns>Successfully found the list of items</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<MicrostructureSimulation>> GetMicrostructureSimulationChildrenAsync(int id, int? offset, int? limit, System.Collections.Generic.IEnumerable<Anonymous15> status, System.Collections.Generic.IEnumerable<string> sort)
+        {
+            return GetMicrostructureSimulationChildrenAsync(id, offset, limit, status, sort, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="id">simulation identifier</param>
+        /// <param name="offset">starting paging count; ex. offset of 60 will skip the first 60 items in the list</param>
+        /// <param name="limit">number of items to return within the query</param>
+        /// <param name="status">simulation status for items retrieved.  If an array of items is sent, they are treated as "OR" operations. e.g. status=InProgress,Requested would yield a list of simulations that are in either state.</param>
+        /// <param name="sort">key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc</param>
+        /// <returns>Successfully found the list of items</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<MicrostructureSimulation>> GetMicrostructureSimulationChildrenAsync(int id, int? offset, int? limit, System.Collections.Generic.IEnumerable<Anonymous15> status, System.Collections.Generic.IEnumerable<string> sort, System.Threading.CancellationToken cancellationToken)
+        {
+            if (id == null)
+                throw new System.ArgumentNullException("id");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/microstructuresimulations/{id}/children?");
+            urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(System.Convert.ToString(id, System.Globalization.CultureInfo.InvariantCulture)));
+            if (offset != null) urlBuilder_.Append("offset=").Append(System.Uri.EscapeDataString(System.Convert.ToString(offset, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            if (limit != null) urlBuilder_.Append("limit=").Append(System.Uri.EscapeDataString(System.Convert.ToString(limit, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            if (status != null) foreach (var item_ in status) { urlBuilder_.Append("status=").Append(System.Uri.EscapeDataString(System.Convert.ToString(item_, System.Globalization.CultureInfo.InvariantCulture))).Append("&"); }
+            if (sort != null) foreach (var item_ in sort) { urlBuilder_.Append("sort=").Append(System.Uri.EscapeDataString(System.Convert.ToString(item_, System.Globalization.CultureInfo.InvariantCulture))).Append("&"); }
+            urlBuilder_.Length--;
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        foreach (var item_ in response_.Content.Headers)
+                            headers_[item_.Key] = item_.Value;
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(System.Collections.ObjectModel.ObservableCollection<MicrostructureSimulation>); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.ObjectModel.ObservableCollection<MicrostructureSimulation>>(responseData_, _settings.Value);
+                                return result_; 
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                        }
+                        else
+                        if (status_ == "401") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Not authorized", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "403") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Forbidden", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
+                        }
+            
+                        return default(System.Collections.ObjectModel.ObservableCollection<MicrostructureSimulation>);
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+    
+        /// <param name="id">simulation identifier</param>
+        /// <returns>Simulation was successfully cancelled.</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task CancelMicrostructureSimulationAsync(int id)
+        {
+            return CancelMicrostructureSimulationAsync(id, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="id">simulation identifier</param>
+        /// <returns>Simulation was successfully cancelled.</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task CancelMicrostructureSimulationAsync(int id, System.Threading.CancellationToken cancellationToken)
+        {
+            if (id == null)
+                throw new System.ArgumentNullException("id");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/microstructuresimulations/{id}/cancel");
+            urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(System.Convert.ToString(id, System.Globalization.CultureInfo.InvariantCulture)));
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    var content_ = new System.Net.Http.StringContent(string.Empty);
+                    request_.Content = content_;
+                    request_.Method = new System.Net.Http.HttpMethod("PUT");
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        foreach (var item_ in response_.Content.Headers)
+                            headers_[item_.Key] = item_.Value;
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200") 
+                        {
+                            return;
+                        }
+                        else
+                        if (status_ == "401") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Not authorized", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "403") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Forbidden", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "404") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Simulation not found (id invalid)", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+    
+        /// <param name="id">simulation identifier</param>
+        /// <returns>Simulation was successfully started.</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task StartMicrostructureSimulationAsync(int id)
+        {
+            return StartMicrostructureSimulationAsync(id, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="id">simulation identifier</param>
+        /// <returns>Simulation was successfully started.</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task StartMicrostructureSimulationAsync(int id, System.Threading.CancellationToken cancellationToken)
+        {
+            if (id == null)
+                throw new System.ArgumentNullException("id");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/microstructuresimulations/{id}/start");
+            urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(System.Convert.ToString(id, System.Globalization.CultureInfo.InvariantCulture)));
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    var content_ = new System.Net.Http.StringContent(string.Empty);
+                    request_.Content = content_;
+                    request_.Method = new System.Net.Http.HttpMethod("PUT");
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        foreach (var item_ in response_.Content.Headers)
+                            headers_[item_.Key] = item_.Value;
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200") 
+                        {
+                            return;
+                        }
+                        else
+                        if (status_ == "401") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Not authorized", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "403") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Forbidden", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "404") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Simulation not found (id invalid)", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+    
     }
     
     
@@ -13785,6 +14873,9 @@ namespace SimulationCSharpClient.Client
     
         [System.Runtime.Serialization.EnumMember(Value = "ScanPatternSimulation")]
         ScanPatternSimulation = 4,
+    
+        [System.Runtime.Serialization.EnumMember(Value = "MicrostructureSimulation")]
+        MicrostructureSimulation = 5,
     
     }
     
@@ -14935,14 +16026,16 @@ namespace SimulationCSharpClient.Client
         private double _supportYieldStrengthRatio;
         private double _elasticModulus;
         private double _poissonRatio;
+        private double _hardeningFactor;
         private double _strainScalingFactor;
         private int? _buildFileId;
         private bool _performSupportOptimization;
         private double _voxelSize;
-        private double _minimumWallThickness;
-        private double _maximumWallThickness;
-        private double _minimumWallDistance;
-        private double _maximumWallDistance;
+        private double? _minimumThickWallThickness;
+        private double? _maximumThickWallThickness;
+        private double? _thickWallDistance;
+        private double? _thinWallThickness;
+        private double? _maximumThinWallDistance;
         private double _minimumSupportHeight;
         private bool _generateSupportVoxels;
         private bool _outputDisplacementAfterCutoff;
@@ -15062,6 +16155,21 @@ namespace SimulationCSharpClient.Client
             }
         }
     
+        [Newtonsoft.Json.JsonProperty("hardeningFactor", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 0)]
+        public double HardeningFactor
+        {
+            get { return _hardeningFactor; }
+            set 
+            {
+                if (_hardeningFactor != value)
+                {
+                    _hardeningFactor = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
         [Newtonsoft.Json.JsonProperty("strainScalingFactor", Required = Newtonsoft.Json.Required.Always)]
         public double StrainScalingFactor
         {
@@ -15122,64 +16230,80 @@ namespace SimulationCSharpClient.Client
         }
     
         /// <summary>Must be between 0.00005 to 0.0003 meters, Must be less than maximumWallThickness</summary>
-        [Newtonsoft.Json.JsonProperty("minimumWallThickness", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("minimumThickWallThickness", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MinimumWallThickness
+        public double? MinimumThickWallThickness
         {
-            get { return _minimumWallThickness; }
+            get { return _minimumThickWallThickness; }
             set 
             {
-                if (_minimumWallThickness != value)
+                if (_minimumThickWallThickness != value)
                 {
-                    _minimumWallThickness = value; 
+                    _minimumThickWallThickness = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
         /// <summary>Must be between 0.00015 to 0.002 meters, Must be greater than minimumWallThickness</summary>
-        [Newtonsoft.Json.JsonProperty("maximumWallThickness", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("maximumThickWallThickness", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MaximumWallThickness
+        public double? MaximumThickWallThickness
         {
-            get { return _maximumWallThickness; }
+            get { return _maximumThickWallThickness; }
             set 
             {
-                if (_maximumWallThickness != value)
+                if (_maximumThickWallThickness != value)
                 {
-                    _maximumWallThickness = value; 
+                    _maximumThickWallThickness = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
-        /// <summary>Must be between 0 to 0.0003 meters, Must be less than maximumWallDistance</summary>
-        [Newtonsoft.Json.JsonProperty("minimumWallDistance", Required = Newtonsoft.Json.Required.Always)]
+        /// <summary>The distance between thickwall supports</summary>
+        [Newtonsoft.Json.JsonProperty("thickWallDistance", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MinimumWallDistance
+        public double? ThickWallDistance
         {
-            get { return _minimumWallDistance; }
+            get { return _thickWallDistance; }
             set 
             {
-                if (_minimumWallDistance != value)
+                if (_thickWallDistance != value)
                 {
-                    _minimumWallDistance = value; 
+                    _thickWallDistance = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
-        /// <summary>Must be between 0 to 0.005 meters, Must be greater than minimumWallDistance</summary>
-        [Newtonsoft.Json.JsonProperty("maximumWallDistance", Required = Newtonsoft.Json.Required.Always)]
+        /// <summary>The width of the thinwall supports</summary>
+        [Newtonsoft.Json.JsonProperty("thinWallThickness", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MaximumWallDistance
+        public double? ThinWallThickness
         {
-            get { return _maximumWallDistance; }
+            get { return _thinWallThickness; }
             set 
             {
-                if (_maximumWallDistance != value)
+                if (_thinWallThickness != value)
                 {
-                    _maximumWallDistance = value; 
+                    _thinWallThickness = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>The maximum distance between thinwalls</summary>
+        [Newtonsoft.Json.JsonProperty("maximumThinWallDistance", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(0, 0)]
+        public double? MaximumThinWallDistance
+        {
+            get { return _maximumThinWallDistance; }
+            set 
+            {
+                if (_maximumThinWallDistance != value)
+                {
+                    _maximumThinWallDistance = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -15755,14 +16879,16 @@ namespace SimulationCSharpClient.Client
         private double _supportYieldStrengthRatio;
         private double _elasticModulus;
         private double _poissonRatio;
+        private double _hardeningFactor;
         private double _strainScalingFactor;
         private int? _buildFileId;
         private bool _performSupportOptimization;
         private double _voxelSize;
-        private double _minimumWallThickness;
-        private double _maximumWallThickness;
-        private double _minimumWallDistance;
-        private double _maximumWallDistance;
+        private double? _minimumThickWallThickness;
+        private double? _maximumThickWallThickness;
+        private double? _thickWallDistance;
+        private double? _thinWallThickness;
+        private double? _maximumThinWallDistance;
         private double _minimumSupportHeight;
         private bool _generateSupportVoxels;
         private bool _outputDisplacementAfterCutoff;
@@ -15883,6 +17009,21 @@ namespace SimulationCSharpClient.Client
             }
         }
     
+        [Newtonsoft.Json.JsonProperty("hardeningFactor", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 0)]
+        public double HardeningFactor
+        {
+            get { return _hardeningFactor; }
+            set 
+            {
+                if (_hardeningFactor != value)
+                {
+                    _hardeningFactor = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
         [Newtonsoft.Json.JsonProperty("strainScalingFactor", Required = Newtonsoft.Json.Required.Always)]
         public double StrainScalingFactor
         {
@@ -15943,64 +17084,80 @@ namespace SimulationCSharpClient.Client
         }
     
         /// <summary>Must be between 0.00005 to 0.0003 meters, Must be less than maximumWallThickness</summary>
-        [Newtonsoft.Json.JsonProperty("minimumWallThickness", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("minimumThickWallThickness", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MinimumWallThickness
+        public double? MinimumThickWallThickness
         {
-            get { return _minimumWallThickness; }
+            get { return _minimumThickWallThickness; }
             set 
             {
-                if (_minimumWallThickness != value)
+                if (_minimumThickWallThickness != value)
                 {
-                    _minimumWallThickness = value; 
+                    _minimumThickWallThickness = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
         /// <summary>Must be between 0.00015 to 0.002 meters, Must be greater than minimumWallThickness</summary>
-        [Newtonsoft.Json.JsonProperty("maximumWallThickness", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("maximumThickWallThickness", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MaximumWallThickness
+        public double? MaximumThickWallThickness
         {
-            get { return _maximumWallThickness; }
+            get { return _maximumThickWallThickness; }
             set 
             {
-                if (_maximumWallThickness != value)
+                if (_maximumThickWallThickness != value)
                 {
-                    _maximumWallThickness = value; 
+                    _maximumThickWallThickness = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
-        /// <summary>Must be between 0 to 0.0003 meters, Must be less than maximumWallDistance</summary>
-        [Newtonsoft.Json.JsonProperty("minimumWallDistance", Required = Newtonsoft.Json.Required.Always)]
+        /// <summary>The distance between thickwall supports</summary>
+        [Newtonsoft.Json.JsonProperty("thickWallDistance", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MinimumWallDistance
+        public double? ThickWallDistance
         {
-            get { return _minimumWallDistance; }
+            get { return _thickWallDistance; }
             set 
             {
-                if (_minimumWallDistance != value)
+                if (_thickWallDistance != value)
                 {
-                    _minimumWallDistance = value; 
+                    _thickWallDistance = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
-        /// <summary>Must be between 0 to 0.005 meters, Must be greater than minimumWallDistance</summary>
-        [Newtonsoft.Json.JsonProperty("maximumWallDistance", Required = Newtonsoft.Json.Required.Always)]
+        /// <summary>The width of the thinwall supports</summary>
+        [Newtonsoft.Json.JsonProperty("thinWallThickness", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MaximumWallDistance
+        public double? ThinWallThickness
         {
-            get { return _maximumWallDistance; }
+            get { return _thinWallThickness; }
             set 
             {
-                if (_maximumWallDistance != value)
+                if (_thinWallThickness != value)
                 {
-                    _maximumWallDistance = value; 
+                    _thinWallThickness = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>The maximum distance between thinwalls</summary>
+        [Newtonsoft.Json.JsonProperty("maximumThinWallDistance", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(0, 0)]
+        public double? MaximumThinWallDistance
+        {
+            get { return _maximumThinWallDistance; }
+            set 
+            {
+                if (_maximumThinWallDistance != value)
+                {
+                    _maximumThinWallDistance = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -16863,14 +18020,16 @@ namespace SimulationCSharpClient.Client
         private double _supportYieldStrengthRatio;
         private double _elasticModulus;
         private double _poissonRatio;
+        private double _hardeningFactor;
         private double _strainScalingFactor;
         private int? _buildFileId;
         private bool _performSupportOptimization;
         private double _voxelSize;
-        private double _minimumWallThickness;
-        private double _maximumWallThickness;
-        private double _minimumWallDistance;
-        private double _maximumWallDistance;
+        private double? _minimumThickWallThickness;
+        private double? _maximumThickWallThickness;
+        private double? _thickWallDistance;
+        private double? _thinWallThickness;
+        private double? _maximumThinWallDistance;
         private double _minimumSupportHeight;
         private bool _generateSupportVoxels;
         private bool _outputDisplacementAfterCutoff;
@@ -17021,6 +18180,21 @@ namespace SimulationCSharpClient.Client
             }
         }
     
+        [Newtonsoft.Json.JsonProperty("hardeningFactor", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 0)]
+        public double HardeningFactor
+        {
+            get { return _hardeningFactor; }
+            set 
+            {
+                if (_hardeningFactor != value)
+                {
+                    _hardeningFactor = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
         [Newtonsoft.Json.JsonProperty("strainScalingFactor", Required = Newtonsoft.Json.Required.Always)]
         public double StrainScalingFactor
         {
@@ -17081,64 +18255,80 @@ namespace SimulationCSharpClient.Client
         }
     
         /// <summary>Must be between 0.00005 to 0.0003 meters, Must be less than maximumWallThickness</summary>
-        [Newtonsoft.Json.JsonProperty("minimumWallThickness", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("minimumThickWallThickness", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MinimumWallThickness
+        public double? MinimumThickWallThickness
         {
-            get { return _minimumWallThickness; }
+            get { return _minimumThickWallThickness; }
             set 
             {
-                if (_minimumWallThickness != value)
+                if (_minimumThickWallThickness != value)
                 {
-                    _minimumWallThickness = value; 
+                    _minimumThickWallThickness = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
         /// <summary>Must be between 0.00015 to 0.002 meters, Must be greater than minimumWallThickness</summary>
-        [Newtonsoft.Json.JsonProperty("maximumWallThickness", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("maximumThickWallThickness", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MaximumWallThickness
+        public double? MaximumThickWallThickness
         {
-            get { return _maximumWallThickness; }
+            get { return _maximumThickWallThickness; }
             set 
             {
-                if (_maximumWallThickness != value)
+                if (_maximumThickWallThickness != value)
                 {
-                    _maximumWallThickness = value; 
+                    _maximumThickWallThickness = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
-        /// <summary>Must be between 0 to 0.0003 meters, Must be less than maximumWallDistance</summary>
-        [Newtonsoft.Json.JsonProperty("minimumWallDistance", Required = Newtonsoft.Json.Required.Always)]
+        /// <summary>The distance between thickwall supports</summary>
+        [Newtonsoft.Json.JsonProperty("thickWallDistance", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MinimumWallDistance
+        public double? ThickWallDistance
         {
-            get { return _minimumWallDistance; }
+            get { return _thickWallDistance; }
             set 
             {
-                if (_minimumWallDistance != value)
+                if (_thickWallDistance != value)
                 {
-                    _minimumWallDistance = value; 
+                    _thickWallDistance = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
-        /// <summary>Must be between 0 to 0.005 meters, Must be greater than minimumWallDistance</summary>
-        [Newtonsoft.Json.JsonProperty("maximumWallDistance", Required = Newtonsoft.Json.Required.Always)]
+        /// <summary>The width of the thinwall supports</summary>
+        [Newtonsoft.Json.JsonProperty("thinWallThickness", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MaximumWallDistance
+        public double? ThinWallThickness
         {
-            get { return _maximumWallDistance; }
+            get { return _thinWallThickness; }
             set 
             {
-                if (_maximumWallDistance != value)
+                if (_thinWallThickness != value)
                 {
-                    _maximumWallDistance = value; 
+                    _thinWallThickness = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>The maximum distance between thinwalls</summary>
+        [Newtonsoft.Json.JsonProperty("maximumThinWallDistance", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(0, 0)]
+        public double? MaximumThinWallDistance
+        {
+            get { return _maximumThinWallDistance; }
+            set 
+            {
+                if (_maximumThinWallDistance != value)
+                {
+                    _maximumThinWallDistance = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -18065,14 +19255,16 @@ namespace SimulationCSharpClient.Client
         private double _supportYieldStrengthRatio;
         private double _elasticModulus;
         private double _poissonRatio;
+        private double _hardeningFactor;
         private double _strainScalingFactor;
         private int? _buildFileId;
         private bool _performSupportOptimization;
         private double _voxelSize;
-        private double _minimumWallThickness;
-        private double _maximumWallThickness;
-        private double _minimumWallDistance;
-        private double _maximumWallDistance;
+        private double? _minimumThickWallThickness;
+        private double? _maximumThickWallThickness;
+        private double? _thickWallDistance;
+        private double? _thinWallThickness;
+        private double? _maximumThinWallDistance;
         private double _minimumSupportHeight;
         private bool _generateSupportVoxels;
         private bool _outputDisplacementAfterCutoff;
@@ -18199,6 +19391,21 @@ namespace SimulationCSharpClient.Client
             }
         }
     
+        [Newtonsoft.Json.JsonProperty("hardeningFactor", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 0)]
+        public double HardeningFactor
+        {
+            get { return _hardeningFactor; }
+            set 
+            {
+                if (_hardeningFactor != value)
+                {
+                    _hardeningFactor = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
         [Newtonsoft.Json.JsonProperty("strainScalingFactor", Required = Newtonsoft.Json.Required.Always)]
         public double StrainScalingFactor
         {
@@ -18259,64 +19466,80 @@ namespace SimulationCSharpClient.Client
         }
     
         /// <summary>Must be between 0.00005 to 0.0003 meters, Must be less than maximumWallThickness</summary>
-        [Newtonsoft.Json.JsonProperty("minimumWallThickness", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("minimumThickWallThickness", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MinimumWallThickness
+        public double? MinimumThickWallThickness
         {
-            get { return _minimumWallThickness; }
+            get { return _minimumThickWallThickness; }
             set 
             {
-                if (_minimumWallThickness != value)
+                if (_minimumThickWallThickness != value)
                 {
-                    _minimumWallThickness = value; 
+                    _minimumThickWallThickness = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
         /// <summary>Must be between 0.00015 to 0.002 meters, Must be greater than minimumWallThickness</summary>
-        [Newtonsoft.Json.JsonProperty("maximumWallThickness", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("maximumThickWallThickness", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MaximumWallThickness
+        public double? MaximumThickWallThickness
         {
-            get { return _maximumWallThickness; }
+            get { return _maximumThickWallThickness; }
             set 
             {
-                if (_maximumWallThickness != value)
+                if (_maximumThickWallThickness != value)
                 {
-                    _maximumWallThickness = value; 
+                    _maximumThickWallThickness = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
-        /// <summary>Must be between 0 to 0.0003 meters, Must be less than maximumWallDistance</summary>
-        [Newtonsoft.Json.JsonProperty("minimumWallDistance", Required = Newtonsoft.Json.Required.Always)]
+        /// <summary>The distance between thickwall supports</summary>
+        [Newtonsoft.Json.JsonProperty("thickWallDistance", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MinimumWallDistance
+        public double? ThickWallDistance
         {
-            get { return _minimumWallDistance; }
+            get { return _thickWallDistance; }
             set 
             {
-                if (_minimumWallDistance != value)
+                if (_thickWallDistance != value)
                 {
-                    _minimumWallDistance = value; 
+                    _thickWallDistance = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
-        /// <summary>Must be between 0 to 0.005 meters, Must be greater than minimumWallDistance</summary>
-        [Newtonsoft.Json.JsonProperty("maximumWallDistance", Required = Newtonsoft.Json.Required.Always)]
+        /// <summary>The width of the thinwall supports</summary>
+        [Newtonsoft.Json.JsonProperty("thinWallThickness", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MaximumWallDistance
+        public double? ThinWallThickness
         {
-            get { return _maximumWallDistance; }
+            get { return _thinWallThickness; }
             set 
             {
-                if (_maximumWallDistance != value)
+                if (_thinWallThickness != value)
                 {
-                    _maximumWallDistance = value; 
+                    _thinWallThickness = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>The maximum distance between thinwalls</summary>
+        [Newtonsoft.Json.JsonProperty("maximumThinWallDistance", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(0, 0)]
+        public double? MaximumThinWallDistance
+        {
+            get { return _maximumThinWallDistance; }
+            set 
+            {
+                if (_maximumThinWallDistance != value)
+                {
+                    _maximumThinWallDistance = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -22999,6 +24222,1138 @@ namespace SimulationCSharpClient.Client
         }
     }
     
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
+    public partial class MicrostructureSimulationParameters : System.ComponentModel.INotifyPropertyChanged
+    {
+        private double _layerThickness;
+        private double _hatchSpacing;
+        private double _laserWattage;
+        private double _scanSpeed;
+        private double _slicingStripeWidth;
+        private double _startingLayerAngle;
+        private double _layerRotationAngle;
+        private System.Collections.ObjectModel.ObservableCollection<MicrostructurePoint> _microstructurePoints = new System.Collections.ObjectModel.ObservableCollection<MicrostructurePoint>();
+        private double? _sensorMinimumTemperature;
+        private double? _heaterTemperature;
+        private int? _randomSeed;
+    
+        /// <summary>Must be between 0.00001 to 0.0001 meters</summary>
+        [Newtonsoft.Json.JsonProperty("layerThickness", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 0)]
+        public double LayerThickness
+        {
+            get { return _layerThickness; }
+            set 
+            {
+                if (_layerThickness != value)
+                {
+                    _layerThickness = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Must be between 0.00001 to 0.001 meters</summary>
+        [Newtonsoft.Json.JsonProperty("hatchSpacing", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 0)]
+        public double HatchSpacing
+        {
+            get { return _hatchSpacing; }
+            set 
+            {
+                if (_hatchSpacing != value)
+                {
+                    _hatchSpacing = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Must be between 10 to 1000 watts</summary>
+        [Newtonsoft.Json.JsonProperty("laserWattage", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(10, 1000)]
+        public double LaserWattage
+        {
+            get { return _laserWattage; }
+            set 
+            {
+                if (_laserWattage != value)
+                {
+                    _laserWattage = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Must be between 0.01 to 10 meters/second</summary>
+        [Newtonsoft.Json.JsonProperty("scanSpeed", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 10)]
+        public double ScanSpeed
+        {
+            get { return _scanSpeed; }
+            set 
+            {
+                if (_scanSpeed != value)
+                {
+                    _scanSpeed = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Must be between 0.001 to 0.1 meters</summary>
+        [Newtonsoft.Json.JsonProperty("slicingStripeWidth", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 0)]
+        public double SlicingStripeWidth
+        {
+            get { return _slicingStripeWidth; }
+            set 
+            {
+                if (_slicingStripeWidth != value)
+                {
+                    _slicingStripeWidth = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Must be between 0 to 180 degrees</summary>
+        [Newtonsoft.Json.JsonProperty("startingLayerAngle", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 180)]
+        public double StartingLayerAngle
+        {
+            get { return _startingLayerAngle; }
+            set 
+            {
+                if (_startingLayerAngle != value)
+                {
+                    _startingLayerAngle = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Must be between 0 to 180 degrees</summary>
+        [Newtonsoft.Json.JsonProperty("layerRotationAngle", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 180)]
+        public double LayerRotationAngle
+        {
+            get { return _layerRotationAngle; }
+            set 
+            {
+                if (_layerRotationAngle != value)
+                {
+                    _layerRotationAngle = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>List of points within the part where the microstructure will be evaluated</summary>
+        [Newtonsoft.Json.JsonProperty("microstructurePoints", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.ObjectModel.ObservableCollection<MicrostructurePoint> MicrostructurePoints
+        {
+            get { return _microstructurePoints; }
+            set 
+            {
+                if (_microstructurePoints != value)
+                {
+                    _microstructurePoints = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Minimum temperature above which microstructure changes will be evaluated</summary>
+        [Newtonsoft.Json.JsonProperty("sensorMinimumTemperature", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? SensorMinimumTemperature
+        {
+            get { return _sensorMinimumTemperature; }
+            set 
+            {
+                if (_sensorMinimumTemperature != value)
+                {
+                    _sensorMinimumTemperature = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Heater temperature in degrees kelvin, aka baseplate temperature</summary>
+        [Newtonsoft.Json.JsonProperty("heaterTemperature", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(0D, 1000D)]
+        public double? HeaterTemperature
+        {
+            get { return _heaterTemperature; }
+            set 
+            {
+                if (_heaterTemperature != value)
+                {
+                    _heaterTemperature = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Seed value used for random number generation. If not provided it will be auto-generated.</summary>
+        [Newtonsoft.Json.JsonProperty("randomSeed", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int? RandomSeed
+        {
+            get { return _randomSeed; }
+            set 
+            {
+                if (_randomSeed != value)
+                {
+                    _randomSeed = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        public string ToJson() 
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+        }
+        
+        public static MicrostructureSimulationParameters FromJson(string data)
+        {
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<MicrostructureSimulationParameters>(data);
+        }
+    
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected virtual void RaisePropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+        {
+            var handler = PropertyChanged;
+            if (handler != null) 
+                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
+    public partial class MicrostructureSimulation : Simulation, System.ComponentModel.INotifyPropertyChanged
+    {
+        private System.Collections.ObjectModel.ObservableCollection<SimulationPart> _simulationParts;
+        private string _supportFileLocation;
+        private string _partFileLocation;
+        private double _supportYieldStrength;
+        private double _supportYieldStrengthRatio;
+        private double _elasticModulus;
+        private double _poissonRatio;
+        private double _hardeningFactor;
+        private double _strainScalingFactor;
+        private int? _buildFileId;
+        private bool _performSupportOptimization;
+        private double _voxelSize;
+        private double? _minimumThickWallThickness;
+        private double? _maximumThickWallThickness;
+        private double? _thickWallDistance;
+        private double? _thinWallThickness;
+        private double? _maximumThinWallDistance;
+        private double _minimumSupportHeight;
+        private bool _generateSupportVoxels;
+        private bool _outputDisplacementAfterCutoff;
+        private PartBasedSimulationParametersStressMode _stressMode;
+        private double _supportAngle;
+        private double _supportFactorOfSafety;
+        private bool _outputLayerVtk;
+        private bool _detectBladeCrash;
+        private double? _bladeCrashThreshold;
+        private bool? _performDistortionCompensation;
+        private double? _distortionScaleFactor;
+        private bool? _outputSupportsVtk;
+        private bool? _detectSupportFailure;
+        private double? _supportFailureThreshold;
+        private double? _partFailureThreshold;
+        private double? _strainWarningThreshold;
+        private bool? _performDistortionCompensationAfterCutoff;
+        private double? _distortionAfterCutoffScaleFactor;
+        private PartBasedSimulationParametersSupportType _supportType;
+        private double _layerThickness;
+        private double _hatchSpacing;
+        private double _laserWattage;
+        private double _scanSpeed;
+        private double _slicingStripeWidth;
+        private double _startingLayerAngle;
+        private double _layerRotationAngle;
+        private System.Collections.ObjectModel.ObservableCollection<MicrostructurePoint> _microstructurePoints = new System.Collections.ObjectModel.ObservableCollection<MicrostructurePoint>();
+        private double? _sensorMinimumTemperature;
+        private double? _heaterTemperature;
+        private int? _randomSeed;
+    
+        /// <summary>List of parts to simulate (current limit is one part, imposed by server)</summary>
+        [Newtonsoft.Json.JsonProperty("simulationParts", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.ObjectModel.ObservableCollection<SimulationPart> SimulationParts
+        {
+            get { return _simulationParts; }
+            set 
+            {
+                if (_simulationParts != value)
+                {
+                    _simulationParts = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("supportFileLocation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string SupportFileLocation
+        {
+            get { return _supportFileLocation; }
+            set 
+            {
+                if (_supportFileLocation != value)
+                {
+                    _supportFileLocation = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("partFileLocation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string PartFileLocation
+        {
+            get { return _partFileLocation; }
+            set 
+            {
+                if (_partFileLocation != value)
+                {
+                    _partFileLocation = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("supportYieldStrength", Required = Newtonsoft.Json.Required.Always)]
+        public double SupportYieldStrength
+        {
+            get { return _supportYieldStrength; }
+            set 
+            {
+                if (_supportYieldStrength != value)
+                {
+                    _supportYieldStrength = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("supportYieldStrengthRatio", Required = Newtonsoft.Json.Required.Always)]
+        public double SupportYieldStrengthRatio
+        {
+            get { return _supportYieldStrengthRatio; }
+            set 
+            {
+                if (_supportYieldStrengthRatio != value)
+                {
+                    _supportYieldStrengthRatio = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("elasticModulus", Required = Newtonsoft.Json.Required.Always)]
+        public double ElasticModulus
+        {
+            get { return _elasticModulus; }
+            set 
+            {
+                if (_elasticModulus != value)
+                {
+                    _elasticModulus = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("poissonRatio", Required = Newtonsoft.Json.Required.Always)]
+        public double PoissonRatio
+        {
+            get { return _poissonRatio; }
+            set 
+            {
+                if (_poissonRatio != value)
+                {
+                    _poissonRatio = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("hardeningFactor", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 0)]
+        public double HardeningFactor
+        {
+            get { return _hardeningFactor; }
+            set 
+            {
+                if (_hardeningFactor != value)
+                {
+                    _hardeningFactor = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("strainScalingFactor", Required = Newtonsoft.Json.Required.Always)]
+        public double StrainScalingFactor
+        {
+            get { return _strainScalingFactor; }
+            set 
+            {
+                if (_strainScalingFactor != value)
+                {
+                    _strainScalingFactor = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Id of build file being simulated, mutually exclusive with simulationParts</summary>
+        [Newtonsoft.Json.JsonProperty("buildFileId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int? BuildFileId
+        {
+            get { return _buildFileId; }
+            set 
+            {
+                if (_buildFileId != value)
+                {
+                    _buildFileId = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("performSupportOptimization", Required = Newtonsoft.Json.Required.Always)]
+        public bool PerformSupportOptimization
+        {
+            get { return _performSupportOptimization; }
+            set 
+            {
+                if (_performSupportOptimization != value)
+                {
+                    _performSupportOptimization = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Must be between 0.00002 to 0.002 meters</summary>
+        [Newtonsoft.Json.JsonProperty("voxelSize", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 0)]
+        public double VoxelSize
+        {
+            get { return _voxelSize; }
+            set 
+            {
+                if (_voxelSize != value)
+                {
+                    _voxelSize = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Must be between 0.00005 to 0.0003 meters, Must be less than maximumWallThickness</summary>
+        [Newtonsoft.Json.JsonProperty("minimumThickWallThickness", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(0, 0)]
+        public double? MinimumThickWallThickness
+        {
+            get { return _minimumThickWallThickness; }
+            set 
+            {
+                if (_minimumThickWallThickness != value)
+                {
+                    _minimumThickWallThickness = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Must be between 0.00015 to 0.002 meters, Must be greater than minimumWallThickness</summary>
+        [Newtonsoft.Json.JsonProperty("maximumThickWallThickness", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(0, 0)]
+        public double? MaximumThickWallThickness
+        {
+            get { return _maximumThickWallThickness; }
+            set 
+            {
+                if (_maximumThickWallThickness != value)
+                {
+                    _maximumThickWallThickness = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>The distance between thickwall supports</summary>
+        [Newtonsoft.Json.JsonProperty("thickWallDistance", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(0, 0)]
+        public double? ThickWallDistance
+        {
+            get { return _thickWallDistance; }
+            set 
+            {
+                if (_thickWallDistance != value)
+                {
+                    _thickWallDistance = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>The width of the thinwall supports</summary>
+        [Newtonsoft.Json.JsonProperty("thinWallThickness", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(0, 0)]
+        public double? ThinWallThickness
+        {
+            get { return _thinWallThickness; }
+            set 
+            {
+                if (_thinWallThickness != value)
+                {
+                    _thinWallThickness = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>The maximum distance between thinwalls</summary>
+        [Newtonsoft.Json.JsonProperty("maximumThinWallDistance", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(0, 0)]
+        public double? MaximumThinWallDistance
+        {
+            get { return _maximumThinWallDistance; }
+            set 
+            {
+                if (_maximumThinWallDistance != value)
+                {
+                    _maximumThinWallDistance = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Distance to move the part off the base plate for supports, Must be between 0 to 0.005 meters</summary>
+        [Newtonsoft.Json.JsonProperty("minimumSupportHeight", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 0)]
+        public double MinimumSupportHeight
+        {
+            get { return _minimumSupportHeight; }
+            set 
+            {
+                if (_minimumSupportHeight != value)
+                {
+                    _minimumSupportHeight = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("generateSupportVoxels", Required = Newtonsoft.Json.Required.Always)]
+        public bool GenerateSupportVoxels
+        {
+            get { return _generateSupportVoxels; }
+            set 
+            {
+                if (_generateSupportVoxels != value)
+                {
+                    _generateSupportVoxels = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("outputDisplacementAfterCutoff", Required = Newtonsoft.Json.Required.Always)]
+        public bool OutputDisplacementAfterCutoff
+        {
+            get { return _outputDisplacementAfterCutoff; }
+            set 
+            {
+                if (_outputDisplacementAfterCutoff != value)
+                {
+                    _outputDisplacementAfterCutoff = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("stressMode", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public PartBasedSimulationParametersStressMode StressMode
+        {
+            get { return _stressMode; }
+            set 
+            {
+                if (_stressMode != value)
+                {
+                    _stressMode = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Must be between 1 to 89 degrees</summary>
+        [Newtonsoft.Json.JsonProperty("supportAngle", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(1, 89)]
+        public double SupportAngle
+        {
+            get { return _supportAngle; }
+            set 
+            {
+                if (_supportAngle != value)
+                {
+                    _supportAngle = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Multiplier for support calculations, Must be between 0.1 to 10</summary>
+        [Newtonsoft.Json.JsonProperty("supportFactorOfSafety", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 10)]
+        public double SupportFactorOfSafety
+        {
+            get { return _supportFactorOfSafety; }
+            set 
+            {
+                if (_supportFactorOfSafety != value)
+                {
+                    _supportFactorOfSafety = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, mechanics solver output will include a zip file with the stress / distortion state at the end of each voxel layer</summary>
+        [Newtonsoft.Json.JsonProperty("outputLayerVtk", Required = Newtonsoft.Json.Required.Always)]
+        public bool OutputLayerVtk
+        {
+            get { return _outputLayerVtk; }
+            set 
+            {
+                if (_outputLayerVtk != value)
+                {
+                    _outputLayerVtk = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("detectBladeCrash", Required = Newtonsoft.Json.Required.Always)]
+        public bool DetectBladeCrash
+        {
+            get { return _detectBladeCrash; }
+            set 
+            {
+                if (_detectBladeCrash != value)
+                {
+                    _detectBladeCrash = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>should be a number between 0.5 and 1.5</summary>
+        [Newtonsoft.Json.JsonProperty("bladeCrashThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? BladeCrashThreshold
+        {
+            get { return _bladeCrashThreshold; }
+            set 
+            {
+                if (_bladeCrashThreshold != value)
+                {
+                    _bladeCrashThreshold = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, a predistorted STL file will be created using the distortion simulated by the mechanics solver</summary>
+        [Newtonsoft.Json.JsonProperty("performDistortionCompensation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? PerformDistortionCompensation
+        {
+            get { return _performDistortionCompensation; }
+            set 
+            {
+                if (_performDistortionCompensation != value)
+                {
+                    _performDistortionCompensation = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>a value that is used to scale the simulated distortion value</summary>
+        [Newtonsoft.Json.JsonProperty("distortionScaleFactor", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? DistortionScaleFactor
+        {
+            get { return _distortionScaleFactor; }
+            set 
+            {
+                if (_distortionScaleFactor != value)
+                {
+                    _distortionScaleFactor = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, a VTK file of the support structure will be created</summary>
+        [Newtonsoft.Json.JsonProperty("outputSupportsVtk", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? OutputSupportsVtk
+        {
+            get { return _outputSupportsVtk; }
+            set 
+            {
+                if (_outputSupportsVtk != value)
+                {
+                    _outputSupportsVtk = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("detectSupportFailure", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? DetectSupportFailure
+        {
+            get { return _detectSupportFailure; }
+            set 
+            {
+                if (_detectSupportFailure != value)
+                {
+                    _detectSupportFailure = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>should be a number between 0.01 and 1.0</summary>
+        [Newtonsoft.Json.JsonProperty("supportFailureThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? SupportFailureThreshold
+        {
+            get { return _supportFailureThreshold; }
+            set 
+            {
+                if (_supportFailureThreshold != value)
+                {
+                    _supportFailureThreshold = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>should be a number between 0.01 and 1.0</summary>
+        [Newtonsoft.Json.JsonProperty("partFailureThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? PartFailureThreshold
+        {
+            get { return _partFailureThreshold; }
+            set 
+            {
+                if (_partFailureThreshold != value)
+                {
+                    _partFailureThreshold = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>should be a number between 0.01 and 1.0</summary>
+        [Newtonsoft.Json.JsonProperty("strainWarningThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? StrainWarningThreshold
+        {
+            get { return _strainWarningThreshold; }
+            set 
+            {
+                if (_strainWarningThreshold != value)
+                {
+                    _strainWarningThreshold = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, a predistorted STL file will be created using the distortion after cutoff simulated by the mechanics solver</summary>
+        [Newtonsoft.Json.JsonProperty("performDistortionCompensationAfterCutoff", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? PerformDistortionCompensationAfterCutoff
+        {
+            get { return _performDistortionCompensationAfterCutoff; }
+            set 
+            {
+                if (_performDistortionCompensationAfterCutoff != value)
+                {
+                    _performDistortionCompensationAfterCutoff = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>a value that is used to scale the after cutoff simulated distortion values</summary>
+        [Newtonsoft.Json.JsonProperty("distortionAfterCutoffScaleFactor", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? DistortionAfterCutoffScaleFactor
+        {
+            get { return _distortionAfterCutoffScaleFactor; }
+            set 
+            {
+                if (_distortionAfterCutoffScaleFactor != value)
+                {
+                    _distortionAfterCutoffScaleFactor = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>type of support used for simulation.</summary>
+        [Newtonsoft.Json.JsonProperty("supportType", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public PartBasedSimulationParametersSupportType SupportType
+        {
+            get { return _supportType; }
+            set 
+            {
+                if (_supportType != value)
+                {
+                    _supportType = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Must be between 0.00001 to 0.0001 meters</summary>
+        [Newtonsoft.Json.JsonProperty("layerThickness", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 0)]
+        public double LayerThickness
+        {
+            get { return _layerThickness; }
+            set 
+            {
+                if (_layerThickness != value)
+                {
+                    _layerThickness = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Must be between 0.00001 to 0.001 meters</summary>
+        [Newtonsoft.Json.JsonProperty("hatchSpacing", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 0)]
+        public double HatchSpacing
+        {
+            get { return _hatchSpacing; }
+            set 
+            {
+                if (_hatchSpacing != value)
+                {
+                    _hatchSpacing = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Must be between 10 to 1000 watts</summary>
+        [Newtonsoft.Json.JsonProperty("laserWattage", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(10, 1000)]
+        public double LaserWattage
+        {
+            get { return _laserWattage; }
+            set 
+            {
+                if (_laserWattage != value)
+                {
+                    _laserWattage = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Must be between 0.01 to 10 meters/second</summary>
+        [Newtonsoft.Json.JsonProperty("scanSpeed", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 10)]
+        public double ScanSpeed
+        {
+            get { return _scanSpeed; }
+            set 
+            {
+                if (_scanSpeed != value)
+                {
+                    _scanSpeed = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Must be between 0.001 to 0.1 meters</summary>
+        [Newtonsoft.Json.JsonProperty("slicingStripeWidth", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 0)]
+        public double SlicingStripeWidth
+        {
+            get { return _slicingStripeWidth; }
+            set 
+            {
+                if (_slicingStripeWidth != value)
+                {
+                    _slicingStripeWidth = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Must be between 0 to 180 degrees</summary>
+        [Newtonsoft.Json.JsonProperty("startingLayerAngle", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 180)]
+        public double StartingLayerAngle
+        {
+            get { return _startingLayerAngle; }
+            set 
+            {
+                if (_startingLayerAngle != value)
+                {
+                    _startingLayerAngle = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Must be between 0 to 180 degrees</summary>
+        [Newtonsoft.Json.JsonProperty("layerRotationAngle", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 180)]
+        public double LayerRotationAngle
+        {
+            get { return _layerRotationAngle; }
+            set 
+            {
+                if (_layerRotationAngle != value)
+                {
+                    _layerRotationAngle = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>List of points within the part where the microstructure will be evaluated</summary>
+        [Newtonsoft.Json.JsonProperty("microstructurePoints", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.ObjectModel.ObservableCollection<MicrostructurePoint> MicrostructurePoints
+        {
+            get { return _microstructurePoints; }
+            set 
+            {
+                if (_microstructurePoints != value)
+                {
+                    _microstructurePoints = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Minimum temperature above which microstructure changes will be evaluated</summary>
+        [Newtonsoft.Json.JsonProperty("sensorMinimumTemperature", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? SensorMinimumTemperature
+        {
+            get { return _sensorMinimumTemperature; }
+            set 
+            {
+                if (_sensorMinimumTemperature != value)
+                {
+                    _sensorMinimumTemperature = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Heater temperature in degrees kelvin, aka baseplate temperature</summary>
+        [Newtonsoft.Json.JsonProperty("heaterTemperature", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(0D, 1000D)]
+        public double? HeaterTemperature
+        {
+            get { return _heaterTemperature; }
+            set 
+            {
+                if (_heaterTemperature != value)
+                {
+                    _heaterTemperature = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Seed value used for random number generation. If not provided it will be auto-generated.</summary>
+        [Newtonsoft.Json.JsonProperty("randomSeed", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int? RandomSeed
+        {
+            get { return _randomSeed; }
+            set 
+            {
+                if (_randomSeed != value)
+                {
+                    _randomSeed = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        public string ToJson() 
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+        }
+        
+        public static MicrostructureSimulation FromJson(string data)
+        {
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<MicrostructureSimulation>(data);
+        }
+    
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected virtual void RaisePropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+        {
+            var handler = PropertyChanged;
+            if (handler != null) 
+                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+        }
+    }
+    
+    /// <summary>describes a location at which the microstructure will be evaluated</summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
+    public partial class MicrostructurePoint : System.ComponentModel.INotifyPropertyChanged
+    {
+        private int? _id;
+        private int _simulationId;
+        private string _label;
+        private double _x;
+        private double _y;
+        private double _z;
+        private double _radius;
+    
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int? Id
+        {
+            get { return _id; }
+            set 
+            {
+                if (_id != value)
+                {
+                    _id = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>ID of simulation this point belongs to</summary>
+        [Newtonsoft.Json.JsonProperty("simulationId", Required = Newtonsoft.Json.Required.Always)]
+        public int SimulationId
+        {
+            get { return _simulationId; }
+            set 
+            {
+                if (_simulationId != value)
+                {
+                    _simulationId = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>User provided name of this point</summary>
+        [Newtonsoft.Json.JsonProperty("label", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public string Label
+        {
+            get { return _label; }
+            set 
+            {
+                if (_label != value)
+                {
+                    _label = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>X coordinate of this point</summary>
+        [Newtonsoft.Json.JsonProperty("x", Required = Newtonsoft.Json.Required.Always)]
+        public double X
+        {
+            get { return _x; }
+            set 
+            {
+                if (_x != value)
+                {
+                    _x = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Y coordinate of this point</summary>
+        [Newtonsoft.Json.JsonProperty("y", Required = Newtonsoft.Json.Required.Always)]
+        public double Y
+        {
+            get { return _y; }
+            set 
+            {
+                if (_y != value)
+                {
+                    _y = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Z coordinate of this point</summary>
+        [Newtonsoft.Json.JsonProperty("z", Required = Newtonsoft.Json.Required.Always)]
+        public double Z
+        {
+            get { return _z; }
+            set 
+            {
+                if (_z != value)
+                {
+                    _z = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Radius of hemispherical volume of interest in mm centered at each X,Y,Z</summary>
+        [Newtonsoft.Json.JsonProperty("radius", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 2)]
+        public double Radius
+        {
+            get { return _radius; }
+            set 
+            {
+                if (_radius != value)
+                {
+                    _radius = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        public string ToJson() 
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+        }
+        
+        public static MicrostructurePoint FromJson(string data)
+        {
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<MicrostructurePoint>(data);
+        }
+    
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected virtual void RaisePropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+        {
+            var handler = PropertyChanged;
+            if (handler != null) 
+                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+        }
+    }
+    
     /// <summary>If specified, will filter to only include parts with the given availability.  Uploaded - the part has been uploaded.  Processing - the part is being processed.  Available - the part was processed successfully and can be used in simulations.  Error - an error occurred, contact support@3dsim.com.</summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
     public enum Availability
@@ -23307,6 +25662,52 @@ namespace SimulationCSharpClient.Client
     
         [System.Runtime.Serialization.EnumMember(Value = "Error")]
         Error = 3,
+    
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
+    public enum Anonymous14
+    {
+        [System.Runtime.Serialization.EnumMember(Value = "Draft")]
+        Draft = 0,
+    
+        [System.Runtime.Serialization.EnumMember(Value = "Requested")]
+        Requested = 1,
+    
+        [System.Runtime.Serialization.EnumMember(Value = "InProgress")]
+        InProgress = 2,
+    
+        [System.Runtime.Serialization.EnumMember(Value = "Cancelled")]
+        Cancelled = 3,
+    
+        [System.Runtime.Serialization.EnumMember(Value = "Error")]
+        Error = 4,
+    
+        [System.Runtime.Serialization.EnumMember(Value = "Success")]
+        Success = 5,
+    
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
+    public enum Anonymous15
+    {
+        [System.Runtime.Serialization.EnumMember(Value = "Draft")]
+        Draft = 0,
+    
+        [System.Runtime.Serialization.EnumMember(Value = "Requested")]
+        Requested = 1,
+    
+        [System.Runtime.Serialization.EnumMember(Value = "InProgress")]
+        InProgress = 2,
+    
+        [System.Runtime.Serialization.EnumMember(Value = "Cancelled")]
+        Cancelled = 3,
+    
+        [System.Runtime.Serialization.EnumMember(Value = "Error")]
+        Error = 4,
+    
+        [System.Runtime.Serialization.EnumMember(Value = "Success")]
+        Success = 5,
     
     }
     
