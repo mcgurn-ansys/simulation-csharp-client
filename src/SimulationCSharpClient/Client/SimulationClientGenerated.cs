@@ -15330,6 +15330,7 @@ namespace SimulationCSharpClient.Client
         private System.Collections.ObjectModel.ObservableCollection<double> _originXValues = new System.Collections.ObjectModel.ObservableCollection<double>();
         private System.Collections.ObjectModel.ObservableCollection<double> _originYValues = new System.Collections.ObjectModel.ObservableCollection<double>();
         private System.Collections.ObjectModel.ObservableCollection<double> _solidusTemperatureValues = new System.Collections.ObjectModel.ObservableCollection<double>();
+        private int? _meshLayersPerLayer;
     
         /// <summary>Must be between 0.001 to 0.01 meters</summary>
         [Newtonsoft.Json.JsonProperty("geometryWidth", Required = Newtonsoft.Json.Required.Always)]
@@ -15534,6 +15535,22 @@ namespace SimulationCSharpClient.Client
                 if (_solidusTemperatureValues != value)
                 {
                     _solidusTemperatureValues = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Number of mesh layers used to simulate a single deposit layer</summary>
+        [Newtonsoft.Json.JsonProperty("meshLayersPerLayer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(1, 100)]
+        public int? MeshLayersPerLayer
+        {
+            get { return _meshLayersPerLayer; }
+            set 
+            {
+                if (_meshLayersPerLayer != value)
+                {
+                    _meshLayersPerLayer = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -15575,6 +15592,7 @@ namespace SimulationCSharpClient.Client
         private System.Collections.ObjectModel.ObservableCollection<double> _originXValues = new System.Collections.ObjectModel.ObservableCollection<double>();
         private System.Collections.ObjectModel.ObservableCollection<double> _originYValues = new System.Collections.ObjectModel.ObservableCollection<double>();
         private System.Collections.ObjectModel.ObservableCollection<double> _solidusTemperatureValues = new System.Collections.ObjectModel.ObservableCollection<double>();
+        private int? _meshLayersPerLayer;
     
         /// <summary>Must be between 0.001 to 0.01 meters</summary>
         [Newtonsoft.Json.JsonProperty("geometryWidth", Required = Newtonsoft.Json.Required.Always)]
@@ -15779,6 +15797,22 @@ namespace SimulationCSharpClient.Client
                 if (_solidusTemperatureValues != value)
                 {
                     _solidusTemperatureValues = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Number of mesh layers used to simulate a single deposit layer</summary>
+        [Newtonsoft.Json.JsonProperty("meshLayersPerLayer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(1, 100)]
+        public int? MeshLayersPerLayer
+        {
+            get { return _meshLayersPerLayer; }
+            set 
+            {
+                if (_meshLayersPerLayer != value)
+                {
+                    _meshLayersPerLayer = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -16055,6 +16089,7 @@ namespace SimulationCSharpClient.Client
         private bool? _performDistortionCompensationAfterCutoff;
         private double? _distortionAfterCutoffScaleFactor;
         private PartBasedSimulationParametersSupportType _supportType;
+        private int? _voxelSampleRate;
     
         /// <summary>List of parts to simulate (current limit is one part, imposed by server)</summary>
         [Newtonsoft.Json.JsonProperty("simulationParts", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -16591,6 +16626,22 @@ namespace SimulationCSharpClient.Client
                 if (_supportType != value)
                 {
                     _supportType = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>the amount of sub voxels per voxel in each direction (x,y,z)</summary>
+        [Newtonsoft.Json.JsonProperty("voxelSampleRate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(1, 10)]
+        public int? VoxelSampleRate
+        {
+            get { return _voxelSampleRate; }
+            set 
+            {
+                if (_voxelSampleRate != value)
+                {
+                    _voxelSampleRate = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -16908,6 +16959,7 @@ namespace SimulationCSharpClient.Client
         private bool? _performDistortionCompensationAfterCutoff;
         private double? _distortionAfterCutoffScaleFactor;
         private PartBasedSimulationParametersSupportType _supportType;
+        private int? _voxelSampleRate;
         private double? _layerThickness;
     
         /// <summary>List of parts to simulate (current limit is one part, imposed by server)</summary>
@@ -17445,6 +17497,22 @@ namespace SimulationCSharpClient.Client
                 if (_supportType != value)
                 {
                     _supportType = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>the amount of sub voxels per voxel in each direction (x,y,z)</summary>
+        [Newtonsoft.Json.JsonProperty("voxelSampleRate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(1, 10)]
+        public int? VoxelSampleRate
+        {
+            get { return _voxelSampleRate; }
+            set 
+            {
+                if (_voxelSampleRate != value)
+                {
+                    _voxelSampleRate = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -18049,6 +18117,7 @@ namespace SimulationCSharpClient.Client
         private bool? _performDistortionCompensationAfterCutoff;
         private double? _distortionAfterCutoffScaleFactor;
         private PartBasedSimulationParametersSupportType _supportType;
+        private int? _voxelSampleRate;
         private double _layerThickness;
         private double _hatchSpacing;
         private double _laserWattage;
@@ -18616,6 +18685,22 @@ namespace SimulationCSharpClient.Client
                 if (_supportType != value)
                 {
                     _supportType = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>the amount of sub voxels per voxel in each direction (x,y,z)</summary>
+        [Newtonsoft.Json.JsonProperty("voxelSampleRate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(1, 10)]
+        public int? VoxelSampleRate
+        {
+            get { return _voxelSampleRate; }
+            set 
+            {
+                if (_voxelSampleRate != value)
+                {
+                    _voxelSampleRate = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -19284,6 +19369,7 @@ namespace SimulationCSharpClient.Client
         private bool? _performDistortionCompensationAfterCutoff;
         private double? _distortionAfterCutoffScaleFactor;
         private PartBasedSimulationParametersSupportType _supportType;
+        private int? _voxelSampleRate;
         private double _layerThickness;
         private double _startingLayerAngle;
         private double _layerRotationAngle;
@@ -19827,6 +19913,22 @@ namespace SimulationCSharpClient.Client
                 if (_supportType != value)
                 {
                     _supportType = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>the amount of sub voxels per voxel in each direction (x,y,z)</summary>
+        [Newtonsoft.Json.JsonProperty("voxelSampleRate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(1, 10)]
+        public int? VoxelSampleRate
+        {
+            get { return _voxelSampleRate; }
+            set 
+            {
+                if (_voxelSampleRate != value)
+                {
+                    _voxelSampleRate = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -24470,6 +24572,7 @@ namespace SimulationCSharpClient.Client
         private bool? _performDistortionCompensationAfterCutoff;
         private double? _distortionAfterCutoffScaleFactor;
         private PartBasedSimulationParametersSupportType _supportType;
+        private int? _voxelSampleRate;
         private double _layerThickness;
         private double _hatchSpacing;
         private double _laserWattage;
@@ -25017,6 +25120,22 @@ namespace SimulationCSharpClient.Client
                 if (_supportType != value)
                 {
                     _supportType = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>the amount of sub voxels per voxel in each direction (x,y,z)</summary>
+        [Newtonsoft.Json.JsonProperty("voxelSampleRate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(1, 10)]
+        public int? VoxelSampleRate
+        {
+            get { return _voxelSampleRate; }
+            set 
+            {
+                if (_voxelSampleRate != value)
+                {
+                    _voxelSampleRate = value; 
                     RaisePropertyChanged();
                 }
             }
