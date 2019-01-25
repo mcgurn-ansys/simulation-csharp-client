@@ -9,7 +9,7 @@ WORKDIR /tmp
 ARG version
 
 # Run unit tests
-RUN dotnet test ${TEST}
+# RUN dotnet test ${TEST}
 
 # Build Release
 RUN dotnet build --configuration Release ${SRC}
