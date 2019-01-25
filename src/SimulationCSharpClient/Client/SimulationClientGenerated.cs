@@ -269,13 +269,13 @@ namespace SimulationCSharpClient.Client
         /// <param name="id">ID of part</param>
         /// <returns>Successfully returns a part geometry triangles</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Triangle>> GetPartGeometryAsync(int id);
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<GeometryTriangle>> GetPartGeometryAsync(int id);
     
         /// <param name="id">ID of part</param>
         /// <returns>Successfully returns a part geometry triangles</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Triangle>> GetPartGeometryAsync(int id, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<GeometryTriangle>> GetPartGeometryAsync(int id, System.Threading.CancellationToken cancellationToken);
     
         /// <param name="partId">ID of part</param>
         /// <param name="supportId">ID of support to get</param>
@@ -374,14 +374,14 @@ namespace SimulationCSharpClient.Client
         /// <param name="supportId">ID of support</param>
         /// <returns>Successfully returns support geometry triangles</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Triangle>> PartSupportGeometryAsync(int partId, int supportId);
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<GeometryTriangle>> PartSupportGeometryAsync(int partId, int supportId);
     
         /// <param name="partId">ID of part</param>
         /// <param name="supportId">ID of support</param>
         /// <returns>Successfully returns support geometry triangles</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Triangle>> PartSupportGeometryAsync(int partId, int supportId, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<GeometryTriangle>> PartSupportGeometryAsync(int partId, int supportId, System.Threading.CancellationToken cancellationToken);
     
         /// <param name="id">ID of support to get</param>
         /// <returns>Successfully found a support</returns>
@@ -1269,13 +1269,13 @@ namespace SimulationCSharpClient.Client
         /// <param name="id">ID of build file to retrieve geometry of</param>
         /// <returns>Part geometry as an array of triangles</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Triangle>> GetBuildFileGeometryAsync(int id);
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<GeometryTriangle>> GetBuildFileGeometryAsync(int id);
     
         /// <param name="id">ID of build file to retrieve geometry of</param>
         /// <returns>Part geometry as an array of triangles</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Triangle>> GetBuildFileGeometryAsync(int id, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<GeometryTriangle>> GetBuildFileGeometryAsync(int id, System.Threading.CancellationToken cancellationToken);
     
         /// <param name="id">ID of build file to retrieve geometry of</param>
         /// <returns>URL to the part STL file</returns>
@@ -3884,7 +3884,7 @@ namespace SimulationCSharpClient.Client
         /// <param name="id">ID of part</param>
         /// <returns>Successfully returns a part geometry triangles</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Triangle>> GetPartGeometryAsync(int id)
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<GeometryTriangle>> GetPartGeometryAsync(int id)
         {
             return GetPartGeometryAsync(id, System.Threading.CancellationToken.None);
         }
@@ -3893,7 +3893,7 @@ namespace SimulationCSharpClient.Client
         /// <returns>Successfully returns a part geometry triangles</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        public async System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Triangle>> GetPartGeometryAsync(int id, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<GeometryTriangle>> GetPartGeometryAsync(int id, System.Threading.CancellationToken cancellationToken)
         {
             if (id == null)
                 throw new System.ArgumentNullException("id");
@@ -3928,10 +3928,10 @@ namespace SimulationCSharpClient.Client
                         if (status_ == "200") 
                         {
                             var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
-                            var result_ = default(System.Collections.ObjectModel.ObservableCollection<Triangle>); 
+                            var result_ = default(System.Collections.ObjectModel.ObservableCollection<GeometryTriangle>); 
                             try
                             {
-                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.ObjectModel.ObservableCollection<Triangle>>(responseData_, _settings.Value);
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.ObjectModel.ObservableCollection<GeometryTriangle>>(responseData_, _settings.Value);
                                 return result_; 
                             } 
                             catch (System.Exception exception_) 
@@ -3990,7 +3990,7 @@ namespace SimulationCSharpClient.Client
                             throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
                         }
             
-                        return default(System.Collections.ObjectModel.ObservableCollection<Triangle>);
+                        return default(System.Collections.ObjectModel.ObservableCollection<GeometryTriangle>);
                     }
                     finally
                     {
@@ -4832,7 +4832,7 @@ namespace SimulationCSharpClient.Client
         /// <param name="supportId">ID of support</param>
         /// <returns>Successfully returns support geometry triangles</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Triangle>> PartSupportGeometryAsync(int partId, int supportId)
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<GeometryTriangle>> PartSupportGeometryAsync(int partId, int supportId)
         {
             return PartSupportGeometryAsync(partId, supportId, System.Threading.CancellationToken.None);
         }
@@ -4842,7 +4842,7 @@ namespace SimulationCSharpClient.Client
         /// <returns>Successfully returns support geometry triangles</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        public async System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Triangle>> PartSupportGeometryAsync(int partId, int supportId, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<GeometryTriangle>> PartSupportGeometryAsync(int partId, int supportId, System.Threading.CancellationToken cancellationToken)
         {
             if (partId == null)
                 throw new System.ArgumentNullException("partId");
@@ -4881,10 +4881,10 @@ namespace SimulationCSharpClient.Client
                         if (status_ == "200") 
                         {
                             var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
-                            var result_ = default(System.Collections.ObjectModel.ObservableCollection<Triangle>); 
+                            var result_ = default(System.Collections.ObjectModel.ObservableCollection<GeometryTriangle>); 
                             try
                             {
-                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.ObjectModel.ObservableCollection<Triangle>>(responseData_, _settings.Value);
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.ObjectModel.ObservableCollection<GeometryTriangle>>(responseData_, _settings.Value);
                                 return result_; 
                             } 
                             catch (System.Exception exception_) 
@@ -4943,7 +4943,7 @@ namespace SimulationCSharpClient.Client
                             throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
                         }
             
-                        return default(System.Collections.ObjectModel.ObservableCollection<Triangle>);
+                        return default(System.Collections.ObjectModel.ObservableCollection<GeometryTriangle>);
                     }
                     finally
                     {
@@ -13004,7 +13004,7 @@ namespace SimulationCSharpClient.Client
         /// <param name="id">ID of build file to retrieve geometry of</param>
         /// <returns>Part geometry as an array of triangles</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Triangle>> GetBuildFileGeometryAsync(int id)
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<GeometryTriangle>> GetBuildFileGeometryAsync(int id)
         {
             return GetBuildFileGeometryAsync(id, System.Threading.CancellationToken.None);
         }
@@ -13013,7 +13013,7 @@ namespace SimulationCSharpClient.Client
         /// <returns>Part geometry as an array of triangles</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        public async System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Triangle>> GetBuildFileGeometryAsync(int id, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<GeometryTriangle>> GetBuildFileGeometryAsync(int id, System.Threading.CancellationToken cancellationToken)
         {
             if (id == null)
                 throw new System.ArgumentNullException("id");
@@ -13048,10 +13048,10 @@ namespace SimulationCSharpClient.Client
                         if (status_ == "200") 
                         {
                             var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
-                            var result_ = default(System.Collections.ObjectModel.ObservableCollection<Triangle>); 
+                            var result_ = default(System.Collections.ObjectModel.ObservableCollection<GeometryTriangle>); 
                             try
                             {
-                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.ObjectModel.ObservableCollection<Triangle>>(responseData_, _settings.Value);
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.ObjectModel.ObservableCollection<GeometryTriangle>>(responseData_, _settings.Value);
                                 return result_; 
                             } 
                             catch (System.Exception exception_) 
@@ -13110,7 +13110,7 @@ namespace SimulationCSharpClient.Client
                             throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
                         }
             
-                        return default(System.Collections.ObjectModel.ObservableCollection<Triangle>);
+                        return default(System.Collections.ObjectModel.ObservableCollection<GeometryTriangle>);
                     }
                     finally
                     {
@@ -15327,10 +15327,8 @@ namespace SimulationCSharpClient.Client
         private System.Collections.ObjectModel.ObservableCollection<double> _scanSpeedValues = new System.Collections.ObjectModel.ObservableCollection<double>();
         private System.Collections.ObjectModel.ObservableCollection<double> _hatchSpacingValues = new System.Collections.ObjectModel.ObservableCollection<double>();
         private System.Collections.ObjectModel.ObservableCollection<double> _slicingStripeWidthValues = new System.Collections.ObjectModel.ObservableCollection<double>();
-        private System.Collections.ObjectModel.ObservableCollection<double> _originXValues = new System.Collections.ObjectModel.ObservableCollection<double>();
-        private System.Collections.ObjectModel.ObservableCollection<double> _originYValues = new System.Collections.ObjectModel.ObservableCollection<double>();
-        private System.Collections.ObjectModel.ObservableCollection<double> _solidusTemperatureValues = new System.Collections.ObjectModel.ObservableCollection<double>();
         private int? _meshLayersPerLayer;
+        private double? _heaterTemperature;
     
         /// <summary>Must be between 0.001 to 0.01 meters</summary>
         [Newtonsoft.Json.JsonProperty("geometryWidth", Required = Newtonsoft.Json.Required.Always)]
@@ -15492,54 +15490,6 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        /// <summary>Array of origin x values to simulate across, Each value must be between 0 to 0.2 meters</summary>
-        [Newtonsoft.Json.JsonProperty("originXValues", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.ObjectModel.ObservableCollection<double> OriginXValues
-        {
-            get { return _originXValues; }
-            set 
-            {
-                if (_originXValues != value)
-                {
-                    _originXValues = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Array of origin y values to simulate across, Each value must be between 0 to 0.2 meters</summary>
-        [Newtonsoft.Json.JsonProperty("originYValues", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.ObjectModel.ObservableCollection<double> OriginYValues
-        {
-            get { return _originYValues; }
-            set 
-            {
-                if (_originYValues != value)
-                {
-                    _originYValues = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Array of solidus temperature values to simulate across</summary>
-        [Newtonsoft.Json.JsonProperty("solidusTemperatureValues", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.ObjectModel.ObservableCollection<double> SolidusTemperatureValues
-        {
-            get { return _solidusTemperatureValues; }
-            set 
-            {
-                if (_solidusTemperatureValues != value)
-                {
-                    _solidusTemperatureValues = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
         /// <summary>Number of mesh layers used to simulate a single deposit layer</summary>
         [Newtonsoft.Json.JsonProperty("meshLayersPerLayer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [System.ComponentModel.DataAnnotations.Range(1, 100)]
@@ -15551,6 +15501,22 @@ namespace SimulationCSharpClient.Client
                 if (_meshLayersPerLayer != value)
                 {
                     _meshLayersPerLayer = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>heater temperature in degrees kelvin</summary>
+        [Newtonsoft.Json.JsonProperty("heaterTemperature", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(293D, 474D)]
+        public double? HeaterTemperature
+        {
+            get { return _heaterTemperature; }
+            set 
+            {
+                if (_heaterTemperature != value)
+                {
+                    _heaterTemperature = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -15589,10 +15555,8 @@ namespace SimulationCSharpClient.Client
         private System.Collections.ObjectModel.ObservableCollection<double> _scanSpeedValues = new System.Collections.ObjectModel.ObservableCollection<double>();
         private System.Collections.ObjectModel.ObservableCollection<double> _hatchSpacingValues = new System.Collections.ObjectModel.ObservableCollection<double>();
         private System.Collections.ObjectModel.ObservableCollection<double> _slicingStripeWidthValues = new System.Collections.ObjectModel.ObservableCollection<double>();
-        private System.Collections.ObjectModel.ObservableCollection<double> _originXValues = new System.Collections.ObjectModel.ObservableCollection<double>();
-        private System.Collections.ObjectModel.ObservableCollection<double> _originYValues = new System.Collections.ObjectModel.ObservableCollection<double>();
-        private System.Collections.ObjectModel.ObservableCollection<double> _solidusTemperatureValues = new System.Collections.ObjectModel.ObservableCollection<double>();
         private int? _meshLayersPerLayer;
+        private double? _heaterTemperature;
     
         /// <summary>Must be between 0.001 to 0.01 meters</summary>
         [Newtonsoft.Json.JsonProperty("geometryWidth", Required = Newtonsoft.Json.Required.Always)]
@@ -15754,54 +15718,6 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        /// <summary>Array of origin x values to simulate across, Each value must be between 0 to 0.2 meters</summary>
-        [Newtonsoft.Json.JsonProperty("originXValues", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.ObjectModel.ObservableCollection<double> OriginXValues
-        {
-            get { return _originXValues; }
-            set 
-            {
-                if (_originXValues != value)
-                {
-                    _originXValues = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Array of origin y values to simulate across, Each value must be between 0 to 0.2 meters</summary>
-        [Newtonsoft.Json.JsonProperty("originYValues", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.ObjectModel.ObservableCollection<double> OriginYValues
-        {
-            get { return _originYValues; }
-            set 
-            {
-                if (_originYValues != value)
-                {
-                    _originYValues = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Array of solidus temperature values to simulate across</summary>
-        [Newtonsoft.Json.JsonProperty("solidusTemperatureValues", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.ObjectModel.ObservableCollection<double> SolidusTemperatureValues
-        {
-            get { return _solidusTemperatureValues; }
-            set 
-            {
-                if (_solidusTemperatureValues != value)
-                {
-                    _solidusTemperatureValues = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
         /// <summary>Number of mesh layers used to simulate a single deposit layer</summary>
         [Newtonsoft.Json.JsonProperty("meshLayersPerLayer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [System.ComponentModel.DataAnnotations.Range(1, 100)]
@@ -15813,6 +15729,22 @@ namespace SimulationCSharpClient.Client
                 if (_meshLayersPerLayer != value)
                 {
                     _meshLayersPerLayer = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>heater temperature in degrees kelvin</summary>
+        [Newtonsoft.Json.JsonProperty("heaterTemperature", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(293D, 474D)]
+        public double? HeaterTemperature
+        {
+            get { return _heaterTemperature; }
+            set 
+            {
+                if (_heaterTemperature != value)
+                {
+                    _heaterTemperature = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -15852,6 +15784,7 @@ namespace SimulationCSharpClient.Client
         private System.Collections.ObjectModel.ObservableCollection<double> _laserAbsorptivityInSolidValues = new System.Collections.ObjectModel.ObservableCollection<double>();
         private System.Collections.ObjectModel.ObservableCollection<double> _solidusTemperatureValues = new System.Collections.ObjectModel.ObservableCollection<double>();
         private System.Collections.ObjectModel.ObservableCollection<double> _liquidusTemperatureValues = new System.Collections.ObjectModel.ObservableCollection<double>();
+        private double? _heaterTemperature;
     
         /// <summary>Type of single bead simulation - either bead on plate or bead on powder.</summary>
         [Newtonsoft.Json.JsonProperty("beadType", Required = Newtonsoft.Json.Required.Always)]
@@ -16030,6 +15963,22 @@ namespace SimulationCSharpClient.Client
             }
         }
     
+        /// <summary>heater temperature in degrees kelvin</summary>
+        [Newtonsoft.Json.JsonProperty("heaterTemperature", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(293D, 474D)]
+        public double? HeaterTemperature
+        {
+            get { return _heaterTemperature; }
+            set 
+            {
+                if (_heaterTemperature != value)
+                {
+                    _heaterTemperature = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
         public string ToJson() 
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this);
@@ -16038,6 +15987,235 @@ namespace SimulationCSharpClient.Client
         public static SingleBeadSimulationParameters FromJson(string data)
         {
             return Newtonsoft.Json.JsonConvert.DeserializeObject<SingleBeadSimulationParameters>(data);
+        }
+    
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected virtual void RaisePropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+        {
+            var handler = PropertyChanged;
+            if (handler != null) 
+                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
+    public partial class SingleBeadSimulation : Simulation, System.ComponentModel.INotifyPropertyChanged
+    {
+        private SingleBeadSimulationParametersBeadType _beadType;
+        private double _beadLength;
+        private double _layerThickness;
+        private System.Collections.ObjectModel.ObservableCollection<double> _laserWattageValues = new System.Collections.ObjectModel.ObservableCollection<double>();
+        private System.Collections.ObjectModel.ObservableCollection<double> _scanSpeedValues = new System.Collections.ObjectModel.ObservableCollection<double>();
+        private System.Collections.ObjectModel.ObservableCollection<double> _powderThermalConductivityValues = new System.Collections.ObjectModel.ObservableCollection<double>();
+        private System.Collections.ObjectModel.ObservableCollection<double> _powderPackingDensityValues = new System.Collections.ObjectModel.ObservableCollection<double>();
+        private System.Collections.ObjectModel.ObservableCollection<double> _laserAbsorptivityInPowderValues = new System.Collections.ObjectModel.ObservableCollection<double>();
+        private System.Collections.ObjectModel.ObservableCollection<double> _laserAbsorptivityInSolidValues = new System.Collections.ObjectModel.ObservableCollection<double>();
+        private System.Collections.ObjectModel.ObservableCollection<double> _solidusTemperatureValues = new System.Collections.ObjectModel.ObservableCollection<double>();
+        private System.Collections.ObjectModel.ObservableCollection<double> _liquidusTemperatureValues = new System.Collections.ObjectModel.ObservableCollection<double>();
+        private double? _heaterTemperature;
+    
+        /// <summary>Type of single bead simulation - either bead on plate or bead on powder.</summary>
+        [Newtonsoft.Json.JsonProperty("beadType", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public SingleBeadSimulationParametersBeadType BeadType
+        {
+            get { return _beadType; }
+            set 
+            {
+                if (_beadType != value)
+                {
+                    _beadType = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Must be between 0.001 to 0.01 meters</summary>
+        [Newtonsoft.Json.JsonProperty("beadLength", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 0)]
+        public double BeadLength
+        {
+            get { return _beadLength; }
+            set 
+            {
+                if (_beadLength != value)
+                {
+                    _beadLength = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Must be between 0.00001 to 0.0001 meters</summary>
+        [Newtonsoft.Json.JsonProperty("layerThickness", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 0)]
+        public double LayerThickness
+        {
+            get { return _layerThickness; }
+            set 
+            {
+                if (_layerThickness != value)
+                {
+                    _layerThickness = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Array of laser power values to simulate across, Each value must be between 10 to 1000 watts</summary>
+        [Newtonsoft.Json.JsonProperty("laserWattageValues", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.ObjectModel.ObservableCollection<double> LaserWattageValues
+        {
+            get { return _laserWattageValues; }
+            set 
+            {
+                if (_laserWattageValues != value)
+                {
+                    _laserWattageValues = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Array of scan speed values to simulate across, Each value must be between 0.01 to 10 meters/second</summary>
+        [Newtonsoft.Json.JsonProperty("scanSpeedValues", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.ObjectModel.ObservableCollection<double> ScanSpeedValues
+        {
+            get { return _scanSpeedValues; }
+            set 
+            {
+                if (_scanSpeedValues != value)
+                {
+                    _scanSpeedValues = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Array of Powder Thermal Conductivity Percentage Values to simulate across, Each value must be between 0% and 100%, expressed as a decimal</summary>
+        [Newtonsoft.Json.JsonProperty("powderThermalConductivityValues", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.ObjectModel.ObservableCollection<double> PowderThermalConductivityValues
+        {
+            get { return _powderThermalConductivityValues; }
+            set 
+            {
+                if (_powderThermalConductivityValues != value)
+                {
+                    _powderThermalConductivityValues = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Array of Powder Packing Density Percentage Values to simulate across, Each value must be between 0% and 100%, expressed as a decimal</summary>
+        [Newtonsoft.Json.JsonProperty("powderPackingDensityValues", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.ObjectModel.ObservableCollection<double> PowderPackingDensityValues
+        {
+            get { return _powderPackingDensityValues; }
+            set 
+            {
+                if (_powderPackingDensityValues != value)
+                {
+                    _powderPackingDensityValues = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Array of Powder Laser Absorptivity Values to simulate across, Each value must be between 0% and 100%, expressed as a decimal</summary>
+        [Newtonsoft.Json.JsonProperty("laserAbsorptivityInPowderValues", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.ObjectModel.ObservableCollection<double> LaserAbsorptivityInPowderValues
+        {
+            get { return _laserAbsorptivityInPowderValues; }
+            set 
+            {
+                if (_laserAbsorptivityInPowderValues != value)
+                {
+                    _laserAbsorptivityInPowderValues = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Array of Solid Laser Absorptivity Values to simulate across, Each value must be between 0% and 100%, expressed as a decimal</summary>
+        [Newtonsoft.Json.JsonProperty("laserAbsorptivityInSolidValues", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.ObjectModel.ObservableCollection<double> LaserAbsorptivityInSolidValues
+        {
+            get { return _laserAbsorptivityInSolidValues; }
+            set 
+            {
+                if (_laserAbsorptivityInSolidValues != value)
+                {
+                    _laserAbsorptivityInSolidValues = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Array of Solidus Temperature Values Values to simulate across</summary>
+        [Newtonsoft.Json.JsonProperty("solidusTemperatureValues", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.ObjectModel.ObservableCollection<double> SolidusTemperatureValues
+        {
+            get { return _solidusTemperatureValues; }
+            set 
+            {
+                if (_solidusTemperatureValues != value)
+                {
+                    _solidusTemperatureValues = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Array of Liquidus Temperature Values Values to simulate across</summary>
+        [Newtonsoft.Json.JsonProperty("liquidusTemperatureValues", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.ObjectModel.ObservableCollection<double> LiquidusTemperatureValues
+        {
+            get { return _liquidusTemperatureValues; }
+            set 
+            {
+                if (_liquidusTemperatureValues != value)
+                {
+                    _liquidusTemperatureValues = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>heater temperature in degrees kelvin</summary>
+        [Newtonsoft.Json.JsonProperty("heaterTemperature", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(293D, 474D)]
+        public double? HeaterTemperature
+        {
+            get { return _heaterTemperature; }
+            set 
+            {
+                if (_heaterTemperature != value)
+                {
+                    _heaterTemperature = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        public string ToJson() 
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+        }
+        
+        public static SingleBeadSimulation FromJson(string data)
+        {
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<SingleBeadSimulation>(data);
         }
     
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
@@ -16655,218 +16833,6 @@ namespace SimulationCSharpClient.Client
         public static PartBasedSimulationParameters FromJson(string data)
         {
             return Newtonsoft.Json.JsonConvert.DeserializeObject<PartBasedSimulationParameters>(data);
-        }
-    
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected virtual void RaisePropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
-        {
-            var handler = PropertyChanged;
-            if (handler != null) 
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-        }
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
-    public partial class SingleBeadSimulation : Simulation, System.ComponentModel.INotifyPropertyChanged
-    {
-        private SingleBeadSimulationParametersBeadType _beadType;
-        private double _beadLength;
-        private double _layerThickness;
-        private System.Collections.ObjectModel.ObservableCollection<double> _laserWattageValues = new System.Collections.ObjectModel.ObservableCollection<double>();
-        private System.Collections.ObjectModel.ObservableCollection<double> _scanSpeedValues = new System.Collections.ObjectModel.ObservableCollection<double>();
-        private System.Collections.ObjectModel.ObservableCollection<double> _powderThermalConductivityValues = new System.Collections.ObjectModel.ObservableCollection<double>();
-        private System.Collections.ObjectModel.ObservableCollection<double> _powderPackingDensityValues = new System.Collections.ObjectModel.ObservableCollection<double>();
-        private System.Collections.ObjectModel.ObservableCollection<double> _laserAbsorptivityInPowderValues = new System.Collections.ObjectModel.ObservableCollection<double>();
-        private System.Collections.ObjectModel.ObservableCollection<double> _laserAbsorptivityInSolidValues = new System.Collections.ObjectModel.ObservableCollection<double>();
-        private System.Collections.ObjectModel.ObservableCollection<double> _solidusTemperatureValues = new System.Collections.ObjectModel.ObservableCollection<double>();
-        private System.Collections.ObjectModel.ObservableCollection<double> _liquidusTemperatureValues = new System.Collections.ObjectModel.ObservableCollection<double>();
-    
-        /// <summary>Type of single bead simulation - either bead on plate or bead on powder.</summary>
-        [Newtonsoft.Json.JsonProperty("beadType", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public SingleBeadSimulationParametersBeadType BeadType
-        {
-            get { return _beadType; }
-            set 
-            {
-                if (_beadType != value)
-                {
-                    _beadType = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0.001 to 0.01 meters</summary>
-        [Newtonsoft.Json.JsonProperty("beadLength", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double BeadLength
-        {
-            get { return _beadLength; }
-            set 
-            {
-                if (_beadLength != value)
-                {
-                    _beadLength = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0.00001 to 0.0001 meters</summary>
-        [Newtonsoft.Json.JsonProperty("layerThickness", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double LayerThickness
-        {
-            get { return _layerThickness; }
-            set 
-            {
-                if (_layerThickness != value)
-                {
-                    _layerThickness = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Array of laser power values to simulate across, Each value must be between 10 to 1000 watts</summary>
-        [Newtonsoft.Json.JsonProperty("laserWattageValues", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.ObjectModel.ObservableCollection<double> LaserWattageValues
-        {
-            get { return _laserWattageValues; }
-            set 
-            {
-                if (_laserWattageValues != value)
-                {
-                    _laserWattageValues = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Array of scan speed values to simulate across, Each value must be between 0.01 to 10 meters/second</summary>
-        [Newtonsoft.Json.JsonProperty("scanSpeedValues", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.ObjectModel.ObservableCollection<double> ScanSpeedValues
-        {
-            get { return _scanSpeedValues; }
-            set 
-            {
-                if (_scanSpeedValues != value)
-                {
-                    _scanSpeedValues = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Array of Powder Thermal Conductivity Percentage Values to simulate across, Each value must be between 0% and 100%, expressed as a decimal</summary>
-        [Newtonsoft.Json.JsonProperty("powderThermalConductivityValues", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.ObjectModel.ObservableCollection<double> PowderThermalConductivityValues
-        {
-            get { return _powderThermalConductivityValues; }
-            set 
-            {
-                if (_powderThermalConductivityValues != value)
-                {
-                    _powderThermalConductivityValues = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Array of Powder Packing Density Percentage Values to simulate across, Each value must be between 0% and 100%, expressed as a decimal</summary>
-        [Newtonsoft.Json.JsonProperty("powderPackingDensityValues", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.ObjectModel.ObservableCollection<double> PowderPackingDensityValues
-        {
-            get { return _powderPackingDensityValues; }
-            set 
-            {
-                if (_powderPackingDensityValues != value)
-                {
-                    _powderPackingDensityValues = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Array of Powder Laser Absorptivity Values to simulate across, Each value must be between 0% and 100%, expressed as a decimal</summary>
-        [Newtonsoft.Json.JsonProperty("laserAbsorptivityInPowderValues", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.ObjectModel.ObservableCollection<double> LaserAbsorptivityInPowderValues
-        {
-            get { return _laserAbsorptivityInPowderValues; }
-            set 
-            {
-                if (_laserAbsorptivityInPowderValues != value)
-                {
-                    _laserAbsorptivityInPowderValues = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Array of Solid Laser Absorptivity Values to simulate across, Each value must be between 0% and 100%, expressed as a decimal</summary>
-        [Newtonsoft.Json.JsonProperty("laserAbsorptivityInSolidValues", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.ObjectModel.ObservableCollection<double> LaserAbsorptivityInSolidValues
-        {
-            get { return _laserAbsorptivityInSolidValues; }
-            set 
-            {
-                if (_laserAbsorptivityInSolidValues != value)
-                {
-                    _laserAbsorptivityInSolidValues = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Array of Solidus Temperature Values Values to simulate across</summary>
-        [Newtonsoft.Json.JsonProperty("solidusTemperatureValues", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.ObjectModel.ObservableCollection<double> SolidusTemperatureValues
-        {
-            get { return _solidusTemperatureValues; }
-            set 
-            {
-                if (_solidusTemperatureValues != value)
-                {
-                    _solidusTemperatureValues = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Array of Liquidus Temperature Values Values to simulate across</summary>
-        [Newtonsoft.Json.JsonProperty("liquidusTemperatureValues", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.ObjectModel.ObservableCollection<double> LiquidusTemperatureValues
-        {
-            get { return _liquidusTemperatureValues; }
-            set 
-            {
-                if (_liquidusTemperatureValues != value)
-                {
-                    _liquidusTemperatureValues = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        public string ToJson() 
-        {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
-        }
-        
-        public static SingleBeadSimulation FromJson(string data)
-        {
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<SingleBeadSimulation>(data);
         }
     
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
@@ -17575,7 +17541,7 @@ namespace SimulationCSharpClient.Client
         private double _anisotropicStrainCoefficientsPerpendicular;
         private double _anisotropicStrainCoefficientsZ;
         private System.Collections.ObjectModel.ObservableCollection<SelectedPoint> _selectedPoints;
-        private double _heaterTemperature;
+        private double? _heaterTemperature;
         private bool _outputInstantDynamicSensor;
         private double? _instantDynamicSensorRadius;
         private System.Collections.ObjectModel.ObservableCollection<int> _instantDynamicSensorLayers;
@@ -17588,6 +17554,7 @@ namespace SimulationCSharpClient.Client
         private bool _outputCoaxialAverageSensorData;
         private double? _coaxialAverageSensorRadius;
         private System.Collections.ObjectModel.ObservableCollection<ZHeightRange> _coaxialAverageSensorZHeights;
+        private int? _meshResolutionFactor;
     
         /// <summary>Must be between 0.00001 to 0.0001 meters</summary>
         [Newtonsoft.Json.JsonProperty("layerThickness", Required = Newtonsoft.Json.Required.Always)]
@@ -17860,9 +17827,9 @@ namespace SimulationCSharpClient.Client
         }
     
         /// <summary>heater temperature in degrees kelvin</summary>
-        [Newtonsoft.Json.JsonProperty("heaterTemperature", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0D, 1000D)]
-        public double HeaterTemperature
+        [Newtonsoft.Json.JsonProperty("heaterTemperature", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(293D, 474D)]
+        public double? HeaterTemperature
         {
             get { return _heaterTemperature; }
             set 
@@ -18043,7 +18010,7 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        /// <summary>List of z height (mm) ranges within the part where the coaxial average sensor will collect data</summary>
+        /// <summary>list of z height (mm) ranges within the part where the coaxial average sensor will collect data</summary>
         [Newtonsoft.Json.JsonProperty("coaxialAverageSensorZHeights", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.ObjectModel.ObservableCollection<ZHeightRange> CoaxialAverageSensorZHeights
         {
@@ -18053,6 +18020,22 @@ namespace SimulationCSharpClient.Client
                 if (_coaxialAverageSensorZHeights != value)
                 {
                     _coaxialAverageSensorZHeights = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>multiplier of fine grid spacing for course grid portion of FEA mesh</summary>
+        [Newtonsoft.Json.JsonProperty("meshResolutionFactor", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(1, 12)]
+        public int? MeshResolutionFactor
+        {
+            get { return _meshResolutionFactor; }
+            set 
+            {
+                if (_meshResolutionFactor != value)
+                {
+                    _meshResolutionFactor = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -18136,7 +18119,7 @@ namespace SimulationCSharpClient.Client
         private double _anisotropicStrainCoefficientsPerpendicular;
         private double _anisotropicStrainCoefficientsZ;
         private System.Collections.ObjectModel.ObservableCollection<SelectedPoint> _selectedPoints;
-        private double _heaterTemperature;
+        private double? _heaterTemperature;
         private bool _outputInstantDynamicSensor;
         private double? _instantDynamicSensorRadius;
         private System.Collections.ObjectModel.ObservableCollection<int> _instantDynamicSensorLayers;
@@ -18149,6 +18132,7 @@ namespace SimulationCSharpClient.Client
         private bool _outputCoaxialAverageSensorData;
         private double? _coaxialAverageSensorRadius;
         private System.Collections.ObjectModel.ObservableCollection<ZHeightRange> _coaxialAverageSensorZHeights;
+        private int? _meshResolutionFactor;
     
         /// <summary>List of parts to simulate (current limit is one part, imposed by server)</summary>
         [Newtonsoft.Json.JsonProperty("simulationParts", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -18977,9 +18961,9 @@ namespace SimulationCSharpClient.Client
         }
     
         /// <summary>heater temperature in degrees kelvin</summary>
-        [Newtonsoft.Json.JsonProperty("heaterTemperature", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0D, 1000D)]
-        public double HeaterTemperature
+        [Newtonsoft.Json.JsonProperty("heaterTemperature", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(293D, 474D)]
+        public double? HeaterTemperature
         {
             get { return _heaterTemperature; }
             set 
@@ -19160,7 +19144,7 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        /// <summary>List of z height (mm) ranges within the part where the coaxial average sensor will collect data</summary>
+        /// <summary>list of z height (mm) ranges within the part where the coaxial average sensor will collect data</summary>
         [Newtonsoft.Json.JsonProperty("coaxialAverageSensorZHeights", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.ObjectModel.ObservableCollection<ZHeightRange> CoaxialAverageSensorZHeights
         {
@@ -19170,6 +19154,22 @@ namespace SimulationCSharpClient.Client
                 if (_coaxialAverageSensorZHeights != value)
                 {
                     _coaxialAverageSensorZHeights = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>multiplier of fine grid spacing for course grid portion of FEA mesh</summary>
+        [Newtonsoft.Json.JsonProperty("meshResolutionFactor", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(1, 12)]
+        public int? MeshResolutionFactor
+        {
+            get { return _meshResolutionFactor; }
+            set 
+            {
+                if (_meshResolutionFactor != value)
+                {
+                    _meshResolutionFactor = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -22023,7 +22023,7 @@ namespace SimulationCSharpClient.Client
     
         /// <summary>heater temperature in degrees kelvin</summary>
         [Newtonsoft.Json.JsonProperty("heaterTemperature", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0D, 1000D)]
+        [System.ComponentModel.DataAnnotations.Range(293D, 474D)]
         public double HeaterTemperature
         {
             get { return _heaterTemperature; }
@@ -22438,34 +22438,184 @@ namespace SimulationCSharpClient.Client
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
-    public partial class Triangle : System.ComponentModel.INotifyPropertyChanged
+    public partial class GeometryTriangle : System.ComponentModel.INotifyPropertyChanged
     {
-        private Normal _normal;
-        private System.Collections.ObjectModel.ObservableCollection<Vertex> _vertices;
+        private double? _normalX;
+        private double? _normalY;
+        private double? _normalZ;
+        private double? _vertex1X;
+        private double? _vertex1Y;
+        private double? _vertex1Z;
+        private double? _vertex2X;
+        private double? _vertex2Y;
+        private double? _vertex2Z;
+        private double? _vertex3X;
+        private double? _vertex3Y;
+        private double? _vertex3Z;
     
-        [Newtonsoft.Json.JsonProperty("normal", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Normal Normal
+        [Newtonsoft.Json.JsonProperty("normalX", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? NormalX
         {
-            get { return _normal; }
+            get { return _normalX; }
             set 
             {
-                if (_normal != value)
+                if (_normalX != value)
                 {
-                    _normal = value; 
+                    _normalX = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
-        [Newtonsoft.Json.JsonProperty("vertices", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.ObjectModel.ObservableCollection<Vertex> Vertices
+        [Newtonsoft.Json.JsonProperty("normalY", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? NormalY
         {
-            get { return _vertices; }
+            get { return _normalY; }
             set 
             {
-                if (_vertices != value)
+                if (_normalY != value)
                 {
-                    _vertices = value; 
+                    _normalY = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("normalZ", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? NormalZ
+        {
+            get { return _normalZ; }
+            set 
+            {
+                if (_normalZ != value)
+                {
+                    _normalZ = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("vertex1X", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? Vertex1X
+        {
+            get { return _vertex1X; }
+            set 
+            {
+                if (_vertex1X != value)
+                {
+                    _vertex1X = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("vertex1Y", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? Vertex1Y
+        {
+            get { return _vertex1Y; }
+            set 
+            {
+                if (_vertex1Y != value)
+                {
+                    _vertex1Y = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("vertex1Z", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? Vertex1Z
+        {
+            get { return _vertex1Z; }
+            set 
+            {
+                if (_vertex1Z != value)
+                {
+                    _vertex1Z = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("vertex2X", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? Vertex2X
+        {
+            get { return _vertex2X; }
+            set 
+            {
+                if (_vertex2X != value)
+                {
+                    _vertex2X = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("vertex2Y", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? Vertex2Y
+        {
+            get { return _vertex2Y; }
+            set 
+            {
+                if (_vertex2Y != value)
+                {
+                    _vertex2Y = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("vertex2Z", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? Vertex2Z
+        {
+            get { return _vertex2Z; }
+            set 
+            {
+                if (_vertex2Z != value)
+                {
+                    _vertex2Z = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("vertex3X", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? Vertex3X
+        {
+            get { return _vertex3X; }
+            set 
+            {
+                if (_vertex3X != value)
+                {
+                    _vertex3X = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("vertex3Y", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? Vertex3Y
+        {
+            get { return _vertex3Y; }
+            set 
+            {
+                if (_vertex3Y != value)
+                {
+                    _vertex3Y = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("vertex3Z", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? Vertex3Z
+        {
+            get { return _vertex3Z; }
+            set 
+            {
+                if (_vertex3Z != value)
+                {
+                    _vertex3Z = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -22476,78 +22626,9 @@ namespace SimulationCSharpClient.Client
             return Newtonsoft.Json.JsonConvert.SerializeObject(this);
         }
         
-        public static Triangle FromJson(string data)
+        public static GeometryTriangle FromJson(string data)
         {
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<Triangle>(data);
-        }
-    
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected virtual void RaisePropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
-        {
-            var handler = PropertyChanged;
-            if (handler != null) 
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-        }
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
-    public partial class Vertex : System.ComponentModel.INotifyPropertyChanged
-    {
-        private double? _x;
-        private double? _y;
-        private double? _z;
-    
-        [Newtonsoft.Json.JsonProperty("x", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? X
-        {
-            get { return _x; }
-            set 
-            {
-                if (_x != value)
-                {
-                    _x = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("y", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? Y
-        {
-            get { return _y; }
-            set 
-            {
-                if (_y != value)
-                {
-                    _y = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("z", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? Z
-        {
-            get { return _z; }
-            set 
-            {
-                if (_z != value)
-                {
-                    _z = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        public string ToJson() 
-        {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
-        }
-        
-        public static Vertex FromJson(string data)
-        {
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<Vertex>(data);
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<GeometryTriangle>(data);
         }
     
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
@@ -24327,172 +24408,221 @@ namespace SimulationCSharpClient.Client
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
     public partial class MicrostructureSimulationParameters : System.ComponentModel.INotifyPropertyChanged
     {
-        private double _layerThickness;
-        private double _hatchSpacing;
-        private double _laserWattage;
-        private double _scanSpeed;
-        private double _slicingStripeWidth;
-        private double _startingLayerAngle;
-        private double _layerRotationAngle;
-        private System.Collections.ObjectModel.ObservableCollection<MicrostructurePoint> _microstructurePoints = new System.Collections.ObjectModel.ObservableCollection<MicrostructurePoint>();
-        private double? _sensorMinimumTemperature;
-        private double? _heaterTemperature;
+        private double _geometryWidth;
+        private double _geometryLength;
+        private double _geometryHeight;
+        private System.Collections.ObjectModel.ObservableCollection<double> _startingLayerAngleValues = new System.Collections.ObjectModel.ObservableCollection<double>();
+        private System.Collections.ObjectModel.ObservableCollection<double> _layerRotationAngleValues = new System.Collections.ObjectModel.ObservableCollection<double>();
+        private System.Collections.ObjectModel.ObservableCollection<double> _layerThicknessValues = new System.Collections.ObjectModel.ObservableCollection<double>();
+        private System.Collections.ObjectModel.ObservableCollection<double> _laserWattageValues;
+        private System.Collections.ObjectModel.ObservableCollection<double> _scanSpeedValues = new System.Collections.ObjectModel.ObservableCollection<double>();
+        private System.Collections.ObjectModel.ObservableCollection<double> _hatchSpacingValues = new System.Collections.ObjectModel.ObservableCollection<double>();
+        private System.Collections.ObjectModel.ObservableCollection<double> _slicingStripeWidthValues = new System.Collections.ObjectModel.ObservableCollection<double>();
+        private System.Collections.ObjectModel.ObservableCollection<double> _heaterTemperatureValues;
+        private System.Collections.ObjectModel.ObservableCollection<MicrostructureSensor> _microstructureSensors = new System.Collections.ObjectModel.ObservableCollection<MicrostructureSensor>();
+        private bool _userProvidedThermalData;
         private int? _randomSeed;
     
-        /// <summary>Must be between 0.00001 to 0.0001 meters</summary>
-        [Newtonsoft.Json.JsonProperty("layerThickness", Required = Newtonsoft.Json.Required.Always)]
+        /// <summary>Width of part geometry, 0.001 to 0.01 meters</summary>
+        [Newtonsoft.Json.JsonProperty("geometryWidth", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double LayerThickness
+        public double GeometryWidth
         {
-            get { return _layerThickness; }
+            get { return _geometryWidth; }
             set 
             {
-                if (_layerThickness != value)
+                if (_geometryWidth != value)
                 {
-                    _layerThickness = value; 
+                    _geometryWidth = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
-        /// <summary>Must be between 0.00001 to 0.001 meters</summary>
-        [Newtonsoft.Json.JsonProperty("hatchSpacing", Required = Newtonsoft.Json.Required.Always)]
+        /// <summary>Length of part geometry, 0.001 to 0.01 meters</summary>
+        [Newtonsoft.Json.JsonProperty("geometryLength", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double HatchSpacing
+        public double GeometryLength
         {
-            get { return _hatchSpacing; }
+            get { return _geometryLength; }
             set 
             {
-                if (_hatchSpacing != value)
+                if (_geometryLength != value)
                 {
-                    _hatchSpacing = value; 
+                    _geometryLength = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
-        /// <summary>Must be between 10 to 1000 watts</summary>
-        [Newtonsoft.Json.JsonProperty("laserWattage", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(10, 1000)]
-        public double LaserWattage
-        {
-            get { return _laserWattage; }
-            set 
-            {
-                if (_laserWattage != value)
-                {
-                    _laserWattage = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0.01 to 10 meters/second</summary>
-        [Newtonsoft.Json.JsonProperty("scanSpeed", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 10)]
-        public double ScanSpeed
-        {
-            get { return _scanSpeed; }
-            set 
-            {
-                if (_scanSpeed != value)
-                {
-                    _scanSpeed = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0.001 to 0.1 meters</summary>
-        [Newtonsoft.Json.JsonProperty("slicingStripeWidth", Required = Newtonsoft.Json.Required.Always)]
+        /// <summary>Height of part geometry, 0.001 to 0.01 meters</summary>
+        [Newtonsoft.Json.JsonProperty("geometryHeight", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double SlicingStripeWidth
+        public double GeometryHeight
         {
-            get { return _slicingStripeWidth; }
+            get { return _geometryHeight; }
             set 
             {
-                if (_slicingStripeWidth != value)
+                if (_geometryHeight != value)
                 {
-                    _slicingStripeWidth = value; 
+                    _geometryHeight = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
-        /// <summary>Must be between 0 to 180 degrees</summary>
-        [Newtonsoft.Json.JsonProperty("startingLayerAngle", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 180)]
-        public double StartingLayerAngle
-        {
-            get { return _startingLayerAngle; }
-            set 
-            {
-                if (_startingLayerAngle != value)
-                {
-                    _startingLayerAngle = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0 to 180 degrees</summary>
-        [Newtonsoft.Json.JsonProperty("layerRotationAngle", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 180)]
-        public double LayerRotationAngle
-        {
-            get { return _layerRotationAngle; }
-            set 
-            {
-                if (_layerRotationAngle != value)
-                {
-                    _layerRotationAngle = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>List of points within the part where the microstructure will be evaluated</summary>
-        [Newtonsoft.Json.JsonProperty("microstructurePoints", Required = Newtonsoft.Json.Required.Always)]
+        /// <summary>Array of starting layer angles to simulate across. Each value must be 0 to 180 degrees</summary>
+        [Newtonsoft.Json.JsonProperty("startingLayerAngleValues", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.ObjectModel.ObservableCollection<MicrostructurePoint> MicrostructurePoints
+        public System.Collections.ObjectModel.ObservableCollection<double> StartingLayerAngleValues
         {
-            get { return _microstructurePoints; }
+            get { return _startingLayerAngleValues; }
             set 
             {
-                if (_microstructurePoints != value)
+                if (_startingLayerAngleValues != value)
                 {
-                    _microstructurePoints = value; 
+                    _startingLayerAngleValues = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
-        /// <summary>Minimum temperature above which microstructure changes will be evaluated</summary>
-        [Newtonsoft.Json.JsonProperty("sensorMinimumTemperature", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? SensorMinimumTemperature
+        /// <summary>Array of layer rotation angles to simulate across. Each value must be 0 to 180 degrees</summary>
+        [Newtonsoft.Json.JsonProperty("layerRotationAngleValues", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.ObjectModel.ObservableCollection<double> LayerRotationAngleValues
         {
-            get { return _sensorMinimumTemperature; }
+            get { return _layerRotationAngleValues; }
             set 
             {
-                if (_sensorMinimumTemperature != value)
+                if (_layerRotationAngleValues != value)
                 {
-                    _sensorMinimumTemperature = value; 
+                    _layerRotationAngleValues = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
-        /// <summary>Heater temperature in degrees kelvin, aka baseplate temperature</summary>
-        [Newtonsoft.Json.JsonProperty("heaterTemperature", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [System.ComponentModel.DataAnnotations.Range(0D, 1000D)]
-        public double? HeaterTemperature
+        /// <summary>Array of powder deposit layer thickness values to simulate across. Each value must be 0.00001 to 0.0001 meters</summary>
+        [Newtonsoft.Json.JsonProperty("layerThicknessValues", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.ObjectModel.ObservableCollection<double> LayerThicknessValues
         {
-            get { return _heaterTemperature; }
+            get { return _layerThicknessValues; }
             set 
             {
-                if (_heaterTemperature != value)
+                if (_layerThicknessValues != value)
                 {
-                    _heaterTemperature = value; 
+                    _layerThicknessValues = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Array of laser power values to simulate across. Each value must be 10 to 1000 watts</summary>
+        [Newtonsoft.Json.JsonProperty("laserWattageValues", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.ObjectModel.ObservableCollection<double> LaserWattageValues
+        {
+            get { return _laserWattageValues; }
+            set 
+            {
+                if (_laserWattageValues != value)
+                {
+                    _laserWattageValues = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Array of scan speed values to simulate across. Each value must be 0.01 to 10 meters/second</summary>
+        [Newtonsoft.Json.JsonProperty("scanSpeedValues", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.ObjectModel.ObservableCollection<double> ScanSpeedValues
+        {
+            get { return _scanSpeedValues; }
+            set 
+            {
+                if (_scanSpeedValues != value)
+                {
+                    _scanSpeedValues = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Array of hatch spacing values to simulate across. Each value must be 0.00001 to 0.001 meters</summary>
+        [Newtonsoft.Json.JsonProperty("hatchSpacingValues", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.ObjectModel.ObservableCollection<double> HatchSpacingValues
+        {
+            get { return _hatchSpacingValues; }
+            set 
+            {
+                if (_hatchSpacingValues != value)
+                {
+                    _hatchSpacingValues = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Array of slicing strip width values to simulate across. Each value must be 0 to 0.1 meters. A value of 0 indicates no striping.</summary>
+        [Newtonsoft.Json.JsonProperty("slicingStripeWidthValues", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.ObjectModel.ObservableCollection<double> SlicingStripeWidthValues
+        {
+            get { return _slicingStripeWidthValues; }
+            set 
+            {
+                if (_slicingStripeWidthValues != value)
+                {
+                    _slicingStripeWidthValues = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Array of printer heater temperature values in degrees kelvin. Each value must be 293 and 474.</summary>
+        [Newtonsoft.Json.JsonProperty("heaterTemperatureValues", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.ObjectModel.ObservableCollection<double> HeaterTemperatureValues
+        {
+            get { return _heaterTemperatureValues; }
+            set 
+            {
+                if (_heaterTemperatureValues != value)
+                {
+                    _heaterTemperatureValues = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>List of sensor locations within the part where the microstructure will be evaluated</summary>
+        [Newtonsoft.Json.JsonProperty("microstructureSensors", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.ObjectModel.ObservableCollection<MicrostructureSensor> MicrostructureSensors
+        {
+            get { return _microstructureSensors; }
+            set 
+            {
+                if (_microstructureSensors != value)
+                {
+                    _microstructureSensors = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>True if user is providing cooling rate, thermal gradient and melt pool dimensions for each sensor. False if thermal solver should calculate these values. See MicrostructureSensor.</summary>
+        [Newtonsoft.Json.JsonProperty("userProvidedThermalData", Required = Newtonsoft.Json.Required.Always)]
+        public bool UserProvidedThermalData
+        {
+            get { return _userProvidedThermalData; }
+            set 
+            {
+                if (_userProvidedThermalData != value)
+                {
+                    _userProvidedThermalData = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -24533,768 +24663,426 @@ namespace SimulationCSharpClient.Client
         }
     }
     
+    /// <summary>Describes a cubic volume in which the microstructure will be evaluated</summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
+    public partial class MicrostructureSensor : System.ComponentModel.INotifyPropertyChanged
+    {
+        private int? _id;
+        private int _simulationId;
+        private string _label;
+        private double _sensorDimensionLength;
+        private double _sensorX;
+        private double _sensorY;
+        private double _sensorZ;
+        private double? _coolingRate;
+        private double? _thermalGradient;
+        private double? _meltPoolWidth;
+        private double? _meltPoolDepth;
+    
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int? Id
+        {
+            get { return _id; }
+            set 
+            {
+                if (_id != value)
+                {
+                    _id = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>ID of simulation this sensor belongs to</summary>
+        [Newtonsoft.Json.JsonProperty("simulationId", Required = Newtonsoft.Json.Required.Always)]
+        public int SimulationId
+        {
+            get { return _simulationId; }
+            set 
+            {
+                if (_simulationId != value)
+                {
+                    _simulationId = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>User provided name of this sensor</summary>
+        [Newtonsoft.Json.JsonProperty("label", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public string Label
+        {
+            get { return _label; }
+            set 
+            {
+                if (_label != value)
+                {
+                    _label = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Length of an edge of the sensor cube, 0.0001 to 0.001 meters</summary>
+        [Newtonsoft.Json.JsonProperty("sensorDimensionLength", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(0, 0)]
+        public double SensorDimensionLength
+        {
+            get { return _sensorDimensionLength; }
+            set 
+            {
+                if (_sensorDimensionLength != value)
+                {
+                    _sensorDimensionLength = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>X coordinate of center of the sensor volume in meters</summary>
+        [Newtonsoft.Json.JsonProperty("sensorX", Required = Newtonsoft.Json.Required.Always)]
+        public double SensorX
+        {
+            get { return _sensorX; }
+            set 
+            {
+                if (_sensorX != value)
+                {
+                    _sensorX = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Y coordinate of center of the sensor volume in meters</summary>
+        [Newtonsoft.Json.JsonProperty("sensorY", Required = Newtonsoft.Json.Required.Always)]
+        public double SensorY
+        {
+            get { return _sensorY; }
+            set 
+            {
+                if (_sensorY != value)
+                {
+                    _sensorY = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Z coordinate of center of the sensor volume in meters</summary>
+        [Newtonsoft.Json.JsonProperty("sensorZ", Required = Newtonsoft.Json.Required.Always)]
+        public double SensorZ
+        {
+            get { return _sensorZ; }
+            set 
+            {
+                if (_sensorZ != value)
+                {
+                    _sensorZ = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Cooling rate of material in kelvin/sec. Only used when userProvidedThermalData is true on the simulation model.</summary>
+        [Newtonsoft.Json.JsonProperty("coolingRate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? CoolingRate
+        {
+            get { return _coolingRate; }
+            set 
+            {
+                if (_coolingRate != value)
+                {
+                    _coolingRate = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Thermal gradient in kelvin/meter. Only used when userProvidedThermalData is true on the simulation model.</summary>
+        [Newtonsoft.Json.JsonProperty("thermalGradient", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? ThermalGradient
+        {
+            get { return _thermalGradient; }
+            set 
+            {
+                if (_thermalGradient != value)
+                {
+                    _thermalGradient = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Width of melt pool in meters. Only used when userProvidedThermalData is true on the simulation model.</summary>
+        [Newtonsoft.Json.JsonProperty("meltPoolWidth", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? MeltPoolWidth
+        {
+            get { return _meltPoolWidth; }
+            set 
+            {
+                if (_meltPoolWidth != value)
+                {
+                    _meltPoolWidth = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Depth of melt pool in meters. Only used when userProvidedThermalData is true on the simulation model.</summary>
+        [Newtonsoft.Json.JsonProperty("meltPoolDepth", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? MeltPoolDepth
+        {
+            get { return _meltPoolDepth; }
+            set 
+            {
+                if (_meltPoolDepth != value)
+                {
+                    _meltPoolDepth = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        public string ToJson() 
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+        }
+        
+        public static MicrostructureSensor FromJson(string data)
+        {
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<MicrostructureSensor>(data);
+        }
+    
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected virtual void RaisePropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+        {
+            var handler = PropertyChanged;
+            if (handler != null) 
+                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
     public partial class MicrostructureSimulation : Simulation, System.ComponentModel.INotifyPropertyChanged
     {
-        private System.Collections.ObjectModel.ObservableCollection<SimulationPart> _simulationParts;
-        private string _supportFileLocation;
-        private string _partFileLocation;
-        private double _supportYieldStrength;
-        private double _supportYieldStrengthRatio;
-        private double _elasticModulus;
-        private double _poissonRatio;
-        private double _hardeningFactor;
-        private double _strainScalingFactor;
-        private int? _buildFileId;
-        private bool _performSupportOptimization;
-        private double _voxelSize;
-        private double? _minimumThickWallThickness;
-        private double? _maximumThickWallThickness;
-        private double? _thickWallDistance;
-        private double? _thinWallThickness;
-        private double? _maximumThinWallDistance;
-        private double _minimumSupportHeight;
-        private bool _generateSupportVoxels;
-        private bool _outputDisplacementAfterCutoff;
-        private PartBasedSimulationParametersStressMode _stressMode;
-        private double _supportAngle;
-        private double _supportFactorOfSafety;
-        private bool _outputLayerVtk;
-        private bool _detectBladeCrash;
-        private double? _bladeCrashThreshold;
-        private bool? _performDistortionCompensation;
-        private double? _distortionScaleFactor;
-        private bool? _outputSupportsVtk;
-        private bool? _detectSupportFailure;
-        private double? _supportFailureThreshold;
-        private double? _partFailureThreshold;
-        private double? _strainWarningThreshold;
-        private bool? _performDistortionCompensationAfterCutoff;
-        private double? _distortionAfterCutoffScaleFactor;
-        private PartBasedSimulationParametersSupportType _supportType;
-        private int? _voxelSampleRate;
-        private double _layerThickness;
-        private double _hatchSpacing;
-        private double _laserWattage;
-        private double _scanSpeed;
-        private double _slicingStripeWidth;
-        private double _startingLayerAngle;
-        private double _layerRotationAngle;
-        private System.Collections.ObjectModel.ObservableCollection<MicrostructurePoint> _microstructurePoints = new System.Collections.ObjectModel.ObservableCollection<MicrostructurePoint>();
-        private double? _sensorMinimumTemperature;
-        private double? _heaterTemperature;
+        private double _geometryWidth;
+        private double _geometryLength;
+        private double _geometryHeight;
+        private System.Collections.ObjectModel.ObservableCollection<double> _startingLayerAngleValues = new System.Collections.ObjectModel.ObservableCollection<double>();
+        private System.Collections.ObjectModel.ObservableCollection<double> _layerRotationAngleValues = new System.Collections.ObjectModel.ObservableCollection<double>();
+        private System.Collections.ObjectModel.ObservableCollection<double> _layerThicknessValues = new System.Collections.ObjectModel.ObservableCollection<double>();
+        private System.Collections.ObjectModel.ObservableCollection<double> _laserWattageValues;
+        private System.Collections.ObjectModel.ObservableCollection<double> _scanSpeedValues = new System.Collections.ObjectModel.ObservableCollection<double>();
+        private System.Collections.ObjectModel.ObservableCollection<double> _hatchSpacingValues = new System.Collections.ObjectModel.ObservableCollection<double>();
+        private System.Collections.ObjectModel.ObservableCollection<double> _slicingStripeWidthValues = new System.Collections.ObjectModel.ObservableCollection<double>();
+        private System.Collections.ObjectModel.ObservableCollection<double> _heaterTemperatureValues;
+        private System.Collections.ObjectModel.ObservableCollection<MicrostructureSensor> _microstructureSensors = new System.Collections.ObjectModel.ObservableCollection<MicrostructureSensor>();
+        private bool _userProvidedThermalData;
         private int? _randomSeed;
     
-        /// <summary>List of parts to simulate (current limit is one part, imposed by server)</summary>
-        [Newtonsoft.Json.JsonProperty("simulationParts", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.ObjectModel.ObservableCollection<SimulationPart> SimulationParts
-        {
-            get { return _simulationParts; }
-            set 
-            {
-                if (_simulationParts != value)
-                {
-                    _simulationParts = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("supportFileLocation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string SupportFileLocation
-        {
-            get { return _supportFileLocation; }
-            set 
-            {
-                if (_supportFileLocation != value)
-                {
-                    _supportFileLocation = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("partFileLocation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string PartFileLocation
-        {
-            get { return _partFileLocation; }
-            set 
-            {
-                if (_partFileLocation != value)
-                {
-                    _partFileLocation = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("supportYieldStrength", Required = Newtonsoft.Json.Required.Always)]
-        public double SupportYieldStrength
-        {
-            get { return _supportYieldStrength; }
-            set 
-            {
-                if (_supportYieldStrength != value)
-                {
-                    _supportYieldStrength = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("supportYieldStrengthRatio", Required = Newtonsoft.Json.Required.Always)]
-        public double SupportYieldStrengthRatio
-        {
-            get { return _supportYieldStrengthRatio; }
-            set 
-            {
-                if (_supportYieldStrengthRatio != value)
-                {
-                    _supportYieldStrengthRatio = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("elasticModulus", Required = Newtonsoft.Json.Required.Always)]
-        public double ElasticModulus
-        {
-            get { return _elasticModulus; }
-            set 
-            {
-                if (_elasticModulus != value)
-                {
-                    _elasticModulus = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("poissonRatio", Required = Newtonsoft.Json.Required.Always)]
-        public double PoissonRatio
-        {
-            get { return _poissonRatio; }
-            set 
-            {
-                if (_poissonRatio != value)
-                {
-                    _poissonRatio = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("hardeningFactor", Required = Newtonsoft.Json.Required.Always)]
+        /// <summary>Width of part geometry, 0.001 to 0.01 meters</summary>
+        [Newtonsoft.Json.JsonProperty("geometryWidth", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double HardeningFactor
+        public double GeometryWidth
         {
-            get { return _hardeningFactor; }
+            get { return _geometryWidth; }
             set 
             {
-                if (_hardeningFactor != value)
+                if (_geometryWidth != value)
                 {
-                    _hardeningFactor = value; 
+                    _geometryWidth = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
-        [Newtonsoft.Json.JsonProperty("strainScalingFactor", Required = Newtonsoft.Json.Required.Always)]
-        public double StrainScalingFactor
-        {
-            get { return _strainScalingFactor; }
-            set 
-            {
-                if (_strainScalingFactor != value)
-                {
-                    _strainScalingFactor = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Id of build file being simulated, mutually exclusive with simulationParts</summary>
-        [Newtonsoft.Json.JsonProperty("buildFileId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? BuildFileId
-        {
-            get { return _buildFileId; }
-            set 
-            {
-                if (_buildFileId != value)
-                {
-                    _buildFileId = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("performSupportOptimization", Required = Newtonsoft.Json.Required.Always)]
-        public bool PerformSupportOptimization
-        {
-            get { return _performSupportOptimization; }
-            set 
-            {
-                if (_performSupportOptimization != value)
-                {
-                    _performSupportOptimization = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0.00002 to 0.002 meters</summary>
-        [Newtonsoft.Json.JsonProperty("voxelSize", Required = Newtonsoft.Json.Required.Always)]
+        /// <summary>Length of part geometry, 0.001 to 0.01 meters</summary>
+        [Newtonsoft.Json.JsonProperty("geometryLength", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double VoxelSize
+        public double GeometryLength
         {
-            get { return _voxelSize; }
+            get { return _geometryLength; }
             set 
             {
-                if (_voxelSize != value)
+                if (_geometryLength != value)
                 {
-                    _voxelSize = value; 
+                    _geometryLength = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
-        /// <summary>Must be between 0.00005 to 0.0003 meters, Must be less than maximumWallThickness</summary>
-        [Newtonsoft.Json.JsonProperty("minimumThickWallThickness", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        /// <summary>Height of part geometry, 0.001 to 0.01 meters</summary>
+        [Newtonsoft.Json.JsonProperty("geometryHeight", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double? MinimumThickWallThickness
+        public double GeometryHeight
         {
-            get { return _minimumThickWallThickness; }
+            get { return _geometryHeight; }
             set 
             {
-                if (_minimumThickWallThickness != value)
+                if (_geometryHeight != value)
                 {
-                    _minimumThickWallThickness = value; 
+                    _geometryHeight = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
-        /// <summary>Must be between 0.00015 to 0.002 meters, Must be greater than minimumWallThickness</summary>
-        [Newtonsoft.Json.JsonProperty("maximumThickWallThickness", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double? MaximumThickWallThickness
-        {
-            get { return _maximumThickWallThickness; }
-            set 
-            {
-                if (_maximumThickWallThickness != value)
-                {
-                    _maximumThickWallThickness = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>The distance between thickwall supports</summary>
-        [Newtonsoft.Json.JsonProperty("thickWallDistance", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double? ThickWallDistance
-        {
-            get { return _thickWallDistance; }
-            set 
-            {
-                if (_thickWallDistance != value)
-                {
-                    _thickWallDistance = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>The width of the thinwall supports</summary>
-        [Newtonsoft.Json.JsonProperty("thinWallThickness", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double? ThinWallThickness
-        {
-            get { return _thinWallThickness; }
-            set 
-            {
-                if (_thinWallThickness != value)
-                {
-                    _thinWallThickness = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>The maximum distance between thinwalls</summary>
-        [Newtonsoft.Json.JsonProperty("maximumThinWallDistance", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double? MaximumThinWallDistance
-        {
-            get { return _maximumThinWallDistance; }
-            set 
-            {
-                if (_maximumThinWallDistance != value)
-                {
-                    _maximumThinWallDistance = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Distance to move the part off the base plate for supports, Must be between 0 to 0.005 meters</summary>
-        [Newtonsoft.Json.JsonProperty("minimumSupportHeight", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double MinimumSupportHeight
-        {
-            get { return _minimumSupportHeight; }
-            set 
-            {
-                if (_minimumSupportHeight != value)
-                {
-                    _minimumSupportHeight = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("generateSupportVoxels", Required = Newtonsoft.Json.Required.Always)]
-        public bool GenerateSupportVoxels
-        {
-            get { return _generateSupportVoxels; }
-            set 
-            {
-                if (_generateSupportVoxels != value)
-                {
-                    _generateSupportVoxels = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("outputDisplacementAfterCutoff", Required = Newtonsoft.Json.Required.Always)]
-        public bool OutputDisplacementAfterCutoff
-        {
-            get { return _outputDisplacementAfterCutoff; }
-            set 
-            {
-                if (_outputDisplacementAfterCutoff != value)
-                {
-                    _outputDisplacementAfterCutoff = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("stressMode", Required = Newtonsoft.Json.Required.Always)]
+        /// <summary>Array of starting layer angles to simulate across. Each value must be 0 to 180 degrees</summary>
+        [Newtonsoft.Json.JsonProperty("startingLayerAngleValues", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
-        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public PartBasedSimulationParametersStressMode StressMode
+        public System.Collections.ObjectModel.ObservableCollection<double> StartingLayerAngleValues
         {
-            get { return _stressMode; }
+            get { return _startingLayerAngleValues; }
             set 
             {
-                if (_stressMode != value)
+                if (_startingLayerAngleValues != value)
                 {
-                    _stressMode = value; 
+                    _startingLayerAngleValues = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
-        /// <summary>Must be between 1 to 89 degrees</summary>
-        [Newtonsoft.Json.JsonProperty("supportAngle", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(1, 89)]
-        public double SupportAngle
-        {
-            get { return _supportAngle; }
-            set 
-            {
-                if (_supportAngle != value)
-                {
-                    _supportAngle = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Multiplier for support calculations, Must be between 0.1 to 10</summary>
-        [Newtonsoft.Json.JsonProperty("supportFactorOfSafety", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 10)]
-        public double SupportFactorOfSafety
-        {
-            get { return _supportFactorOfSafety; }
-            set 
-            {
-                if (_supportFactorOfSafety != value)
-                {
-                    _supportFactorOfSafety = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>if true, mechanics solver output will include a zip file with the stress / distortion state at the end of each voxel layer</summary>
-        [Newtonsoft.Json.JsonProperty("outputLayerVtk", Required = Newtonsoft.Json.Required.Always)]
-        public bool OutputLayerVtk
-        {
-            get { return _outputLayerVtk; }
-            set 
-            {
-                if (_outputLayerVtk != value)
-                {
-                    _outputLayerVtk = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("detectBladeCrash", Required = Newtonsoft.Json.Required.Always)]
-        public bool DetectBladeCrash
-        {
-            get { return _detectBladeCrash; }
-            set 
-            {
-                if (_detectBladeCrash != value)
-                {
-                    _detectBladeCrash = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>should be a number between 0.5 and 1.5</summary>
-        [Newtonsoft.Json.JsonProperty("bladeCrashThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? BladeCrashThreshold
-        {
-            get { return _bladeCrashThreshold; }
-            set 
-            {
-                if (_bladeCrashThreshold != value)
-                {
-                    _bladeCrashThreshold = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>if true, a predistorted STL file will be created using the distortion simulated by the mechanics solver</summary>
-        [Newtonsoft.Json.JsonProperty("performDistortionCompensation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? PerformDistortionCompensation
-        {
-            get { return _performDistortionCompensation; }
-            set 
-            {
-                if (_performDistortionCompensation != value)
-                {
-                    _performDistortionCompensation = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>a value that is used to scale the simulated distortion value</summary>
-        [Newtonsoft.Json.JsonProperty("distortionScaleFactor", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? DistortionScaleFactor
-        {
-            get { return _distortionScaleFactor; }
-            set 
-            {
-                if (_distortionScaleFactor != value)
-                {
-                    _distortionScaleFactor = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>if true, a VTK file of the support structure will be created</summary>
-        [Newtonsoft.Json.JsonProperty("outputSupportsVtk", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? OutputSupportsVtk
-        {
-            get { return _outputSupportsVtk; }
-            set 
-            {
-                if (_outputSupportsVtk != value)
-                {
-                    _outputSupportsVtk = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("detectSupportFailure", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? DetectSupportFailure
-        {
-            get { return _detectSupportFailure; }
-            set 
-            {
-                if (_detectSupportFailure != value)
-                {
-                    _detectSupportFailure = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>should be a number between 0.01 and 1.0</summary>
-        [Newtonsoft.Json.JsonProperty("supportFailureThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? SupportFailureThreshold
-        {
-            get { return _supportFailureThreshold; }
-            set 
-            {
-                if (_supportFailureThreshold != value)
-                {
-                    _supportFailureThreshold = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>should be a number between 0.01 and 1.0</summary>
-        [Newtonsoft.Json.JsonProperty("partFailureThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? PartFailureThreshold
-        {
-            get { return _partFailureThreshold; }
-            set 
-            {
-                if (_partFailureThreshold != value)
-                {
-                    _partFailureThreshold = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>should be a number between 0.01 and 1.0</summary>
-        [Newtonsoft.Json.JsonProperty("strainWarningThreshold", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? StrainWarningThreshold
-        {
-            get { return _strainWarningThreshold; }
-            set 
-            {
-                if (_strainWarningThreshold != value)
-                {
-                    _strainWarningThreshold = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>if true, a predistorted STL file will be created using the distortion after cutoff simulated by the mechanics solver</summary>
-        [Newtonsoft.Json.JsonProperty("performDistortionCompensationAfterCutoff", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? PerformDistortionCompensationAfterCutoff
-        {
-            get { return _performDistortionCompensationAfterCutoff; }
-            set 
-            {
-                if (_performDistortionCompensationAfterCutoff != value)
-                {
-                    _performDistortionCompensationAfterCutoff = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>a value that is used to scale the after cutoff simulated distortion values</summary>
-        [Newtonsoft.Json.JsonProperty("distortionAfterCutoffScaleFactor", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? DistortionAfterCutoffScaleFactor
-        {
-            get { return _distortionAfterCutoffScaleFactor; }
-            set 
-            {
-                if (_distortionAfterCutoffScaleFactor != value)
-                {
-                    _distortionAfterCutoffScaleFactor = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>type of support used for simulation.</summary>
-        [Newtonsoft.Json.JsonProperty("supportType", Required = Newtonsoft.Json.Required.Always)]
+        /// <summary>Array of layer rotation angles to simulate across. Each value must be 0 to 180 degrees</summary>
+        [Newtonsoft.Json.JsonProperty("layerRotationAngleValues", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
-        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public PartBasedSimulationParametersSupportType SupportType
+        public System.Collections.ObjectModel.ObservableCollection<double> LayerRotationAngleValues
         {
-            get { return _supportType; }
+            get { return _layerRotationAngleValues; }
             set 
             {
-                if (_supportType != value)
+                if (_layerRotationAngleValues != value)
                 {
-                    _supportType = value; 
+                    _layerRotationAngleValues = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
-        /// <summary>the amount of sub voxels per voxel in each direction (x,y,z)</summary>
-        [Newtonsoft.Json.JsonProperty("voxelSampleRate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [System.ComponentModel.DataAnnotations.Range(1, 10)]
-        public int? VoxelSampleRate
-        {
-            get { return _voxelSampleRate; }
-            set 
-            {
-                if (_voxelSampleRate != value)
-                {
-                    _voxelSampleRate = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0.00001 to 0.0001 meters</summary>
-        [Newtonsoft.Json.JsonProperty("layerThickness", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double LayerThickness
-        {
-            get { return _layerThickness; }
-            set 
-            {
-                if (_layerThickness != value)
-                {
-                    _layerThickness = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0.00001 to 0.001 meters</summary>
-        [Newtonsoft.Json.JsonProperty("hatchSpacing", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double HatchSpacing
-        {
-            get { return _hatchSpacing; }
-            set 
-            {
-                if (_hatchSpacing != value)
-                {
-                    _hatchSpacing = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 10 to 1000 watts</summary>
-        [Newtonsoft.Json.JsonProperty("laserWattage", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(10, 1000)]
-        public double LaserWattage
-        {
-            get { return _laserWattage; }
-            set 
-            {
-                if (_laserWattage != value)
-                {
-                    _laserWattage = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0.01 to 10 meters/second</summary>
-        [Newtonsoft.Json.JsonProperty("scanSpeed", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 10)]
-        public double ScanSpeed
-        {
-            get { return _scanSpeed; }
-            set 
-            {
-                if (_scanSpeed != value)
-                {
-                    _scanSpeed = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0.001 to 0.1 meters</summary>
-        [Newtonsoft.Json.JsonProperty("slicingStripeWidth", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 0)]
-        public double SlicingStripeWidth
-        {
-            get { return _slicingStripeWidth; }
-            set 
-            {
-                if (_slicingStripeWidth != value)
-                {
-                    _slicingStripeWidth = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0 to 180 degrees</summary>
-        [Newtonsoft.Json.JsonProperty("startingLayerAngle", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 180)]
-        public double StartingLayerAngle
-        {
-            get { return _startingLayerAngle; }
-            set 
-            {
-                if (_startingLayerAngle != value)
-                {
-                    _startingLayerAngle = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Must be between 0 to 180 degrees</summary>
-        [Newtonsoft.Json.JsonProperty("layerRotationAngle", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 180)]
-        public double LayerRotationAngle
-        {
-            get { return _layerRotationAngle; }
-            set 
-            {
-                if (_layerRotationAngle != value)
-                {
-                    _layerRotationAngle = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>List of points within the part where the microstructure will be evaluated</summary>
-        [Newtonsoft.Json.JsonProperty("microstructurePoints", Required = Newtonsoft.Json.Required.Always)]
+        /// <summary>Array of powder deposit layer thickness values to simulate across. Each value must be 0.00001 to 0.0001 meters</summary>
+        [Newtonsoft.Json.JsonProperty("layerThicknessValues", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.ObjectModel.ObservableCollection<MicrostructurePoint> MicrostructurePoints
+        public System.Collections.ObjectModel.ObservableCollection<double> LayerThicknessValues
         {
-            get { return _microstructurePoints; }
+            get { return _layerThicknessValues; }
             set 
             {
-                if (_microstructurePoints != value)
+                if (_layerThicknessValues != value)
                 {
-                    _microstructurePoints = value; 
+                    _layerThicknessValues = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
-        /// <summary>Minimum temperature above which microstructure changes will be evaluated</summary>
-        [Newtonsoft.Json.JsonProperty("sensorMinimumTemperature", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? SensorMinimumTemperature
+        /// <summary>Array of laser power values to simulate across. Each value must be 10 to 1000 watts</summary>
+        [Newtonsoft.Json.JsonProperty("laserWattageValues", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.ObjectModel.ObservableCollection<double> LaserWattageValues
         {
-            get { return _sensorMinimumTemperature; }
+            get { return _laserWattageValues; }
             set 
             {
-                if (_sensorMinimumTemperature != value)
+                if (_laserWattageValues != value)
                 {
-                    _sensorMinimumTemperature = value; 
+                    _laserWattageValues = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
-        /// <summary>Heater temperature in degrees kelvin, aka baseplate temperature</summary>
-        [Newtonsoft.Json.JsonProperty("heaterTemperature", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [System.ComponentModel.DataAnnotations.Range(0D, 1000D)]
-        public double? HeaterTemperature
+        /// <summary>Array of scan speed values to simulate across. Each value must be 0.01 to 10 meters/second</summary>
+        [Newtonsoft.Json.JsonProperty("scanSpeedValues", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.ObjectModel.ObservableCollection<double> ScanSpeedValues
         {
-            get { return _heaterTemperature; }
+            get { return _scanSpeedValues; }
             set 
             {
-                if (_heaterTemperature != value)
+                if (_scanSpeedValues != value)
                 {
-                    _heaterTemperature = value; 
+                    _scanSpeedValues = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Array of hatch spacing values to simulate across. Each value must be 0.00001 to 0.001 meters</summary>
+        [Newtonsoft.Json.JsonProperty("hatchSpacingValues", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.ObjectModel.ObservableCollection<double> HatchSpacingValues
+        {
+            get { return _hatchSpacingValues; }
+            set 
+            {
+                if (_hatchSpacingValues != value)
+                {
+                    _hatchSpacingValues = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Array of slicing strip width values to simulate across. Each value must be 0 to 0.1 meters. A value of 0 indicates no striping.</summary>
+        [Newtonsoft.Json.JsonProperty("slicingStripeWidthValues", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.ObjectModel.ObservableCollection<double> SlicingStripeWidthValues
+        {
+            get { return _slicingStripeWidthValues; }
+            set 
+            {
+                if (_slicingStripeWidthValues != value)
+                {
+                    _slicingStripeWidthValues = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Array of printer heater temperature values in degrees kelvin. Each value must be 293 and 474.</summary>
+        [Newtonsoft.Json.JsonProperty("heaterTemperatureValues", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.ObjectModel.ObservableCollection<double> HeaterTemperatureValues
+        {
+            get { return _heaterTemperatureValues; }
+            set 
+            {
+                if (_heaterTemperatureValues != value)
+                {
+                    _heaterTemperatureValues = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>List of sensor locations within the part where the microstructure will be evaluated</summary>
+        [Newtonsoft.Json.JsonProperty("microstructureSensors", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.ObjectModel.ObservableCollection<MicrostructureSensor> MicrostructureSensors
+        {
+            get { return _microstructureSensors; }
+            set 
+            {
+                if (_microstructureSensors != value)
+                {
+                    _microstructureSensors = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>True if user is providing cooling rate, thermal gradient and melt pool dimensions for each sensor. False if thermal solver should calculate these values. See MicrostructureSensor.</summary>
+        [Newtonsoft.Json.JsonProperty("userProvidedThermalData", Required = Newtonsoft.Json.Required.Always)]
+        public bool UserProvidedThermalData
+        {
+            get { return _userProvidedThermalData; }
+            set 
+            {
+                if (_userProvidedThermalData != value)
+                {
+                    _userProvidedThermalData = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -25323,144 +25111,6 @@ namespace SimulationCSharpClient.Client
         public static MicrostructureSimulation FromJson(string data)
         {
             return Newtonsoft.Json.JsonConvert.DeserializeObject<MicrostructureSimulation>(data);
-        }
-    
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected virtual void RaisePropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
-        {
-            var handler = PropertyChanged;
-            if (handler != null) 
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-        }
-    }
-    
-    /// <summary>describes a location at which the microstructure will be evaluated</summary>
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
-    public partial class MicrostructurePoint : System.ComponentModel.INotifyPropertyChanged
-    {
-        private int? _id;
-        private int _simulationId;
-        private string _label;
-        private double _x;
-        private double _y;
-        private double _z;
-        private double _radius;
-    
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Id
-        {
-            get { return _id; }
-            set 
-            {
-                if (_id != value)
-                {
-                    _id = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>ID of simulation this point belongs to</summary>
-        [Newtonsoft.Json.JsonProperty("simulationId", Required = Newtonsoft.Json.Required.Always)]
-        public int SimulationId
-        {
-            get { return _simulationId; }
-            set 
-            {
-                if (_simulationId != value)
-                {
-                    _simulationId = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>User provided name of this point</summary>
-        [Newtonsoft.Json.JsonProperty("label", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public string Label
-        {
-            get { return _label; }
-            set 
-            {
-                if (_label != value)
-                {
-                    _label = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>X coordinate of this point</summary>
-        [Newtonsoft.Json.JsonProperty("x", Required = Newtonsoft.Json.Required.Always)]
-        public double X
-        {
-            get { return _x; }
-            set 
-            {
-                if (_x != value)
-                {
-                    _x = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Y coordinate of this point</summary>
-        [Newtonsoft.Json.JsonProperty("y", Required = Newtonsoft.Json.Required.Always)]
-        public double Y
-        {
-            get { return _y; }
-            set 
-            {
-                if (_y != value)
-                {
-                    _y = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Z coordinate of this point</summary>
-        [Newtonsoft.Json.JsonProperty("z", Required = Newtonsoft.Json.Required.Always)]
-        public double Z
-        {
-            get { return _z; }
-            set 
-            {
-                if (_z != value)
-                {
-                    _z = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        /// <summary>Radius of hemispherical volume of interest in mm centered at each X,Y,Z</summary>
-        [Newtonsoft.Json.JsonProperty("radius", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Range(0, 2)]
-        public double Radius
-        {
-            get { return _radius; }
-            set 
-            {
-                if (_radius != value)
-                {
-                    _radius = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        public string ToJson() 
-        {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
-        }
-        
-        public static MicrostructurePoint FromJson(string data)
-        {
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<MicrostructurePoint>(data);
         }
     
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
@@ -25952,90 +25602,6 @@ namespace SimulationCSharpClient.Client
         [System.Runtime.Serialization.EnumMember(Value = "Error")]
         Error = 3,
     
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
-    public partial class Normal : System.ComponentModel.INotifyPropertyChanged
-    {
-        private double? _angle;
-        private double? _x;
-        private double? _y;
-        private double? _z;
-    
-        [Newtonsoft.Json.JsonProperty("angle", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? Angle
-        {
-            get { return _angle; }
-            set 
-            {
-                if (_angle != value)
-                {
-                    _angle = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("x", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? X
-        {
-            get { return _x; }
-            set 
-            {
-                if (_x != value)
-                {
-                    _x = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("y", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? Y
-        {
-            get { return _y; }
-            set 
-            {
-                if (_y != value)
-                {
-                    _y = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("z", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? Z
-        {
-            get { return _z; }
-            set 
-            {
-                if (_z != value)
-                {
-                    _z = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        public string ToJson() 
-        {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
-        }
-        
-        public static Normal FromJson(string data)
-        {
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<Normal>(data);
-        }
-    
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected virtual void RaisePropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
-        {
-            var handler = PropertyChanged;
-            if (handler != null) 
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-        }
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
