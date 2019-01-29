@@ -20777,6 +20777,7 @@ namespace SimulationCSharpClient.Client
         private System.DateTime _lastModified;
         private string _lastModifiedBy;
         private bool? _thermalSimulationApproved;
+        private bool? _microstructureSimulationApproved;
     
         /// <summary>item identifier</summary>
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
@@ -21021,6 +21022,21 @@ namespace SimulationCSharpClient.Client
                 if (_thermalSimulationApproved != value)
                 {
                     _thermalSimulationApproved = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>true if the material properites have been tuned for microstructure simulations</summary>
+        [Newtonsoft.Json.JsonProperty("microstructureSimulationApproved", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? MicrostructureSimulationApproved
+        {
+            get { return _microstructureSimulationApproved; }
+            set 
+            {
+                if (_microstructureSimulationApproved != value)
+                {
+                    _microstructureSimulationApproved = value; 
                     RaisePropertyChanged();
                 }
             }
