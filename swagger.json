@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "3.26.3",
+    "version": "3.27.0",
     "title": "Simulation API",
     "description": "An API for managing simulations within ANSYS Additive."
   },
@@ -6376,6 +6376,74 @@
             ]
           }
         ]
+      }
+    },
+    "/microstructuresimulations/{id}/sensors/{sensorId}": {
+      "patch": {
+        "description": "Update fields within a microstructure sensor.",
+        "operationId": "patchMicrostructureSensor",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of microstructure simulation entity that owns the sensor",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "sensorId",
+            "in": "path",
+            "description": "ID of microstructure sensor to update",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "microstructureSensorPatch",
+            "in": "body",
+            "description": "This endpoint uses JSON Patch, RFC 6092.",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PatchDocument"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Patched microstructure sensor",
+            "schema": {
+              "$ref": "#/definitions/MicrostructureSensor"
+            }
+          },
+          "401": {
+            "description": "Not authorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Microstructure Sensor not found (sensorId invalid)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
       }
     },
     "/microstructuresimulations/{id}/children": {

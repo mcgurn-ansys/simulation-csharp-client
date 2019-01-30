@@ -1353,6 +1353,21 @@ namespace SimulationCSharpClient.Client
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         System.Threading.Tasks.Task DeleteMicrostructureSimulationAsync(int id, System.Threading.CancellationToken cancellationToken);
     
+        /// <param name="id">ID of microstructure simulation entity that owns the sensor</param>
+        /// <param name="sensorId">ID of microstructure sensor to update</param>
+        /// <param name="microstructureSensorPatch">This endpoint uses JSON Patch, RFC 6092.</param>
+        /// <returns>Patched microstructure sensor</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<MicrostructureSensor> PatchMicrostructureSensorAsync(int id, int sensorId, System.Collections.Generic.IEnumerable<PatchDocument> microstructureSensorPatch);
+    
+        /// <param name="id">ID of microstructure simulation entity that owns the sensor</param>
+        /// <param name="sensorId">ID of microstructure sensor to update</param>
+        /// <param name="microstructureSensorPatch">This endpoint uses JSON Patch, RFC 6092.</param>
+        /// <returns>Patched microstructure sensor</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        System.Threading.Tasks.Task<MicrostructureSensor> PatchMicrostructureSensorAsync(int id, int sensorId, System.Collections.Generic.IEnumerable<PatchDocument> microstructureSensorPatch, System.Threading.CancellationToken cancellationToken);
+    
         /// <param name="id">simulation identifier</param>
         /// <param name="offset">starting paging count; ex. offset of 60 will skip the first 60 items in the list</param>
         /// <param name="limit">number of items to return within the query</param>
@@ -13844,6 +13859,149 @@ namespace SimulationCSharpClient.Client
                             }
                             throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
                         }
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+    
+        /// <param name="id">ID of microstructure simulation entity that owns the sensor</param>
+        /// <param name="sensorId">ID of microstructure sensor to update</param>
+        /// <param name="microstructureSensorPatch">This endpoint uses JSON Patch, RFC 6092.</param>
+        /// <returns>Patched microstructure sensor</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task<MicrostructureSensor> PatchMicrostructureSensorAsync(int id, int sensorId, System.Collections.Generic.IEnumerable<PatchDocument> microstructureSensorPatch)
+        {
+            return PatchMicrostructureSensorAsync(id, sensorId, microstructureSensorPatch, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="id">ID of microstructure simulation entity that owns the sensor</param>
+        /// <param name="sensorId">ID of microstructure sensor to update</param>
+        /// <param name="microstructureSensorPatch">This endpoint uses JSON Patch, RFC 6092.</param>
+        /// <returns>Patched microstructure sensor</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task<MicrostructureSensor> PatchMicrostructureSensorAsync(int id, int sensorId, System.Collections.Generic.IEnumerable<PatchDocument> microstructureSensorPatch, System.Threading.CancellationToken cancellationToken)
+        {
+            if (id == null)
+                throw new System.ArgumentNullException("id");
+    
+            if (sensorId == null)
+                throw new System.ArgumentNullException("sensorId");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/microstructuresimulations/{id}/sensors/{sensorId}");
+            urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(System.Convert.ToString(id, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{sensorId}", System.Uri.EscapeDataString(System.Convert.ToString(sensorId, System.Globalization.CultureInfo.InvariantCulture)));
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(microstructureSensorPatch, _settings.Value));
+                    content_.Headers.ContentType.MediaType = "application/json";
+                    request_.Content = content_;
+                    request_.Method = new System.Net.Http.HttpMethod("PATCH");
+                    request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        foreach (var item_ in response_.Content.Headers)
+                            headers_[item_.Key] = item_.Value;
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(MicrostructureSensor); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<MicrostructureSensor>(responseData_, _settings.Value);
+                                return result_; 
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                        }
+                        else
+                        if (status_ == "401") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Not authorized", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "403") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Forbidden", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "404") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Microstructure Sensor not found (sensorId invalid)", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
+                        }
+            
+                        return default(MicrostructureSensor);
                     }
                     finally
                     {
