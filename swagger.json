@@ -8121,7 +8121,8 @@
         "laserSpeedUpperBound",
         "laserPowerLowerBound",
         "laserPowerUpperBound",
-        "hardeningFactor"
+        "hardeningFactor",
+        "nucleationConstant"
       ],
       "properties": {
         "id": {
@@ -8320,6 +8321,10 @@
           "format": "double"
         },
         "hardeningFactor": {
+          "type": "number",
+          "format": "double"
+        },
+        "nucleationConstant": {
           "type": "number",
           "format": "double"
         }
