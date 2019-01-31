@@ -41,21 +41,11 @@ Goto swagger.io and open the online editor. Paste the swagger.yaml from the http
 Reference this created json file in the next section
 
 ## Regenerating from swagger.json
-To generate the client, run nswag in the project root folder using either the swagger specification converted to json or a running simulation-api endpoint as input.
+To generate the client, run nswag in the project root folder using the swagger specification converted to json. You can convert the yaml file at editor.swagger.io by pasting the text into the editor window then downloading as json.
 
 If converting from local file, copy json version of spec, `swagger.json` in this case, into root folder then run:
 ```
-nswag swagger2csclient /input:swagger.json /classname:SimulationClient /namespace:SimulationCSharpClient.Client /output:src/SimulationCSharpClient/Client/SimulationClientGenerated.cs /generateclientinterfaces:true /injecthttpclient:true
-```
-
-If running simulation-api locally:
-```
-nswag swagger2csclient /input:http://localhost:5000/swagger/v1/swagger.json /classname:SimulationClient /namespace:SimulationCSharpClient.Client /output:src/SimulationCSharpClient/Client/SimulationClientGenerated.cs /generateclientinterfaces:true /injecthttpclient:true
-```
-
-Either the QA or Production simulation-api can also be used as input. For example, if using the QA API:
-```
-nswag swagger2csclient /input:https://simulation-api-qa.3dsim.com/swagger/v1/swagger.json /classname:SimulationClient /namespace:SimulationCSharpClient.Client /output:src/SimulationCSharpClient/Client/SimulationClientGenerated.cs /generateclientinterfaces:true /injecthttpclient:true
+nswag swagger2csclient /input:swagger.json /classname:SimulationClient /namespace:SimulationCSharpClient.Client /output:src/SimulationCSharpClient/Client/SimulationClientGenerated.cs /generateclientinterfaces:true /injecthttpclient:true /ResponseArrayType:System.Collections.ObjectModel.ObservableCollection
 ```
 
 ## Contributing code
