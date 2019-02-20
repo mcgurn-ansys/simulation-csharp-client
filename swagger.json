@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "3.27.0",
+    "version": "3.29.0",
     "title": "Simulation API",
     "description": "An API for managing simulations within ANSYS Additive."
   },
@@ -6443,7 +6443,14 @@
               "$ref": "#/definitions/Error"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "simulationSecurity": [
+              "write:simulations"
+            ]
+          }
+        ]
       }
     },
     "/microstructuresimulations/{id}/children": {
@@ -7451,7 +7458,20 @@
         },
         "distortionScaleFactor": {
           "type": "number",
+          "minimum": -5,
+          "maximum": 5,
           "description": "a value that is used to scale the simulated distortion value"
+        },
+        "distortionScaleFactorValues": {
+          "description": "Array of distortion scale factor values, each one will produce a separate distortion output",
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": -5,
+            "maximum": 5,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          }
         },
         "outputSupportsVtk": {
           "type": "boolean",
@@ -7478,7 +7498,20 @@
         },
         "distortionAfterCutoffScaleFactor": {
           "type": "number",
+          "minimum": -5,
+          "maximum": 5,
           "description": "a value that is used to scale the after cutoff simulated distortion values"
+        },
+        "distortionAfterCutoffScaleFactorValues": {
+          "description": "Array of distortion after cutoff scale factor values, each one will produce a separate distortion after cutoff output",
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": -5,
+            "maximum": 5,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          }
         },
         "supportType": {
           "description": "type of support used for simulation.",
@@ -9287,7 +9320,9 @@
         "randomSeed": {
           "description": "Seed value used for random number generation. If not provided it will be auto-generated.",
           "type": "integer",
-          "format": "int32"
+          "format": "int64",
+          "minimum": 0,
+          "maximum": 4294967295
         }
       }
     },
