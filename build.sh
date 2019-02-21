@@ -1,5 +1,4 @@
 #!/bin/bash -e
-
 RUN_TEST=0
 CLEAN=0
 CONFIGURATION=Release
