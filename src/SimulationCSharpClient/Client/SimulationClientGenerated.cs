@@ -16417,6 +16417,7 @@ namespace SimulationCSharpClient.Client
         private double? _bladeCrashThreshold;
         private bool? _performDistortionCompensation;
         private double? _distortionScaleFactor;
+        private System.Collections.ObjectModel.ObservableCollection<double> _distortionScaleFactorValues;
         private bool? _outputSupportsVtk;
         private bool? _detectSupportFailure;
         private double? _supportFailureThreshold;
@@ -16424,6 +16425,7 @@ namespace SimulationCSharpClient.Client
         private double? _strainWarningThreshold;
         private bool? _performDistortionCompensationAfterCutoff;
         private double? _distortionAfterCutoffScaleFactor;
+        private System.Collections.ObjectModel.ObservableCollection<double> _distortionAfterCutoffScaleFactorValues;
         private PartBasedSimulationParametersSupportType _supportType;
         private int? _voxelSampleRate;
     
@@ -16833,6 +16835,7 @@ namespace SimulationCSharpClient.Client
     
         /// <summary>a value that is used to scale the simulated distortion value</summary>
         [Newtonsoft.Json.JsonProperty("distortionScaleFactor", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(-5, 5)]
         public double? DistortionScaleFactor
         {
             get { return _distortionScaleFactor; }
@@ -16841,6 +16844,21 @@ namespace SimulationCSharpClient.Client
                 if (_distortionScaleFactor != value)
                 {
                     _distortionScaleFactor = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Array of distortion scale factor values, each one will produce a separate distortion output</summary>
+        [Newtonsoft.Json.JsonProperty("distortionScaleFactorValues", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.ObjectModel.ObservableCollection<double> DistortionScaleFactorValues
+        {
+            get { return _distortionScaleFactorValues; }
+            set 
+            {
+                if (_distortionScaleFactorValues != value)
+                {
+                    _distortionScaleFactorValues = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -16937,6 +16955,7 @@ namespace SimulationCSharpClient.Client
     
         /// <summary>a value that is used to scale the after cutoff simulated distortion values</summary>
         [Newtonsoft.Json.JsonProperty("distortionAfterCutoffScaleFactor", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(-5, 5)]
         public double? DistortionAfterCutoffScaleFactor
         {
             get { return _distortionAfterCutoffScaleFactor; }
@@ -16945,6 +16964,21 @@ namespace SimulationCSharpClient.Client
                 if (_distortionAfterCutoffScaleFactor != value)
                 {
                     _distortionAfterCutoffScaleFactor = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Array of distortion after cutoff scale factor values, each one will produce a separate distortion after cutoff output</summary>
+        [Newtonsoft.Json.JsonProperty("distortionAfterCutoffScaleFactorValues", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.ObjectModel.ObservableCollection<double> DistortionAfterCutoffScaleFactorValues
+        {
+            get { return _distortionAfterCutoffScaleFactorValues; }
+            set 
+            {
+                if (_distortionAfterCutoffScaleFactorValues != value)
+                {
+                    _distortionAfterCutoffScaleFactorValues = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -17075,6 +17109,7 @@ namespace SimulationCSharpClient.Client
         private double? _bladeCrashThreshold;
         private bool? _performDistortionCompensation;
         private double? _distortionScaleFactor;
+        private System.Collections.ObjectModel.ObservableCollection<double> _distortionScaleFactorValues;
         private bool? _outputSupportsVtk;
         private bool? _detectSupportFailure;
         private double? _supportFailureThreshold;
@@ -17082,6 +17117,7 @@ namespace SimulationCSharpClient.Client
         private double? _strainWarningThreshold;
         private bool? _performDistortionCompensationAfterCutoff;
         private double? _distortionAfterCutoffScaleFactor;
+        private System.Collections.ObjectModel.ObservableCollection<double> _distortionAfterCutoffScaleFactorValues;
         private PartBasedSimulationParametersSupportType _supportType;
         private int? _voxelSampleRate;
         private double? _layerThickness;
@@ -17492,6 +17528,7 @@ namespace SimulationCSharpClient.Client
     
         /// <summary>a value that is used to scale the simulated distortion value</summary>
         [Newtonsoft.Json.JsonProperty("distortionScaleFactor", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(-5, 5)]
         public double? DistortionScaleFactor
         {
             get { return _distortionScaleFactor; }
@@ -17500,6 +17537,21 @@ namespace SimulationCSharpClient.Client
                 if (_distortionScaleFactor != value)
                 {
                     _distortionScaleFactor = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Array of distortion scale factor values, each one will produce a separate distortion output</summary>
+        [Newtonsoft.Json.JsonProperty("distortionScaleFactorValues", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.ObjectModel.ObservableCollection<double> DistortionScaleFactorValues
+        {
+            get { return _distortionScaleFactorValues; }
+            set 
+            {
+                if (_distortionScaleFactorValues != value)
+                {
+                    _distortionScaleFactorValues = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -17596,6 +17648,7 @@ namespace SimulationCSharpClient.Client
     
         /// <summary>a value that is used to scale the after cutoff simulated distortion values</summary>
         [Newtonsoft.Json.JsonProperty("distortionAfterCutoffScaleFactor", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(-5, 5)]
         public double? DistortionAfterCutoffScaleFactor
         {
             get { return _distortionAfterCutoffScaleFactor; }
@@ -17604,6 +17657,21 @@ namespace SimulationCSharpClient.Client
                 if (_distortionAfterCutoffScaleFactor != value)
                 {
                     _distortionAfterCutoffScaleFactor = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Array of distortion after cutoff scale factor values, each one will produce a separate distortion after cutoff output</summary>
+        [Newtonsoft.Json.JsonProperty("distortionAfterCutoffScaleFactorValues", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.ObjectModel.ObservableCollection<double> DistortionAfterCutoffScaleFactorValues
+        {
+            get { return _distortionAfterCutoffScaleFactorValues; }
+            set 
+            {
+                if (_distortionAfterCutoffScaleFactorValues != value)
+                {
+                    _distortionAfterCutoffScaleFactorValues = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -18250,6 +18318,7 @@ namespace SimulationCSharpClient.Client
         private double? _bladeCrashThreshold;
         private bool? _performDistortionCompensation;
         private double? _distortionScaleFactor;
+        private System.Collections.ObjectModel.ObservableCollection<double> _distortionScaleFactorValues;
         private bool? _outputSupportsVtk;
         private bool? _detectSupportFailure;
         private double? _supportFailureThreshold;
@@ -18257,6 +18326,7 @@ namespace SimulationCSharpClient.Client
         private double? _strainWarningThreshold;
         private bool? _performDistortionCompensationAfterCutoff;
         private double? _distortionAfterCutoffScaleFactor;
+        private System.Collections.ObjectModel.ObservableCollection<double> _distortionAfterCutoffScaleFactorValues;
         private PartBasedSimulationParametersSupportType _supportType;
         private int? _voxelSampleRate;
         private double _layerThickness;
@@ -18698,6 +18768,7 @@ namespace SimulationCSharpClient.Client
     
         /// <summary>a value that is used to scale the simulated distortion value</summary>
         [Newtonsoft.Json.JsonProperty("distortionScaleFactor", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(-5, 5)]
         public double? DistortionScaleFactor
         {
             get { return _distortionScaleFactor; }
@@ -18706,6 +18777,21 @@ namespace SimulationCSharpClient.Client
                 if (_distortionScaleFactor != value)
                 {
                     _distortionScaleFactor = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Array of distortion scale factor values, each one will produce a separate distortion output</summary>
+        [Newtonsoft.Json.JsonProperty("distortionScaleFactorValues", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.ObjectModel.ObservableCollection<double> DistortionScaleFactorValues
+        {
+            get { return _distortionScaleFactorValues; }
+            set 
+            {
+                if (_distortionScaleFactorValues != value)
+                {
+                    _distortionScaleFactorValues = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -18802,6 +18888,7 @@ namespace SimulationCSharpClient.Client
     
         /// <summary>a value that is used to scale the after cutoff simulated distortion values</summary>
         [Newtonsoft.Json.JsonProperty("distortionAfterCutoffScaleFactor", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(-5, 5)]
         public double? DistortionAfterCutoffScaleFactor
         {
             get { return _distortionAfterCutoffScaleFactor; }
@@ -18810,6 +18897,21 @@ namespace SimulationCSharpClient.Client
                 if (_distortionAfterCutoffScaleFactor != value)
                 {
                     _distortionAfterCutoffScaleFactor = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Array of distortion after cutoff scale factor values, each one will produce a separate distortion after cutoff output</summary>
+        [Newtonsoft.Json.JsonProperty("distortionAfterCutoffScaleFactorValues", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.ObjectModel.ObservableCollection<double> DistortionAfterCutoffScaleFactorValues
+        {
+            get { return _distortionAfterCutoffScaleFactorValues; }
+            set 
+            {
+                if (_distortionAfterCutoffScaleFactorValues != value)
+                {
+                    _distortionAfterCutoffScaleFactorValues = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -19519,6 +19621,7 @@ namespace SimulationCSharpClient.Client
         private double? _bladeCrashThreshold;
         private bool? _performDistortionCompensation;
         private double? _distortionScaleFactor;
+        private System.Collections.ObjectModel.ObservableCollection<double> _distortionScaleFactorValues;
         private bool? _outputSupportsVtk;
         private bool? _detectSupportFailure;
         private double? _supportFailureThreshold;
@@ -19526,6 +19629,7 @@ namespace SimulationCSharpClient.Client
         private double? _strainWarningThreshold;
         private bool? _performDistortionCompensationAfterCutoff;
         private double? _distortionAfterCutoffScaleFactor;
+        private System.Collections.ObjectModel.ObservableCollection<double> _distortionAfterCutoffScaleFactorValues;
         private PartBasedSimulationParametersSupportType _supportType;
         private int? _voxelSampleRate;
         private double _layerThickness;
@@ -19942,6 +20046,7 @@ namespace SimulationCSharpClient.Client
     
         /// <summary>a value that is used to scale the simulated distortion value</summary>
         [Newtonsoft.Json.JsonProperty("distortionScaleFactor", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(-5, 5)]
         public double? DistortionScaleFactor
         {
             get { return _distortionScaleFactor; }
@@ -19950,6 +20055,21 @@ namespace SimulationCSharpClient.Client
                 if (_distortionScaleFactor != value)
                 {
                     _distortionScaleFactor = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Array of distortion scale factor values, each one will produce a separate distortion output</summary>
+        [Newtonsoft.Json.JsonProperty("distortionScaleFactorValues", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.ObjectModel.ObservableCollection<double> DistortionScaleFactorValues
+        {
+            get { return _distortionScaleFactorValues; }
+            set 
+            {
+                if (_distortionScaleFactorValues != value)
+                {
+                    _distortionScaleFactorValues = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -20046,6 +20166,7 @@ namespace SimulationCSharpClient.Client
     
         /// <summary>a value that is used to scale the after cutoff simulated distortion values</summary>
         [Newtonsoft.Json.JsonProperty("distortionAfterCutoffScaleFactor", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(-5, 5)]
         public double? DistortionAfterCutoffScaleFactor
         {
             get { return _distortionAfterCutoffScaleFactor; }
@@ -20054,6 +20175,21 @@ namespace SimulationCSharpClient.Client
                 if (_distortionAfterCutoffScaleFactor != value)
                 {
                     _distortionAfterCutoffScaleFactor = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Array of distortion after cutoff scale factor values, each one will produce a separate distortion after cutoff output</summary>
+        [Newtonsoft.Json.JsonProperty("distortionAfterCutoffScaleFactorValues", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.ObjectModel.ObservableCollection<double> DistortionAfterCutoffScaleFactorValues
+        {
+            get { return _distortionAfterCutoffScaleFactorValues; }
+            set 
+            {
+                if (_distortionAfterCutoffScaleFactorValues != value)
+                {
+                    _distortionAfterCutoffScaleFactorValues = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -24610,7 +24746,7 @@ namespace SimulationCSharpClient.Client
         private System.Collections.ObjectModel.ObservableCollection<double> _heaterTemperatureValues;
         private System.Collections.ObjectModel.ObservableCollection<MicrostructureSensor> _microstructureSensors = new System.Collections.ObjectModel.ObservableCollection<MicrostructureSensor>();
         private bool _userProvidedThermalData;
-        private int? _randomSeed;
+        private long? _randomSeed;
     
         /// <summary>Width of part geometry, 0.001 to 0.01 meters</summary>
         [Newtonsoft.Json.JsonProperty("geometryWidth", Required = Newtonsoft.Json.Required.Always)]
@@ -24819,7 +24955,8 @@ namespace SimulationCSharpClient.Client
     
         /// <summary>Seed value used for random number generation. If not provided it will be auto-generated.</summary>
         [Newtonsoft.Json.JsonProperty("randomSeed", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? RandomSeed
+        [System.ComponentModel.DataAnnotations.Range(0, 4294967295)]
+        public long? RandomSeed
         {
             get { return _randomSeed; }
             set 
@@ -25070,7 +25207,7 @@ namespace SimulationCSharpClient.Client
         private System.Collections.ObjectModel.ObservableCollection<double> _heaterTemperatureValues;
         private System.Collections.ObjectModel.ObservableCollection<MicrostructureSensor> _microstructureSensors = new System.Collections.ObjectModel.ObservableCollection<MicrostructureSensor>();
         private bool _userProvidedThermalData;
-        private int? _randomSeed;
+        private long? _randomSeed;
     
         /// <summary>Width of part geometry, 0.001 to 0.01 meters</summary>
         [Newtonsoft.Json.JsonProperty("geometryWidth", Required = Newtonsoft.Json.Required.Always)]
@@ -25279,7 +25416,8 @@ namespace SimulationCSharpClient.Client
     
         /// <summary>Seed value used for random number generation. If not provided it will be auto-generated.</summary>
         [Newtonsoft.Json.JsonProperty("randomSeed", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? RandomSeed
+        [System.ComponentModel.DataAnnotations.Range(0, 4294967295)]
+        public long? RandomSeed
         {
             get { return _randomSeed; }
             set 
