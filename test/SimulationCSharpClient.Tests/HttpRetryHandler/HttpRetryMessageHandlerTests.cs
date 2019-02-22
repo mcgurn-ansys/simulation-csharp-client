@@ -3,6 +3,7 @@ using Moq.Protected;
 using NUnit.Framework;
 using SimulationCSharpClient.Client;
 using System;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
@@ -14,69 +15,43 @@ namespace SimulationCSharpClient.Tests.HttpRetryHandler
     public class HttpRetryMessageHandlerTests
     {
         [Test]
-        public void HttpGet_Success()
+        public void HttpGet_MaxRetries_OnFailure()
         {
             // Arrange
-            var retryMessageHandler = new HttpRetryMessageHandler(6);
+            int maxReTries = 2;
+            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, "http://localhostTestApi.com");
 
-            using (var httpClient = new HttpClient(retryMessageHandler))
+            var handler = new HttpRetryMessageHandler(maxReTries)
             {
-                // Act
-                var response = httpClient.GetStringAsync("http://www.google.com").Result;
+                InnerHandler = new TestHttpRetryMessageHandlerFailure()
+            };
 
-                // Assert
-                Assert.IsTrue(!string.IsNullOrEmpty(response));
-            }
+            var invoker = new HttpMessageInvoker(handler);
+
+            // Act
+            var result = invoker.SendAsync(httpRequestMessage, CancellationToken.None).Result;
+
+            // Assert
+            Assert.AreEqual(((TestHttpRetryMessageHandlerFailure)handler.InnerHandler).AttemptedTries, maxReTries + 1);
         }
 
         [Test]
-        public void HttpGet_Fail_But_RetryForMaxTries()
+        public void HttpGet_Success_In_FirstTry()
         {
-            int maxReTries = 3;
-            var httpRetryMessageHandler = new HttpRetryMessageHandler(maxReTries);
-            using (var httpClient = new HttpClient(httpRetryMessageHandler))
+            // Arrange
+            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, "http://localhostTestApi.com");
+
+            var handler = new HttpRetryMessageHandler()
             {
-                try
-                {
-                    // Act
-                    var response = httpClient.GetStringAsync("https://3dsimulationNoSiteExistsWiththisName.com").Result;
+                InnerHandler = new TestHttpRetryMessageHandlerSuccess()
+            };
+            var invoker = new HttpMessageInvoker(handler);
 
-                    // Assert
-                    Assert.Fail("Expected 'Site Not Reachable'.");
-                }
-                catch
-                {
-                }
+            // Act
+            var result = invoker.SendAsync(httpRequestMessage, CancellationToken.None).Result;
 
-                // Assert
-                Assert.IsTrue(httpRetryMessageHandler.AttemptedTries == maxReTries + 1, $"Expected to retry for {maxReTries} times and total expected tries is {maxReTries + 1}"); // 3 Retries and one inital try.
-            }
-        }
-
-        [Test]
-        public void HttpGet_Fail_But_RetryFor_6_ReTries_Only_OnInvalid_MaxTries()
-        {
-            int maxReTries = -1;
-            int expectedMaxReTries = 6;
-            var httpRetryMessageHandler = new HttpRetryMessageHandler(maxReTries);
-            using (var httpClient = new HttpClient(httpRetryMessageHandler))
-            {
-                try
-                {
-                    // Act
-                    var response = httpClient.GetStringAsync("https://3dsimulationNoSiteExistsWiththisName.com").Result;
-
-                    // Assert
-                    Assert.Fail("Expected 'Site Not Reachable'.");
-                }
-                catch
-                {
-                }
-
-                // Assert
-                Assert.IsFalse(httpRetryMessageHandler.AttemptedTries == maxReTries + 1, $"Expected not to retry for {maxReTries} times and total expected tries should not equal to {maxReTries + 1}"); // 3 Retries and one inital try.
-                Assert.AreEqual(httpRetryMessageHandler.AttemptedTries, expectedMaxReTries + 1, $"Expected to retry for {expectedMaxReTries} times"); // 6 Retries and one inital try.
-            }
+            // Assert
+            Assert.AreEqual(((TestHttpRetryMessageHandlerSuccess)handler.InnerHandler).AttemptedTries, 1);
         }
     }
 }

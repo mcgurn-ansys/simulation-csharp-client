@@ -14,7 +14,6 @@ namespace SimulationCSharpClient.Client
         public HttpRetryMessageHandler()
             : base()
         {
-            this.AttemptedTries = 0;
             this.maxRetries = 6;
         }
 
@@ -22,10 +21,7 @@ namespace SimulationCSharpClient.Client
             : base(handler ?? new HttpClientHandler())
         {
             this.maxRetries = (maxRetries <= 0 || maxRetries > 6) ? 6 : maxRetries;
-            this.AttemptedTries = 0;
         }
-
-        public int AttemptedTries { get; private set; }
 
         protected override Task<HttpResponseMessage> SendAsync(
             HttpRequestMessage request,
@@ -37,7 +33,6 @@ namespace SimulationCSharpClient.Client
                     .ExecuteAsync(
                     () =>
                     {
-                        this.AttemptedTries++;
                         return base.SendAsync(request, cancellationToken);
                     });
         }
