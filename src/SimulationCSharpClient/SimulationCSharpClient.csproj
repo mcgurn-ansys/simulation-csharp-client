@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <Version>3.29.0</Version>
+        <Version>3.30.0</Version>
         <TargetFramework>netcoreapp2.0</TargetFramework>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <AssemblyName>SimulationCSharpClient</AssemblyName>
@@ -26,5 +26,6 @@
     <ItemGroup>
         <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
         <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta001" />
+        <PackageReference Include="Polly" Version="7.0.2" />
     </ItemGroup>
 </Project>

@@ -23,14 +23,16 @@ namespace SimulationCSharpClient.Client
         /// <param name="secret">client secret</param>
         /// <param name="audience">client audience</param>
         /// <param name="httpClient">injected http client</param>
-        public SimulationClient(string baseUrl, string auth0TokenURL, string client, string secret, string audience, HttpClient httpClient = null)
+        /// <param name="maxRetries">http maxRetries.</param>
+        /// <param name="handler">http client handler.</param>
+        public SimulationClient(string baseUrl, string auth0TokenURL, string client, string secret, string audience, HttpClient httpClient = null, int maxRetries = 6, HttpClientHandler handler = null)
         {
             this.BaseUrl = baseUrl;
             this._httpClient = httpClient;
 
             if (this._httpClient == null)
             {
-                this._httpClient = new HttpClient();
+                this._httpClient = new HttpClient(new HttpRetryMessageHandler(maxRetries, handler));
             }
 
             this._settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(() =>
@@ -53,14 +55,16 @@ namespace SimulationCSharpClient.Client
         /// <param name="password">password</param>
         /// <param name="connection">user database - values can be found here: https://github.com/3DSIM/simulation-api-specification</param>
         /// <param name="httpClient">injected http client</param>
-        public SimulationClient(string baseUrl, string auth0TokenURL, string client, string userName, string password, string connection, HttpClient httpClient = null)
+        /// <param name="maxRetries">http maxRetries.</param>
+        /// <param name="handler">handler.</param>
+        public SimulationClient(string baseUrl, string auth0TokenURL, string client, string userName, string password, string connection, HttpClient httpClient = null, int maxRetries = 6, HttpClientHandler handler = null)
         {
             this.BaseUrl = baseUrl;
             this._httpClient = httpClient;
 
             if (this._httpClient == null)
             {
-                this._httpClient = new HttpClient();
+                this._httpClient = new HttpClient(new HttpRetryMessageHandler(maxRetries, handler));
             }
 
             this._settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(() =>
