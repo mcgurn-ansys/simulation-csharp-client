@@ -20896,7 +20896,7 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        /// <summary>If an error ocurrs uploading a part, a string will be populated in this field.</summary>
+        /// <summary>If an error occurs uploading a part, a string will be populated in this field.</summary>
         [Newtonsoft.Json.JsonProperty("errorReason", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string ErrorReason
         {
@@ -24230,6 +24230,7 @@ namespace SimulationCSharpClient.Client
         private double? _estimateVoxelSize;
         private double? _minimumSupportHeight;
         private string _errorReason;
+        private bool? _lockToPartTranslation;
     
         /// <summary>Id of the part</summary>
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
@@ -24695,7 +24696,7 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        /// <summary>If an error ocurrs uploading a part, a string will be populated in this field.</summary>
+        /// <summary>If an error occurs uploading a part, a string will be populated in this field.</summary>
         [Newtonsoft.Json.JsonProperty("errorReason", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string ErrorReason
         {
@@ -24705,6 +24706,21 @@ namespace SimulationCSharpClient.Client
                 if (_errorReason != value)
                 {
                     _errorReason = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Whether the support should be translated with the part (true), or a minimumSupportHeight will be specified (false).</summary>
+        [Newtonsoft.Json.JsonProperty("lockToPartTranslation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? LockToPartTranslation
+        {
+            get { return _lockToPartTranslation; }
+            set 
+            {
+                if (_lockToPartTranslation != value)
+                {
+                    _lockToPartTranslation = value; 
                     RaisePropertyChanged();
                 }
             }
