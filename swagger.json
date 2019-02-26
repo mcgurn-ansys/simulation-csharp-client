@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "3.29.0",
+    "version": "3.30.0",
     "title": "Simulation API",
     "description": "An API for managing simulations within ANSYS Additive."
   },
@@ -7964,7 +7964,7 @@
         },
         "errorReason": {
           "type": "string",
-          "description": "If an error ocurrs uploading a part, a string will be populated in this field."
+          "description": "If an error occurs uploading a part, a string will be populated in this field."
         },
         "partSupports": {
           "description": "List of supports that have been uploaded for this part",
@@ -9164,7 +9164,11 @@
         },
         "errorReason": {
           "type": "string",
-          "description": "If an error ocurrs uploading a part, a string will be populated in this field."
+          "description": "If an error occurs uploading a part, a string will be populated in this field."
+        },
+        "lockToPartTranslation": {
+          "type": "boolean",
+          "description": "Whether the support should be translated with the part (true), or a minimumSupportHeight will be specified (false)."
         }
       }
     },
