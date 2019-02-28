@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "3.30.0",
+    "version": "3.31.0",
     "title": "Simulation API",
     "description": "An API for managing simulations within ANSYS Additive."
   },
@@ -738,7 +738,7 @@
           {
             "name": "availability",
             "in": "query",
-            "description": "If specified, will filter to only include parts with the given availability.  Uploaded - the part has been uploaded.  Processing - the part is being processed.  Available - the part was processed successfully and can be used in simulations.  Error - an error occurred, contact support@3dsim.com.",
+            "description": "If specified, will filter to only include parts with the given availability.  Uploaded - the part has been uploaded.  Processing - the part is being processed.  Available - the part was processed successfully and can be used in simulations.  Error - an error occurred, contact Ansys Support.",
             "required": false,
             "type": "string",
             "enum": [
@@ -7850,7 +7850,7 @@
           "description": "File name of part relative to fileBucket"
         },
         "availability": {
-          "description": "Describes the availabity of the part. Uploaded - the part has been uploaded.  Processing - the part is being processed.  Available - the part was processed successfully and can be used in simulations.  Error - an error occurred, contact support@3dsim.com.",
+          "description": "Describes the availabity of the part. Uploaded - the part has been uploaded.  Processing - the part is being processed.  Available - the part was processed successfully and can be used in simulations.  Error - an error occurred, contact Ansys Support.",
           "type": "string",
           "enum": [
             "Uploaded",
@@ -8323,7 +8323,7 @@
         },
         "lookupFileLocation": {
           "type": "string",
-          "description": "Location where the lookup file is stored in S3.  Set server side.  Only used internally within 3DSIM."
+          "description": "Location where the lookup file is stored.  Set server side.  Only used internally."
         },
         "capTemperatureLaserSpeedCoef": {
           "type": "number",
@@ -8360,6 +8360,54 @@
         "nucleationConstant": {
           "type": "number",
           "format": "double"
+        },
+        "penetrationDepthPowderCoeffA": {
+          "type": "number",
+          "format": "double"
+        },
+        "penetrationDepthPowderCoeffB": {
+          "type": "number",
+          "format": "double"
+        },
+        "penetrationDepthSolidCoeffA": {
+          "type": "number",
+          "format": "double"
+        },
+        "penetrationDepthSolidCoeffB": {
+          "type": "number",
+          "format": "double"
+        },
+        "absorptivityPowderCoeffA": {
+          "type": "number",
+          "format": "double"
+        },
+        "absorptivityPowderCoeffB": {
+          "type": "number",
+          "format": "double"
+        },
+        "absorptivitySolidCoeffA": {
+          "type": "number",
+          "format": "double"
+        },
+        "absorptivitySolidCoeffB": {
+          "type": "number",
+          "format": "double"
+        },
+        "absorptivityMinimum": {
+          "type": "number",
+          "format": "double"
+        },
+        "w0LowerBound": {
+          "type": "number",
+          "format": "double"
+        },
+        "w0UpperBound": {
+          "type": "number",
+          "format": "double"
+        },
+        "w0LookupFileLocation": {
+          "type": "string",
+          "description": "Location where tuning method lookup file is stored. Set server side. Only used internally."
         }
       }
     },

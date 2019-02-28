@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <Version>3.31.0</Version>
+        <Version>3.32.0</Version>
         <TargetFramework>netcoreapp2.0</TargetFramework>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <AssemblyName>SimulationCSharpClient</AssemblyName>

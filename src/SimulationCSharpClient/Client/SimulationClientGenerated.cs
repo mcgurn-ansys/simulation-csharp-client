@@ -159,7 +159,7 @@ namespace SimulationCSharpClient.Client
         /// <param name="offset">starting paging count; ex. 60 will skip the first 60 items in the list</param>
         /// <param name="limit">number of items to return within the query</param>
         /// <param name="sort">key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc</param>
-        /// <param name="availability">If specified, will filter to only include parts with the given availability.  Uploaded - the part has been uploaded.  Processing - the part is being processed.  Available - the part was processed successfully and can be used in simulations.  Error - an error occurred, contact support@3dsim.com.</param>
+        /// <param name="availability">If specified, will filter to only include parts with the given availability.  Uploaded - the part has been uploaded.  Processing - the part is being processed.  Available - the part was processed successfully and can be used in simulations.  Error - an error occurred, contact Ansys Support.</param>
         /// <param name="archived">If true, will only return archived parts.  If false, will only return unarchived parts.  If not provided, will return both archived and unarchived parts.</param>
         /// <returns>Successfully found the list of parts</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
@@ -169,7 +169,7 @@ namespace SimulationCSharpClient.Client
         /// <param name="offset">starting paging count; ex. 60 will skip the first 60 items in the list</param>
         /// <param name="limit">number of items to return within the query</param>
         /// <param name="sort">key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc</param>
-        /// <param name="availability">If specified, will filter to only include parts with the given availability.  Uploaded - the part has been uploaded.  Processing - the part is being processed.  Available - the part was processed successfully and can be used in simulations.  Error - an error occurred, contact support@3dsim.com.</param>
+        /// <param name="availability">If specified, will filter to only include parts with the given availability.  Uploaded - the part has been uploaded.  Processing - the part is being processed.  Available - the part was processed successfully and can be used in simulations.  Error - an error occurred, contact Ansys Support.</param>
         /// <param name="archived">If true, will only return archived parts.  If false, will only return unarchived parts.  If not provided, will return both archived and unarchived parts.</param>
         /// <returns>Successfully found the list of parts</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
@@ -2875,7 +2875,7 @@ namespace SimulationCSharpClient.Client
         /// <param name="offset">starting paging count; ex. 60 will skip the first 60 items in the list</param>
         /// <param name="limit">number of items to return within the query</param>
         /// <param name="sort">key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc</param>
-        /// <param name="availability">If specified, will filter to only include parts with the given availability.  Uploaded - the part has been uploaded.  Processing - the part is being processed.  Available - the part was processed successfully and can be used in simulations.  Error - an error occurred, contact support@3dsim.com.</param>
+        /// <param name="availability">If specified, will filter to only include parts with the given availability.  Uploaded - the part has been uploaded.  Processing - the part is being processed.  Available - the part was processed successfully and can be used in simulations.  Error - an error occurred, contact Ansys Support.</param>
         /// <param name="archived">If true, will only return archived parts.  If false, will only return unarchived parts.  If not provided, will return both archived and unarchived parts.</param>
         /// <returns>Successfully found the list of parts</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
@@ -2888,7 +2888,7 @@ namespace SimulationCSharpClient.Client
         /// <param name="offset">starting paging count; ex. 60 will skip the first 60 items in the list</param>
         /// <param name="limit">number of items to return within the query</param>
         /// <param name="sort">key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc</param>
-        /// <param name="availability">If specified, will filter to only include parts with the given availability.  Uploaded - the part has been uploaded.  Processing - the part is being processed.  Available - the part was processed successfully and can be used in simulations.  Error - an error occurred, contact support@3dsim.com.</param>
+        /// <param name="availability">If specified, will filter to only include parts with the given availability.  Uploaded - the part has been uploaded.  Processing - the part is being processed.  Available - the part was processed successfully and can be used in simulations.  Error - an error occurred, contact Ansys Support.</param>
         /// <param name="archived">If true, will only return archived parts.  If false, will only return unarchived parts.  If not provided, will return both archived and unarchived parts.</param>
         /// <returns>Successfully found the list of parts</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
@@ -20510,7 +20510,7 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        /// <summary>Describes the availabity of the part. Uploaded - the part has been uploaded.  Processing - the part is being processed.  Available - the part was processed successfully and can be used in simulations.  Error - an error occurred, contact support@3dsim.com.</summary>
+        /// <summary>Describes the availabity of the part. Uploaded - the part has been uploaded.  Processing - the part is being processed.  Available - the part was processed successfully and can be used in simulations.  Error - an error occurred, contact Ansys Support.</summary>
         [Newtonsoft.Json.JsonProperty("availability", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public PartAvailability? Availability
@@ -21409,6 +21409,18 @@ namespace SimulationCSharpClient.Client
         private double _laserPowerUpperBound;
         private double _hardeningFactor;
         private double _nucleationConstant;
+        private double? _penetrationDepthPowderCoeffA;
+        private double? _penetrationDepthPowderCoeffB;
+        private double? _penetrationDepthSolidCoeffA;
+        private double? _penetrationDepthSolidCoeffB;
+        private double? _absorptivityPowderCoeffA;
+        private double? _absorptivityPowderCoeffB;
+        private double? _absorptivitySolidCoeffA;
+        private double? _absorptivitySolidCoeffB;
+        private double? _absorptivityMinimum;
+        private double? _w0LowerBound;
+        private double? _w0UpperBound;
+        private string _w0LookupFileLocation;
     
         /// <summary>material configuration identifier</summary>
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -21976,7 +21988,7 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        /// <summary>Location where the lookup file is stored in S3.  Set server side.  Only used internally within 3DSIM.</summary>
+        /// <summary>Location where the lookup file is stored.  Set server side.  Only used internally.</summary>
         [Newtonsoft.Json.JsonProperty("lookupFileLocation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string LookupFileLocation
         {
@@ -22112,6 +22124,175 @@ namespace SimulationCSharpClient.Client
                 if (_nucleationConstant != value)
                 {
                     _nucleationConstant = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("penetrationDepthPowderCoeffA", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? PenetrationDepthPowderCoeffA
+        {
+            get { return _penetrationDepthPowderCoeffA; }
+            set 
+            {
+                if (_penetrationDepthPowderCoeffA != value)
+                {
+                    _penetrationDepthPowderCoeffA = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("penetrationDepthPowderCoeffB", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? PenetrationDepthPowderCoeffB
+        {
+            get { return _penetrationDepthPowderCoeffB; }
+            set 
+            {
+                if (_penetrationDepthPowderCoeffB != value)
+                {
+                    _penetrationDepthPowderCoeffB = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("penetrationDepthSolidCoeffA", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? PenetrationDepthSolidCoeffA
+        {
+            get { return _penetrationDepthSolidCoeffA; }
+            set 
+            {
+                if (_penetrationDepthSolidCoeffA != value)
+                {
+                    _penetrationDepthSolidCoeffA = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("penetrationDepthSolidCoeffB", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? PenetrationDepthSolidCoeffB
+        {
+            get { return _penetrationDepthSolidCoeffB; }
+            set 
+            {
+                if (_penetrationDepthSolidCoeffB != value)
+                {
+                    _penetrationDepthSolidCoeffB = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("absorptivityPowderCoeffA", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? AbsorptivityPowderCoeffA
+        {
+            get { return _absorptivityPowderCoeffA; }
+            set 
+            {
+                if (_absorptivityPowderCoeffA != value)
+                {
+                    _absorptivityPowderCoeffA = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("absorptivityPowderCoeffB", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? AbsorptivityPowderCoeffB
+        {
+            get { return _absorptivityPowderCoeffB; }
+            set 
+            {
+                if (_absorptivityPowderCoeffB != value)
+                {
+                    _absorptivityPowderCoeffB = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("absorptivitySolidCoeffA", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? AbsorptivitySolidCoeffA
+        {
+            get { return _absorptivitySolidCoeffA; }
+            set 
+            {
+                if (_absorptivitySolidCoeffA != value)
+                {
+                    _absorptivitySolidCoeffA = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("absorptivitySolidCoeffB", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? AbsorptivitySolidCoeffB
+        {
+            get { return _absorptivitySolidCoeffB; }
+            set 
+            {
+                if (_absorptivitySolidCoeffB != value)
+                {
+                    _absorptivitySolidCoeffB = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("absorptivityMinimum", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? AbsorptivityMinimum
+        {
+            get { return _absorptivityMinimum; }
+            set 
+            {
+                if (_absorptivityMinimum != value)
+                {
+                    _absorptivityMinimum = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("w0LowerBound", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? W0LowerBound
+        {
+            get { return _w0LowerBound; }
+            set 
+            {
+                if (_w0LowerBound != value)
+                {
+                    _w0LowerBound = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("w0UpperBound", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? W0UpperBound
+        {
+            get { return _w0UpperBound; }
+            set 
+            {
+                if (_w0UpperBound != value)
+                {
+                    _w0UpperBound = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Location where tuning method lookup file is stored. Set server side. Only used internally.</summary>
+        [Newtonsoft.Json.JsonProperty("w0LookupFileLocation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string W0LookupFileLocation
+        {
+            get { return _w0LookupFileLocation; }
+            set 
+            {
+                if (_w0LookupFileLocation != value)
+                {
+                    _w0LookupFileLocation = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -25466,7 +25647,7 @@ namespace SimulationCSharpClient.Client
         }
     }
     
-    /// <summary>If specified, will filter to only include parts with the given availability.  Uploaded - the part has been uploaded.  Processing - the part is being processed.  Available - the part was processed successfully and can be used in simulations.  Error - an error occurred, contact support@3dsim.com.</summary>
+    /// <summary>If specified, will filter to only include parts with the given availability.  Uploaded - the part has been uploaded.  Processing - the part is being processed.  Available - the part was processed successfully and can be used in simulations.  Error - an error occurred, contact Ansys Support.</summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
     public enum Availability
     {

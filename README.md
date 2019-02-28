@@ -31,10 +31,14 @@ npm install nswag -g
 
 Currently using nswag version to generate client:
 ```
-NSwag version: v11.12.7.0
+NSwag version: v11.12.7
 NJsonSchema version: v9.10.6.0 (Newtonsoft.Json v9.0.0.0)
 ```
 
+To install specific version
+```
+npm install -g nswag@11.12.7
+```
 ## Creating swagger.json from swagger.yaml
 Goto swagger.io and open the online editor. Paste the swagger.yaml from the https://github.com/3DSIM/simulation-api-specification project. In the file menu, select "Convert and Save as Json"
 
