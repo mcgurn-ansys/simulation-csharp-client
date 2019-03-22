@@ -28,7 +28,7 @@ namespace SimulationCSharpClient.Client
         public SimulationClient(string baseUrl, string auth0TokenURL, string client, string secret, string audience, HttpClient httpClient = null, int maxRetries = 6, HttpClientHandler handler = null)
         {
             this.BaseUrl = baseUrl;
-            this._httpClient = this.SetMaxRetriesHandler(httpClient, maxRetries, handler);
+            this._httpClient = httpClient ?? HttpClientHelper.GetHttpClientWithMaxRetriesHandler(maxRetries, handler);
             this._settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(() =>
             {
                 var settings = new Newtonsoft.Json.JsonSerializerSettings();
@@ -54,7 +54,7 @@ namespace SimulationCSharpClient.Client
         public SimulationClient(string baseUrl, string auth0TokenURL, string client, string userName, string password, string connection, HttpClient httpClient = null, int maxRetries = 6, HttpClientHandler handler = null)
         {
             this.BaseUrl = baseUrl;
-            this._httpClient = this.SetMaxRetriesHandler(httpClient, maxRetries, handler);
+            this._httpClient = httpClient ?? HttpClientHelper.GetHttpClientWithMaxRetriesHandler(maxRetries, handler);
             this._settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(() =>
             {
                 var settings = new Newtonsoft.Json.JsonSerializerSettings();
@@ -160,26 +160,6 @@ namespace SimulationCSharpClient.Client
             {
                 authClient.Dispose();
             }
-        }
-
-        private HttpClient SetMaxRetriesHandler(HttpClient httpClient, int maxRetries, HttpClientHandler handler = null)
-        {
-            if (httpClient == null)
-            {
-                var httpRetryMessageHandler = new HttpRetryMessageHandler(maxRetries, handler);
-                httpClient = new HttpClient(httpRetryMessageHandler);
-
-                // TimeOut = total wait time between retries + Total Tries * 20( approximate processing time for each try) in secs
-                var timeoutInSecs = httpRetryMessageHandler.TotalWaitDurationInSecs + (20 * (maxRetries + 1));
-
-                // set the calculated timeout to http client if it is >100 else keep the default TimeOut(100 secs)
-                if (timeoutInSecs > 100)
-                {
-                    httpClient.Timeout = TimeSpan.FromSeconds(timeoutInSecs);
-                }
-            }
-
-            return httpClient;
         }
     }
 }
