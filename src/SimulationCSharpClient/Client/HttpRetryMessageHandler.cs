@@ -9,19 +9,19 @@ namespace SimulationCSharpClient.Client
 {
     public class HttpRetryMessageHandler : DelegatingHandler
     {
-        private readonly int maxRetries;
-
         public HttpRetryMessageHandler()
             : base()
         {
-            this.maxRetries = 6;
+            this.MaxRetries = HttpClientHelper.DefaultMaxRetries;
         }
 
-        public HttpRetryMessageHandler(int maxRetries = 6, HttpClientHandler handler = null)
+        public HttpRetryMessageHandler(int maxRetries = 0, HttpClientHandler handler = null)
             : base(handler ?? new HttpClientHandler())
         {
-            this.maxRetries = (maxRetries <= 0 || maxRetries > 6) ? 6 : maxRetries;
+            this.MaxRetries = (maxRetries <= 0 || maxRetries > HttpClientHelper.DefaultMaxRetries) ? HttpClientHelper.DefaultMaxRetries : maxRetries;
         }
+
+        public int MaxRetries { get; private set; }
 
         protected override Task<HttpResponseMessage> SendAsync(
             HttpRequestMessage request,
@@ -29,7 +29,7 @@ namespace SimulationCSharpClient.Client
         {
             return Policy.Handle<Exception>()
                 .OrResult<HttpResponseMessage>(x => !x.IsSuccessStatusCode)
-                    .WaitAndRetryAsync(this.maxRetries, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2.15, retryAttempt))) // Back off; 2.15, 4.6,  9.9, 21.3, 45.9, 98.7 secs
+                    .WaitAndRetryAsync(this.MaxRetries, retryAttempt => HttpClientHelper.ExponentialSleepDuration(retryAttempt)) // Back off; 2.15, 4.6,  9.9, 21.3, 45.9, 98.7 secs
                     .ExecuteAsync(
                     () =>
                     {

@@ -28,13 +28,7 @@ namespace SimulationCSharpClient.Client
         public SimulationClient(string baseUrl, string auth0TokenURL, string client, string secret, string audience, HttpClient httpClient = null, int maxRetries = 6, HttpClientHandler handler = null)
         {
             this.BaseUrl = baseUrl;
-            this._httpClient = httpClient;
-
-            if (this._httpClient == null)
-            {
-                this._httpClient = new HttpClient(new HttpRetryMessageHandler(maxRetries, handler));
-            }
-
+            this._httpClient = httpClient ?? HttpClientHelper.GetHttpClientWithMaxRetriesHandler(maxRetries, handler);
             this._settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(() =>
             {
                 var settings = new Newtonsoft.Json.JsonSerializerSettings();
@@ -60,13 +54,7 @@ namespace SimulationCSharpClient.Client
         public SimulationClient(string baseUrl, string auth0TokenURL, string client, string userName, string password, string connection, HttpClient httpClient = null, int maxRetries = 6, HttpClientHandler handler = null)
         {
             this.BaseUrl = baseUrl;
-            this._httpClient = httpClient;
-
-            if (this._httpClient == null)
-            {
-                this._httpClient = new HttpClient(new HttpRetryMessageHandler(maxRetries, handler));
-            }
-
+            this._httpClient = httpClient ?? HttpClientHelper.GetHttpClientWithMaxRetriesHandler(maxRetries, handler);
             this._settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(() =>
             {
                 var settings = new Newtonsoft.Json.JsonSerializerSettings();
