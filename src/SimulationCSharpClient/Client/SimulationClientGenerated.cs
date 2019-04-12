@@ -16409,6 +16409,7 @@ namespace SimulationCSharpClient.Client
         private double _minimumSupportHeight;
         private bool _generateSupportVoxels;
         private bool _outputDisplacementAfterCutoff;
+        private bool _performSupportOnlyCutoff;
         private PartBasedSimulationParametersStressMode _stressMode;
         private double _supportAngle;
         private double _supportFactorOfSafety;
@@ -16721,6 +16722,20 @@ namespace SimulationCSharpClient.Client
                 if (_outputDisplacementAfterCutoff != value)
                 {
                     _outputDisplacementAfterCutoff = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("performSupportOnlyCutoff", Required = Newtonsoft.Json.Required.Always)]
+        public bool PerformSupportOnlyCutoff
+        {
+            get { return _performSupportOnlyCutoff; }
+            set 
+            {
+                if (_performSupportOnlyCutoff != value)
+                {
+                    _performSupportOnlyCutoff = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -17101,6 +17116,7 @@ namespace SimulationCSharpClient.Client
         private double _minimumSupportHeight;
         private bool _generateSupportVoxels;
         private bool _outputDisplacementAfterCutoff;
+        private bool _performSupportOnlyCutoff;
         private PartBasedSimulationParametersStressMode _stressMode;
         private double _supportAngle;
         private double _supportFactorOfSafety;
@@ -17414,6 +17430,20 @@ namespace SimulationCSharpClient.Client
                 if (_outputDisplacementAfterCutoff != value)
                 {
                     _outputDisplacementAfterCutoff = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("performSupportOnlyCutoff", Required = Newtonsoft.Json.Required.Always)]
+        public bool PerformSupportOnlyCutoff
+        {
+            get { return _performSupportOnlyCutoff; }
+            set 
+            {
+                if (_performSupportOnlyCutoff != value)
+                {
+                    _performSupportOnlyCutoff = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -18310,6 +18340,7 @@ namespace SimulationCSharpClient.Client
         private double _minimumSupportHeight;
         private bool _generateSupportVoxels;
         private bool _outputDisplacementAfterCutoff;
+        private bool _performSupportOnlyCutoff;
         private PartBasedSimulationParametersStressMode _stressMode;
         private double _supportAngle;
         private double _supportFactorOfSafety;
@@ -18654,6 +18685,20 @@ namespace SimulationCSharpClient.Client
                 if (_outputDisplacementAfterCutoff != value)
                 {
                     _outputDisplacementAfterCutoff = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("performSupportOnlyCutoff", Required = Newtonsoft.Json.Required.Always)]
+        public bool PerformSupportOnlyCutoff
+        {
+            get { return _performSupportOnlyCutoff; }
+            set 
+            {
+                if (_performSupportOnlyCutoff != value)
+                {
+                    _performSupportOnlyCutoff = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -19613,6 +19658,7 @@ namespace SimulationCSharpClient.Client
         private double _minimumSupportHeight;
         private bool _generateSupportVoxels;
         private bool _outputDisplacementAfterCutoff;
+        private bool _performSupportOnlyCutoff;
         private PartBasedSimulationParametersStressMode _stressMode;
         private double _supportAngle;
         private double _supportFactorOfSafety;
@@ -19932,6 +19978,20 @@ namespace SimulationCSharpClient.Client
                 if (_outputDisplacementAfterCutoff != value)
                 {
                     _outputDisplacementAfterCutoff = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("performSupportOnlyCutoff", Required = Newtonsoft.Json.Required.Always)]
+        public bool PerformSupportOnlyCutoff
+        {
+            get { return _performSupportOnlyCutoff; }
+            set 
+            {
+                if (_performSupportOnlyCutoff != value)
+                {
+                    _performSupportOnlyCutoff = value; 
                     RaisePropertyChanged();
                 }
             }

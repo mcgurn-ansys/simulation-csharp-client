@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "3.31.0",
+    "version": "3.33.0",
     "title": "Simulation API",
     "description": "An API for managing simulations within ANSYS Additive."
   },
@@ -7325,6 +7325,7 @@
         "hardeningFactor",
         "strainScalingFactor",
         "outputDisplacementAfterCutoff",
+        "performSupportOnlyCutoff",
         "performSupportOptimization",
         "generateSupportVoxels",
         "stressMode",
@@ -7420,6 +7421,9 @@
           "type": "boolean"
         },
         "outputDisplacementAfterCutoff": {
+          "type": "boolean"
+        },
+        "performSupportOnlyCutoff": {
           "type": "boolean"
         },
         "stressMode": {

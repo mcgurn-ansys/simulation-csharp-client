@@ -61,6 +61,7 @@ Read this article and follow the steps they outline: http://scottchacon.com/2011
 * Chad Queen
 * Pete Krull
 * Alex Drinkwater
+* Justin Jensen
 
 ## Original release
 September 2017
