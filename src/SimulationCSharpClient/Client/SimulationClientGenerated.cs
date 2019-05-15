@@ -50,6 +50,23 @@ namespace SimulationCSharpClient.Client
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         System.Threading.Tasks.Task<Material> AddMaterialAsync(Material material, System.Threading.CancellationToken cancellationToken);
     
+        /// <param name="lookup">csv file defining columns T(in Kelvins), Thermal Conductivity (W/m/K), Specific Heat (J/kg/K), Density (kg/m3), Thermal Conductivity Ratio, Density Ratio, Specific Heat Ratio</param>
+        /// <param name="w0lookup">csv file defining columns Speed (mm/s), Power (W), W0 (m)</param>
+        /// <param name="configuration">configuration defining material scientific specification, each field name must match expected material data template</param>
+        /// <param name="customMaterialPost">json formatted data to generate the material</param>
+        /// <returns>material response</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<Material> AddCustomMaterialAsync(FileParameter lookup, FileParameter w0lookup, FileParameter configuration, CustomMaterialPost customMaterialPost);
+    
+        /// <param name="lookup">csv file defining columns T(in Kelvins), Thermal Conductivity (W/m/K), Specific Heat (J/kg/K), Density (kg/m3), Thermal Conductivity Ratio, Density Ratio, Specific Heat Ratio</param>
+        /// <param name="w0lookup">csv file defining columns Speed (mm/s), Power (W), W0 (m)</param>
+        /// <param name="configuration">configuration defining material scientific specification, each field name must match expected material data template</param>
+        /// <param name="customMaterialPost">json formatted data to generate the material</param>
+        /// <returns>material response</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        System.Threading.Tasks.Task<Material> AddCustomMaterialAsync(FileParameter lookup, FileParameter w0lookup, FileParameter configuration, CustomMaterialPost customMaterialPost, System.Threading.CancellationToken cancellationToken);
+    
         /// <param name="id">ID of material to fetch</param>
         /// <returns>material response</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
@@ -406,6 +423,60 @@ namespace SimulationCSharpClient.Client
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         System.Threading.Tasks.Task<PartSupport> PatchSupportByIdAsync(int id, System.Collections.Generic.IEnumerable<PatchDocument> supportPatch, System.Threading.CancellationToken cancellationToken);
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="partSupportConfigurationPost">Configuration to add.</param>
+        /// <returns>Successfully added a part support configuration</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<PartSupportConfiguration> PostPartSupportConfigurationAsync(int partId, PartSupportConfigurationPost partSupportConfigurationPost);
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="partSupportConfigurationPost">Configuration to add.</param>
+        /// <returns>Successfully added a part support configuration</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        System.Threading.Tasks.Task<PartSupportConfiguration> PostPartSupportConfigurationAsync(int partId, PartSupportConfigurationPost partSupportConfigurationPost, System.Threading.CancellationToken cancellationToken);
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportConfigurationId">ID of support configuration to get</param>
+        /// <returns>Successfully found a support configuration</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<PartSupportConfiguration> GetPartSupportConfigurationAsync(int partId, int supportConfigurationId);
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportConfigurationId">ID of support configuration to get</param>
+        /// <returns>Successfully found a support configuration</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        System.Threading.Tasks.Task<PartSupportConfiguration> GetPartSupportConfigurationAsync(int partId, int supportConfigurationId, System.Threading.CancellationToken cancellationToken);
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportConfigurationId">ID of support configuration to get</param>
+        /// <param name="partSupportConfiguration">PartSupport configuration to update.</param>
+        /// <returns>Successfully updated a part support configuration</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<PartSupportConfiguration> UpdatePartSupportConfigurationAsync(int partId, int supportConfigurationId, PartSupportConfiguration partSupportConfiguration);
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportConfigurationId">ID of support configuration to get</param>
+        /// <param name="partSupportConfiguration">PartSupport configuration to update.</param>
+        /// <returns>Successfully updated a part support configuration</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        System.Threading.Tasks.Task<PartSupportConfiguration> UpdatePartSupportConfigurationAsync(int partId, int supportConfigurationId, PartSupportConfiguration partSupportConfiguration, System.Threading.CancellationToken cancellationToken);
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportConfigurationId">ID of support configuration to get</param>
+        /// <returns>Successfully archived a part support configuration</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<PartSupportConfiguration> ArchivePartSupportConfigurationAsync(int partId, int supportConfigurationId);
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportConfigurationId">ID of support configuration to get</param>
+        /// <returns>Successfully archived a part support configuration</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        System.Threading.Tasks.Task<PartSupportConfiguration> ArchivePartSupportConfigurationAsync(int partId, int supportConfigurationId, System.Threading.CancellationToken cancellationToken);
     
         /// <param name="organizationId">the organization id to get items for.  Must be provided as API callers only have access to items belonging to their organization.</param>
         /// <param name="status">simulation status for items retrieved.  If an array of items is sent, they are treated as "OR" operations. e.g. status=InProgress,Requested would yield a list of simulations that are in either state.</param>
@@ -1675,6 +1746,146 @@ namespace SimulationCSharpClient.Client
                 {
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(material, _settings.Value));
                     content_.Headers.ContentType.MediaType = "application/json";
+                    request_.Content = content_;
+                    request_.Method = new System.Net.Http.HttpMethod("POST");
+                    request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        foreach (var item_ in response_.Content.Headers)
+                            headers_[item_.Key] = item_.Value;
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Material); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Material>(responseData_, _settings.Value);
+                                return result_; 
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                        }
+                        else
+                        if (status_ == "401") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Not authorized", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "403") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Forbidden", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
+                        }
+            
+                        return default(Material);
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+    
+        /// <param name="lookup">csv file defining columns T(in Kelvins), Thermal Conductivity (W/m/K), Specific Heat (J/kg/K), Density (kg/m3), Thermal Conductivity Ratio, Density Ratio, Specific Heat Ratio</param>
+        /// <param name="w0lookup">csv file defining columns Speed (mm/s), Power (W), W0 (m)</param>
+        /// <param name="configuration">configuration defining material scientific specification, each field name must match expected material data template</param>
+        /// <param name="customMaterialPost">json formatted data to generate the material</param>
+        /// <returns>material response</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task<Material> AddCustomMaterialAsync(FileParameter lookup, FileParameter w0lookup, FileParameter configuration, CustomMaterialPost customMaterialPost)
+        {
+            return AddCustomMaterialAsync(lookup, w0lookup, configuration, customMaterialPost, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="lookup">csv file defining columns T(in Kelvins), Thermal Conductivity (W/m/K), Specific Heat (J/kg/K), Density (kg/m3), Thermal Conductivity Ratio, Density Ratio, Specific Heat Ratio</param>
+        /// <param name="w0lookup">csv file defining columns Speed (mm/s), Power (W), W0 (m)</param>
+        /// <param name="configuration">configuration defining material scientific specification, each field name must match expected material data template</param>
+        /// <param name="customMaterialPost">json formatted data to generate the material</param>
+        /// <returns>material response</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task<Material> AddCustomMaterialAsync(FileParameter lookup, FileParameter w0lookup, FileParameter configuration, CustomMaterialPost customMaterialPost, System.Threading.CancellationToken cancellationToken)
+        {
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/materials/custom");
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    var boundary_ = System.Guid.NewGuid().ToString();
+                    var content_ = new System.Net.Http.MultipartFormDataContent(boundary_);
+                    content_.Headers.Remove("Content-Type");
+                    content_.Headers.TryAddWithoutValidation("Content-Type", "multipart/form-data; boundary=" + boundary_);
+                    if (lookup == null)
+                        throw new System.ArgumentNullException("lookup");
+                    else
+                        content_.Add(new System.Net.Http.StreamContent(lookup.Data), "lookup", lookup.FileName ?? "lookup");
+                    if (w0lookup == null)
+                        throw new System.ArgumentNullException("w0lookup");
+                    else
+                        content_.Add(new System.Net.Http.StreamContent(w0lookup.Data), "w0lookup", w0lookup.FileName ?? "w0lookup");
+                    if (configuration == null)
+                        throw new System.ArgumentNullException("configuration");
+                    else
+                        content_.Add(new System.Net.Http.StreamContent(configuration.Data), "configuration", configuration.FileName ?? "configuration");
+                    if (customMaterialPost == null)
+                        throw new System.ArgumentNullException("customMaterialPost");
+                    else
+                        content_.Add(new System.Net.Http.StringContent(System.Convert.ToString(customMaterialPost, System.Globalization.CultureInfo.InvariantCulture)), "customMaterialPost");
                     request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
@@ -5204,6 +5415,450 @@ namespace SimulationCSharpClient.Client
                         }
             
                         return default(PartSupport);
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="partSupportConfigurationPost">Configuration to add.</param>
+        /// <returns>Successfully added a part support configuration</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task<PartSupportConfiguration> PostPartSupportConfigurationAsync(int partId, PartSupportConfigurationPost partSupportConfigurationPost)
+        {
+            return PostPartSupportConfigurationAsync(partId, partSupportConfigurationPost, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="partSupportConfigurationPost">Configuration to add.</param>
+        /// <returns>Successfully added a part support configuration</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task<PartSupportConfiguration> PostPartSupportConfigurationAsync(int partId, PartSupportConfigurationPost partSupportConfigurationPost, System.Threading.CancellationToken cancellationToken)
+        {
+            if (partId == null)
+                throw new System.ArgumentNullException("partId");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/parts/{partId}/supportconfigurations");
+            urlBuilder_.Replace("{partId}", System.Uri.EscapeDataString(System.Convert.ToString(partId, System.Globalization.CultureInfo.InvariantCulture)));
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(partSupportConfigurationPost, _settings.Value));
+                    content_.Headers.ContentType.MediaType = "application/json";
+                    request_.Content = content_;
+                    request_.Method = new System.Net.Http.HttpMethod("POST");
+                    request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        foreach (var item_ in response_.Content.Headers)
+                            headers_[item_.Key] = item_.Value;
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(PartSupportConfiguration); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<PartSupportConfiguration>(responseData_, _settings.Value);
+                                return result_; 
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                        }
+                        else
+                        if (status_ == "403") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Forbidden", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
+                        }
+            
+                        return default(PartSupportConfiguration);
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportConfigurationId">ID of support configuration to get</param>
+        /// <returns>Successfully found a support configuration</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task<PartSupportConfiguration> GetPartSupportConfigurationAsync(int partId, int supportConfigurationId)
+        {
+            return GetPartSupportConfigurationAsync(partId, supportConfigurationId, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportConfigurationId">ID of support configuration to get</param>
+        /// <returns>Successfully found a support configuration</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task<PartSupportConfiguration> GetPartSupportConfigurationAsync(int partId, int supportConfigurationId, System.Threading.CancellationToken cancellationToken)
+        {
+            if (partId == null)
+                throw new System.ArgumentNullException("partId");
+    
+            if (supportConfigurationId == null)
+                throw new System.ArgumentNullException("supportConfigurationId");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/parts/{partId}/supportconfigurations/{supportConfigurationId}");
+            urlBuilder_.Replace("{partId}", System.Uri.EscapeDataString(System.Convert.ToString(partId, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{supportConfigurationId}", System.Uri.EscapeDataString(System.Convert.ToString(supportConfigurationId, System.Globalization.CultureInfo.InvariantCulture)));
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        foreach (var item_ in response_.Content.Headers)
+                            headers_[item_.Key] = item_.Value;
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(PartSupportConfiguration); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<PartSupportConfiguration>(responseData_, _settings.Value);
+                                return result_; 
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                        }
+                        else
+                        if (status_ == "403") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Forbidden", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        if (status_ == "404") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            throw new SwaggerException("Not found", status_, responseData_, headers_, null);
+                        }
+                        else
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
+                        }
+            
+                        return default(PartSupportConfiguration);
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportConfigurationId">ID of support configuration to get</param>
+        /// <param name="partSupportConfiguration">PartSupport configuration to update.</param>
+        /// <returns>Successfully updated a part support configuration</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task<PartSupportConfiguration> UpdatePartSupportConfigurationAsync(int partId, int supportConfigurationId, PartSupportConfiguration partSupportConfiguration)
+        {
+            return UpdatePartSupportConfigurationAsync(partId, supportConfigurationId, partSupportConfiguration, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportConfigurationId">ID of support configuration to get</param>
+        /// <param name="partSupportConfiguration">PartSupport configuration to update.</param>
+        /// <returns>Successfully updated a part support configuration</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task<PartSupportConfiguration> UpdatePartSupportConfigurationAsync(int partId, int supportConfigurationId, PartSupportConfiguration partSupportConfiguration, System.Threading.CancellationToken cancellationToken)
+        {
+            if (partId == null)
+                throw new System.ArgumentNullException("partId");
+    
+            if (supportConfigurationId == null)
+                throw new System.ArgumentNullException("supportConfigurationId");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/parts/{partId}/supportconfigurations/{supportConfigurationId}");
+            urlBuilder_.Replace("{partId}", System.Uri.EscapeDataString(System.Convert.ToString(partId, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{supportConfigurationId}", System.Uri.EscapeDataString(System.Convert.ToString(supportConfigurationId, System.Globalization.CultureInfo.InvariantCulture)));
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(partSupportConfiguration, _settings.Value));
+                    content_.Headers.ContentType.MediaType = "application/json";
+                    request_.Content = content_;
+                    request_.Method = new System.Net.Http.HttpMethod("PUT");
+                    request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        foreach (var item_ in response_.Content.Headers)
+                            headers_[item_.Key] = item_.Value;
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(PartSupportConfiguration); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<PartSupportConfiguration>(responseData_, _settings.Value);
+                                return result_; 
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                        }
+                        else
+                        if (status_ == "403") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Forbidden", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
+                        }
+            
+                        return default(PartSupportConfiguration);
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportConfigurationId">ID of support configuration to get</param>
+        /// <returns>Successfully archived a part support configuration</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        public System.Threading.Tasks.Task<PartSupportConfiguration> ArchivePartSupportConfigurationAsync(int partId, int supportConfigurationId)
+        {
+            return ArchivePartSupportConfigurationAsync(partId, supportConfigurationId, System.Threading.CancellationToken.None);
+        }
+    
+        /// <param name="partId">ID of part</param>
+        /// <param name="supportConfigurationId">ID of support configuration to get</param>
+        /// <returns>Successfully archived a part support configuration</returns>
+        /// <exception cref="SwaggerException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task<PartSupportConfiguration> ArchivePartSupportConfigurationAsync(int partId, int supportConfigurationId, System.Threading.CancellationToken cancellationToken)
+        {
+            if (partId == null)
+                throw new System.ArgumentNullException("partId");
+    
+            if (supportConfigurationId == null)
+                throw new System.ArgumentNullException("supportConfigurationId");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/parts/{partId}/supportconfigurations/{supportConfigurationId}/archive");
+            urlBuilder_.Replace("{partId}", System.Uri.EscapeDataString(System.Convert.ToString(partId, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{supportConfigurationId}", System.Uri.EscapeDataString(System.Convert.ToString(supportConfigurationId, System.Globalization.CultureInfo.InvariantCulture)));
+    
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    var content_ = new System.Net.Http.StringContent(string.Empty);
+                    request_.Content = content_;
+                    request_.Method = new System.Net.Http.HttpMethod("PUT");
+                    request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        foreach (var item_ in response_.Content.Headers)
+                            headers_[item_.Key] = item_.Value;
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(PartSupportConfiguration); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<PartSupportConfiguration>(responseData_, _settings.Value);
+                                return result_; 
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                        }
+                        else
+                        if (status_ == "403") 
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("Forbidden", status_, responseData_, headers_, result_, null);
+                        }
+                        else
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var result_ = default(Error); 
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
+                            } 
+                            catch (System.Exception exception_) 
+                            {
+                                throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
+                            }
+                            throw new SwaggerException<Error>("unexpected error", status_, responseData_, headers_, result_, null);
+                        }
+            
+                        return default(PartSupportConfiguration);
                     }
                     finally
                     {
@@ -14680,7 +15335,9 @@ namespace SimulationCSharpClient.Client
         private double _yMin;
         private double _zMin;
         private int? _partSupportId;
-        private PartSupport _support;
+        private PartSupport _partSupport;
+        private int? _partSupportConfigurationId;
+        private PartSupportConfiguration _partSupportConfiguration;
     
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int? Id
@@ -14803,15 +15460,44 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        [Newtonsoft.Json.JsonProperty("support", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public PartSupport Support
+        [Newtonsoft.Json.JsonProperty("partSupport", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public PartSupport PartSupport
         {
-            get { return _support; }
+            get { return _partSupport; }
             set 
             {
-                if (_support != value)
+                if (_partSupport != value)
                 {
-                    _support = value; 
+                    _partSupport = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Id of the PartSupportConfiguration to use for the simulation. Can be null</summary>
+        [Newtonsoft.Json.JsonProperty("partSupportConfigurationId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int? PartSupportConfigurationId
+        {
+            get { return _partSupportConfigurationId; }
+            set 
+            {
+                if (_partSupportConfigurationId != value)
+                {
+                    _partSupportConfigurationId = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("partSupportConfiguration", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public PartSupportConfiguration PartSupportConfiguration
+        {
+            get { return _partSupportConfiguration; }
+            set 
+            {
+                if (_partSupportConfiguration != value)
+                {
+                    _partSupportConfiguration = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -20451,6 +21137,7 @@ namespace SimulationCSharpClient.Client
         private double? _estimateVoxelSize;
         private string _errorReason;
         private System.Collections.ObjectModel.ObservableCollection<PartSupport> _partSupports;
+        private System.Collections.ObjectModel.ObservableCollection<PartSupportConfiguration> _partSupportConfigurations;
     
         /// <summary>Id of the part</summary>
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
@@ -20986,6 +21673,21 @@ namespace SimulationCSharpClient.Client
             }
         }
     
+        /// <summary>List of partsupport configurations</summary>
+        [Newtonsoft.Json.JsonProperty("partSupportConfigurations", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.ObjectModel.ObservableCollection<PartSupportConfiguration> PartSupportConfigurations
+        {
+            get { return _partSupportConfigurations; }
+            set 
+            {
+                if (_partSupportConfigurations != value)
+                {
+                    _partSupportConfigurations = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
         public string ToJson() 
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this);
@@ -21100,6 +21802,46 @@ namespace SimulationCSharpClient.Client
         public static PartPost FromJson(string data)
         {
             return Newtonsoft.Json.JsonConvert.DeserializeObject<PartPost>(data);
+        }
+    
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected virtual void RaisePropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+        {
+            var handler = PropertyChanged;
+            if (handler != null) 
+                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
+    public partial class CustomMaterialPost : System.ComponentModel.INotifyPropertyChanged
+    {
+        private int _organizationId;
+    
+        /// <summary>organization identifier</summary>
+        [Newtonsoft.Json.JsonProperty("organizationId", Required = Newtonsoft.Json.Required.Always)]
+        public int OrganizationId
+        {
+            get { return _organizationId; }
+            set 
+            {
+                if (_organizationId != value)
+                {
+                    _organizationId = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        public string ToJson() 
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+        }
+        
+        public static CustomMaterialPost FromJson(string data)
+        {
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<CustomMaterialPost>(data);
         }
     
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
@@ -24441,7 +25183,6 @@ namespace SimulationCSharpClient.Client
     {
         private int _id;
         private int _partId;
-        private Part _part;
         private string _name;
         private string _originalFileName;
         private string _description;
@@ -24498,20 +25239,6 @@ namespace SimulationCSharpClient.Client
                 if (_partId != value)
                 {
                     _partId = value; 
-                    RaisePropertyChanged();
-                }
-            }
-        }
-    
-        [Newtonsoft.Json.JsonProperty("part", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Part Part
-        {
-            get { return _part; }
-            set 
-            {
-                if (_part != value)
-                {
-                    _part = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -24975,6 +25702,302 @@ namespace SimulationCSharpClient.Client
         public static PartSupport FromJson(string data)
         {
             return Newtonsoft.Json.JsonConvert.DeserializeObject<PartSupport>(data);
+        }
+    
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected virtual void RaisePropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+        {
+            var handler = PropertyChanged;
+            if (handler != null) 
+                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
+    public partial class PartSupportConfiguration : System.ComponentModel.INotifyPropertyChanged
+    {
+        private int? _id;
+        private int _partId;
+        private string _name;
+        private string _description;
+        private bool _archived;
+        private System.Collections.ObjectModel.ObservableCollection<PartSupportSection> _partSupportSections;
+    
+        /// <summary>Id of the configuration</summary>
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int? Id
+        {
+            get { return _id; }
+            set 
+            {
+                if (_id != value)
+                {
+                    _id = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Id of the part used in the configuration</summary>
+        [Newtonsoft.Json.JsonProperty("partId", Required = Newtonsoft.Json.Required.Always)]
+        public int PartId
+        {
+            get { return _partId; }
+            set 
+            {
+                if (_partId != value)
+                {
+                    _partId = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public string Name
+        {
+            get { return _name; }
+            set 
+            {
+                if (_name != value)
+                {
+                    _name = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Description
+        {
+            get { return _description; }
+            set 
+            {
+                if (_description != value)
+                {
+                    _description = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Whether the configuration is archived</summary>
+        [Newtonsoft.Json.JsonProperty("archived", Required = Newtonsoft.Json.Required.Always)]
+        public bool Archived
+        {
+            get { return _archived; }
+            set 
+            {
+                if (_archived != value)
+                {
+                    _archived = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>List of sections that are included in the configuration</summary>
+        [Newtonsoft.Json.JsonProperty("partSupportSections", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.ObjectModel.ObservableCollection<PartSupportSection> PartSupportSections
+        {
+            get { return _partSupportSections; }
+            set 
+            {
+                if (_partSupportSections != value)
+                {
+                    _partSupportSections = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        public string ToJson() 
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+        }
+        
+        public static PartSupportConfiguration FromJson(string data)
+        {
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<PartSupportConfiguration>(data);
+        }
+    
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected virtual void RaisePropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+        {
+            var handler = PropertyChanged;
+            if (handler != null) 
+                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
+    public partial class PartSupportConfigurationPost : System.ComponentModel.INotifyPropertyChanged
+    {
+        private int _partId;
+        private string _name;
+        private string _description;
+        private System.Collections.ObjectModel.ObservableCollection<int> _partSupportIds = new System.Collections.ObjectModel.ObservableCollection<int>();
+    
+        /// <summary>Id of the part that owns this configuration</summary>
+        [Newtonsoft.Json.JsonProperty("partId", Required = Newtonsoft.Json.Required.Always)]
+        public int PartId
+        {
+            get { return _partId; }
+            set 
+            {
+                if (_partId != value)
+                {
+                    _partId = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Name of the configuration, max 50 characters</summary>
+        [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public string Name
+        {
+            get { return _name; }
+            set 
+            {
+                if (_name != value)
+                {
+                    _name = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Free form description of the configuration, max 2048 characters</summary>
+        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Description
+        {
+            get { return _description; }
+            set 
+            {
+                if (_description != value)
+                {
+                    _description = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Ids for the part supports used in the configuration</summary>
+        [Newtonsoft.Json.JsonProperty("partSupportIds", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.ObjectModel.ObservableCollection<int> PartSupportIds
+        {
+            get { return _partSupportIds; }
+            set 
+            {
+                if (_partSupportIds != value)
+                {
+                    _partSupportIds = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        public string ToJson() 
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+        }
+        
+        public static PartSupportConfigurationPost FromJson(string data)
+        {
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<PartSupportConfigurationPost>(data);
+        }
+    
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected virtual void RaisePropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+        {
+            var handler = PropertyChanged;
+            if (handler != null) 
+                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
+    public partial class PartSupportSection : System.ComponentModel.INotifyPropertyChanged
+    {
+        private int? _id;
+        private int _partSupportConfigurationId;
+        private int _partSupportId;
+        private PartSupport _partSupport;
+    
+        /// <summary>Id of the section</summary>
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int? Id
+        {
+            get { return _id; }
+            set 
+            {
+                if (_id != value)
+                {
+                    _id = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Id of the related configuration</summary>
+        [Newtonsoft.Json.JsonProperty("partSupportConfigurationId", Required = Newtonsoft.Json.Required.Always)]
+        public int PartSupportConfigurationId
+        {
+            get { return _partSupportConfigurationId; }
+            set 
+            {
+                if (_partSupportConfigurationId != value)
+                {
+                    _partSupportConfigurationId = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Id of the selected support</summary>
+        [Newtonsoft.Json.JsonProperty("partSupportId", Required = Newtonsoft.Json.Required.Always)]
+        public int PartSupportId
+        {
+            get { return _partSupportId; }
+            set 
+            {
+                if (_partSupportId != value)
+                {
+                    _partSupportId = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("partSupport", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public PartSupport PartSupport
+        {
+            get { return _partSupport; }
+            set 
+            {
+                if (_partSupport != value)
+                {
+                    _partSupport = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        public string ToJson() 
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+        }
+        
+        public static PartSupportSection FromJson(string data)
+        {
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<PartSupportSection>(data);
         }
     
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
@@ -26279,6 +27302,25 @@ namespace SimulationCSharpClient.Client
         [System.Runtime.Serialization.EnumMember(Value = "Watertight")]
         Watertight = 1,
     
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "11.12.7.0 (NJsonSchema v9.10.6.0 (Newtonsoft.Json v9.0.0.0))")]
+    public class FileParameter
+    {
+        public FileParameter(System.IO.Stream data) 
+            : this (data, null)
+        {
+        }
+
+        public FileParameter(System.IO.Stream data, string fileName)
+        {
+            Data = data;
+            FileName = fileName;
+        }
+
+        public System.IO.Stream Data { get; private set; }
+
+        public string FileName { get; private set; }
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "11.12.7.0 (NJsonSchema v9.10.6.0 (Newtonsoft.Json v9.0.0.0))")]

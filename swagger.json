@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "3.33.0",
+    "version": "3.36.1",
     "title": "Simulation API",
     "description": "An API for managing simulations within ANSYS Additive."
   },
@@ -141,6 +141,80 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/Material"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "material response",
+            "schema": {
+              "$ref": "#/definitions/Material"
+            }
+          },
+          "401": {
+            "description": "Not authorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "simulationSecurity": [
+              "write:materials"
+            ]
+          }
+        ]
+      }
+    },
+    "/materials/custom": {
+      "post": {
+        "description": "Creates a new custom material for the organizationId specified",
+        "operationId": "addCustomMaterial",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "name": "lookup",
+            "in": "formData",
+            "type": "file",
+            "description": "csv file defining columns T(in Kelvins), Thermal Conductivity (W/m/K), Specific Heat (J/kg/K), Density (kg/m3), Thermal Conductivity Ratio, Density Ratio, Specific Heat Ratio",
+            "required": true
+          },
+          {
+            "name": "w0lookup",
+            "in": "formData",
+            "type": "file",
+            "description": "csv file defining columns Speed (mm/s), Power (W), W0 (m)",
+            "required": true
+          },
+          {
+            "name": "configuration",
+            "in": "formData",
+            "type": "file",
+            "description": "configuration defining material scientific specification, each field name must match expected material data template",
+            "required": true
+          },
+          {
+            "name": "customMaterialPost",
+            "in": "formData",
+            "description": "json formatted data to generate the material",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CustomMaterialPost"
             }
           }
         ],
@@ -1785,6 +1859,221 @@
           },
           "404": {
             "description": "Support not found (id invalid)",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "simulationSecurity": [
+              "write:parts"
+            ]
+          }
+        ]
+      }
+    },
+    "/parts/{partId}/supportconfigurations": {
+      "post": {
+        "description": "Adds a support configuration.",
+        "operationId": "postPartSupportConfiguration",
+        "parameters": [
+          {
+            "name": "partId",
+            "in": "path",
+            "description": "ID of part",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PartSupportConfigurationPost",
+            "in": "body",
+            "description": "Configuration to add.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PartSupportConfigurationPost"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully added a part support configuration",
+            "schema": {
+              "$ref": "#/definitions/PartSupportConfiguration"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "simulationSecurity": [
+              "write:parts"
+            ]
+          }
+        ]
+      }
+    },
+    "/parts/{partId}/supportconfigurations/{supportConfigurationId}": {
+      "get": {
+        "description": "Get a single support configuration by Id",
+        "operationId": "getPartSupportConfiguration",
+        "parameters": [
+          {
+            "name": "partId",
+            "in": "path",
+            "description": "ID of part",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "supportConfigurationId",
+            "in": "path",
+            "description": "ID of support configuration to get",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully found a support configuration",
+            "schema": {
+              "$ref": "#/definitions/PartSupportConfiguration"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "simulationSecurity": [
+              "read:parts"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "description": "Updates a support configuration",
+        "operationId": "updatePartSupportConfiguration",
+        "parameters": [
+          {
+            "name": "partId",
+            "in": "path",
+            "description": "ID of part",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "supportConfigurationId",
+            "in": "path",
+            "description": "ID of support configuration to get",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PartSupportConfiguration",
+            "in": "body",
+            "description": "PartSupport configuration to update.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PartSupportConfiguration"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully updated a part support configuration",
+            "schema": {
+              "$ref": "#/definitions/PartSupportConfiguration"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "simulationSecurity": [
+              "write:parts"
+            ]
+          }
+        ]
+      }
+    },
+    "/parts/{partId}/supportconfigurations/{supportConfigurationId}/archive": {
+      "put": {
+        "description": "Archives a support configuration",
+        "operationId": "archivePartSupportConfiguration",
+        "parameters": [
+          {
+            "name": "partId",
+            "in": "path",
+            "description": "ID of part",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "supportConfigurationId",
+            "in": "path",
+            "description": "ID of support configuration to get",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully archived a part support configuration",
+            "schema": {
+              "$ref": "#/definitions/PartSupportConfiguration"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
             "schema": {
               "$ref": "#/definitions/Error"
             }
@@ -6831,8 +7120,16 @@
           "format": "int32",
           "description": "Id of the support to use for the simulation. Can be null"
         },
-        "support": {
+        "partSupport": {
           "$ref": "#/definitions/PartSupport"
+        },
+        "partSupportConfigurationId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Id of the PartSupportConfiguration to use for the simulation. Can be null"
+        },
+        "partSupportConfiguration": {
+          "$ref": "#/definitions/PartSupportConfiguration"
         }
       }
     },
@@ -7976,6 +8273,13 @@
           "items": {
             "$ref": "#/definitions/PartSupport"
           }
+        },
+        "partSupportConfigurations": {
+          "description": "List of partsupport configurations",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PartSupportConfiguration"
+          }
         }
       }
     },
@@ -8010,6 +8314,19 @@
         "fileLocation": {
           "type": "string",
           "description": "Remote s3 key of a newly uploaded stl file.  Use parts/geometryurl endpoint to upload the part before calling POST.  Max length 256 characters."
+        }
+      }
+    },
+    "CustomMaterialPost": {
+      "type": "object",
+      "required": [
+        "organizationId"
+      ],
+      "properties": {
+        "organizationId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "organization identifier"
         }
       }
     },
@@ -9087,9 +9404,6 @@
           "format": "int32",
           "description": "Id of the part that owns this support record"
         },
-        "part": {
-          "$ref": "#/definitions/Part"
-        },
         "name": {
           "type": "string"
         },
@@ -9221,6 +9535,99 @@
         "lockToPartTranslation": {
           "type": "boolean",
           "description": "Whether the support should be translated with the part (true), or a minimumSupportHeight will be specified (false)."
+        }
+      }
+    },
+    "PartSupportConfiguration": {
+      "required": [
+        "partId",
+        "name",
+        "archived"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Id of the configuration"
+        },
+        "partId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Id of the part used in the configuration"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "archived": {
+          "type": "boolean",
+          "description": "Whether the configuration is archived"
+        },
+        "partSupportSections": {
+          "type": "array",
+          "description": "List of sections that are included in the configuration",
+          "items": {
+            "$ref": "#/definitions/PartSupportSection"
+          }
+        }
+      }
+    },
+    "PartSupportConfigurationPost": {
+      "type": "object",
+      "required": [
+        "partId",
+        "name",
+        "partSupportIds"
+      ],
+      "properties": {
+        "partId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Id of the part that owns this configuration"
+        },
+        "name": {
+          "description": "Name of the configuration, max 50 characters",
+          "type": "string"
+        },
+        "description": {
+          "description": "Free form description of the configuration, max 2048 characters",
+          "type": "string"
+        },
+        "partSupportIds": {
+          "description": "Ids for the part supports used in the configuration",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      }
+    },
+    "PartSupportSection": {
+      "required": [
+        "partSupportConfigurationId",
+        "partSupportId"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Id of the section"
+        },
+        "partSupportConfigurationId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Id of the related configuration"
+        },
+        "partSupportId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Id of the selected support"
+        },
+        "partSupport": {
+          "$ref": "#/definitions/PartSupport"
         }
       }
     },
