@@ -53,19 +53,19 @@ namespace SimulationCSharpClient.Client
         /// <param name="lookup">csv file defining columns T(in Kelvins), Thermal Conductivity (W/m/K), Specific Heat (J/kg/K), Density (kg/m3), Thermal Conductivity Ratio, Density Ratio, Specific Heat Ratio</param>
         /// <param name="w0lookup">csv file defining columns Speed (mm/s), Power (W), W0 (m)</param>
         /// <param name="configuration">configuration defining material scientific specification, each field name must match expected material data template</param>
-        /// <param name="customMaterialPost">json formatted data to generate the material</param>
+        /// <param name="customMaterialPost">json formatted data to generate the material -  schema /definitions/CustomMaterialPost</param>
         /// <returns>material response</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Material> AddCustomMaterialAsync(FileParameter lookup, FileParameter w0lookup, FileParameter configuration, CustomMaterialPost customMaterialPost);
+        System.Threading.Tasks.Task<Material> AddCustomMaterialAsync(FileParameter lookup, FileParameter w0lookup, FileParameter configuration, string customMaterialPost);
     
         /// <param name="lookup">csv file defining columns T(in Kelvins), Thermal Conductivity (W/m/K), Specific Heat (J/kg/K), Density (kg/m3), Thermal Conductivity Ratio, Density Ratio, Specific Heat Ratio</param>
         /// <param name="w0lookup">csv file defining columns Speed (mm/s), Power (W), W0 (m)</param>
         /// <param name="configuration">configuration defining material scientific specification, each field name must match expected material data template</param>
-        /// <param name="customMaterialPost">json formatted data to generate the material</param>
+        /// <param name="customMaterialPost">json formatted data to generate the material -  schema /definitions/CustomMaterialPost</param>
         /// <returns>material response</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        System.Threading.Tasks.Task<Material> AddCustomMaterialAsync(FileParameter lookup, FileParameter w0lookup, FileParameter configuration, CustomMaterialPost customMaterialPost, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<Material> AddCustomMaterialAsync(FileParameter lookup, FileParameter w0lookup, FileParameter configuration, string customMaterialPost, System.Threading.CancellationToken cancellationToken);
     
         /// <param name="id">ID of material to fetch</param>
         /// <returns>material response</returns>
@@ -1841,10 +1841,10 @@ namespace SimulationCSharpClient.Client
         /// <param name="lookup">csv file defining columns T(in Kelvins), Thermal Conductivity (W/m/K), Specific Heat (J/kg/K), Density (kg/m3), Thermal Conductivity Ratio, Density Ratio, Specific Heat Ratio</param>
         /// <param name="w0lookup">csv file defining columns Speed (mm/s), Power (W), W0 (m)</param>
         /// <param name="configuration">configuration defining material scientific specification, each field name must match expected material data template</param>
-        /// <param name="customMaterialPost">json formatted data to generate the material</param>
+        /// <param name="customMaterialPost">json formatted data to generate the material -  schema /definitions/CustomMaterialPost</param>
         /// <returns>material response</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<Material> AddCustomMaterialAsync(FileParameter lookup, FileParameter w0lookup, FileParameter configuration, CustomMaterialPost customMaterialPost)
+        public System.Threading.Tasks.Task<Material> AddCustomMaterialAsync(FileParameter lookup, FileParameter w0lookup, FileParameter configuration, string customMaterialPost)
         {
             return AddCustomMaterialAsync(lookup, w0lookup, configuration, customMaterialPost, System.Threading.CancellationToken.None);
         }
@@ -1852,11 +1852,11 @@ namespace SimulationCSharpClient.Client
         /// <param name="lookup">csv file defining columns T(in Kelvins), Thermal Conductivity (W/m/K), Specific Heat (J/kg/K), Density (kg/m3), Thermal Conductivity Ratio, Density Ratio, Specific Heat Ratio</param>
         /// <param name="w0lookup">csv file defining columns Speed (mm/s), Power (W), W0 (m)</param>
         /// <param name="configuration">configuration defining material scientific specification, each field name must match expected material data template</param>
-        /// <param name="customMaterialPost">json formatted data to generate the material</param>
+        /// <param name="customMaterialPost">json formatted data to generate the material -  schema /definitions/CustomMaterialPost</param>
         /// <returns>material response</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        public async System.Threading.Tasks.Task<Material> AddCustomMaterialAsync(FileParameter lookup, FileParameter w0lookup, FileParameter configuration, CustomMaterialPost customMaterialPost, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<Material> AddCustomMaterialAsync(FileParameter lookup, FileParameter w0lookup, FileParameter configuration, string customMaterialPost, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/materials/custom");
@@ -22210,7 +22210,8 @@ namespace SimulationCSharpClient.Client
         private double _laserPowerLowerBound;
         private double _laserPowerUpperBound;
         private double _hardeningFactor;
-        private double _nucleationConstant;
+        private double _nucleationConstantInterface;
+        private double _nucleationConstantBulk;
         private double? _penetrationDepthPowderCoeffA;
         private double? _penetrationDepthPowderCoeffB;
         private double? _penetrationDepthSolidCoeffA;
@@ -22220,8 +22221,10 @@ namespace SimulationCSharpClient.Client
         private double? _absorptivitySolidCoeffA;
         private double? _absorptivitySolidCoeffB;
         private double? _absorptivityMinimum;
-        private double? _w0LowerBound;
-        private double? _w0UpperBound;
+        private double? _absorptivityMaximum;
+        private double? _penetrationDepthMinimum;
+        private double? _penetrationDepthMaximum;
+        private double? _powderPackingDensity;
         private string _w0LookupFileLocation;
     
         /// <summary>material configuration identifier</summary>
@@ -22917,15 +22920,29 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        [Newtonsoft.Json.JsonProperty("nucleationConstant", Required = Newtonsoft.Json.Required.Always)]
-        public double NucleationConstant
+        [Newtonsoft.Json.JsonProperty("nucleationConstantInterface", Required = Newtonsoft.Json.Required.Always)]
+        public double NucleationConstantInterface
         {
-            get { return _nucleationConstant; }
+            get { return _nucleationConstantInterface; }
             set 
             {
-                if (_nucleationConstant != value)
+                if (_nucleationConstantInterface != value)
                 {
-                    _nucleationConstant = value; 
+                    _nucleationConstantInterface = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("nucleationConstantBulk", Required = Newtonsoft.Json.Required.Always)]
+        public double NucleationConstantBulk
+        {
+            get { return _nucleationConstantBulk; }
+            set 
+            {
+                if (_nucleationConstantBulk != value)
+                {
+                    _nucleationConstantBulk = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -23057,29 +23074,57 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        [Newtonsoft.Json.JsonProperty("w0LowerBound", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? W0LowerBound
+        [Newtonsoft.Json.JsonProperty("absorptivityMaximum", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? AbsorptivityMaximum
         {
-            get { return _w0LowerBound; }
+            get { return _absorptivityMaximum; }
             set 
             {
-                if (_w0LowerBound != value)
+                if (_absorptivityMaximum != value)
                 {
-                    _w0LowerBound = value; 
+                    _absorptivityMaximum = value; 
                     RaisePropertyChanged();
                 }
             }
         }
     
-        [Newtonsoft.Json.JsonProperty("w0UpperBound", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? W0UpperBound
+        [Newtonsoft.Json.JsonProperty("penetrationDepthMinimum", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? PenetrationDepthMinimum
         {
-            get { return _w0UpperBound; }
+            get { return _penetrationDepthMinimum; }
             set 
             {
-                if (_w0UpperBound != value)
+                if (_penetrationDepthMinimum != value)
                 {
-                    _w0UpperBound = value; 
+                    _penetrationDepthMinimum = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("penetrationDepthMaximum", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? PenetrationDepthMaximum
+        {
+            get { return _penetrationDepthMaximum; }
+            set 
+            {
+                if (_penetrationDepthMaximum != value)
+                {
+                    _penetrationDepthMaximum = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("powderPackingDensity", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? PowderPackingDensity
+        {
+            get { return _powderPackingDensity; }
+            set 
+            {
+                if (_powderPackingDensity != value)
+                {
+                    _powderPackingDensity = value; 
                     RaisePropertyChanged();
                 }
             }

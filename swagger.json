@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "3.36.1",
+    "version": "3.39.0",
     "title": "Simulation API",
     "description": "An API for managing simulations within ANSYS Additive."
   },
@@ -211,11 +211,10 @@
           {
             "name": "customMaterialPost",
             "in": "formData",
-            "description": "json formatted data to generate the material",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/CustomMaterialPost"
-            }
+            "type": "string",
+            "format": "json",
+            "description": "json formatted data to generate the material -  schema /definitions/CustomMaterialPost",
+            "required": true
           }
         ],
         "responses": {
@@ -8476,7 +8475,8 @@
         "laserPowerLowerBound",
         "laserPowerUpperBound",
         "hardeningFactor",
-        "nucleationConstant"
+        "nucleationConstantInterface",
+        "nucleationConstantBulk"
       ],
       "properties": {
         "id": {
@@ -8678,7 +8678,11 @@
           "type": "number",
           "format": "double"
         },
-        "nucleationConstant": {
+        "nucleationConstantInterface": {
+          "type": "number",
+          "format": "double"
+        },
+        "nucleationConstantBulk": {
           "type": "number",
           "format": "double"
         },
@@ -8718,11 +8722,19 @@
           "type": "number",
           "format": "double"
         },
-        "w0LowerBound": {
+        "absorptivityMaximum": {
           "type": "number",
           "format": "double"
         },
-        "w0UpperBound": {
+        "penetrationDepthMinimum": {
+          "type": "number",
+          "format": "double"
+        },
+        "penetrationDepthMaximum": {
+          "type": "number",
+          "format": "double"
+        },
+        "powderPackingDensity": {
           "type": "number",
           "format": "double"
         },
