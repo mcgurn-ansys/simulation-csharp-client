@@ -24428,6 +24428,7 @@ namespace SimulationCSharpClient.Client
         private double? _originalZ;
         private string _supportModelFileLocation;
         private string _uploadFileLocation;
+        private System.Collections.ObjectModel.ObservableCollection<BuildFileSupport> _buildFileSupports;
     
         /// <summary>internally assigned identifier for this build file</summary>
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
@@ -24915,6 +24916,21 @@ namespace SimulationCSharpClient.Client
             }
         }
     
+        /// <summary>List of supports for this buildfile</summary>
+        [Newtonsoft.Json.JsonProperty("buildFileSupports", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.ObjectModel.ObservableCollection<BuildFileSupport> BuildFileSupports
+        {
+            get { return _buildFileSupports; }
+            set 
+            {
+                if (_buildFileSupports != value)
+                {
+                    _buildFileSupports = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
         public string ToJson() 
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this);
@@ -24923,6 +24939,161 @@ namespace SimulationCSharpClient.Client
         public static BuildFile FromJson(string data)
         {
             return Newtonsoft.Json.JsonConvert.DeserializeObject<BuildFile>(data);
+        }
+    
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected virtual void RaisePropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+        {
+            var handler = PropertyChanged;
+            if (handler != null) 
+                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
+    public partial class BuildFileSupport : System.ComponentModel.INotifyPropertyChanged
+    {
+        private int _id;
+        private int _buildFileId;
+        private string _originalFileName;
+        private string _fileLocation;
+        private BuildFileSupportSupportType _supportType;
+        private double? _sizeX;
+        private double? _sizeY;
+        private double? _sizeZ;
+    
+        /// <summary>Id of the buildfile support</summary>
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
+        public int Id
+        {
+            get { return _id; }
+            set 
+            {
+                if (_id != value)
+                {
+                    _id = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Id of the buildfile that owns this support record</summary>
+        [Newtonsoft.Json.JsonProperty("buildFileId", Required = Newtonsoft.Json.Required.Always)]
+        public int BuildFileId
+        {
+            get { return _buildFileId; }
+            set 
+            {
+                if (_buildFileId != value)
+                {
+                    _buildFileId = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>The original file name from the user</summary>
+        [Newtonsoft.Json.JsonProperty("originalFileName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string OriginalFileName
+        {
+            get { return _originalFileName; }
+            set 
+            {
+                if (_originalFileName != value)
+                {
+                    _originalFileName = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>File name of build file support relative to fileBucket</summary>
+        [Newtonsoft.Json.JsonProperty("fileLocation", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public string FileLocation
+        {
+            get { return _fileLocation; }
+            set 
+            {
+                if (_fileLocation != value)
+                {
+                    _fileLocation = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>type of geometry. Volumeless - thinwall, closed - watertight</summary>
+        [Newtonsoft.Json.JsonProperty("supportType", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public BuildFileSupportSupportType SupportType
+        {
+            get { return _supportType; }
+            set 
+            {
+                if (_supportType != value)
+                {
+                    _supportType = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Width of the Part bounding box (in meters), calculated when the part is processed, use 0 for initial post</summary>
+        [Newtonsoft.Json.JsonProperty("sizeX", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? SizeX
+        {
+            get { return _sizeX; }
+            set 
+            {
+                if (_sizeX != value)
+                {
+                    _sizeX = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Length of the Part bounding box (in meters), calculated when the part is processed, use 0 for initial post</summary>
+        [Newtonsoft.Json.JsonProperty("sizeY", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? SizeY
+        {
+            get { return _sizeY; }
+            set 
+            {
+                if (_sizeY != value)
+                {
+                    _sizeY = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Height of the Part bounding box (in meters), calculated when the part is processed, use 0 for initial post</summary>
+        [Newtonsoft.Json.JsonProperty("sizeZ", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? SizeZ
+        {
+            get { return _sizeZ; }
+            set 
+            {
+                if (_sizeZ != value)
+                {
+                    _sizeZ = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        public string ToJson() 
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+        }
+        
+        public static BuildFileSupport FromJson(string data)
+        {
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<BuildFileSupport>(data);
         }
     
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
@@ -27318,6 +27489,17 @@ namespace SimulationCSharpClient.Client
     
         [System.Runtime.Serialization.EnumMember(Value = "ThreeDSystems")]
         ThreeDSystems = 3,
+    
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
+    public enum BuildFileSupportSupportType
+    {
+        [System.Runtime.Serialization.EnumMember(Value = "ThinWall")]
+        ThinWall = 0,
+    
+        [System.Runtime.Serialization.EnumMember(Value = "Watertight")]
+        Watertight = 1,
     
     }
     
