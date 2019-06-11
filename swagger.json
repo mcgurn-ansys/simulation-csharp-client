@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "3.39.0",
+    "version": "3.40.0",
     "title": "Simulation API",
     "description": "An API for managing simulations within ANSYS Additive."
   },
@@ -9301,6 +9301,62 @@
         "uploadFileLocation": {
           "type": "string",
           "description": "path to uploaded zip file containing build file components, relative to s3 part bucket"
+        },
+        "buildFileSupports": {
+          "description": "List of supports for this buildfile",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BuildFileSupport"
+          }
+        }
+      }
+    },
+    "BuildFileSupport": {
+      "type": "object",
+      "required": [
+        "id",
+        "buildFileId",
+        "fileLocation",
+        "supportType"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Id of the buildfile support"
+        },
+        "buildFileId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Id of the buildfile that owns this support record"
+        },
+        "originalFileName": {
+          "type": "string",
+          "description": "The original file name from the user"
+        },
+        "fileLocation": {
+          "type": "string",
+          "description": "File name of build file support relative to fileBucket"
+        },
+        "supportType": {
+          "description": "type of geometry. Volumeless - thinwall, closed - watertight",
+          "type": "string",
+          "enum": [
+            "ThinWall",
+            "Watertight"
+          ]
+        },
+        "sizeX": {
+          "type": "number",
+          "description": "Width of the Part bounding box (in meters), calculated when the part is processed, use 0 for initial post"
+        },
+        "sizeY": {
+          "type": "number",
+          "description": "Length of the Part bounding box (in meters), calculated when the part is processed, use 0 for initial post"
+        },
+        "sizeZ": {
+          "type": "number",
+          "description": "Height of the Part bounding box (in meters), calculated when the part is processed, use 0 for initial post"
         }
       }
     },
