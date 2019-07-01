@@ -54,5 +54,63 @@ namespace SimulationCSharpClient.Tests.HttpRetryHandler
             // Assert
             Assert.AreEqual(((TestHttpRetryMessageHandlerSuccess)handler.InnerHandler).AttemptedTries, 1);
         }
+
+        [Test]
+        public void HttpRetryMessageHandler_ThrowsException_If_Cancellation_Requested()
+        {
+            // Arrange
+            int maxReTries = 3;
+            var cancellationTokenSource = new CancellationTokenSource();
+            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, "http://localhostTestApi.com");
+
+            var handler = new HttpRetryMessageHandler(maxReTries)
+            {
+                InnerHandler = new TestHttpRetryMessageHandlerFailure()
+            };
+
+            var invoker = new HttpMessageInvoker(handler);
+
+            // Act
+            cancellationTokenSource.Cancel();
+            var exception = Assert.Catch<Exception>(() =>
+            {
+                var result = invoker.SendAsync(httpRequestMessage, cancellationTokenSource.Token).Result;
+            });
+
+            // Assert
+            Assert.IsNotNull(exception);
+            Assert.IsNotNull(exception is OperationCanceledException);
+            Assert.AreEqual(((TestHttpRetryMessageHandlerFailure)handler.InnerHandler).AttemptedTries, 0);
+        }
+
+        [Test]
+        public void HttpRetryMessageHandler_WaitAndRetryAsync_ThrowsException_If_Cancellation_Requested()
+        {
+            // Arrange
+            int maxReTries = 3;
+            var cancellationTokenSource = new CancellationTokenSource();
+            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, "http://localhostTestApi.com");
+
+            var handler = new HttpRetryMessageHandler(maxReTries)
+            {
+                InnerHandler = new TestHttpMessageHandlerCancelAfterFirstTry()
+                {
+                    CancellationTokenSource = cancellationTokenSource
+                }
+            };
+
+            var invoker = new HttpMessageInvoker(handler);
+
+            // Act
+            var exception = Assert.Catch<Exception>(() =>
+            {
+                var result = invoker.SendAsync(httpRequestMessage, cancellationTokenSource.Token).Result;
+            });
+
+            // Assert
+            Assert.IsNotNull(exception);
+            Assert.IsNotNull(exception is OperationCanceledException);
+            Assert.AreEqual(((TestHttpMessageHandlerCancelAfterFirstTry)handler.InnerHandler).AttemptedTries, 1);
+        }
     }
 }

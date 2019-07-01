@@ -29,10 +29,15 @@ namespace SimulationCSharpClient.Client
         {
             return Policy.Handle<Exception>()
                 .OrResult<HttpResponseMessage>(x => !x.IsSuccessStatusCode)
-                    .WaitAndRetryAsync(this.MaxRetries, retryAttempt => HttpClientHelper.ExponentialSleepDuration(retryAttempt)) // Back off; 2.15, 4.6,  9.9, 21.3, 45.9, 98.7 secs
+                    .WaitAndRetryAsync(this.MaxRetries, retryAttempt =>
+                    {
+                        cancellationToken.ThrowIfCancellationRequested();
+                        return HttpClientHelper.ExponentialSleepDuration(retryAttempt); // Back off; 2.15, 4.6,  9.9, 21.3, 45.9, 98.7 secs
+                    })
                     .ExecuteAsync(
                     () =>
                     {
+                        cancellationToken.ThrowIfCancellationRequested();
                         return base.SendAsync(request, cancellationToken);
                     });
         }
