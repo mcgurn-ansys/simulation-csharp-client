@@ -72,6 +72,7 @@ namespace SimulationCSharpClient.Tests.HttpRetryHandler
 
             // Act
             cancellationTokenSource.Cancel();
+
             var exception = Assert.Catch<Exception>(() =>
             {
                 var result = invoker.SendAsync(httpRequestMessage, cancellationTokenSource.Token).Result;
@@ -79,7 +80,7 @@ namespace SimulationCSharpClient.Tests.HttpRetryHandler
 
             // Assert
             Assert.IsNotNull(exception);
-            Assert.IsNotNull(exception is OperationCanceledException);
+            Assert.IsTrue(this.IsOperationCanceledException(exception));
             Assert.AreEqual(((TestHttpRetryMessageHandlerFailure)handler.InnerHandler).AttemptedTries, 0);
         }
 
@@ -109,8 +110,27 @@ namespace SimulationCSharpClient.Tests.HttpRetryHandler
 
             // Assert
             Assert.IsNotNull(exception);
-            Assert.IsNotNull(exception is OperationCanceledException);
+            Assert.IsTrue(this.IsOperationCanceledException(exception));
             Assert.AreEqual(((TestHttpMessageHandlerCancelAfterFirstTry)handler.InnerHandler).AttemptedTries, 1);
+        }
+
+        private bool IsOperationCanceledException(Exception exception)
+        {
+            bool isOperationCanceledException = exception is OperationCanceledException;
+            if (!isOperationCanceledException && exception is AggregateException)
+            {
+                ((AggregateException)exception).Handle((x) =>
+                {
+                    if (x is OperationCanceledException)
+                    {
+                        isOperationCanceledException = true;
+                    }
+
+                    return true;
+                });
+            }
+
+            return isOperationCanceledException;
         }
     }
 }
