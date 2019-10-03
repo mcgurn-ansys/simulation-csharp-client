@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "3.40.0",
+    "version": "3.46.0",
     "title": "Simulation API",
     "description": "An API for managing simulations within ANSYS Additive."
   },
@@ -7329,6 +7329,12 @@
           "type": "integer",
           "format": "int32",
           "description": "number of slice layers in the part"
+        },
+        "longestScanVectorLength": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": true,
+          "description": "length (in meters) of the longest fill scan vector in the scan pattern. Defaults to null"
         }
       }
     },
@@ -7827,6 +7833,27 @@
           "format": "int32",
           "minimum": 1,
           "maximum": 10
+        },
+        "includeOnPlateStrainOutput": {
+          "type": "boolean",
+          "description": "if true, the on-plate stress output file will include the on-plate strain"
+        },
+        "enableContours": {
+          "type": "boolean",
+          "description": "if true, contour scan vectors is used in scan pattern simulation"
+        },
+        "loadSteppingType": {
+          "type": "string",
+          "enum": [
+            "DynamicLoadStepping",
+            "FixedLoadStepping"
+          ]
+        },
+        "loadSteps": {
+          "type": "integer",
+          "format": "int32",
+          "minimum": 1,
+          "maximum": 200
         }
       }
     },
@@ -9249,7 +9276,8 @@
             "AdditiveIndustries",
             "Renishaw",
             "SLM",
-            "ThreeDSystems"
+            "ThreeDSystems",
+            "EOS"
           ]
         },
         "materialType": {
@@ -9308,6 +9336,12 @@
           "items": {
             "$ref": "#/definitions/BuildFileSupport"
           }
+        },
+        "longestScanVectorLength": {
+          "type": "number",
+          "format": "double",
+          "x-nullable": true,
+          "description": "length (in meters) of the longest fill scan vector in the scan pattern. Defaults to null"
         }
       }
     },

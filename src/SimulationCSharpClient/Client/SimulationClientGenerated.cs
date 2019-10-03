@@ -15752,6 +15752,7 @@ namespace SimulationCSharpClient.Client
         private int? _numberOfCores;
         private int? _voxelLayers;
         private int? _sliceLayers;
+        private double? _longestScanVectorLength;
     
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int? Id
@@ -16133,6 +16134,21 @@ namespace SimulationCSharpClient.Client
                 if (_sliceLayers != value)
                 {
                     _sliceLayers = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>length (in meters) of the longest fill scan vector in the scan pattern. Defaults to null</summary>
+        [Newtonsoft.Json.JsonProperty("longestScanVectorLength", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? LongestScanVectorLength
+        {
+            get { return _longestScanVectorLength; }
+            set 
+            {
+                if (_longestScanVectorLength != value)
+                {
+                    _longestScanVectorLength = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -17115,6 +17131,10 @@ namespace SimulationCSharpClient.Client
         private System.Collections.ObjectModel.ObservableCollection<double> _distortionAfterCutoffScaleFactorValues;
         private PartBasedSimulationParametersSupportType _supportType;
         private int? _voxelSampleRate;
+        private bool? _includeOnPlateStrainOutput;
+        private bool? _enableContours;
+        private PartBasedSimulationParametersLoadSteppingType? _loadSteppingType;
+        private int? _loadSteps;
     
         /// <summary>List of parts to simulate (current limit is one part, imposed by server)</summary>
         [Newtonsoft.Json.JsonProperty("simulationParts", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -17713,6 +17733,66 @@ namespace SimulationCSharpClient.Client
                 if (_voxelSampleRate != value)
                 {
                     _voxelSampleRate = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, the on-plate stress output file will include the on-plate strain</summary>
+        [Newtonsoft.Json.JsonProperty("includeOnPlateStrainOutput", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? IncludeOnPlateStrainOutput
+        {
+            get { return _includeOnPlateStrainOutput; }
+            set 
+            {
+                if (_includeOnPlateStrainOutput != value)
+                {
+                    _includeOnPlateStrainOutput = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, contour scan vectors is used in scan pattern simulation</summary>
+        [Newtonsoft.Json.JsonProperty("enableContours", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? EnableContours
+        {
+            get { return _enableContours; }
+            set 
+            {
+                if (_enableContours != value)
+                {
+                    _enableContours = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("loadSteppingType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public PartBasedSimulationParametersLoadSteppingType? LoadSteppingType
+        {
+            get { return _loadSteppingType; }
+            set 
+            {
+                if (_loadSteppingType != value)
+                {
+                    _loadSteppingType = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("loadSteps", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(1, 200)]
+        public int? LoadSteps
+        {
+            get { return _loadSteps; }
+            set 
+            {
+                if (_loadSteps != value)
+                {
+                    _loadSteps = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -17822,6 +17902,10 @@ namespace SimulationCSharpClient.Client
         private System.Collections.ObjectModel.ObservableCollection<double> _distortionAfterCutoffScaleFactorValues;
         private PartBasedSimulationParametersSupportType _supportType;
         private int? _voxelSampleRate;
+        private bool? _includeOnPlateStrainOutput;
+        private bool? _enableContours;
+        private PartBasedSimulationParametersLoadSteppingType? _loadSteppingType;
+        private int? _loadSteps;
         private double? _layerThickness;
     
         /// <summary>List of parts to simulate (current limit is one part, imposed by server)</summary>
@@ -18421,6 +18505,66 @@ namespace SimulationCSharpClient.Client
                 if (_voxelSampleRate != value)
                 {
                     _voxelSampleRate = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, the on-plate stress output file will include the on-plate strain</summary>
+        [Newtonsoft.Json.JsonProperty("includeOnPlateStrainOutput", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? IncludeOnPlateStrainOutput
+        {
+            get { return _includeOnPlateStrainOutput; }
+            set 
+            {
+                if (_includeOnPlateStrainOutput != value)
+                {
+                    _includeOnPlateStrainOutput = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, contour scan vectors is used in scan pattern simulation</summary>
+        [Newtonsoft.Json.JsonProperty("enableContours", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? EnableContours
+        {
+            get { return _enableContours; }
+            set 
+            {
+                if (_enableContours != value)
+                {
+                    _enableContours = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("loadSteppingType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public PartBasedSimulationParametersLoadSteppingType? LoadSteppingType
+        {
+            get { return _loadSteppingType; }
+            set 
+            {
+                if (_loadSteppingType != value)
+                {
+                    _loadSteppingType = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("loadSteps", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(1, 200)]
+        public int? LoadSteps
+        {
+            get { return _loadSteps; }
+            set 
+            {
+                if (_loadSteps != value)
+                {
+                    _loadSteps = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -19046,6 +19190,10 @@ namespace SimulationCSharpClient.Client
         private System.Collections.ObjectModel.ObservableCollection<double> _distortionAfterCutoffScaleFactorValues;
         private PartBasedSimulationParametersSupportType _supportType;
         private int? _voxelSampleRate;
+        private bool? _includeOnPlateStrainOutput;
+        private bool? _enableContours;
+        private PartBasedSimulationParametersLoadSteppingType? _loadSteppingType;
+        private int? _loadSteps;
         private double _layerThickness;
         private double _hatchSpacing;
         private double _laserWattage;
@@ -19676,6 +19824,66 @@ namespace SimulationCSharpClient.Client
                 if (_voxelSampleRate != value)
                 {
                     _voxelSampleRate = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, the on-plate stress output file will include the on-plate strain</summary>
+        [Newtonsoft.Json.JsonProperty("includeOnPlateStrainOutput", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? IncludeOnPlateStrainOutput
+        {
+            get { return _includeOnPlateStrainOutput; }
+            set 
+            {
+                if (_includeOnPlateStrainOutput != value)
+                {
+                    _includeOnPlateStrainOutput = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, contour scan vectors is used in scan pattern simulation</summary>
+        [Newtonsoft.Json.JsonProperty("enableContours", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? EnableContours
+        {
+            get { return _enableContours; }
+            set 
+            {
+                if (_enableContours != value)
+                {
+                    _enableContours = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("loadSteppingType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public PartBasedSimulationParametersLoadSteppingType? LoadSteppingType
+        {
+            get { return _loadSteppingType; }
+            set 
+            {
+                if (_loadSteppingType != value)
+                {
+                    _loadSteppingType = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("loadSteps", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(1, 200)]
+        public int? LoadSteps
+        {
+            get { return _loadSteps; }
+            set 
+            {
+                if (_loadSteps != value)
+                {
+                    _loadSteps = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -20364,6 +20572,10 @@ namespace SimulationCSharpClient.Client
         private System.Collections.ObjectModel.ObservableCollection<double> _distortionAfterCutoffScaleFactorValues;
         private PartBasedSimulationParametersSupportType _supportType;
         private int? _voxelSampleRate;
+        private bool? _includeOnPlateStrainOutput;
+        private bool? _enableContours;
+        private PartBasedSimulationParametersLoadSteppingType? _loadSteppingType;
+        private int? _loadSteps;
         private double _layerThickness;
         private double _startingLayerAngle;
         private double _layerRotationAngle;
@@ -20969,6 +21181,66 @@ namespace SimulationCSharpClient.Client
                 if (_voxelSampleRate != value)
                 {
                     _voxelSampleRate = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, the on-plate stress output file will include the on-plate strain</summary>
+        [Newtonsoft.Json.JsonProperty("includeOnPlateStrainOutput", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? IncludeOnPlateStrainOutput
+        {
+            get { return _includeOnPlateStrainOutput; }
+            set 
+            {
+                if (_includeOnPlateStrainOutput != value)
+                {
+                    _includeOnPlateStrainOutput = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, contour scan vectors is used in scan pattern simulation</summary>
+        [Newtonsoft.Json.JsonProperty("enableContours", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? EnableContours
+        {
+            get { return _enableContours; }
+            set 
+            {
+                if (_enableContours != value)
+                {
+                    _enableContours = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("loadSteppingType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public PartBasedSimulationParametersLoadSteppingType? LoadSteppingType
+        {
+            get { return _loadSteppingType; }
+            set 
+            {
+                if (_loadSteppingType != value)
+                {
+                    _loadSteppingType = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("loadSteps", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(1, 200)]
+        public int? LoadSteps
+        {
+            get { return _loadSteps; }
+            set 
+            {
+                if (_loadSteps != value)
+                {
+                    _loadSteps = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -24429,6 +24701,7 @@ namespace SimulationCSharpClient.Client
         private string _supportModelFileLocation;
         private string _uploadFileLocation;
         private System.Collections.ObjectModel.ObservableCollection<BuildFileSupport> _buildFileSupports;
+        private double? _longestScanVectorLength;
     
         /// <summary>internally assigned identifier for this build file</summary>
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
@@ -24926,6 +25199,21 @@ namespace SimulationCSharpClient.Client
                 if (_buildFileSupports != value)
                 {
                     _buildFileSupports = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>length (in meters) of the longest fill scan vector in the scan pattern. Defaults to null</summary>
+        [Newtonsoft.Json.JsonProperty("longestScanVectorLength", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? LongestScanVectorLength
+        {
+            get { return _longestScanVectorLength; }
+            set 
+            {
+                if (_longestScanVectorLength != value)
+                {
+                    _longestScanVectorLength = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -27411,6 +27699,17 @@ namespace SimulationCSharpClient.Client
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
+    public enum PartBasedSimulationParametersLoadSteppingType
+    {
+        [System.Runtime.Serialization.EnumMember(Value = "DynamicLoadStepping")]
+        DynamicLoadStepping = 0,
+    
+        [System.Runtime.Serialization.EnumMember(Value = "FixedLoadStepping")]
+        FixedLoadStepping = 1,
+    
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
     public enum PartAvailability
     {
         [System.Runtime.Serialization.EnumMember(Value = "Uploaded")]
@@ -27489,6 +27788,9 @@ namespace SimulationCSharpClient.Client
     
         [System.Runtime.Serialization.EnumMember(Value = "ThreeDSystems")]
         ThreeDSystems = 3,
+    
+        [System.Runtime.Serialization.EnumMember(Value = "EOS")]
+        EOS = 4,
     
     }
     
