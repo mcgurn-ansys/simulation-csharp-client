@@ -17135,6 +17135,7 @@ namespace SimulationCSharpClient.Client
         private bool? _enableContours;
         private PartBasedSimulationParametersLoadSteppingType? _loadSteppingType;
         private int? _loadSteps;
+        private bool _outputMapdl;
     
         /// <summary>List of parts to simulate (current limit is one part, imposed by server)</summary>
         [Newtonsoft.Json.JsonProperty("simulationParts", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -17793,6 +17794,21 @@ namespace SimulationCSharpClient.Client
                 if (_loadSteps != value)
                 {
                     _loadSteps = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, mechanics solver output will include files related to passing mesh and inital state to ANSYS Workbench</summary>
+        [Newtonsoft.Json.JsonProperty("outputMapdl", Required = Newtonsoft.Json.Required.Always)]
+        public bool OutputMapdl
+        {
+            get { return _outputMapdl; }
+            set 
+            {
+                if (_outputMapdl != value)
+                {
+                    _outputMapdl = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -17906,6 +17922,7 @@ namespace SimulationCSharpClient.Client
         private bool? _enableContours;
         private PartBasedSimulationParametersLoadSteppingType? _loadSteppingType;
         private int? _loadSteps;
+        private bool _outputMapdl;
         private double? _layerThickness;
     
         /// <summary>List of parts to simulate (current limit is one part, imposed by server)</summary>
@@ -18565,6 +18582,21 @@ namespace SimulationCSharpClient.Client
                 if (_loadSteps != value)
                 {
                     _loadSteps = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, mechanics solver output will include files related to passing mesh and inital state to ANSYS Workbench</summary>
+        [Newtonsoft.Json.JsonProperty("outputMapdl", Required = Newtonsoft.Json.Required.Always)]
+        public bool OutputMapdl
+        {
+            get { return _outputMapdl; }
+            set 
+            {
+                if (_outputMapdl != value)
+                {
+                    _outputMapdl = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -19194,6 +19226,7 @@ namespace SimulationCSharpClient.Client
         private bool? _enableContours;
         private PartBasedSimulationParametersLoadSteppingType? _loadSteppingType;
         private int? _loadSteps;
+        private bool _outputMapdl;
         private double _layerThickness;
         private double _hatchSpacing;
         private double _laserWattage;
@@ -19884,6 +19917,21 @@ namespace SimulationCSharpClient.Client
                 if (_loadSteps != value)
                 {
                     _loadSteps = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, mechanics solver output will include files related to passing mesh and inital state to ANSYS Workbench</summary>
+        [Newtonsoft.Json.JsonProperty("outputMapdl", Required = Newtonsoft.Json.Required.Always)]
+        public bool OutputMapdl
+        {
+            get { return _outputMapdl; }
+            set 
+            {
+                if (_outputMapdl != value)
+                {
+                    _outputMapdl = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -20576,6 +20624,7 @@ namespace SimulationCSharpClient.Client
         private bool? _enableContours;
         private PartBasedSimulationParametersLoadSteppingType? _loadSteppingType;
         private int? _loadSteps;
+        private bool _outputMapdl;
         private double _layerThickness;
         private double _startingLayerAngle;
         private double _layerRotationAngle;
@@ -21241,6 +21290,21 @@ namespace SimulationCSharpClient.Client
                 if (_loadSteps != value)
                 {
                     _loadSteps = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>if true, mechanics solver output will include files related to passing mesh and inital state to ANSYS Workbench</summary>
+        [Newtonsoft.Json.JsonProperty("outputMapdl", Required = Newtonsoft.Json.Required.Always)]
+        public bool OutputMapdl
+        {
+            get { return _outputMapdl; }
+            set 
+            {
+                if (_outputMapdl != value)
+                {
+                    _outputMapdl = value; 
                     RaisePropertyChanged();
                 }
             }

@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "3.46.0",
+    "version": "3.47.0",
     "title": "Simulation API",
     "description": "An API for managing simulations within ANSYS Additive."
   },
@@ -7633,7 +7633,8 @@
         "stressMode",
         "detectBladeCrash",
         "outputLayerVtk",
-        "supportType"
+        "supportType",
+        "outputMapdl"
       ],
       "properties": {
         "simulationParts": {
@@ -7854,6 +7855,10 @@
           "format": "int32",
           "minimum": 1,
           "maximum": 200
+        },
+        "outputMapdl": {
+          "type": "boolean",
+          "description": "if true, mechanics solver output will include files related to passing mesh and inital state to ANSYS Workbench"
         }
       }
     },
