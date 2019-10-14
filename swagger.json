@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "3.47.0",
+    "version": "3.49.0",
     "title": "Simulation API",
     "description": "An API for managing simulations within ANSYS Additive."
   },
@@ -7349,7 +7349,8 @@
         "laserWattageValues",
         "scanSpeedValues",
         "hatchSpacingValues",
-        "slicingStripeWidthValues"
+        "slicingStripeWidthValues",
+        "beamDiameter"
       ],
       "properties": {
         "geometryWidth": {
@@ -7463,6 +7464,13 @@
           "minimum": 293,
           "maximum": 474,
           "format": "double"
+        },
+        "beamDiameter": {
+          "description": "diameter of laser beam in meters",
+          "type": "number",
+          "minimum": 0.00008,
+          "maximum": 0.00012,
+          "format": "double"
         }
       }
     },
@@ -7488,7 +7496,8 @@
         "laserAbsorptivityInPowderValues",
         "laserAbsorptivityInSolidValues",
         "solidusTemperatureValues",
-        "liquidusTemperatureValues"
+        "liquidusTemperatureValues",
+        "beamDiameter"
       ],
       "properties": {
         "beadType": {
@@ -7600,6 +7609,13 @@
           "type": "number",
           "minimum": 293,
           "maximum": 474,
+          "format": "double"
+        },
+        "beamDiameter": {
+          "description": "diameter of laser beam in meters",
+          "type": "number",
+          "minimum": 0.00008,
+          "maximum": 0.00012,
           "format": "double"
         }
       }
@@ -7905,7 +7921,8 @@
         "outputPrintRitePcsSensor",
         "outputInstantStaticSensor",
         "outputPointProbe",
-        "outputCoaxialAverageSensorData"
+        "outputCoaxialAverageSensorData",
+        "beamDiameter"
       ],
       "properties": {
         "layerThickness": {
@@ -8067,6 +8084,13 @@
           "format": "int32",
           "minimum": 1,
           "maximum": 12
+        },
+        "beamDiameter": {
+          "description": "diameter of laser beam in meters",
+          "type": "number",
+          "minimum": 0.00008,
+          "maximum": 0.00012,
+          "format": "double"
         }
       }
     },
@@ -8906,7 +8930,8 @@
         "created",
         "createdBy",
         "lastModified",
-        "lastModifiedBy"
+        "lastModifiedBy",
+        "coreVersion"
       ],
       "properties": {
         "id": {
@@ -8973,6 +8998,11 @@
         "lastModifiedBy": {
           "type": "string",
           "description": "modifying user, set server-side, read only field"
+        },
+        "coreVersion": {
+          "type": "string",
+          "description": "version of the core machine this machine was derived from",
+          "maxLength": 32
         }
       }
     },
@@ -9750,7 +9780,8 @@
         "scanSpeedValues",
         "slicingStripeWidthValues",
         "startingLayerAngleValues",
-        "userProvidedThermalData"
+        "userProvidedThermalData",
+        "beamDiameter"
       ],
       "properties": {
         "geometryWidth": {
@@ -9893,6 +9924,13 @@
           "format": "int64",
           "minimum": 0,
           "maximum": 4294967295
+        },
+        "beamDiameter": {
+          "description": "diameter of laser beam in meters",
+          "type": "number",
+          "minimum": 0.00008,
+          "maximum": 0.00012,
+          "format": "double"
         }
       }
     },

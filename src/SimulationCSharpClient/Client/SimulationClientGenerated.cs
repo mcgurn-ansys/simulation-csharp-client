@@ -107,7 +107,7 @@ namespace SimulationCSharpClient.Client
         /// <param name="archived">If true, will only return archived parts.  If false, will only return unarchived parts.  If not provided, will return both archived and unarchived parts.</param>
         /// <returns>Successfully retrieved list of machines</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Machine>> GetMachinesAsync(int organizationId, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived);
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Machine>> GetMachinesAsync(int organizationId, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, bool? isCore);
     
         /// <param name="organizationId">the organization id to get items for.  Must be provided as API callers only have access to items belonging to their organization.</param>
         /// <param name="offset">starting paging count; ex. 60 will skip the first 60 items in the list</param>
@@ -117,7 +117,7 @@ namespace SimulationCSharpClient.Client
         /// <returns>Successfully retrieved list of machines</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Machine>> GetMachinesAsync(int organizationId, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Machine>> GetMachinesAsync(int organizationId, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, bool? isCore, System.Threading.CancellationToken cancellationToken);
     
         /// <returns>Machine was successfully added.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
@@ -2346,9 +2346,9 @@ namespace SimulationCSharpClient.Client
         /// <param name="archived">If true, will only return archived parts.  If false, will only return unarchived parts.  If not provided, will return both archived and unarchived parts.</param>
         /// <returns>Successfully retrieved list of machines</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Machine>> GetMachinesAsync(int organizationId, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived)
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Machine>> GetMachinesAsync(int organizationId, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, bool? isCore)
         {
-            return GetMachinesAsync(organizationId, offset, limit, sort, archived, System.Threading.CancellationToken.None);
+            return GetMachinesAsync(organizationId, offset, limit, sort, archived, isCore, System.Threading.CancellationToken.None);
         }
     
         /// <param name="organizationId">the organization id to get items for.  Must be provided as API callers only have access to items belonging to their organization.</param>
@@ -2359,7 +2359,7 @@ namespace SimulationCSharpClient.Client
         /// <returns>Successfully retrieved list of machines</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        public async System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Machine>> GetMachinesAsync(int organizationId, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Machine>> GetMachinesAsync(int organizationId, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, bool? isCore, System.Threading.CancellationToken cancellationToken)
         {
             if (organizationId == null)
                 throw new System.ArgumentNullException("organizationId");
@@ -2371,6 +2371,8 @@ namespace SimulationCSharpClient.Client
             if (limit != null) urlBuilder_.Append("limit=").Append(System.Uri.EscapeDataString(System.Convert.ToString(limit, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             if (sort != null) foreach (var item_ in sort) { urlBuilder_.Append("sort=").Append(System.Uri.EscapeDataString(System.Convert.ToString(item_, System.Globalization.CultureInfo.InvariantCulture))).Append("&"); }
             if (archived != null) urlBuilder_.Append("archived=").Append(System.Uri.EscapeDataString(System.Convert.ToString(archived, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            if (isCore != null) urlBuilder_.Append("isCore=").Append(System.Uri.EscapeDataString(System.Convert.ToString(isCore, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+
             urlBuilder_.Length--;
     
             var client_ = _httpClient;
@@ -16189,6 +16191,7 @@ namespace SimulationCSharpClient.Client
         private System.Collections.ObjectModel.ObservableCollection<double> _slicingStripeWidthValues = new System.Collections.ObjectModel.ObservableCollection<double>();
         private int? _meshLayersPerLayer;
         private double? _heaterTemperature;
+        private double _beamDiameter;
     
         /// <summary>Must be between 0.001 to 0.01 meters</summary>
         [Newtonsoft.Json.JsonProperty("geometryWidth", Required = Newtonsoft.Json.Required.Always)]
@@ -16377,6 +16380,22 @@ namespace SimulationCSharpClient.Client
                 if (_heaterTemperature != value)
                 {
                     _heaterTemperature = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>diameter of laser beam in meters</summary>
+        [Newtonsoft.Json.JsonProperty("beamDiameter", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(8E-05D, 0.00012D)]
+        public double BeamDiameter
+        {
+            get { return _beamDiameter; }
+            set 
+            {
+                if (_beamDiameter != value)
+                {
+                    _beamDiameter = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -16417,6 +16436,7 @@ namespace SimulationCSharpClient.Client
         private System.Collections.ObjectModel.ObservableCollection<double> _slicingStripeWidthValues = new System.Collections.ObjectModel.ObservableCollection<double>();
         private int? _meshLayersPerLayer;
         private double? _heaterTemperature;
+        private double _beamDiameter;
     
         /// <summary>Must be between 0.001 to 0.01 meters</summary>
         [Newtonsoft.Json.JsonProperty("geometryWidth", Required = Newtonsoft.Json.Required.Always)]
@@ -16610,6 +16630,22 @@ namespace SimulationCSharpClient.Client
             }
         }
     
+        /// <summary>diameter of laser beam in meters</summary>
+        [Newtonsoft.Json.JsonProperty("beamDiameter", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(8E-05D, 0.00012D)]
+        public double BeamDiameter
+        {
+            get { return _beamDiameter; }
+            set 
+            {
+                if (_beamDiameter != value)
+                {
+                    _beamDiameter = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
         public string ToJson() 
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this);
@@ -16645,6 +16681,7 @@ namespace SimulationCSharpClient.Client
         private System.Collections.ObjectModel.ObservableCollection<double> _solidusTemperatureValues = new System.Collections.ObjectModel.ObservableCollection<double>();
         private System.Collections.ObjectModel.ObservableCollection<double> _liquidusTemperatureValues = new System.Collections.ObjectModel.ObservableCollection<double>();
         private double? _heaterTemperature;
+        private double _beamDiameter;
     
         /// <summary>Type of single bead simulation - either bead on plate or bead on powder.</summary>
         [Newtonsoft.Json.JsonProperty("beadType", Required = Newtonsoft.Json.Required.Always)]
@@ -16834,6 +16871,22 @@ namespace SimulationCSharpClient.Client
                 if (_heaterTemperature != value)
                 {
                     _heaterTemperature = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>diameter of laser beam in meters</summary>
+        [Newtonsoft.Json.JsonProperty("beamDiameter", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(8E-05D, 0.00012D)]
+        public double BeamDiameter
+        {
+            get { return _beamDiameter; }
+            set 
+            {
+                if (_beamDiameter != value)
+                {
+                    _beamDiameter = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -16874,6 +16927,7 @@ namespace SimulationCSharpClient.Client
         private System.Collections.ObjectModel.ObservableCollection<double> _solidusTemperatureValues = new System.Collections.ObjectModel.ObservableCollection<double>();
         private System.Collections.ObjectModel.ObservableCollection<double> _liquidusTemperatureValues = new System.Collections.ObjectModel.ObservableCollection<double>();
         private double? _heaterTemperature;
+        private double _beamDiameter;
     
         /// <summary>Type of single bead simulation - either bead on plate or bead on powder.</summary>
         [Newtonsoft.Json.JsonProperty("beadType", Required = Newtonsoft.Json.Required.Always)]
@@ -17063,6 +17117,22 @@ namespace SimulationCSharpClient.Client
                 if (_heaterTemperature != value)
                 {
                     _heaterTemperature = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>diameter of laser beam in meters</summary>
+        [Newtonsoft.Json.JsonProperty("beamDiameter", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(8E-05D, 0.00012D)]
+        public double BeamDiameter
+        {
+            get { return _beamDiameter; }
+            set 
+            {
+                if (_beamDiameter != value)
+                {
+                    _beamDiameter = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -18673,6 +18743,7 @@ namespace SimulationCSharpClient.Client
         private double? _coaxialAverageSensorRadius;
         private System.Collections.ObjectModel.ObservableCollection<ZHeightRange> _coaxialAverageSensorZHeights;
         private int? _meshResolutionFactor;
+        private double _beamDiameter;
     
         /// <summary>Must be between 0.00001 to 0.0001 meters</summary>
         [Newtonsoft.Json.JsonProperty("layerThickness", Required = Newtonsoft.Json.Required.Always)]
@@ -19159,6 +19230,22 @@ namespace SimulationCSharpClient.Client
             }
         }
     
+        /// <summary>diameter of laser beam in meters</summary>
+        [Newtonsoft.Json.JsonProperty("beamDiameter", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(8E-05D, 0.00012D)]
+        public double BeamDiameter
+        {
+            get { return _beamDiameter; }
+            set 
+            {
+                if (_beamDiameter != value)
+                {
+                    _beamDiameter = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
         public string ToJson() 
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this);
@@ -19259,6 +19346,7 @@ namespace SimulationCSharpClient.Client
         private double? _coaxialAverageSensorRadius;
         private System.Collections.ObjectModel.ObservableCollection<ZHeightRange> _coaxialAverageSensorZHeights;
         private int? _meshResolutionFactor;
+        private double _beamDiameter;
     
         /// <summary>List of parts to simulate (current limit is one part, imposed by server)</summary>
         [Newtonsoft.Json.JsonProperty("simulationParts", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -20417,6 +20505,22 @@ namespace SimulationCSharpClient.Client
                 if (_meshResolutionFactor != value)
                 {
                     _meshResolutionFactor = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>diameter of laser beam in meters</summary>
+        [Newtonsoft.Json.JsonProperty("beamDiameter", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(8E-05D, 0.00012D)]
+        public double BeamDiameter
+        {
+            get { return _beamDiameter; }
+            set 
+            {
+                if (_beamDiameter != value)
+                {
+                    _beamDiameter = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -23795,6 +23899,7 @@ namespace SimulationCSharpClient.Client
         private string _createdBy;
         private System.DateTime _lastModified;
         private string _lastModifiedBy;
+        private string _coreVersion;
     
         /// <summary>machine identifier</summary>
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
@@ -24008,6 +24113,23 @@ namespace SimulationCSharpClient.Client
                 if (_lastModifiedBy != value)
                 {
                     _lastModifiedBy = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>version of the core machine this machine was derived from</summary>
+        [Newtonsoft.Json.JsonProperty("coreVersion", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        [System.ComponentModel.DataAnnotations.StringLength(32)]
+        public string CoreVersion
+        {
+            get { return _coreVersion; }
+            set 
+            {
+                if (_coreVersion != value)
+                {
+                    _coreVersion = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -26595,6 +26717,7 @@ namespace SimulationCSharpClient.Client
         private System.Collections.ObjectModel.ObservableCollection<MicrostructureSensor> _microstructureSensors = new System.Collections.ObjectModel.ObservableCollection<MicrostructureSensor>();
         private bool _userProvidedThermalData;
         private long? _randomSeed;
+        private double _beamDiameter;
     
         /// <summary>Width of part geometry, 0.001 to 0.01 meters</summary>
         [Newtonsoft.Json.JsonProperty("geometryWidth", Required = Newtonsoft.Json.Required.Always)]
@@ -26812,6 +26935,22 @@ namespace SimulationCSharpClient.Client
                 if (_randomSeed != value)
                 {
                     _randomSeed = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>diameter of laser beam in meters</summary>
+        [Newtonsoft.Json.JsonProperty("beamDiameter", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(8E-05D, 0.00012D)]
+        public double BeamDiameter
+        {
+            get { return _beamDiameter; }
+            set 
+            {
+                if (_beamDiameter != value)
+                {
+                    _beamDiameter = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -27056,6 +27195,7 @@ namespace SimulationCSharpClient.Client
         private System.Collections.ObjectModel.ObservableCollection<MicrostructureSensor> _microstructureSensors = new System.Collections.ObjectModel.ObservableCollection<MicrostructureSensor>();
         private bool _userProvidedThermalData;
         private long? _randomSeed;
+        private double _beamDiameter;
     
         /// <summary>Width of part geometry, 0.001 to 0.01 meters</summary>
         [Newtonsoft.Json.JsonProperty("geometryWidth", Required = Newtonsoft.Json.Required.Always)]
@@ -27273,6 +27413,22 @@ namespace SimulationCSharpClient.Client
                 if (_randomSeed != value)
                 {
                     _randomSeed = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>diameter of laser beam in meters</summary>
+        [Newtonsoft.Json.JsonProperty("beamDiameter", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Range(8E-05D, 0.00012D)]
+        public double BeamDiameter
+        {
+            get { return _beamDiameter; }
+            set 
+            {
+                if (_beamDiameter != value)
+                {
+                    _beamDiameter = value; 
                     RaisePropertyChanged();
                 }
             }
