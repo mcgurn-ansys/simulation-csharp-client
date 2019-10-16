@@ -107,7 +107,7 @@ namespace SimulationCSharpClient.Client
         /// <param name="archived">If true, will only return archived parts.  If false, will only return unarchived parts.  If not provided, will return both archived and unarchived parts.</param>
         /// <returns>Successfully retrieved list of machines</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Machine>> GetMachinesAsync(int organizationId, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, bool? isCore);
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Machine>> GetMachinesAsync(int organizationId, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived);
     
         /// <param name="organizationId">the organization id to get items for.  Must be provided as API callers only have access to items belonging to their organization.</param>
         /// <param name="offset">starting paging count; ex. 60 will skip the first 60 items in the list</param>
@@ -117,7 +117,7 @@ namespace SimulationCSharpClient.Client
         /// <returns>Successfully retrieved list of machines</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Machine>> GetMachinesAsync(int organizationId, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, bool? isCore, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Machine>> GetMachinesAsync(int organizationId, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, System.Threading.CancellationToken cancellationToken);
     
         /// <returns>Machine was successfully added.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
@@ -2346,9 +2346,9 @@ namespace SimulationCSharpClient.Client
         /// <param name="archived">If true, will only return archived parts.  If false, will only return unarchived parts.  If not provided, will return both archived and unarchived parts.</param>
         /// <returns>Successfully retrieved list of machines</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Machine>> GetMachinesAsync(int organizationId, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, bool? isCore)
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Machine>> GetMachinesAsync(int organizationId, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived)
         {
-            return GetMachinesAsync(organizationId, offset, limit, sort, archived, isCore, System.Threading.CancellationToken.None);
+            return GetMachinesAsync(organizationId, offset, limit, sort, archived, System.Threading.CancellationToken.None);
         }
     
         /// <param name="organizationId">the organization id to get items for.  Must be provided as API callers only have access to items belonging to their organization.</param>
@@ -2359,7 +2359,7 @@ namespace SimulationCSharpClient.Client
         /// <returns>Successfully retrieved list of machines</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        public async System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Machine>> GetMachinesAsync(int organizationId, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, bool? isCore, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Machine>> GetMachinesAsync(int organizationId, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, System.Threading.CancellationToken cancellationToken)
         {
             if (organizationId == null)
                 throw new System.ArgumentNullException("organizationId");
@@ -2371,8 +2371,6 @@ namespace SimulationCSharpClient.Client
             if (limit != null) urlBuilder_.Append("limit=").Append(System.Uri.EscapeDataString(System.Convert.ToString(limit, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             if (sort != null) foreach (var item_ in sort) { urlBuilder_.Append("sort=").Append(System.Uri.EscapeDataString(System.Convert.ToString(item_, System.Globalization.CultureInfo.InvariantCulture))).Append("&"); }
             if (archived != null) urlBuilder_.Append("archived=").Append(System.Uri.EscapeDataString(System.Convert.ToString(archived, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            if (isCore != null) urlBuilder_.Append("isCore=").Append(System.Uri.EscapeDataString(System.Convert.ToString(isCore, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-
             urlBuilder_.Length--;
     
             var client_ = _httpClient;
@@ -25436,6 +25434,9 @@ namespace SimulationCSharpClient.Client
         private double? _sizeX;
         private double? _sizeY;
         private double? _sizeZ;
+        private double? _xMin;
+        private double? _yMin;
+        private double? _zMin;
     
         /// <summary>Id of the buildfile support</summary>
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
@@ -25515,7 +25516,7 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        /// <summary>Width of the Part bounding box (in meters), calculated when the part is processed, use 0 for initial post</summary>
+        /// <summary>Width of the Support bounding box (in meters), calculated when the Support is processed, use 0 for initial post</summary>
         [Newtonsoft.Json.JsonProperty("sizeX", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double? SizeX
         {
@@ -25530,7 +25531,7 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        /// <summary>Length of the Part bounding box (in meters), calculated when the part is processed, use 0 for initial post</summary>
+        /// <summary>Length of the Support bounding box (in meters), calculated when the Support is processed, use 0 for initial post</summary>
         [Newtonsoft.Json.JsonProperty("sizeY", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double? SizeY
         {
@@ -25545,7 +25546,7 @@ namespace SimulationCSharpClient.Client
             }
         }
     
-        /// <summary>Height of the Part bounding box (in meters), calculated when the part is processed, use 0 for initial post</summary>
+        /// <summary>Height of the Support bounding box (in meters), calculated when the Support is processed, use 0 for initial post</summary>
         [Newtonsoft.Json.JsonProperty("sizeZ", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public double? SizeZ
         {
@@ -25555,6 +25556,51 @@ namespace SimulationCSharpClient.Client
                 if (_sizeZ != value)
                 {
                     _sizeZ = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>x location (in meters) where the lower left corner of the bounding box of the support, use 0 for initial post</summary>
+        [Newtonsoft.Json.JsonProperty("xMin", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? XMin
+        {
+            get { return _xMin; }
+            set 
+            {
+                if (_xMin != value)
+                {
+                    _xMin = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>y location (in meters) where the lower left corner of the bounding box of the support, use 0 for initial post</summary>
+        [Newtonsoft.Json.JsonProperty("yMin", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? YMin
+        {
+            get { return _yMin; }
+            set 
+            {
+                if (_yMin != value)
+                {
+                    _yMin = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>z location (in meters) where the lower left corner of the bounding box of the support, use 0 for initial post</summary>
+        [Newtonsoft.Json.JsonProperty("zMin", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? ZMin
+        {
+            get { return _zMin; }
+            set 
+            {
+                if (_zMin != value)
+                {
+                    _zMin = value; 
                     RaisePropertyChanged();
                 }
             }
