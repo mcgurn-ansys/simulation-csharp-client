@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "3.50.0",
+    "version": "3.51.0",
     "title": "Simulation API",
     "description": "An API for managing simulations within ANSYS Additive."
   },
@@ -7875,6 +7875,18 @@
         "outputMapdl": {
           "type": "boolean",
           "description": "if true, mechanics solver output will include files related to passing mesh and inital state to ANSYS Workbench"
+        },
+        "positionedPartOffsetX": {
+          "type": "number",
+          "description": "The offset between the positioned part and the origin in x direction"
+        },
+        "positionedPartOffsetY": {
+          "type": "number",
+          "description": "The offset between the positioned part and the origin in y direction"
+        },
+        "positionedPartOffsetZ": {
+          "type": "number",
+          "description": "The offset between the positioned part and the origin in z direction"
         }
       }
     },

@@ -17204,6 +17204,9 @@ namespace SimulationCSharpClient.Client
         private PartBasedSimulationParametersLoadSteppingType? _loadSteppingType;
         private int? _loadSteps;
         private bool _outputMapdl;
+        private double? _positionedPartOffsetX;
+        private double? _positionedPartOffsetY;
+        private double? _positionedPartOffsetZ;
     
         /// <summary>List of parts to simulate (current limit is one part, imposed by server)</summary>
         [Newtonsoft.Json.JsonProperty("simulationParts", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -17877,6 +17880,51 @@ namespace SimulationCSharpClient.Client
                 if (_outputMapdl != value)
                 {
                     _outputMapdl = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>The offset between the positioned part and the origin in x direction</summary>
+        [Newtonsoft.Json.JsonProperty("positionedPartOffsetX", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? PositionedPartOffsetX
+        {
+            get { return _positionedPartOffsetX; }
+            set 
+            {
+                if (_positionedPartOffsetX != value)
+                {
+                    _positionedPartOffsetX = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>The offset between the positioned part and the origin in y direction</summary>
+        [Newtonsoft.Json.JsonProperty("positionedPartOffsetY", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? PositionedPartOffsetY
+        {
+            get { return _positionedPartOffsetY; }
+            set 
+            {
+                if (_positionedPartOffsetY != value)
+                {
+                    _positionedPartOffsetY = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>The offset between the positioned part and the origin in z direction</summary>
+        [Newtonsoft.Json.JsonProperty("positionedPartOffsetZ", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? PositionedPartOffsetZ
+        {
+            get { return _positionedPartOffsetZ; }
+            set 
+            {
+                if (_positionedPartOffsetZ != value)
+                {
+                    _positionedPartOffsetZ = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -17991,6 +18039,9 @@ namespace SimulationCSharpClient.Client
         private PartBasedSimulationParametersLoadSteppingType? _loadSteppingType;
         private int? _loadSteps;
         private bool _outputMapdl;
+        private double? _positionedPartOffsetX;
+        private double? _positionedPartOffsetY;
+        private double? _positionedPartOffsetZ;
         private double? _layerThickness;
     
         /// <summary>List of parts to simulate (current limit is one part, imposed by server)</summary>
@@ -18665,6 +18716,51 @@ namespace SimulationCSharpClient.Client
                 if (_outputMapdl != value)
                 {
                     _outputMapdl = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>The offset between the positioned part and the origin in x direction</summary>
+        [Newtonsoft.Json.JsonProperty("positionedPartOffsetX", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? PositionedPartOffsetX
+        {
+            get { return _positionedPartOffsetX; }
+            set 
+            {
+                if (_positionedPartOffsetX != value)
+                {
+                    _positionedPartOffsetX = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>The offset between the positioned part and the origin in y direction</summary>
+        [Newtonsoft.Json.JsonProperty("positionedPartOffsetY", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? PositionedPartOffsetY
+        {
+            get { return _positionedPartOffsetY; }
+            set 
+            {
+                if (_positionedPartOffsetY != value)
+                {
+                    _positionedPartOffsetY = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>The offset between the positioned part and the origin in z direction</summary>
+        [Newtonsoft.Json.JsonProperty("positionedPartOffsetZ", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? PositionedPartOffsetZ
+        {
+            get { return _positionedPartOffsetZ; }
+            set 
+            {
+                if (_positionedPartOffsetZ != value)
+                {
+                    _positionedPartOffsetZ = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -19312,6 +19408,9 @@ namespace SimulationCSharpClient.Client
         private PartBasedSimulationParametersLoadSteppingType? _loadSteppingType;
         private int? _loadSteps;
         private bool _outputMapdl;
+        private double? _positionedPartOffsetX;
+        private double? _positionedPartOffsetY;
+        private double? _positionedPartOffsetZ;
         private double _layerThickness;
         private double _hatchSpacing;
         private double _laserWattage;
@@ -20018,6 +20117,51 @@ namespace SimulationCSharpClient.Client
                 if (_outputMapdl != value)
                 {
                     _outputMapdl = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>The offset between the positioned part and the origin in x direction</summary>
+        [Newtonsoft.Json.JsonProperty("positionedPartOffsetX", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? PositionedPartOffsetX
+        {
+            get { return _positionedPartOffsetX; }
+            set 
+            {
+                if (_positionedPartOffsetX != value)
+                {
+                    _positionedPartOffsetX = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>The offset between the positioned part and the origin in y direction</summary>
+        [Newtonsoft.Json.JsonProperty("positionedPartOffsetY", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? PositionedPartOffsetY
+        {
+            get { return _positionedPartOffsetY; }
+            set 
+            {
+                if (_positionedPartOffsetY != value)
+                {
+                    _positionedPartOffsetY = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>The offset between the positioned part and the origin in z direction</summary>
+        [Newtonsoft.Json.JsonProperty("positionedPartOffsetZ", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? PositionedPartOffsetZ
+        {
+            get { return _positionedPartOffsetZ; }
+            set 
+            {
+                if (_positionedPartOffsetZ != value)
+                {
+                    _positionedPartOffsetZ = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -20727,6 +20871,9 @@ namespace SimulationCSharpClient.Client
         private PartBasedSimulationParametersLoadSteppingType? _loadSteppingType;
         private int? _loadSteps;
         private bool _outputMapdl;
+        private double? _positionedPartOffsetX;
+        private double? _positionedPartOffsetY;
+        private double? _positionedPartOffsetZ;
         private double _layerThickness;
         private double _startingLayerAngle;
         private double _layerRotationAngle;
@@ -21407,6 +21554,51 @@ namespace SimulationCSharpClient.Client
                 if (_outputMapdl != value)
                 {
                     _outputMapdl = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>The offset between the positioned part and the origin in x direction</summary>
+        [Newtonsoft.Json.JsonProperty("positionedPartOffsetX", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? PositionedPartOffsetX
+        {
+            get { return _positionedPartOffsetX; }
+            set 
+            {
+                if (_positionedPartOffsetX != value)
+                {
+                    _positionedPartOffsetX = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>The offset between the positioned part and the origin in y direction</summary>
+        [Newtonsoft.Json.JsonProperty("positionedPartOffsetY", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? PositionedPartOffsetY
+        {
+            get { return _positionedPartOffsetY; }
+            set 
+            {
+                if (_positionedPartOffsetY != value)
+                {
+                    _positionedPartOffsetY = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>The offset between the positioned part and the origin in z direction</summary>
+        [Newtonsoft.Json.JsonProperty("positionedPartOffsetZ", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? PositionedPartOffsetZ
+        {
+            get { return _positionedPartOffsetZ; }
+            set 
+            {
+                if (_positionedPartOffsetZ != value)
+                {
+                    _positionedPartOffsetZ = value; 
                     RaisePropertyChanged();
                 }
             }
