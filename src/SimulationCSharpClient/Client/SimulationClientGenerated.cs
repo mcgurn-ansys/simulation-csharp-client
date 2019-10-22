@@ -26955,6 +26955,7 @@ namespace SimulationCSharpClient.Client
         private System.Collections.ObjectModel.ObservableCollection<MicrostructureSensor> _microstructureSensors = new System.Collections.ObjectModel.ObservableCollection<MicrostructureSensor>();
         private bool _userProvidedThermalData;
         private long? _randomSeed;
+        private bool? _generateRandomSeed;
         private double _beamDiameter;
     
         /// <summary>Width of part geometry, 0.001 to 0.01 meters</summary>
@@ -27173,6 +27174,21 @@ namespace SimulationCSharpClient.Client
                 if (_randomSeed != value)
                 {
                     _randomSeed = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Results in the generation of a new random seed.  Useful if duplicating a simulation and require unique seeds in each simulation.</summary>
+        [Newtonsoft.Json.JsonProperty("generateRandomSeed", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? GenerateRandomSeed
+        {
+            get { return _generateRandomSeed; }
+            set 
+            {
+                if (_generateRandomSeed != value)
+                {
+                    _generateRandomSeed = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -27433,6 +27449,7 @@ namespace SimulationCSharpClient.Client
         private System.Collections.ObjectModel.ObservableCollection<MicrostructureSensor> _microstructureSensors = new System.Collections.ObjectModel.ObservableCollection<MicrostructureSensor>();
         private bool _userProvidedThermalData;
         private long? _randomSeed;
+        private bool? _generateRandomSeed;
         private double _beamDiameter;
     
         /// <summary>Width of part geometry, 0.001 to 0.01 meters</summary>
@@ -27651,6 +27668,21 @@ namespace SimulationCSharpClient.Client
                 if (_randomSeed != value)
                 {
                     _randomSeed = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>Results in the generation of a new random seed.  Useful if duplicating a simulation and require unique seeds in each simulation.</summary>
+        [Newtonsoft.Json.JsonProperty("generateRandomSeed", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? GenerateRandomSeed
+        {
+            get { return _generateRandomSeed; }
+            set 
+            {
+                if (_generateRandomSeed != value)
+                {
+                    _generateRandomSeed = value; 
                     RaisePropertyChanged();
                 }
             }
