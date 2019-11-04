@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "3.52.0",
+    "version": "3.53.0",
     "title": "Simulation API",
     "description": "An API for managing simulations within ANSYS Additive."
   },
@@ -9324,7 +9324,8 @@
             "Renishaw",
             "SLM",
             "ThreeDSystems",
-            "EOS"
+            "EOS",
+            "Trumpf"
           ]
         },
         "materialType": {
