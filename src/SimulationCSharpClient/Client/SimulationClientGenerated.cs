@@ -105,19 +105,21 @@ namespace SimulationCSharpClient.Client
         /// <param name="limit">number of items to return within the query</param>
         /// <param name="sort">key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc</param>
         /// <param name="archived">If true, will only return archived parts.  If false, will only return unarchived parts.  If not provided, will return both archived and unarchived parts.</param>
+        /// <param name="isCore">If true, will return all Core Machines in any organization.  If false, will return non-core machines in the organization. If not provided, will return all core machines and machines in the passed organization.</param>
         /// <returns>Successfully retrieved list of machines</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Machine>> GetMachinesAsync(int organizationId, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived);
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Machine>> GetMachinesAsync(int organizationId, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, bool? isCore);
     
         /// <param name="organizationId">the organization id to get items for.  Must be provided as API callers only have access to items belonging to their organization.</param>
         /// <param name="offset">starting paging count; ex. 60 will skip the first 60 items in the list</param>
         /// <param name="limit">number of items to return within the query</param>
         /// <param name="sort">key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc</param>
         /// <param name="archived">If true, will only return archived parts.  If false, will only return unarchived parts.  If not provided, will return both archived and unarchived parts.</param>
+        /// <param name="isCore">If true, will return all Core Machines in any organization.  If false, will return non-core machines in the organization. If not provided, will return all core machines and machines in the passed organization.</param>
         /// <returns>Successfully retrieved list of machines</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Machine>> GetMachinesAsync(int organizationId, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Machine>> GetMachinesAsync(int organizationId, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, bool? isCore, System.Threading.CancellationToken cancellationToken);
     
         /// <returns>Machine was successfully added.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
@@ -2344,11 +2346,12 @@ namespace SimulationCSharpClient.Client
         /// <param name="limit">number of items to return within the query</param>
         /// <param name="sort">key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc</param>
         /// <param name="archived">If true, will only return archived parts.  If false, will only return unarchived parts.  If not provided, will return both archived and unarchived parts.</param>
+        /// <param name="isCore">If true, will return all Core Machines in any organization.  If false, will return non-core machines in the organization. If not provided, will return all core machines and machines in the passed organization.</param>
         /// <returns>Successfully retrieved list of machines</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Machine>> GetMachinesAsync(int organizationId, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived)
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Machine>> GetMachinesAsync(int organizationId, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, bool? isCore)
         {
-            return GetMachinesAsync(organizationId, offset, limit, sort, archived, System.Threading.CancellationToken.None);
+            return GetMachinesAsync(organizationId, offset, limit, sort, archived, isCore, System.Threading.CancellationToken.None);
         }
     
         /// <param name="organizationId">the organization id to get items for.  Must be provided as API callers only have access to items belonging to their organization.</param>
@@ -2356,10 +2359,11 @@ namespace SimulationCSharpClient.Client
         /// <param name="limit">number of items to return within the query</param>
         /// <param name="sort">key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc</param>
         /// <param name="archived">If true, will only return archived parts.  If false, will only return unarchived parts.  If not provided, will return both archived and unarchived parts.</param>
+        /// <param name="isCore">If true, will return all Core Machines in any organization.  If false, will return non-core machines in the organization. If not provided, will return all core machines and machines in the passed organization.</param>
         /// <returns>Successfully retrieved list of machines</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        public async System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Machine>> GetMachinesAsync(int organizationId, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Machine>> GetMachinesAsync(int organizationId, int? offset, int? limit, System.Collections.Generic.IEnumerable<string> sort, bool? archived, bool? isCore, System.Threading.CancellationToken cancellationToken)
         {
             if (organizationId == null)
                 throw new System.ArgumentNullException("organizationId");
@@ -2371,6 +2375,7 @@ namespace SimulationCSharpClient.Client
             if (limit != null) urlBuilder_.Append("limit=").Append(System.Uri.EscapeDataString(System.Convert.ToString(limit, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             if (sort != null) foreach (var item_ in sort) { urlBuilder_.Append("sort=").Append(System.Uri.EscapeDataString(System.Convert.ToString(item_, System.Globalization.CultureInfo.InvariantCulture))).Append("&"); }
             if (archived != null) urlBuilder_.Append("archived=").Append(System.Uri.EscapeDataString(System.Convert.ToString(archived, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            if (isCore != null) urlBuilder_.Append("isCore=").Append(System.Uri.EscapeDataString(System.Convert.ToString(isCore, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
     
             var client_ = _httpClient;
@@ -24082,7 +24087,7 @@ namespace SimulationCSharpClient.Client
         private string _description;
         private bool _archived;
         private string _key;
-        private int _configurationId;
+        private int _machineConfigurationId;
         private MachineConfiguration _configuration;
         private System.Collections.ObjectModel.ObservableCollection<MachineConfiguration> _configurationHistory;
         private System.DateTime _created;
@@ -24202,15 +24207,15 @@ namespace SimulationCSharpClient.Client
         }
     
         /// <summary>identifier for the active configuration for the machine</summary>
-        [Newtonsoft.Json.JsonProperty("configurationId", Required = Newtonsoft.Json.Required.Always)]
-        public int ConfigurationId
+        [Newtonsoft.Json.JsonProperty("machineConfigurationId", Required = Newtonsoft.Json.Required.Always)]
+        public int MachineConfigurationId
         {
-            get { return _configurationId; }
+            get { return _machineConfigurationId; }
             set 
             {
-                if (_configurationId != value)
+                if (_machineConfigurationId != value)
                 {
-                    _configurationId = value; 
+                    _machineConfigurationId = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -28281,10 +28286,10 @@ namespace SimulationCSharpClient.Client
     
         [System.Runtime.Serialization.EnumMember(Value = "EOS")]
         EOS = 4,
-
+    
         [System.Runtime.Serialization.EnumMember(Value = "Trumpf")]
         Trumpf = 5,
-
+    
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
