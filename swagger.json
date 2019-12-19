@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "3.54.0",
+    "version": "3.55.0",
     "title": "Simulation API",
     "description": "An API for managing simulations within ANSYS Additive."
   },
@@ -7649,6 +7649,7 @@
         "poissonRatio",
         "hardeningFactor",
         "strainScalingFactor",
+        "cutoffMethod",
         "outputDisplacementAfterCutoff",
         "performSupportOnlyCutoff",
         "performSupportOptimization",
@@ -7894,6 +7895,13 @@
         "positionedPartOffsetZ": {
           "type": "number",
           "description": "The offset between the positioned part and the origin in z direction"
+        },
+        "cutoffMethod": {
+          "type": "string",
+          "enum": [
+            "Legacy",
+            "Instantaneous"
+          ]
         }
       }
     },

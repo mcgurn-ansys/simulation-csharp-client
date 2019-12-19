@@ -17212,6 +17212,7 @@ namespace SimulationCSharpClient.Client
         private double? _positionedPartOffsetX;
         private double? _positionedPartOffsetY;
         private double? _positionedPartOffsetZ;
+        private PartBasedSimulationParametersCutoffMethod _cutoffMethod;
     
         /// <summary>List of parts to simulate (current limit is one part, imposed by server)</summary>
         [Newtonsoft.Json.JsonProperty("simulationParts", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -17930,6 +17931,22 @@ namespace SimulationCSharpClient.Client
                 if (_positionedPartOffsetZ != value)
                 {
                     _positionedPartOffsetZ = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("cutoffMethod", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public PartBasedSimulationParametersCutoffMethod CutoffMethod
+        {
+            get { return _cutoffMethod; }
+            set 
+            {
+                if (_cutoffMethod != value)
+                {
+                    _cutoffMethod = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -18047,6 +18064,7 @@ namespace SimulationCSharpClient.Client
         private double? _positionedPartOffsetX;
         private double? _positionedPartOffsetY;
         private double? _positionedPartOffsetZ;
+        private PartBasedSimulationParametersCutoffMethod _cutoffMethod;
         private double? _layerThickness;
     
         /// <summary>List of parts to simulate (current limit is one part, imposed by server)</summary>
@@ -18766,6 +18784,22 @@ namespace SimulationCSharpClient.Client
                 if (_positionedPartOffsetZ != value)
                 {
                     _positionedPartOffsetZ = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("cutoffMethod", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public PartBasedSimulationParametersCutoffMethod CutoffMethod
+        {
+            get { return _cutoffMethod; }
+            set 
+            {
+                if (_cutoffMethod != value)
+                {
+                    _cutoffMethod = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -19416,6 +19450,7 @@ namespace SimulationCSharpClient.Client
         private double? _positionedPartOffsetX;
         private double? _positionedPartOffsetY;
         private double? _positionedPartOffsetZ;
+        private PartBasedSimulationParametersCutoffMethod _cutoffMethod;
         private double _layerThickness;
         private double _hatchSpacing;
         private double _laserWattage;
@@ -20167,6 +20202,22 @@ namespace SimulationCSharpClient.Client
                 if (_positionedPartOffsetZ != value)
                 {
                     _positionedPartOffsetZ = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("cutoffMethod", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public PartBasedSimulationParametersCutoffMethod CutoffMethod
+        {
+            get { return _cutoffMethod; }
+            set 
+            {
+                if (_cutoffMethod != value)
+                {
+                    _cutoffMethod = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -20879,6 +20930,7 @@ namespace SimulationCSharpClient.Client
         private double? _positionedPartOffsetX;
         private double? _positionedPartOffsetY;
         private double? _positionedPartOffsetZ;
+        private PartBasedSimulationParametersCutoffMethod _cutoffMethod;
         private double _layerThickness;
         private double _startingLayerAngle;
         private double _layerRotationAngle;
@@ -21604,6 +21656,22 @@ namespace SimulationCSharpClient.Client
                 if (_positionedPartOffsetZ != value)
                 {
                     _positionedPartOffsetZ = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("cutoffMethod", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public PartBasedSimulationParametersCutoffMethod CutoffMethod
+        {
+            get { return _cutoffMethod; }
+            set 
+            {
+                if (_cutoffMethod != value)
+                {
+                    _cutoffMethod = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -28201,6 +28269,17 @@ namespace SimulationCSharpClient.Client
     
         [System.Runtime.Serialization.EnumMember(Value = "FixedLoadStepping")]
         FixedLoadStepping = 1,
+    
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.6.0 (Newtonsoft.Json v9.0.0.0)")]
+    public enum PartBasedSimulationParametersCutoffMethod
+    {
+        [System.Runtime.Serialization.EnumMember(Value = "Legacy")]
+        Legacy = 0,
+    
+        [System.Runtime.Serialization.EnumMember(Value = "Instantaneous")]
+        Instantaneous = 1,
     
     }
     
