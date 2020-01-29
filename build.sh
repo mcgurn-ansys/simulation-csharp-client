@@ -62,6 +62,15 @@ done
 rm -rf src/*/${PUBLISH_DIR}
 dotnet publish -c ${CONFIGURATION} -o ${PUBLISH_DIR} ${SRC_DIR}
 if [[ "${RUN_TEST}" == "1" ]]; then
+
+  # before testing make sure that the version numbers match
+  propertiesVersionContent=$(<version.properties)
+  propertiesVersion=${propertiesVersionContent#*=}
+  csprojVersion=`grep -oPm1 "(?<=<Version>)[^<]+" src/SimulationCSharpClient/SimulationCSharpClient.csproj`
+  if [[ "${propertiesVersion}" != "${csprojVersion}" ]]; then
+    die "The csproj version '${csprojVersion}' must match the version.properties '${propertiesVersion}'"
+  fi
+
   for d in test/*; do
     dotnet test ${d}
   done
