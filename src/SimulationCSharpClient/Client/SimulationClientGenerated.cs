@@ -17189,6 +17189,7 @@ namespace SimulationCSharpClient.Client
         private double _supportAngle;
         private double _supportFactorOfSafety;
         private bool _outputLayerVtk;
+        private long? _layerVtkMaxSize;
         private bool _detectBladeCrash;
         private double? _bladeCrashThreshold;
         private bool? _performDistortionCompensation;
@@ -17583,6 +17584,22 @@ namespace SimulationCSharpClient.Client
                 if (_outputLayerVtk != value)
                 {
                     _outputLayerVtk = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>the maximum number of bytes to be written in layer-wise VTK files before subsequent VTK layer-wise VTK files will be skipped. Ignored if outputLayerVtk is false and required if true.</summary>
+        [Newtonsoft.Json.JsonProperty("layerVtkMaxSize", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(1048576, int.MaxValue)]
+        public long? LayerVtkMaxSize
+        {
+            get { return _layerVtkMaxSize; }
+            set 
+            {
+                if (_layerVtkMaxSize != value)
+                {
+                    _layerVtkMaxSize = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -18041,6 +18058,7 @@ namespace SimulationCSharpClient.Client
         private double _supportAngle;
         private double _supportFactorOfSafety;
         private bool _outputLayerVtk;
+        private long? _layerVtkMaxSize;
         private bool _detectBladeCrash;
         private double? _bladeCrashThreshold;
         private bool? _performDistortionCompensation;
@@ -18436,6 +18454,22 @@ namespace SimulationCSharpClient.Client
                 if (_outputLayerVtk != value)
                 {
                     _outputLayerVtk = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>the maximum number of bytes to be written in layer-wise VTK files before subsequent VTK layer-wise VTK files will be skipped. Ignored if outputLayerVtk is false and required if true.</summary>
+        [Newtonsoft.Json.JsonProperty("layerVtkMaxSize", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(1048576, int.MaxValue)]
+        public long? LayerVtkMaxSize
+        {
+            get { return _layerVtkMaxSize; }
+            set 
+            {
+                if (_layerVtkMaxSize != value)
+                {
+                    _layerVtkMaxSize = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -19427,6 +19461,7 @@ namespace SimulationCSharpClient.Client
         private double _supportAngle;
         private double _supportFactorOfSafety;
         private bool _outputLayerVtk;
+        private long? _layerVtkMaxSize;
         private bool _detectBladeCrash;
         private double? _bladeCrashThreshold;
         private bool? _performDistortionCompensation;
@@ -19854,6 +19889,22 @@ namespace SimulationCSharpClient.Client
                 if (_outputLayerVtk != value)
                 {
                     _outputLayerVtk = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>the maximum number of bytes to be written in layer-wise VTK files before subsequent VTK layer-wise VTK files will be skipped. Ignored if outputLayerVtk is false and required if true.</summary>
+        [Newtonsoft.Json.JsonProperty("layerVtkMaxSize", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(1048576, int.MaxValue)]
+        public long? LayerVtkMaxSize
+        {
+            get { return _layerVtkMaxSize; }
+            set 
+            {
+                if (_layerVtkMaxSize != value)
+                {
+                    _layerVtkMaxSize = value; 
                     RaisePropertyChanged();
                 }
             }
@@ -20907,6 +20958,7 @@ namespace SimulationCSharpClient.Client
         private double _supportAngle;
         private double _supportFactorOfSafety;
         private bool _outputLayerVtk;
+        private long? _layerVtkMaxSize;
         private bool _detectBladeCrash;
         private double? _bladeCrashThreshold;
         private bool? _performDistortionCompensation;
@@ -21308,6 +21360,22 @@ namespace SimulationCSharpClient.Client
                 if (_outputLayerVtk != value)
                 {
                     _outputLayerVtk = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        /// <summary>the maximum number of bytes to be written in layer-wise VTK files before subsequent VTK layer-wise VTK files will be skipped. Ignored if outputLayerVtk is false and required if true.</summary>
+        [Newtonsoft.Json.JsonProperty("layerVtkMaxSize", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.Range(1048576, int.MaxValue)]
+        public long? LayerVtkMaxSize
+        {
+            get { return _layerVtkMaxSize; }
+            set 
+            {
+                if (_layerVtkMaxSize != value)
+                {
+                    _layerVtkMaxSize = value; 
                     RaisePropertyChanged();
                 }
             }

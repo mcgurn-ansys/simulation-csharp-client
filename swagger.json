@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "3.55.0",
+    "version": "3.56.0",
     "title": "Simulation API",
     "description": "An API for managing simulations within ANSYS Additive."
   },
@@ -7775,6 +7775,12 @@
         "outputLayerVtk": {
           "type": "boolean",
           "description": "if true, mechanics solver output will include a zip file with the stress / distortion state at the end of each voxel layer"
+        },
+        "layerVtkMaxSize": {
+          "type": "integer",
+          "format": "int64",
+          "description": "the maximum number of bytes to be written in layer-wise VTK files before subsequent VTK layer-wise VTK files will be skipped. Ignored if outputLayerVtk is false and required if true.",
+          "minimum": 1048576
         },
         "detectBladeCrash": {
           "type": "boolean"
